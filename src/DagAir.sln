@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31410.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DagAir", "DagAir\DagAir.csproj", "{FF2F9186-5D81-4145-ADDA-E04D818D8E79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.IngestionNode", "DagAir.IngestionNode\DagAir.IngestionNode.csproj", "{484695C1-BBFF-486A-9015-5288DC185116}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.QueryNode", "DagAir.QueryNode\DagAir.QueryNode.csproj", "{62D57765-9917-4BA3-8C03-BB8400EA289F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DagAir.IngestionNode", "DagAir.IngestionNode", "{5597FF47-0154-489D-8C49-C09E0B6CDC25}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DagAir.QueryNode", "DagAir.QueryNode", "{2B97F65A-61F7-4094-955B-4206B02B3A67}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{1EE267E3-A4FB-4EA9-9037-8EEA04AE6060}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.MassTransit.RabbitMq", "DagAir.MassTransit.RabbitMq\DagAir.MassTransit.RabbitMq.csproj", "{553A7478-4979-4397-835E-9055F6164218}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FF2F9186-5D81-4145-ADDA-E04D818D8E79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF2F9186-5D81-4145-ADDA-E04D818D8E79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF2F9186-5D81-4145-ADDA-E04D818D8E79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF2F9186-5D81-4145-ADDA-E04D818D8E79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{484695C1-BBFF-486A-9015-5288DC185116}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{484695C1-BBFF-486A-9015-5288DC185116}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{484695C1-BBFF-486A-9015-5288DC185116}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{484695C1-BBFF-486A-9015-5288DC185116}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62D57765-9917-4BA3-8C03-BB8400EA289F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62D57765-9917-4BA3-8C03-BB8400EA289F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62D57765-9917-4BA3-8C03-BB8400EA289F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62D57765-9917-4BA3-8C03-BB8400EA289F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{553A7478-4979-4397-835E-9055F6164218}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{553A7478-4979-4397-835E-9055F6164218}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{553A7478-4979-4397-835E-9055F6164218}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{553A7478-4979-4397-835E-9055F6164218}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C0972BFD-5DD2-40ED-8A1F-17B6F518B3C7}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{484695C1-BBFF-486A-9015-5288DC185116} = {5597FF47-0154-489D-8C49-C09E0B6CDC25}
+		{62D57765-9917-4BA3-8C03-BB8400EA289F} = {2B97F65A-61F7-4094-955B-4206B02B3A67}
+		{553A7478-4979-4397-835E-9055F6164218} = {1EE267E3-A4FB-4EA9-9037-8EEA04AE6060}
+	EndGlobalSection
+EndGlobal
