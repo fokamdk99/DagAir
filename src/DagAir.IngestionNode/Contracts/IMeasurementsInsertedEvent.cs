@@ -8,6 +8,7 @@ namespace DagAir.IngestionNode.Contracts
 {
     public interface IMeasurementsInsertedEvent
     {
-        float Temperature { get; }
+        IMeasurement Measurement { get; }
+        ISensorIdentity SensorIdentity { get; }
     }
 }

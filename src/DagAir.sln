@@ -17,6 +17,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.MassTransit.RabbitMq", "DagAir.MassTransit.RabbitMq\DagAir.MassTransit.RabbitMq.csproj", "{553A7478-4979-4397-835E-9055F6164218}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.IngestionNode.Data", "DagAir.IngestionNode.Data\DagAir.IngestionNode.Data.csproj", "{400B7493-EC4D-4A34-BD08-237AC7E01041}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.IngestionNode.Tests", "DagAir.IngestionNode.Tests\DagAir.IngestionNode.Tests.csproj", "{1CD76230-20BB-45FC-8F87-D7D2CB687FE1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{553A7478-4979-4397-835E-9055F6164218}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{553A7478-4979-4397-835E-9055F6164218}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{553A7478-4979-4397-835E-9055F6164218}.Release|Any CPU.Build.0 = Release|Any CPU
+		{400B7493-EC4D-4A34-BD08-237AC7E01041}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{400B7493-EC4D-4A34-BD08-237AC7E01041}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{400B7493-EC4D-4A34-BD08-237AC7E01041}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{400B7493-EC4D-4A34-BD08-237AC7E01041}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CD76230-20BB-45FC-8F87-D7D2CB687FE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CD76230-20BB-45FC-8F87-D7D2CB687FE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CD76230-20BB-45FC-8F87-D7D2CB687FE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CD76230-20BB-45FC-8F87-D7D2CB687FE1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,5 +62,7 @@ Global
 		{484695C1-BBFF-486A-9015-5288DC185116} = {5597FF47-0154-489D-8C49-C09E0B6CDC25}
 		{62D57765-9917-4BA3-8C03-BB8400EA289F} = {2B97F65A-61F7-4094-955B-4206B02B3A67}
 		{553A7478-4979-4397-835E-9055F6164218} = {1EE267E3-A4FB-4EA9-9037-8EEA04AE6060}
+		{400B7493-EC4D-4A34-BD08-237AC7E01041} = {5597FF47-0154-489D-8C49-C09E0B6CDC25}
+		{1CD76230-20BB-45FC-8F87-D7D2CB687FE1} = {5597FF47-0154-489D-8C49-C09E0B6CDC25}
 	EndGlobalSection
 EndGlobal
