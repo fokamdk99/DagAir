@@ -8,9 +8,9 @@ using InfluxDB.Client.Api.Domain;
 
 namespace DagAir.IngestionNode.Data
 {
-    public static class Program
+    public static class ProgramNotUsed
     {
-        public static async Task Main(string[] args)
+        public static async Task Main222(string[] args)
         {
             string bucketName = "dagair_bucket";
             string orgId = "a4d3426e45798e43";

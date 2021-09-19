@@ -21,6 +21,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.IngestionNode.Data",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.IngestionNode.Tests", "DagAir.IngestionNode.Tests\DagAir.IngestionNode.Tests.csproj", "{1CD76230-20BB-45FC-8F87-D7D2CB687FE1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.IngestionNode.Migrations", "DagAir.IngestionNode.Migrations\DagAir.IngestionNode.Migrations.csproj", "{878C68C1-092D-41E4-8D19-C1B3D8583273}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.IngestionNode.Contracts", "DagAir.IngestionNode.Contracts\DagAir.IngestionNode.Contracts.csproj", "{49A721A2-EA4A-4F92-9CBD-8F2969F3866E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,14 @@ Global
 		{1CD76230-20BB-45FC-8F87-D7D2CB687FE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CD76230-20BB-45FC-8F87-D7D2CB687FE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CD76230-20BB-45FC-8F87-D7D2CB687FE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{878C68C1-092D-41E4-8D19-C1B3D8583273}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{878C68C1-092D-41E4-8D19-C1B3D8583273}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{878C68C1-092D-41E4-8D19-C1B3D8583273}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{878C68C1-092D-41E4-8D19-C1B3D8583273}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49A721A2-EA4A-4F92-9CBD-8F2969F3866E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49A721A2-EA4A-4F92-9CBD-8F2969F3866E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49A721A2-EA4A-4F92-9CBD-8F2969F3866E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49A721A2-EA4A-4F92-9CBD-8F2969F3866E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,5 +76,7 @@ Global
 		{553A7478-4979-4397-835E-9055F6164218} = {1EE267E3-A4FB-4EA9-9037-8EEA04AE6060}
 		{400B7493-EC4D-4A34-BD08-237AC7E01041} = {5597FF47-0154-489D-8C49-C09E0B6CDC25}
 		{1CD76230-20BB-45FC-8F87-D7D2CB687FE1} = {5597FF47-0154-489D-8C49-C09E0B6CDC25}
+		{878C68C1-092D-41E4-8D19-C1B3D8583273} = {5597FF47-0154-489D-8C49-C09E0B6CDC25}
+		{49A721A2-EA4A-4F92-9CBD-8F2969F3866E} = {5597FF47-0154-489D-8C49-C09E0B6CDC25}
 	EndGlobalSection
 EndGlobal
