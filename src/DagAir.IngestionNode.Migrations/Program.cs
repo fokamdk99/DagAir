@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DagAir.IngestionNode.Data.Buckets;
+using DagAir.IngestionNode.Data.Influx;
 using DagAir.IngestionNode.Data.Sharding;
 using DagAir.IngestionNode.Data.UserContext;
 using DagAir.IngestionNode.Migrations.Context;
@@ -39,6 +41,11 @@ namespace DagAir.IngestionNode.Migrations
             }
 
             Logger.Information("Parallel execution of pending migrations is complete");
+
+            if (args.Contains("create_bucket"))
+            {
+                await CreateInfluxBucketTask(configuration);
+            }
         }
         
         private static readonly ILogger Logger = Log.Logger = new LoggerConfiguration()
@@ -61,6 +68,19 @@ namespace DagAir.IngestionNode.Migrations
                 Logger.Error(e, "Error occurred during migration");
                 throw;
             }
+        }
+
+        private static async Task CreateInfluxBucketTask(IConfiguration configuration)
+        {
+            var influxConfigurationProvider = new InfluxConfigurationProvider(configuration, null);
+            var influxCfg = influxConfigurationProvider.Provide();
+            await CreateBucketService.CreateBucket(
+                influxCfg.Token,
+                influxCfg.BucketName,
+                influxCfg.OrgId,
+                influxCfg.Url,
+                influxCfg.Retention
+            );
         }
 
         private static IEnumerable<Task> CreateUserDbMigrationTasks(IConfiguration configuration)
