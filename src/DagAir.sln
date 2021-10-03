@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.IngestionNode.Migrat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.IngestionNode.Contracts", "DagAir.IngestionNode.Contracts\DagAir.IngestionNode.Contracts.csproj", "{49A721A2-EA4A-4F92-9CBD-8F2969F3866E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.IngestionNode.Infrastructure", "DagAir.IngestionNode\DagAir.IngestionNode.Infrastructure\DagAir.IngestionNode.Infrastructure.csproj", "{C77A42DA-1818-420F-8C12-B030D3C81330}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{49A721A2-EA4A-4F92-9CBD-8F2969F3866E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49A721A2-EA4A-4F92-9CBD-8F2969F3866E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49A721A2-EA4A-4F92-9CBD-8F2969F3866E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C77A42DA-1818-420F-8C12-B030D3C81330}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C77A42DA-1818-420F-8C12-B030D3C81330}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C77A42DA-1818-420F-8C12-B030D3C81330}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C77A42DA-1818-420F-8C12-B030D3C81330}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,5 +84,6 @@ Global
 		{1CD76230-20BB-45FC-8F87-D7D2CB687FE1} = {5597FF47-0154-489D-8C49-C09E0B6CDC25}
 		{878C68C1-092D-41E4-8D19-C1B3D8583273} = {5597FF47-0154-489D-8C49-C09E0B6CDC25}
 		{49A721A2-EA4A-4F92-9CBD-8F2969F3866E} = {5597FF47-0154-489D-8C49-C09E0B6CDC25}
+		{C77A42DA-1818-420F-8C12-B030D3C81330} = {5597FF47-0154-489D-8C49-C09E0B6CDC25}
 	EndGlobalSection
 EndGlobal

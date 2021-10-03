@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DagAir.IngestionNode.Infrastructure;
 using MassTransit;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Hosting;
@@ -16,6 +17,7 @@ namespace DagAir.IngestionNode
         {
             var configuration = new ConfigurationBuilder()
                 .Build();
+            
             CreateHostBuilder(args, configuration)
                 .Build()
                 .Run();

@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace DagAir.IngestionNode.Consumers
 {
+    public class Message
+    {
+        public string Text { get; set; }
+    }
     public class MeasurementsInsertedEventsConsumer : IConsumer<IMeasurementsInsertedEvent>
     {
         public async Task Consume(ConsumeContext<IMeasurementsInsertedEvent> context)

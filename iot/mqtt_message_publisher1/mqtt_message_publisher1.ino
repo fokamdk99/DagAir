@@ -1,11 +1,8 @@
-#include <ArduinoMqttClient.h>
 #include <SoftwareSerial.h>
-#include <WiFiEspClient.h>
 #include <WiFiEsp.h>
 #include <PubSubClient.h>
-//#include <WiFiNINA.h>
 
-SoftwareSerial esp8266(5,4); // make RX Arduino line is pin 2, make TX Arduino line is pin 3.
+SoftwareSerial esp8266(4,5); // make RX Arduino line is pin 2, make TX Arduino line is pin 3.
                              // This means that you need to connect the TX line from the esp to the Arduino's pin 2
                              // and the RX line from the esp to the Arduino's pin 3
 
@@ -18,7 +15,7 @@ const char broker[] = "192.168.0.12";
 int        port     = 1883;
 const char topic[]  = "room_measurements";
 
-const long interval = 6000;
+const long interval = 4000;
 unsigned long previousMillis = 0;
 unsigned long lastSend;
 
@@ -41,9 +38,9 @@ void loop()
   }
 
   if ( millis() - lastSend > interval ){
-    String Rvalue = "temperature: 16C";
+    String Rvalue = "temperature: 17C";
     char attributes[100];
-    Rvalue.toCharArray(attributes, 100);
+    Rvalue.toCharArray(attributes,16);
     
     Serial.print("Sending message to topic: ");
     Serial.println(topic);
@@ -66,7 +63,7 @@ void loop()
    
   if(Serial.available())
   {
-    // the following delay is required because otherwise the arduino will read the first letter of the command but not the rest
+    // the following 16 is required because otherwise the arduino will read the first letter of the command but not the rest
     // In other words without the delay if you use AT+RST, for example, the Arduino will read the letter A send it, then read the rest and send it
     // but we want to send everything at the same time.
     delay(1000); 
@@ -128,7 +125,7 @@ void InitWiFi()
     Serial.println("Tech_D0054234");
     // Connect to WPA/WPA2 network
     status = WiFi.begin("Tech_D0054234", "XWFKMBRX");
-    delay(500);
+    delay(5000);
   }
   Serial.println("Connected to AP");
 }
@@ -143,9 +140,9 @@ void reconnect() {
     } else {
       Serial.print( "[FAILED] [ rc = " );
       Serial.print( client.state() );
-      Serial.println( " : retrying in 12 seconds]" );
+      Serial.println( " : retrying in 8 seconds]" );
       // Wait 5 seconds before retrying
-      delay( 12000 );
+      delay( 8000 );
     }
   }
 }

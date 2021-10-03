@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "MH4NRwYRLkJlIUaFch3wO3p031pLvMxhhTIG5xGMWRNU/zH5tHXUtEOQo3OIUc2fqcAIG9RX3tm8/WStm9ZvIQ==",
+  "dgSpecHash": "nat1YtEvPZ1uLzJB8HkJqG7ZvdYLPhap2e+ILVvH1uIuXBb7UgDSd7GtB6cwJS1ksMtLqx8CARrkBWCue2S4Bw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\rabbitmq\\publish_subscribe\\Subscriber\\Subscriber.csproj",
+  "projectFilePath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\iot\\publish_subscribe\\Subscriber\\Subscriber.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\01143844\\.nuget\\packages\\rabbitmq.client\\6.2.2\\rabbitmq.client.6.2.2.nupkg.sha512",
     "C:\\Users\\01143844\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512",
