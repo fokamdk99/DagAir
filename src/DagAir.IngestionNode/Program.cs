@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DagAir.IngestionNode.Infrastructure;
 using MassTransit;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Hosting;
@@ -15,9 +14,14 @@ namespace DagAir.IngestionNode
     {
         public static void Main(string[] args)
         {
+            var builder = new ConfigurationBuilder();
+
             var configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .AddEnvironmentVariables()
+                .AddCommandLine(args)
                 .Build();
-            
+
             CreateHostBuilder(args, configuration)
                 .Build()
                 .Run();
@@ -25,6 +29,10 @@ namespace DagAir.IngestionNode
 
         private static IHostBuilder CreateHostBuilder(string[] args, IConfiguration configuration) =>
             Host.CreateDefaultBuilder(args)
+                .ConfigureServices((hostBuilderContext, services) =>
+                {
+                    services.AddIngestionNodeFeature(configuration);
+                })
                 .ConfigureWebHostDefaults(webHostBuilder =>
                 {
                     ConfigureWebHost(webHostBuilder, GetUrls(configuration));

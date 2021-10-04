@@ -3,9 +3,12 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using DagAir.IngestionNode.Consumers;
+using DagAir.IngestionNode.Infrastructure.Configuration;
 using MassTransit;
 using MassTransit.NewIdProviders;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
@@ -17,21 +20,24 @@ namespace DagAir.IngestionNode
         private IConnection _connection;
         private IModel _channel;
 
-        public Worker()
+        public Worker(ISensorRabbitMqConfiguration cfg, ILogger<Worker> logger)
         {
-            _factory = new ConnectionFactory() { HostName = "192.168.0.12" };
+            _factory = new ConnectionFactory()
+            {
+                HostName = cfg.HostName
+            };
             _connection = _factory.CreateConnection();
             _channel = _connection.CreateModel();
             
-            _channel.ExchangeDeclare("amq.topic", ExchangeType.Topic, durable: true);
+            _channel.ExchangeDeclare(cfg.SensorExchange, ExchangeType.Topic, durable: true);
 
             var queueName = _channel.QueueDeclare().QueueName;
 
             _channel.QueueBind(queue: queueName,
-                exchange: "amq.topic",
-                routingKey: "room_measurements");
+                exchange: cfg.SensorExchange,
+                routingKey: cfg.RoutingKey);
             
-            Console.WriteLine("RABBITMQ: waiting for messages!123");
+            logger.LogInformation("Sensor rabbit mq configuration: waiting for messages");
         }
 
         protected override Task ExecuteAsync(CancellationToken cancellationToken)

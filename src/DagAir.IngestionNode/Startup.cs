@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using DagAir.IngestionNode.Consumers;
+using DagAir.IngestionNode.Infrastructure;
 using InfluxDB.Client.Api.Domain;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
@@ -24,20 +25,7 @@ namespace DagAir.IngestionNode
         public void ConfigureServices(IServiceCollection services)
         {
             
-            services.AddMassTransit(x =>
-            {
-                x.AddConsumer<MeasurementsInsertedEventsConsumer>();
-                x.AddConsumer<MeasurementsEventConsumer>();
-
-                x.UsingRabbitMq((context, cfg) =>
-                {
-                    
-                });
-            });
             
-            services.AddMassTransitHostedService(true);
-            
-            services.AddHostedService<Worker>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
