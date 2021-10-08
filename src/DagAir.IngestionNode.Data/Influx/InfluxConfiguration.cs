@@ -1,21 +1,24 @@
-﻿namespace DagAir.IngestionNode.Data.Influx
+﻿using Microsoft.Extensions.Configuration;
+
+namespace DagAir.IngestionNode.Data.Influx
 {
-    public struct InfluxConfiguration
+    public class InfluxConfiguration : IInfluxConfiguration
     {
-        public InfluxConfiguration(char[] token, string org, string orgId, string bucketName, string url, int retention)
+        public string Token { get; private set; }
+        public string Org { get; private set; }
+        public string OrgId { get; private set; }
+        public string BucketName { get; private set; }
+        public string Url { get; private set; }
+        public int Retention { get; private set; }
+
+        public static InfluxConfiguration GetConfiguration(IConfiguration configuration, string sectionName)
         {
-            Token = token;
-            Org = org;
-            OrgId = orgId;
-            BucketName = bucketName;
-            Url = url;
-            Retention = retention;
+            var influxConfiguration = new InfluxConfiguration();
+            configuration
+                .GetSection(sectionName)
+                .Bind(influxConfiguration, options => options.BindNonPublicProperties = true);
+
+            return influxConfiguration;
         }
-        public char[] Token { get; }
-        public string Org { get; }
-        public string OrgId { get; }
-        public string BucketName { get; }
-        public string Url { get; }
-        public int Retention { get; }
     }
 }

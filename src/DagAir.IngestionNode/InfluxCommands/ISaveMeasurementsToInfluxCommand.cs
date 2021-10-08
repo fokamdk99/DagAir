@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using DagAir.IngestionNode.Contracts;
 
-namespace DagAir.IngestionNode.Data.Queries
+namespace DagAir.IngestionNode.InfluxCommands
 {
-    public interface ISaveMeasurementsToInflux
+    public interface ISaveMeasurementsToInfluxCommand
     {
         Task Handle(IMeasurementsInsertedEvent measurementsInsertedEvent);
     }

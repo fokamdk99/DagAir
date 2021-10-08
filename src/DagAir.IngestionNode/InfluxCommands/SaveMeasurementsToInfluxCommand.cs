@@ -5,9 +5,9 @@ using DagAir.IngestionNode.Data.Measurements;
 using InfluxDB.Client;
 using InfluxDB.Client.Api.Domain;
 
-namespace DagAir.IngestionNode.Data.Queries
+namespace DagAir.IngestionNode.InfluxCommands
 {
-    public class SaveMeasurementsToInfluxCommand : ISaveMeasurementsToInflux
+    public class SaveMeasurementsToInfluxCommand : ISaveMeasurementsToInfluxCommand
     {
         private readonly char[] _token;
         
@@ -25,8 +25,7 @@ namespace DagAir.IngestionNode.Data.Queries
             {
                 var mem = new InfluxRoomMeasurement()
                 {
-                    SensorId = measurementsInsertedEvent.SensorIdentity.Id, 
-                    SensorName = measurementsInsertedEvent.SensorIdentity.Name,
+                    SensorId = measurementsInsertedEvent.SensorId,
                     Temperature = measurementsInsertedEvent.Measurement.Temperature, 
                     Humidity = measurementsInsertedEvent.Measurement.Humidity, 
                     Illuminance = measurementsInsertedEvent.Measurement.Illuminance, 

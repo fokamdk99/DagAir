@@ -9,6 +9,6 @@ namespace DagAir.IngestionNode.Contracts
     public interface IMeasurementsInsertedEvent
     {
         IMeasurement Measurement { get; }
-        ISensorIdentity SensorIdentity { get; }
+        string SensorId { get; }
     }
 }

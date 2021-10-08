@@ -9,7 +9,7 @@ namespace DagAir.IngestionNode.Infrastructure
         public static IServiceCollection AddRabbitMqFeature(this IServiceCollection services, IConfiguration configuration)
         {
             var sensorRabbitMqConfiguration =
-                SensorRabbitMqConfiguration.GetConfiguration(configuration, "sensorRabbitMqConfiguration");
+                SensorRabbitMqConfiguration.GetSensorRabbitMqConfiguration(configuration, "sensorRabbitMqConfiguration");
             services.AddSingleton<ISensorRabbitMqConfiguration>(x => sensorRabbitMqConfiguration);
 
             return services;

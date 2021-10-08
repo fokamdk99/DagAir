@@ -16,6 +16,15 @@
 
     <ItemGroup>
       <ProjectReference Include="..\DagAir.IngestionNode.Data\DagAir.IngestionNode.Data.csproj" />
+      <ProjectReference Include="..\DagAir.IngestionNode\DagAir.IngestionNode.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="appsettings.json">
+            <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        </Content>
     </ItemGroup>
 
 </Project>

@@ -3,12 +3,12 @@
     public class MeasurementsInsertedEvent : IMeasurementsInsertedEvent
     {
         public IMeasurement Measurement { get; set; }
-        public ISensorIdentity SensorIdentity { get; set; }
+        public string SensorId { get; set; }
 
-        public MeasurementsInsertedEvent(IMeasurement measurement, ISensorIdentity sensorIdentity)
+        public MeasurementsInsertedEvent(IMeasurement measurement, string sensorId)
         {
             Measurement = measurement;
-            SensorIdentity = sensorIdentity;
+            SensorId = sensorId;
         }
     }
 }

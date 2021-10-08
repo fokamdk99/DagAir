@@ -10,7 +10,7 @@ namespace DagAir.IngestionNode.Infrastructure.Configuration
         public string SensorExchange { get; private set; }
         public string RoutingKey { get; private set; }
         
-        public static SensorRabbitMqConfiguration GetConfiguration(IConfiguration configuration, string sectionName)
+        public static SensorRabbitMqConfiguration GetSensorRabbitMqConfiguration(IConfiguration configuration, string sectionName)
         {
             var rabbitMqConfiguration = new SensorRabbitMqConfiguration();
             configuration

@@ -1,4 +1,5 @@
-﻿using DagAir.IngestionNode.Infrastructure;
+﻿using DagAir.IngestionNode.InfluxCommands;
+using DagAir.IngestionNode.Infrastructure;
 using DagAir.IngestionNode.Infrastructure.Configuration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,6 +14,8 @@ namespace DagAir.IngestionNode
         )
         {
             services.AddRabbitMqFeature(configuration);
+            services.AddInfluxCommandsFeature();
+
             services.AddHostedService<Worker>();
 
             return services;
