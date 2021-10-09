@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using DagAir.IngestionNode.Contracts;
+using DagAir.IngestionNode.Data.Influx;
 using DagAir.IngestionNode.Data.Measurements;
 using InfluxDB.Client;
 using InfluxDB.Client.Api.Domain;
@@ -9,21 +10,18 @@ namespace DagAir.IngestionNode.InfluxCommands
 {
     public class SaveMeasurementsToInfluxCommand : ISaveMeasurementsToInfluxCommand
     {
-        private readonly char[] _token;
-        
         private readonly InfluxDBClient _client;
+        private readonly IInfluxConfiguration _influxConfiguration;
 
-        public SaveMeasurementsToInfluxCommand(char[] token, InfluxDBClient client)
+        public SaveMeasurementsToInfluxCommand(InfluxDBClient client, IInfluxConfiguration influxConfiguration)
         {
-            _token = token;
             _client = client;
+            _influxConfiguration = influxConfiguration;
         }
         
         public async Task Handle(IMeasurementsInsertedEvent measurementsInsertedEvent)
         {
-            using (var writeApi = _client.GetWriteApi())
-            {
-                var mem = new InfluxRoomMeasurement()
+            var mem = new InfluxRoomMeasurement()
                 {
                     SensorId = measurementsInsertedEvent.SensorId,
                     Temperature = measurementsInsertedEvent.Measurement.Temperature, 
@@ -32,8 +30,7 @@ namespace DagAir.IngestionNode.InfluxCommands
                     Time = DateTime.UtcNow
                 };
                 
-                writeApi.WriteMeasurement("dagair_bucket", "dagair", WritePrecision.Ms, mem);
-            }
+                await _client.GetWriteApiAsync().WriteMeasurementAsync(_influxConfiguration.BucketName, _influxConfiguration.Org, WritePrecision.Ms, mem);
         }
     }
     
