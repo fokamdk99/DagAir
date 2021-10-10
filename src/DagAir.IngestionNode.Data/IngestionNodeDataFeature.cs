@@ -18,6 +18,8 @@ namespace DagAir.IngestionNode.Data
                 return InfluxDBClientFactory.Create(influxConfiguration.Url, influxConfiguration.Token);
             });
 
+            services.AddIngestionNodeDataFeature(configuration);
+
             return services;
         }
     }

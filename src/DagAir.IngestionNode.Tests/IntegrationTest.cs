@@ -15,6 +15,7 @@ namespace DagAir.IngestionNode.Tests
     {
         protected InfluxDBClient Client;
         protected Bucket TestBucket;
+        protected ServiceProvider Services;
         protected IInfluxConfiguration InfluxConfiguration { get; private set; }
         
         [OneTimeSetUp]
@@ -27,12 +28,13 @@ namespace DagAir.IngestionNode.Tests
             
             var serviceCollection = new ServiceCollection();
             serviceCollection.AddIngestionNodeDataFeature(configuration);
-            var serviceProvider = serviceCollection.BuildServiceProvider();
+            AddOverrides(serviceCollection);
+            Services = serviceCollection.BuildServiceProvider();
             
-            InfluxConfiguration = serviceProvider.GetRequiredService<IInfluxConfiguration>();
+            InfluxConfiguration = Services.GetRequiredService<IInfluxConfiguration>();
             
             //Client = InfluxDBClientFactory.Create(InfluxConfiguration.Url, InfluxConfiguration.Token);
-            Client = serviceProvider.GetRequiredService<InfluxDBClient>();
+            Client = Services.GetRequiredService<InfluxDBClient>();
             var retention = new BucketRetentionRules(BucketRetentionRules.TypeEnum.Expire, InfluxConfiguration.Retention);
             TestBucket = await Client.GetBucketsApi().CreateBucketAsync(InfluxConfiguration.BucketName, retention, InfluxConfiguration.OrgId);
         }

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using DagAir.IngestionNode.Contracts;
 using DagAir.IngestionNode.Data.Measurements;
 using DagAir.IngestionNode.InfluxCommands;
+using DagAir.MassTransit.RabbitMq.Publisher;
 using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 
@@ -18,7 +19,7 @@ namespace DagAir.IngestionNode.Tests.InfluxCommands
             var tables = await Client.GetQueryApi().QueryAsync(query, InfluxConfiguration.OrgId);
             int numberOfRowsBeforeWrite = tables.Count;
 
-            var command = new SaveMeasurementsToInfluxCommand(Client, InfluxConfiguration);
+            var command = new SaveMeasurementsToInfluxCommand(Client, InfluxConfiguration, Services.GetRequiredService<IEventPublisher>());
             var insertedEvent = CreateMockMeasurementsInsertedEvent();
             
             await command.Handle(insertedEvent);
