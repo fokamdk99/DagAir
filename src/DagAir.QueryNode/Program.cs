@@ -1,4 +1,5 @@
 using System;
+using DagAir.Components.Logging;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
@@ -20,6 +21,7 @@ namespace DagAir.QueryNode
         private static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .UseConsoleLifetime()
+                .UseDagAirLogger()
                 .ConfigureServices((hostBuilderContext, services) =>
                 {
                     services

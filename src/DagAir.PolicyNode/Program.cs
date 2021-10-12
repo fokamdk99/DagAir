@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DagAir.Components.Logging;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -26,6 +27,7 @@ namespace DagAir.PolicyNode
         private static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .UseConsoleLifetime()
+                .UseDagAirLogger()
                 .ConfigureServices((hostBuilderContext, services) =>
                 {
                     services

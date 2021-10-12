@@ -13,6 +13,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\DagAir.Components.Healthchecks\DagAir.Components.Healthchecks.csproj" />
+      <ProjectReference Include="..\DagAir.Components.Logging\DagAir.Components.Logging.csproj" />
       <ProjectReference Include="..\DagAir.IngestionNode.Contracts\DagAir.IngestionNode.Contracts.csproj" />
       <ProjectReference Include="..\DagAir.MassTransit.RabbitMq\DagAir.MassTransit.RabbitMq.csproj" />
       <ProjectReference Include="..\DagAir.PolicyNode.Contracts\DagAir.PolicyNode.Contracts.csproj" />

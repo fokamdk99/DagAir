@@ -6,6 +6,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\DagAir.Components.Healthchecks\DagAir.Components.Healthchecks.csproj" />
+      <ProjectReference Include="..\DagAir.Components.Logging\DagAir.Components.Logging.csproj" />
     </ItemGroup>
 
 </Project>
