@@ -25,6 +25,8 @@ namespace DagAir.MassTransit.RabbitMq
                 x.ConfigureMassTransit<TRabbitMqConfiguration>(rabbitMqBusConfigurator, serviceCollectionBusConfigurator);
             });
 
+            services.AddMassTransitHostedService();
+
             return services;
         }
     }

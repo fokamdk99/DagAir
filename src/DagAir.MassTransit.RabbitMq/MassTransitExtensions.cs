@@ -17,6 +17,7 @@ namespace DagAir.MassTransit.RabbitMq
             ) 
             where TRabbitMqConfiguration : class, IRabbitMqConfiguration
         {
+            x.ApplyConfiguration<TRabbitMqConfiguration>(rabbitMqBusConfigurator);
             if (serviceCollectionBusConfigurator != null)
             {
                 serviceCollectionBusConfigurator(x);

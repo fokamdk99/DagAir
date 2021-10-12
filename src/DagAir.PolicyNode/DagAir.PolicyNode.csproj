@@ -12,10 +12,12 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\DagAir.Components.Healthchecks\DagAir.Components.Healthchecks.csproj" />
       <ProjectReference Include="..\DagAir.IngestionNode.Contracts\DagAir.IngestionNode.Contracts.csproj" />
       <ProjectReference Include="..\DagAir.MassTransit.RabbitMq\DagAir.MassTransit.RabbitMq.csproj" />
       <ProjectReference Include="..\DagAir.PolicyNode.Contracts\DagAir.PolicyNode.Contracts.csproj" />
       <ProjectReference Include="..\DagAir.PolicyNode.Data\DagAir.PolicyNode.Data.csproj" />
+      <ProjectReference Include="..\DagAir.PolicyNode.Infrastructure\DagAir.PolicyNode.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

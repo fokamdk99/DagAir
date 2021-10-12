@@ -34,6 +34,9 @@ namespace DagAir.IngestionNode.InfluxCommands
                 };
                 
                 await _client.GetWriteApiAsync().WriteMeasurementAsync(_influxConfiguration.BucketName, _influxConfiguration.Org, WritePrecision.Ms, mem);
+                
+                //Get roomId 
+                
                 await _eventPublisher.Publish(measurementsInsertedEvent);
         }
     }

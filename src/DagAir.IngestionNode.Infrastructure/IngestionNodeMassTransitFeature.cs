@@ -1,6 +1,7 @@
 ﻿using DagAir.MassTransit.RabbitMq;
 using DagAir.MassTransit.RabbitMq.Configuration;
 using DagAir.MassTransit.RabbitMq.Publisher;
+using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,7 +13,9 @@ namespace DagAir.IngestionNode.Infrastructure
         {
             services.AddScoped<IEventPublisher, EventPublisher>();
 
-            services.AddMassTransitFeature<IRabbitMqConfiguration>(configuration);
+            services.AddMassTransitFeature<IRabbitMqConfiguration>(configuration, IngestionNodeMassTransitExtensions.ConfigureRabbitMqBus);
+
+            services.AddMassTransitHostedService();
 
             return services;
         }

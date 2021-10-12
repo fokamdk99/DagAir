@@ -1,57 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MassTransit;
+﻿#nullable enable
+using System;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace DagAir.IngestionNode
 {
-    class Program
+    public class Program
     {
+        private static string[]? _urls; 
+        
         public static void Main(string[] args)
         {
-            var builder = new ConfigurationBuilder();
-
-            var configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
-                .AddEnvironmentVariables()
-                .AddCommandLine(args)
-                .Build();
-
-            CreateHostBuilder(args, configuration)
+            ConfigureEnvironmentVariables();
+            
+            CreateHostBuilder(args)
                 .Build()
                 .Run();
         }
 
-        private static IHostBuilder CreateHostBuilder(string[] args, IConfiguration configuration) =>
+        private static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .UseConsoleLifetime()
                 .ConfigureServices((hostBuilderContext, services) =>
                 {
-                    services.AddIngestionNodeFeature(configuration);
+                    services
+                        .AddIngestionNodeFeature(hostBuilderContext.Configuration)
+                        .AddHostedService<Worker>();
                 })
-                .ConfigureWebHostDefaults(webHostBuilder =>
-                {
-                    ConfigureWebHost(webHostBuilder, GetUrls(configuration));
-                });
+                .ConfigureWebHostDefaults(ConfigureWebHost);
 
-        private static void ConfigureWebHost(IWebHostBuilder webHostBuilder, string[] urls)
+        private static void ConfigureWebHost(IWebHostBuilder webHostBuilder)
         {
             webHostBuilder.UseStartup<Startup>();
             webHostBuilder.UseKestrel();
-            webHostBuilder.UseUrls(urls);
+            webHostBuilder.UseUrls(_urls!);
         }
 
-        private static string[] GetUrls(IConfiguration configuration)
+        private static void ConfigureEnvironmentVariables()
         {
-            return configuration
-                .GetSection("webHostingUrls")
-                .GetChildren()
-                .Select(c => c.Value)
-                .ToArray();
+            var urls = Environment.GetEnvironmentVariable("ASPNETCORE_URLS") ?? throw new Exception(
+                "ASPNETCORE_URLS configuration is missing. Please verify that Launchsettings.json has required value.");
+            _urls = urls!.Split(";");
         }
     }
 }
