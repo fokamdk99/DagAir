@@ -5,8 +5,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\DagAir.Components.ApiModels\DagAir.Components.ApiModels.csproj" />
       <ProjectReference Include="..\DagAir.Components.Healthchecks\DagAir.Components.Healthchecks.csproj" />
       <ProjectReference Include="..\DagAir.Components.Logging\DagAir.Components.Logging.csproj" />
+      <ProjectReference Include="..\DagAir.QueryNode.Data\DagAir.QueryNode.Data.csproj" />
     </ItemGroup>
 
 </Project>

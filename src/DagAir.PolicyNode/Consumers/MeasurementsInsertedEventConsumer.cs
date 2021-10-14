@@ -5,7 +5,7 @@ using MassTransit;
 
 namespace DagAir.PolicyNode.Consumers
 {
-    public class MeasurementsInsertedEventConsumer : IConsumer<IMeasurementsInsertedEvent>
+    public class MeasurementsInsertedEventConsumer : IConsumer<MeasurementsInsertedEvent>
     {
         private readonly IEvaluatePoliciesCommand _evaluatePoliciesCommand;
 
@@ -14,7 +14,7 @@ namespace DagAir.PolicyNode.Consumers
             _evaluatePoliciesCommand = evaluatePoliciesCommand;
         }
         
-        public async Task Consume(ConsumeContext<IMeasurementsInsertedEvent> context)
+        public async Task Consume(ConsumeContext<MeasurementsInsertedEvent> context)
         {
             await _evaluatePoliciesCommand.Handle(context.Message);
         }

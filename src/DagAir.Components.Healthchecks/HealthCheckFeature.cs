@@ -9,19 +9,30 @@ namespace DagAir.Components.HealthChecks
     {
         public const string RabbitMqHealthCheck = "rabbitMq";
         public const string ReadyHealthCheck = "readyHealthCheck";
+        public const string LiveHealthCheck = "liveHealthCheck";
 
         public static IServiceCollection AddDagAirHealthChecks(this IServiceCollection services)
         {
             services.AddSingleton<IGlobalHealthCheckFlags, GlobalHealthCheckFlags>();
             services.AddHostedService<BackGroundHealthCheckService>();
-
             
-            
+                
             services.AddHealthChecks()
                 .AddCheck<RabbitMqHealthCheck>(RabbitMqHealthCheck,
                     HealthStatus.Unhealthy,
                     new[] {HealthCheckTags.Internal.ToString()});
-
+            
+            
+            services.AddHealthChecks()
+                .AddCheck<ReadyHealthCheck>(ReadyHealthCheck,
+                    HealthStatus.Unhealthy,
+                    new[] {HealthCheckTags.ReadyFastLane.ToString()});
+            
+            services.AddHealthChecks()
+                .AddCheck<LiveHealthCheck>(LiveHealthCheck,
+                    HealthStatus.Unhealthy,
+                    new[] {HealthCheckTags.Live.ToString()});
+            
             return services;
         }
     }

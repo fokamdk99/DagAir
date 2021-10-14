@@ -14,9 +14,9 @@ namespace DagAir.PolicyNode.Infrastructure
         {
             services.AddScoped<IEventPublisher, EventPublisher>();
 
-            services.AddMassTransitFeature<IRabbitMqConfiguration>(configuration, PolicyNodeMassTransitExtensions.ConfigureRabbitMqBus, x => PolicyNodeMassTransitExtensions.AddServices(x, assembly));
+            services.AddPolicyNodeRabbitMqFeature(configuration);
 
-            services.AddMassTransitHostedService();
+            services.AddMassTransitFeature<IRabbitMqConfiguration>(configuration, PolicyNodeMassTransitExtensions.ConfigureRabbitMqBus, x => PolicyNodeMassTransitExtensions.AddServices(x, assembly));
 
             return services;
         }

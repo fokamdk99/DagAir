@@ -12,13 +12,11 @@ namespace DagAir.IngestionNode.Data
         {
             services.AddSingleton<IInfluxConfiguration>(x =>
                 InfluxConfiguration.GetConfiguration(configuration, "DagAirInfluxConfiguration"));
-            services.AddScoped<InfluxDBClient>(x =>
+            services.AddSingleton<InfluxDBClient>(x =>
             {
                 var influxConfiguration = services.BuildServiceProvider().GetRequiredService<IInfluxConfiguration>();
                 return InfluxDBClientFactory.Create(influxConfiguration.Url, influxConfiguration.Token);
             });
-
-            services.AddIngestionNodeDataFeature(configuration);
 
             return services;
         }

@@ -1,4 +1,5 @@
-﻿using DagAir.IngestionNode.InfluxCommands;
+﻿using DagAir.IngestionNode.Data;
+using DagAir.IngestionNode.InfluxCommands;
 using DagAir.IngestionNode.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,8 +13,8 @@ namespace DagAir.IngestionNode
             IConfiguration configuration
         )
         {
-            services.AddRabbitMqFeature(configuration);
-            services.AddIngestionNodeMassTransitFeature(configuration);
+            services.AddIngestionNodeDataFeature(configuration);
+            services.AddIngestionNodeRabbitMqFeature(configuration);
             services.AddInfluxCommandsFeature();
 
             return services;

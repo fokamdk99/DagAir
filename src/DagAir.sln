@@ -47,6 +47,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.QueryNode", "DagAir.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.Components.Logging", "DagAir.Components.Logging\DagAir.Components.Logging.csproj", "{E9EF7FA3-F8C9-4688-B7A1-59547C4D1EB4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.Components.ApiModels", "DagAir.Components.ApiModels\DagAir.Components.ApiModels.csproj", "{1A35EDB3-CDE3-4922-9FED-560325F1AE26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.PolicyNode.Tests", "DagAir.PolicyNode.Tests\DagAir.PolicyNode.Tests.csproj", "{0B49ADFB-15FE-47E0-AAE0-698EC9F38923}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -121,6 +125,14 @@ Global
 		{E9EF7FA3-F8C9-4688-B7A1-59547C4D1EB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9EF7FA3-F8C9-4688-B7A1-59547C4D1EB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9EF7FA3-F8C9-4688-B7A1-59547C4D1EB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A35EDB3-CDE3-4922-9FED-560325F1AE26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A35EDB3-CDE3-4922-9FED-560325F1AE26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A35EDB3-CDE3-4922-9FED-560325F1AE26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A35EDB3-CDE3-4922-9FED-560325F1AE26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B49ADFB-15FE-47E0-AAE0-698EC9F38923}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B49ADFB-15FE-47E0-AAE0-698EC9F38923}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B49ADFB-15FE-47E0-AAE0-698EC9F38923}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B49ADFB-15FE-47E0-AAE0-698EC9F38923}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -144,5 +156,6 @@ Global
 		{402F7C27-6030-4E25-877A-BE6A94BF4EDB} = {13B9CA0C-12C1-4BA0-A4D2-6B98BFC3C8F5}
 		{DB68E75C-6D27-495F-8116-9A0D97F06AD3} = {13B9CA0C-12C1-4BA0-A4D2-6B98BFC3C8F5}
 		{02301822-8977-41A0-B2A1-71053DFC7BE0} = {2B97F65A-61F7-4094-955B-4206B02B3A67}
+		{0B49ADFB-15FE-47E0-AAE0-698EC9F38923} = {0D788351-8AE5-45D3-98F5-50D401B662EC}
 	EndGlobalSection
 EndGlobal

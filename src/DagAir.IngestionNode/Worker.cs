@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DagAir.IngestionNode.Contracts;
 using DagAir.IngestionNode.InfluxCommands;
 using DagAir.IngestionNode.Infrastructure.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
@@ -21,16 +22,16 @@ namespace DagAir.IngestionNode
         private readonly IConnection _connection;
         private readonly IModel _channel;
         private readonly ILogger<Worker> _logger;
-        private readonly ISaveMeasurementsToInfluxCommand _saveMeasurementsToInfluxCommand;
+        private readonly IServiceProvider _serviceProvider;
 
         public Worker(
             ISensorRabbitMqConfiguration cfg, 
-            ILogger<Worker> logger, 
-            ISaveMeasurementsToInfluxCommand saveMeasurementsToInfluxCommand
+            ILogger<Worker> logger,
+            IServiceProvider serviceProvider
             )
         {
             _logger = logger;
-            _saveMeasurementsToInfluxCommand = saveMeasurementsToInfluxCommand;
+            _serviceProvider = serviceProvider;
             _factory = new ConnectionFactory()
             {
                 HostName = cfg.HostName
@@ -57,20 +58,26 @@ namespace DagAir.IngestionNode
                 _connection.Dispose();
                 return Task.CompletedTask;
             }
-            
-            var consumer = new EventingBasicConsumer(_channel);
-            consumer.Received += (model, ea) =>
+
+            using (IServiceScope scope = _serviceProvider.CreateScope())
             {
-                var body = ea.Body.ToArray();
-                var message = Encoding.UTF8.GetString(body);
-                _logger.LogInformation("[x][{0}] {1}", DateTime.Now, message);
+                ISaveMeasurementsToInfluxCommand saveMeasurementsToInfluxCommand =
+                    scope.ServiceProvider.GetRequiredService<ISaveMeasurementsToInfluxCommand>();
                 
-                var measurementInsertedEvent = DeserializeMeasurement(message); 
-                _saveMeasurementsToInfluxCommand.Handle(measurementInsertedEvent);
-            };
-            _channel.BasicConsume(queue: "",
-                autoAck: true,
-                consumer: consumer);
+                var consumer = new EventingBasicConsumer(_channel);
+                consumer.Received += (model, ea) =>
+                {
+                    var body = ea.Body.ToArray();
+                    var message = Encoding.UTF8.GetString(body);
+                    _logger.LogInformation("[x][{0}] {1}", DateTime.Now, message);
+                
+                    var measurementInsertedEvent = DeserializeMeasurement(message); 
+                    saveMeasurementsToInfluxCommand.Handle(measurementInsertedEvent);
+                };
+                _channel.BasicConsume(queue: "",
+                    autoAck: true,
+                    consumer: consumer);
+            }
 
             return Task.CompletedTask;
         }

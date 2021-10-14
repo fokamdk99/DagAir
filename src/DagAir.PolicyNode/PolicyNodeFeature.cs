@@ -9,11 +9,10 @@ namespace DagAir.PolicyNode
 {
     public static class PolicyNodeFeature
     {
-        public static IServiceCollection AddPolicyNodeFeature(this IServiceCollection services, IConfiguration configuration, Assembly assembly)
+        public static IServiceCollection AddPolicyNodeFeature(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IEvaluatePoliciesCommand, EvaluatePoliciesCommand>();
             services.AddScoped<IPolicyEvaluator, PolicyEvaluator.PolicyEvaluator>();
-            services.AddPolicyNodeMassTransitFeature(configuration, assembly);
 
             return services;
         }
