@@ -36,8 +36,12 @@ namespace DagAir.IngestionNode.InfluxCommands
                 await _client.GetWriteApiAsync().WriteMeasurementAsync(_influxConfiguration.BucketName, _influxConfiguration.Org, WritePrecision.Ms, mem);
                 
                 //Get roomId 
+                var tmp = new MeasurementSentEvent(measurementsInsertedEvent.Measurement.Temperature,
+                    measurementsInsertedEvent.Measurement.Illuminance,
+                    measurementsInsertedEvent.Measurement.Humidity,
+                    133);
                 
-                await _eventPublisher.Publish(measurementsInsertedEvent);
+                await _eventPublisher.Publish(tmp);
         }
     }
     

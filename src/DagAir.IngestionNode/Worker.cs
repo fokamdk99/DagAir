@@ -69,7 +69,7 @@ namespace DagAir.IngestionNode
                 {
                     var body = ea.Body.ToArray();
                     var message = Encoding.UTF8.GetString(body);
-                    _logger.LogInformation("[x][{0}] {1}", DateTime.Now, message);
+                    Console.WriteLine("[x][{0}] {1}", DateTime.Now, message);
                 
                     var measurementInsertedEvent = DeserializeMeasurement(message); 
                     saveMeasurementsToInfluxCommand.Handle(measurementInsertedEvent);

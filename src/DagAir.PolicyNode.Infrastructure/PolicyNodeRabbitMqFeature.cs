@@ -8,9 +8,9 @@ namespace DagAir.PolicyNode.Infrastructure
     {
         public static IServiceCollection AddPolicyNodeRabbitMqFeature(this IServiceCollection services, IConfiguration configuration)
         {
-            var sensorRabbitMqConfiguration =
+            var rabbitMqConfiguration =
                 RabbitMqConfiguration.GetConfiguration(configuration, "rabbitMq");
-            services.AddSingleton<IRabbitMqConfiguration>(x => sensorRabbitMqConfiguration);
+            services.AddSingleton<IRabbitMqConfiguration>(x => rabbitMqConfiguration);
 
             return services;
         }

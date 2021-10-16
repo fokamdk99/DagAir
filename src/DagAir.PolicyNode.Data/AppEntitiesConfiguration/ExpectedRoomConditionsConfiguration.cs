@@ -19,6 +19,10 @@ namespace DagAir.PolicyNode.Data.AppEntitiesConfiguration
             
             builder.Property(e => e.Illuminance)
                 .IsRequired();
+
+            builder.Property(e => e.TemperatureMargin);
+            builder.Property(e => e.IlluminanceMargin);
+            builder.Property(e => e.HumidityMargin);
             
             builder.Property(e => e.Created)
                 .IsRequired();

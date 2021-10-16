@@ -16,7 +16,7 @@ namespace DagAir.PolicyNode.MeasurementCommands
             _eventPublisher = eventPublisher;
             _policyEvaluator = policyEvaluator;
         }
-        public async Task Handle(IMeasurementsInsertedEvent measurementsInsertedEvent)
+        public async Task Handle(MeasurementSentEvent measurementsInsertedEvent)
         {
             
             //await _eventPublisher.Publish<MeasurementsInsertedEvent>(); //publish message 

@@ -5,6 +5,6 @@ namespace DagAir.PolicyNode.MeasurementCommands
 {
     public interface IEvaluatePoliciesCommand
     {
-        Task Handle(IMeasurementsInsertedEvent measurementsInsertedEvent);
+        Task Handle(MeasurementSentEvent measurementsInsertedEvent);
     }
 }

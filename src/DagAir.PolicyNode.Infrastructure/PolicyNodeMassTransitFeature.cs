@@ -2,7 +2,6 @@
 using DagAir.MassTransit.RabbitMq;
 using DagAir.MassTransit.RabbitMq.Configuration;
 using DagAir.MassTransit.RabbitMq.Publisher;
-using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

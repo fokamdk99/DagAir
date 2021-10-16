@@ -53,7 +53,7 @@ namespace DagAir.MassTransit.RabbitMq
             where T : class, IRabbitMqConfiguration
         {
             var configuration = context.GetRequiredService<T>();
-            cfg.Host(configuration.HostName, configuration.ConnectionName, rcfg =>
+            cfg.Host(configuration.HostName,  configuration.VirtualHost, rcfg =>
             {
                 rcfg.Username(configuration.UserName);
                 rcfg.Password(configuration.Password);

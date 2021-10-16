@@ -1,5 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿#nullable enable
+using System.Threading.Tasks;
 using DagAir.IngestionNode.Contracts;
+using DagAir.MassTransit.RabbitMq.Publisher;
 using DagAir.PolicyNode.Consumers;
 using MassTransit.Testing;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,10 +30,11 @@ namespace DagAir.PolicyNode.Tests
 
         protected override void AddOverrides(IServiceCollection services)
         {
+            services.AddScoped<IEventPublisher, EventPublisher>();
             services.AddMassTransitInMemoryTestHarness(cfg =>
             {
-                cfg.AddConsumer<MeasurementsInsertedEventConsumer>();
-                cfg.AddConsumerTestHarness<MeasurementsInsertedEventConsumer>();
+                cfg.AddConsumer<MeasurementSentEventConsumer>();
+                cfg.AddConsumerTestHarness<MeasurementSentEventConsumer>();
             });
         }
 

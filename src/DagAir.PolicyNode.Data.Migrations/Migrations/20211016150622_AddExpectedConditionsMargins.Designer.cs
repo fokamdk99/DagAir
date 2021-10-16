@@ -3,14 +3,16 @@ using System;
 using DagAir.PolicyNode.Data.AppContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DagAir.PolicyNode.Data.Migrations.Migrations
 {
     [DbContext(typeof(DagAirAppContext))]
-    partial class DagAirAppContextModelSnapshot : ModelSnapshot
+    [Migration("20211016150622_AddExpectedConditionsMargins")]
+    partial class AddExpectedConditionsMargins
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
