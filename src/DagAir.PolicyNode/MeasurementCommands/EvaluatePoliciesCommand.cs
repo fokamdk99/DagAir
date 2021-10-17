@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using DagAir.IngestionNode.Contracts;
-using DagAir.MassTransit.RabbitMq.Publisher;
+using DagAir.Components.MassTransit.RabbitMq.Publisher;
 using DagAir.PolicyNode.PolicyEvaluator;
 
 namespace DagAir.PolicyNode.MeasurementCommands

@@ -4,8 +4,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using DagAir.IngestionNode.Contracts;
-using DagAir.IngestionNode.InfluxCommands;
 using DagAir.IngestionNode.Infrastructure.Configuration;
+using DagAir.IngestionNode.Measurements.Commands;
+using DagAir.IngestionNode.Measurements.Handlers;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -61,8 +62,8 @@ namespace DagAir.IngestionNode
 
             using (IServiceScope scope = _serviceProvider.CreateScope())
             {
-                ISaveMeasurementsToInfluxCommand saveMeasurementsToInfluxCommand =
-                    scope.ServiceProvider.GetRequiredService<ISaveMeasurementsToInfluxCommand>();
+                INewMeasurementReceivedHandler newMeasurementReceivedHandler =
+                    scope.ServiceProvider.GetRequiredService<INewMeasurementReceivedHandler>();
                 
                 var consumer = new EventingBasicConsumer(_channel);
                 consumer.Received += (model, ea) =>
@@ -70,9 +71,9 @@ namespace DagAir.IngestionNode
                     var body = ea.Body.ToArray();
                     var message = Encoding.UTF8.GetString(body);
                     Console.WriteLine("[x][{0}] {1}", DateTime.Now, message);
-                
-                    var measurementInsertedEvent = DeserializeMeasurement(message); 
-                    saveMeasurementsToInfluxCommand.Handle(measurementInsertedEvent);
+
+                    var newMeasurementReceived = DeserializeMeasurement(message);
+                    newMeasurementReceivedHandler.Handle(newMeasurementReceived);
                 };
                 _channel.BasicConsume(queue: "",
                     autoAck: true,
@@ -82,7 +83,7 @@ namespace DagAir.IngestionNode
             return Task.CompletedTask;
         }
 
-        private MeasurementsInsertedEvent DeserializeMeasurement(string message)
+        private NewMeasurementReceivedCommand DeserializeMeasurement(string message)
         {
             try
             {
@@ -97,7 +98,7 @@ namespace DagAir.IngestionNode
                     float.Parse(parameters.ElementAt(0)), 
                     float.Parse(parameters.ElementAt(1)), 
                     float.Parse(parameters.ElementAt(2)));
-                return new MeasurementsInsertedEvent(measurement, parameters.ElementAt(3));
+                return new NewMeasurementReceivedCommand(measurement, parameters.ElementAt(3));
             }
             catch (Exception e)
             {

@@ -1,6 +1,7 @@
 ﻿using DagAir.IngestionNode.Data;
-using DagAir.IngestionNode.InfluxCommands;
+using DagAir.IngestionNode.Influx;
 using DagAir.IngestionNode.Infrastructure;
+using DagAir.IngestionNode.Measurements;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,6 +17,7 @@ namespace DagAir.IngestionNode
             services.AddIngestionNodeDataFeature(configuration);
             services.AddIngestionNodeRabbitMqFeature(configuration);
             services.AddInfluxCommandsFeature();
+            services.AddIngestionNodeMeasurementsFeature();
 
             return services;
         }

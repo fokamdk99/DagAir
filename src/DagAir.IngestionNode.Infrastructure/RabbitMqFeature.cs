@@ -1,5 +1,5 @@
 ﻿using DagAir.IngestionNode.Infrastructure.Configuration;
-using DagAir.MassTransit.RabbitMq.Configuration;
+using DagAir.Components.MassTransit.RabbitMq.Configuration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

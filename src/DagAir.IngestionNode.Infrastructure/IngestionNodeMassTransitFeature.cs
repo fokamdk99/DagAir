@@ -1,8 +1,7 @@
 ﻿using System.Reflection;
 using DagAir.MassTransit.RabbitMq;
-using DagAir.MassTransit.RabbitMq.Configuration;
-using DagAir.MassTransit.RabbitMq.Publisher;
-using MassTransit;
+using DagAir.Components.MassTransit.RabbitMq.Configuration;
+using DagAir.Components.MassTransit.RabbitMq.Publisher;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

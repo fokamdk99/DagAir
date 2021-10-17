@@ -1,4 +1,4 @@
-﻿using DagAir.MassTransit.RabbitMq.Configuration;
+﻿using DagAir.Components.MassTransit.RabbitMq.Configuration;
 
 namespace DagAir.IngestionNode.Infrastructure.Configuration
 {
