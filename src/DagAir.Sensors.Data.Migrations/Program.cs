@@ -57,7 +57,7 @@ namespace DagAir.Sensors.Data.Migrations
 
         private static Task CreateUserDbMigrationTask(IConfiguration configuration)
         {
-            const string appDatabaseName = "DagAir";
+            const string appDatabaseName = "DagAir.Sensors";
             var connectionString =
                 new ConnectionString(appDatabaseName, configuration.GetConnectionString(appDatabaseName));
             return MigrateDbAsync(connectionString, new AppContextFactory());

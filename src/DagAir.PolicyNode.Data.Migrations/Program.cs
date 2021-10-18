@@ -58,7 +58,7 @@ namespace DagAir.PolicyNode.Data.Migrations
 
         private static Task CreateUserDbMigrationTask(IConfiguration configuration)
         {
-            const string appDatabaseName = "DagAir";
+            const string appDatabaseName = "DagAir.PolicyNode";
             var connectionString =
                 new ConnectionString(appDatabaseName, configuration.GetConnectionString(appDatabaseName));
             return MigrateDbAsync(connectionString, new AppContextFactory());

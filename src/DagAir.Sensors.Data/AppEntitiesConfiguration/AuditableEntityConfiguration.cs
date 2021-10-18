@@ -9,7 +9,7 @@ namespace DagAir.Sensors.Data.AppEntitiesConfiguration
         public static void ConfigureBase<T>(this EntityTypeBuilder<T> builder) where T : AuditableEntity
         {
             builder.Property(e => e.Created)
-                .HasDefaultValueSql("(GetDate())");
+                .HasDefaultValueSql("(CURRENT_DATE)");
 
             builder.Property(e => e.Modified);
         }

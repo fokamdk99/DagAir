@@ -1,12 +1,13 @@
 ﻿using System.Reflection;
 using DagAir.QueryNode.Data.AppEntitities;
+using DagAir.Sensors.Data.DataSeed;
 using Microsoft.EntityFrameworkCore;
 
 namespace DagAir.Sensors.Data.AppContext
 {
     public class DagAirSensorAppContext : DbContext, IDagAirSensorAppContext
     {
-        private const string Schema = "DagAir";
+        private const string Schema = "DagAir.Sensors";
         
         public DagAirSensorAppContext() {}
 
@@ -26,8 +27,17 @@ namespace DagAir.Sensors.Data.AppContext
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             modelBuilder.HasDefaultSchema(Schema);
+
+            SeedData(modelBuilder);
             
             base.OnModelCreating(modelBuilder);
+        }
+
+        private static void SeedData(ModelBuilder modelBuilder)
+        {
+            modelBuilder.SeedProducers();
+            modelBuilder.SeedSensorModels();
+            modelBuilder.SeedSensors();
         }
     }
 }

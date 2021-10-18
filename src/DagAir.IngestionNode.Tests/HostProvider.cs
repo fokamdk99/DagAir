@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using DagAir.Components.Logging;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

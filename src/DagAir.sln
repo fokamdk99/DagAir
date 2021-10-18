@@ -57,6 +57,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.Sensors.Data", "DagA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.Sensors.Data.Migrations", "DagAir.Sensors.Data.Migrations\DagAir.Sensors.Data.Migrations.csproj", "{800F7EB3-0B46-4692-92B0-64C9DE25BB5E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.Components.HttpClients", "DagAir.Components.HttpClients\DagAir.Components.HttpClients.csproj", "{6CC2FE74-2BF2-45E9-AD41-2C41F36602AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -151,6 +153,10 @@ Global
 		{800F7EB3-0B46-4692-92B0-64C9DE25BB5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{800F7EB3-0B46-4692-92B0-64C9DE25BB5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{800F7EB3-0B46-4692-92B0-64C9DE25BB5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CC2FE74-2BF2-45E9-AD41-2C41F36602AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CC2FE74-2BF2-45E9-AD41-2C41F36602AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CC2FE74-2BF2-45E9-AD41-2C41F36602AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CC2FE74-2BF2-45E9-AD41-2C41F36602AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -178,5 +184,6 @@ Global
 		{A52BA1A0-83F2-48E9-9775-500E2DCCC7F7} = {1B55C6DF-DCD8-4A51-93DE-DC3409C03028}
 		{E9EF7FA3-F8C9-4688-B7A1-59547C4D1EB4} = {1B55C6DF-DCD8-4A51-93DE-DC3409C03028}
 		{553A7478-4979-4397-835E-9055F6164218} = {1B55C6DF-DCD8-4A51-93DE-DC3409C03028}
+		{6CC2FE74-2BF2-45E9-AD41-2C41F36602AD} = {1B55C6DF-DCD8-4A51-93DE-DC3409C03028}
 	EndGlobalSection
 EndGlobal

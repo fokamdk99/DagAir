@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using DagAir.Components.MassTransit.RabbitMq.Configuration;
 using MassTransit.RabbitMqTransport;
 using MassTransit;

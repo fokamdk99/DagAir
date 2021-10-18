@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿#nullable enable
+using System.Net;
 using Microsoft.AspNetCore.WebUtilities;
 
 namespace DagAir.Components.ApiModels.Json

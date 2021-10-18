@@ -18,6 +18,7 @@ namespace DagAir.Sensors.Sensor
         }
         
         [HttpGet]
+        [Route("sensor/{id}")]
         [ProducesResponseType(typeof(JsonApiDocument<SensorReadModel>), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(JsonApiError), (int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> GetCurrentSensorsWithRelatedEntitiesQuery(long id)

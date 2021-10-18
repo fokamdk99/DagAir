@@ -5,9 +5,9 @@
         public float Temperature { get; set; }
         public float Illuminance { get; set; } //light intensity
         public float Humidity { get; set; }
-        public int RoomId { get; set; }
+        public long RoomId { get; set; }
 
-        public MeasurementSentEvent(float temperature, float illuminance, float humidity, int roomId)
+        public MeasurementSentEvent(float temperature, float illuminance, float humidity, long roomId)
         {
             Temperature = temperature;
             Illuminance = illuminance;
