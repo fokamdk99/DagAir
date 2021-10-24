@@ -1,6 +1,5 @@
 ﻿#nullable enable
 using System;
-using DagAir.Components.Logging;
 using DagAir.IngestionNode.Infrastructure;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Hosting;

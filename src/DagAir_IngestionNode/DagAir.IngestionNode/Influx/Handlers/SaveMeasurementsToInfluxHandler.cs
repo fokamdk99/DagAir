@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using DagAir.IngestionNode.Contracts;
 using DagAir.IngestionNode.Data.Influx;
 using DagAir.IngestionNode.Data.Measurements;
 using DagAir.Components.MassTransit.RabbitMq.Publisher;

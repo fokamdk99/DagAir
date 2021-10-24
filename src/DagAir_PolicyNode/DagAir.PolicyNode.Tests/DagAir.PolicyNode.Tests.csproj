@@ -8,6 +8,8 @@
 
     <ItemGroup>
         <PackageReference Include="FluentAssertions" Version="6.1.0" />
+        <PackageReference Include="MassTransit" Version="7.2.2" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
         <PackageReference Include="NUnit" Version="3.13.1" />
         <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
@@ -15,6 +17,8 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\DagAir_Components\DagAir.Components.MassTransit.RabbitMq\DagAir.Components.MassTransit.RabbitMq.csproj" />
+      <ProjectReference Include="..\..\DagAir_IngestionNode\DagAir.IngestionNode.Contracts\DagAir.IngestionNode.Contracts.csproj" />
       <ProjectReference Include="..\DagAir.PolicyNode\DagAir.PolicyNode.csproj" />
     </ItemGroup>
 

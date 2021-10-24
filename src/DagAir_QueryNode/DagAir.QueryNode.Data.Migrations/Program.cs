@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
-using DagAir.IngestionNode.Data.Sharding;
 using DagAir.QueryNode.Data.Migrations.Context;
+using DagAir.QueryNode.Data.Sharding;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Serilog;

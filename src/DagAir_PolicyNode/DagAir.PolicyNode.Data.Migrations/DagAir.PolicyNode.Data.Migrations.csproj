@@ -17,7 +17,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DagAir.IngestionNode.Data\DagAir.IngestionNode.Data.csproj" />
       <ProjectReference Include="..\DagAir.PolicyNode.Data\DagAir.PolicyNode.Data.csproj" />
     </ItemGroup>
 
