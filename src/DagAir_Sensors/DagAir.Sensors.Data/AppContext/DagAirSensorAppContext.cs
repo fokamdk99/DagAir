@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using DagAir.QueryNode.Data.AppEntitities;
+using DagAir.Sensors.Data.AppEntities;
 using DagAir.Sensors.Data.DataSeed;
 using Microsoft.EntityFrameworkCore;
 

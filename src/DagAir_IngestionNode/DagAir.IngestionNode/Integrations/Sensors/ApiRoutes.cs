@@ -2,6 +2,6 @@
 {
     public static class ApiRoutes
     {
-        public const string GetSensorBySensorId = "V1/sensors/sensor/"; 
+        public const string GetSensorBySensorId = "sensors-api/sensors/"; 
     }
 }

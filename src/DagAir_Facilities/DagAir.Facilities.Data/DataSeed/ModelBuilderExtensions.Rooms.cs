@@ -6,7 +6,7 @@ namespace DagAir.Facilities.Data.DataSeed
 {
     public static partial class ModelBuilderExtensions
     {
-        public static void SeedSensors(this ModelBuilder modelBuilder)
+        public static void SeedRooms(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Room>()
                 .HasData(

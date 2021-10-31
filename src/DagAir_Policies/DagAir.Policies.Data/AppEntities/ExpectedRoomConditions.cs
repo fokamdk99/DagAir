@@ -11,6 +11,7 @@ namespace DagAir.Policies.Data.AppEntities
         public float TemperatureMargin { get; set; }
         public float IlluminanceMargin { get; set; }
         public float HumidityMargin { get; set; }
+        public long? RoomPolicyId { get; set; }
         public virtual RoomPolicy RoomPolicy { get; set; }
     }
 }

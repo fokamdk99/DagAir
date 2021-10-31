@@ -12,13 +12,13 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\DagAir.Policies.Contracts\DagAir.Policies.Contracts.csproj" />
       <ProjectReference Include="..\..\DagAir_Components\DagAir.Components.Healthchecks\DagAir.Components.Healthchecks.csproj" />
+      <ProjectReference Include="..\..\DagAir_Components\DagAir.Components.HttpClients\DagAir.Components.HttpClients.csproj" />
       <ProjectReference Include="..\..\DagAir_Components\DagAir.Components.MassTransit.RabbitMq\DagAir.Components.MassTransit.RabbitMq.csproj" />
       <ProjectReference Include="..\..\DagAir_IngestionNode\DagAir.IngestionNode.Contracts\DagAir.IngestionNode.Contracts.csproj" />
       <ProjectReference Include="..\..\DagAir_IngestionNode\DagAir.IngestionNode.Infrastructure\DagAir.IngestionNode.Infrastructure.csproj" />
-      <ProjectReference Include="..\..\DagAir_Components\DagAir.Components.MassTransit.RabbitMq\DagAir.Components.MassTransit.RabbitMq.csproj" />
         <ProjectReference Include="..\DagAir.PolicyNode.Contracts\DagAir.PolicyNode.Contracts.csproj" />
-        <ProjectReference Include="..\DagAir.PolicyNode.Data\DagAir.PolicyNode.Data.csproj" />
         <ProjectReference Include="..\DagAir.PolicyNode.Infrastructure\DagAir.PolicyNode.Infrastructure.csproj" />
     </ItemGroup>
 

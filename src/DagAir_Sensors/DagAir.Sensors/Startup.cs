@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using DagAir.Components.HealthChecks;
+using DagAir.Sensors.Infrastructure.Swagger;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,7 +12,10 @@ namespace DagAir.Sensors
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDagAirHealthChecks();
+            services.AddSensorsFeature();
+            var healthChecksToBeDisabled = new List<string>();
+            healthChecksToBeDisabled.Add(HealthCheckFeature.RabbitMqHealthCheck);
+            services.AddDagAirHealthChecks(healthChecksToBeDisabled);
         }
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -20,9 +25,15 @@ namespace DagAir.Sensors
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseConfiguredSwagger();
+            
             app.UseRouting();
 
-            app.UseEndpoints(HealthCheckExtensions.MapHealthCheckEndpoints);
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapHealthCheckEndpoints();
+            });
         }
     }
 }

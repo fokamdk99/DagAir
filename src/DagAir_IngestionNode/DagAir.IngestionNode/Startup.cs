@@ -1,4 +1,5 @@
-﻿using DagAir.Components.HealthChecks;
+﻿using System.Collections.Generic;
+using DagAir.Components.HealthChecks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,7 +18,7 @@ namespace DagAir.IngestionNode
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDagAirHealthChecks();
+            services.AddDagAirHealthChecks(new List<string>());
 
         }
 

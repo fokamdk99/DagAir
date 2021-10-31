@@ -2,12 +2,24 @@
 
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
+        <UserSecretsId>7d47f8e7-0b30-47fc-b462-a4a9e02a9126</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\DagAir.Sensors.Contracts\DagAir.Sensors.Contracts.csproj" />
       <ProjectReference Include="..\..\DagAir_Components\DagAir.Components.ApiModels\DagAir.Components.ApiModels.csproj" />
       <ProjectReference Include="..\..\DagAir_Components\DagAir.Components.Healthchecks\DagAir.Components.Healthchecks.csproj" />
+      <ProjectReference Include="..\..\DagAir_Components\DagAir.Components.MassTransit.RabbitMq\DagAir.Components.MassTransit.RabbitMq.csproj" />
       <ProjectReference Include="..\DagAir.Sensors.Data\DagAir.Sensors.Data.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="10.1.1" />
+      <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+      <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
+      <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.2.3" />
+      <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.2.3" />
+      <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.2.3" />
     </ItemGroup>
 
 </Project>

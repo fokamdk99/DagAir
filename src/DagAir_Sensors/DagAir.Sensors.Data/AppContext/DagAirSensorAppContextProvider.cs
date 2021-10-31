@@ -7,14 +7,15 @@ namespace DagAir.Sensors.Data.AppContext
 {
     internal class DagAirSensorAppContextProvider : IDagAirSensorAppContextProvider
     {
-        private const string ConnectionStringName = "DagAir";
+        private const string ConnectionStringName = "DagAir.Sensors";
         private readonly string _connectionString;
         private readonly ILoggerFactory _loggerFactory;
 
         public DagAirSensorAppContextProvider(IConfiguration configuration, ILoggerFactory loggerFactory)
         {
             _loggerFactory = loggerFactory;
-            _connectionString = configuration.GetConnectionString(ConnectionStringName);
+            var connectionString = configuration.GetConnectionString(ConnectionStringName);
+            _connectionString = connectionString + configuration[$"ConnectionKeys:{ConnectionStringName}"] + ";";
             if (string.IsNullOrEmpty(_connectionString))
             {
                 throw new InvalidOperationException(

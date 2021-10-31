@@ -35,9 +35,9 @@ namespace DagAir.Facilities.Data.AppContext
 
         private static void SeedData(ModelBuilder modelBuilder)
         {
-            modelBuilder.SeedProducers();
-            modelBuilder.SeedSensorModels();
-            modelBuilder.SeedSensors();
+            modelBuilder.SeedAffiliates();
+            modelBuilder.SeedOrganizations();
+            modelBuilder.SeedRooms();
         }
     }
 }

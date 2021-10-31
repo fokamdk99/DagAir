@@ -7,7 +7,7 @@ namespace DagAir.Sensors
 {
     public class Program
     {
-        private static string[]? _urls; 
+        private static string[]? _urls;
         
         public static void Main(string[] args)
         {
@@ -22,11 +22,6 @@ namespace DagAir.Sensors
             Host.CreateDefaultBuilder(args)
                 //.UseConsoleLifetime()
                 //.UseDagAirLogger()
-                .ConfigureServices((hostBuilderContext, services) =>
-                {
-                    services
-                        .AddSensorsFeature(hostBuilderContext.Configuration);
-                })
                 .ConfigureWebHostDefaults(ConfigureWebHost);
 
         private static void ConfigureWebHost(IWebHostBuilder webHostBuilder)

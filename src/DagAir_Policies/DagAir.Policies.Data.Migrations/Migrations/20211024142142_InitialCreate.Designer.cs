@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DagAir.Policies.Data.Migrations.Migrations
 {
-    [DbContext(typeof(DagAirAppContext))]
+    [DbContext(typeof(DagAirPoliciesAppContext))]
     [Migration("20211024142142_InitialCreate")]
     partial class InitialCreate
     {

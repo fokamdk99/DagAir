@@ -5,7 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace DagAir.Sensors.Infrastructure.UserApi
 {
     [ApiController]
-    [Route("V1/sensors")]
+    [Route("sensors-api")]
+    [ApiVersion(ApiVersions.V1)]
     public class SensorControllerBase : ControllerBase
     {
         protected CreatedResult Created(object value) => Created(string.Empty, value);

@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DagAir.Policies.Data.Migrations.Migrations
 {
-    [DbContext(typeof(DagAirAppContext))]
+    [DbContext(typeof(DagAirPoliciesAppContext))]
     partial class DagAirAppContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -50,6 +50,10 @@ namespace DagAir.Policies.Data.Migrations.Migrations
                         .HasColumnType("datetime")
                         .HasColumnName("modified");
 
+                    b.Property<long?>("RoomPolicyId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("room_policy_id");
+
                     b.Property<float>("Temperature")
                         .HasColumnType("float")
                         .HasColumnName("temperature");
@@ -62,6 +66,30 @@ namespace DagAir.Policies.Data.Migrations.Migrations
                         .HasName("pk_expected_room_conditions");
 
                     b.ToTable("expected_room_conditions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Humidity = 0.4f,
+                            HumidityMargin = 0.1f,
+                            Illuminance = 100f,
+                            IlluminanceMargin = 20f,
+                            Temperature = 20f,
+                            TemperatureMargin = 2f
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Humidity = 0.5f,
+                            HumidityMargin = 0.1f,
+                            Illuminance = 130f,
+                            IlluminanceMargin = 30f,
+                            Temperature = 22f,
+                            TemperatureMargin = 3f
+                        });
                 });
 
             modelBuilder.Entity("DagAir.Policies.Data.AppEntities.RoomPolicy", b =>
@@ -117,6 +145,41 @@ namespace DagAir.Policies.Data.Migrations.Migrations
                         .HasDatabaseName("ix_room_policies_expected_conditions_id");
 
                     b.ToTable("room_policies");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CategoryId = 1L,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EndDate = new DateTime(2021, 10, 30, 22, 24, 6, 0, DateTimeKind.Unspecified),
+                            ExpectedConditionsId = 1L,
+                            RepeatOn = "Monday, Thursday",
+                            RoomId = 1L,
+                            StartDate = new DateTime(2021, 10, 30, 20, 24, 6, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            CategoryId = 2L,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EndDate = new DateTime(2021, 10, 30, 21, 24, 6, 0, DateTimeKind.Unspecified),
+                            ExpectedConditionsId = 2L,
+                            RepeatOn = "Wednesday",
+                            RoomId = 1L,
+                            StartDate = new DateTime(2021, 10, 30, 17, 24, 6, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CategoryId = 2L,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EndDate = new DateTime(2021, 10, 5, 23, 59, 59, 0, DateTimeKind.Unspecified),
+                            ExpectedConditionsId = 2L,
+                            RepeatOn = "",
+                            RoomId = 1L,
+                            StartDate = new DateTime(2021, 11, 5, 1, 1, 1, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("DagAir.Policies.Data.AppEntities.RoomPolicyCategory", b =>
@@ -125,6 +188,10 @@ namespace DagAir.Policies.Data.Migrations.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasColumnName("id");
+
+                    b.Property<int>("CategoryNumber")
+                        .HasColumnType("int")
+                        .HasColumnName("category_number");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime")
@@ -142,9 +209,39 @@ namespace DagAir.Policies.Data.Migrations.Migrations
                         .HasColumnName("name");
 
                     b.HasKey("Id")
-                        .HasName("pk_room_policy_configurations");
+                        .HasName("pk_room_policy_categories");
 
-                    b.ToTable("room_policy_configurations");
+                    b.ToTable("room_policy_categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CategoryNumber = 0,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Default"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            CategoryNumber = 1,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Organizational"
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CategoryNumber = 2,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Departmental"
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            CategoryNumber = 3,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Custom"
+                        });
                 });
 
             modelBuilder.Entity("DagAir.Policies.Data.AppEntities.RoomPolicy", b =>
@@ -152,7 +249,7 @@ namespace DagAir.Policies.Data.Migrations.Migrations
                     b.HasOne("DagAir.Policies.Data.AppEntities.RoomPolicyCategory", "Category")
                         .WithMany("RoomPolicies")
                         .HasForeignKey("CategoryId")
-                        .HasConstraintName("fk_room_policies_room_policy_configurations_category_id")
+                        .HasConstraintName("fk_room_policies_room_policy_categories_category_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

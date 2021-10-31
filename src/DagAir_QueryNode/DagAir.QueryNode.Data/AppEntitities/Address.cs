@@ -1,5 +1,4 @@
-﻿#nullable enable
-namespace DagAir.QueryNode.Data.AppEntitities
+﻿namespace DagAir.QueryNode.Data.AppEntitities
 {
     public class Address : AuditableEntity
     {

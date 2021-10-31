@@ -15,7 +15,7 @@ namespace DagAir.QueryNode
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDagAirHealthChecks();
+            services.AddDagAirHealthChecks(new List<string>());
         }
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

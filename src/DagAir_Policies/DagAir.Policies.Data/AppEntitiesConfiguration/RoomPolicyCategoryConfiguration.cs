@@ -15,6 +15,8 @@ namespace DagAir.Policies.Data.AppEntitiesConfiguration
                 .HasMaxLength(128)
                 .IsRequired();
 
+            builder.Property(e => e.CategoryNumber);
+
             builder.HasMany(e => e.RoomPolicies)
                 .WithOne(x => x.Category);
             

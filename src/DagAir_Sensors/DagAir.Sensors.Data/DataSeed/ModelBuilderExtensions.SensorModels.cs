@@ -1,4 +1,4 @@
-﻿using DagAir.QueryNode.Data.AppEntitities;
+﻿using DagAir.Sensors.Data.AppEntities;
 using Microsoft.EntityFrameworkCore;
 
 namespace DagAir.Sensors.Data.DataSeed

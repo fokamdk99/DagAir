@@ -2,7 +2,7 @@
 
 namespace DagAir.Policies.Data.Migrations.Context
 {
-    public class AppContextFactory : ContextFactory<DagAirAppContext>
+    public class AppContextFactory : ContextFactory<DagAirPoliciesAppContext>
     {
         protected override string ConnectionString => "DagAir.Policies";
     }
