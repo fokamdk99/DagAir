@@ -15,12 +15,12 @@ namespace DagAir.IngestionNode.Measurements.Handlers
     {
         private readonly IEventPublisher _eventPublisher;
         private readonly ISaveMeasurementsToInfluxHandler _saveMeasurementsToInfluxHandler;
-        private readonly IDagAirHttpClient _client;
+        private readonly DagAirHttpClient _client;
         private readonly ILogger<NewMeasurementReceivedHandler> _logger;
 
         public NewMeasurementReceivedHandler(IEventPublisher eventPublisher,
             ISaveMeasurementsToInfluxHandler saveMeasurementsToInfluxHandler,
-            IDagAirHttpClient client,
+            DagAirHttpClient client,
             ILogger<NewMeasurementReceivedHandler> logger)
         {
             _eventPublisher = eventPublisher;

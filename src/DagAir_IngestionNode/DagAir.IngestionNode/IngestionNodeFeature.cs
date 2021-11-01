@@ -1,4 +1,5 @@
-﻿using DagAir.IngestionNode.Data;
+﻿using DagAir.Components.HttpClients;
+using DagAir.IngestionNode.Data;
 using DagAir.IngestionNode.Influx;
 using DagAir.IngestionNode.Infrastructure;
 using DagAir.IngestionNode.Integrations;
@@ -19,6 +20,7 @@ namespace DagAir.IngestionNode
             services.AddIngestionNodeRabbitMqFeature(configuration);
             services.AddInfluxCommandsFeature();
             services.AddIngestionNodeMeasurementsFeature();
+            services.AddDagAirHttpClientsFeature();
             services.AddIngestionNodeIntegrationsFeature(configuration);
 
             return services;

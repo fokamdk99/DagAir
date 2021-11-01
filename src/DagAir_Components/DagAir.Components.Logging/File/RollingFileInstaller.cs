@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System;
+using Microsoft.Extensions.Configuration;
 using Serilog;
 using Serilog.Configuration;
 
@@ -13,7 +14,7 @@ namespace DagAir.Components.Logging.File
             bool rollOnFileSizeLimit = true)
         {
             return loggerSinkConfiguration.File(
-                configuration["logging:file:path"],
+                configuration["Serilog:File:Path"],
                 rollingInterval: rollingInterval,
                 rollOnFileSizeLimit: rollOnFileSizeLimit
                 );

@@ -6,7 +6,7 @@ namespace DagAir.Components.HttpClients
     {
         public static IServiceCollection AddDagAirHttpClientsFeature(this IServiceCollection services)
         {
-            services.AddScoped<IDagAirHttpClient, DagAirHttpClient>();
+            services.AddHttpClient<DagAirHttpClient>();
 
             return services;
         }

@@ -1,5 +1,6 @@
 #nullable enable
 using System;
+using DagAir.Components.Logging;
 using DagAir.PolicyNode.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
@@ -21,8 +22,8 @@ namespace DagAir.PolicyNode
 
         private static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                //.UseConsoleLifetime()
-                //.UseDagAirLogger()
+                .UseConsoleLifetime()
+                .UseDagAirLogger()
                 .ConfigureServices((hostBuilderContext, services) =>
                 {
                     services

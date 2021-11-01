@@ -15,8 +15,7 @@ namespace DagAir.Components.Logging
             {
                 var configuration = hostBuilderContext.Configuration;
                 var environmentName = hostBuilderContext.HostingEnvironment.EnvironmentName;
-                
-                
+                loggerConfiguration.ConfigureDagAirLogger(configuration, environmentName);
             });
         }
 

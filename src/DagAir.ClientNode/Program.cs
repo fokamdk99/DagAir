@@ -1,10 +1,14 @@
-#nullable enable
 using System;
-using DagAir.Components.Logging;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using DagAir.ClientNode.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
-namespace DagAir.Facilities
+namespace DagAir.ClientNode
 {
     public class Program
     {
@@ -21,12 +25,13 @@ namespace DagAir.Facilities
 
         private static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .UseConsoleLifetime()
-                .UseDagAirLogger()
+                //.UseConsoleLifetime()
+                //.UseDagAirLogger()
                 .ConfigureServices((hostBuilderContext, services) =>
                 {
                     services
-                        .AddFacilitiesFeature(hostBuilderContext.Configuration);
+                        .AddClientNodeFeature(hostBuilderContext.Configuration)
+                        .AddClientNodeMassTransitFeature(hostBuilderContext.Configuration, typeof(Program).Assembly);
                 })
                 .ConfigureWebHostDefaults(ConfigureWebHost);
 

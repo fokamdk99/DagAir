@@ -12,11 +12,6 @@ namespace DagAir.Sensors
     {
         public static IServiceCollection AddSensorsFeature(this IServiceCollection services)
         {
-            
-            services.AddMvcCore()
-                .AddApiExplorer();
-            services.AddControllers();
-            services.AddConfiguredSwagger();
             services.AddDagAirSensorAppDbContext();
             services.AddSensorEntitiesFeature();
             services.AddAutoMapper(typeof(SensorsFeature).Assembly);

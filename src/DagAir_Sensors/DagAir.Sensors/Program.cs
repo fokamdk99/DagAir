@@ -1,5 +1,6 @@
 #nullable enable
 using System;
+using DagAir.Components.Logging;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
@@ -20,8 +21,12 @@ namespace DagAir.Sensors
 
         private static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                //.UseConsoleLifetime()
-                //.UseDagAirLogger()
+                .UseConsoleLifetime()
+                .UseDagAirLogger()
+                .ConfigureServices((hostBuilderContext, services) =>
+                {
+                    services.AddSensorsFeature();
+                })
                 .ConfigureWebHostDefaults(ConfigureWebHost);
 
         private static void ConfigureWebHost(IWebHostBuilder webHostBuilder)

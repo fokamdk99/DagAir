@@ -6,10 +6,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\DagAir.Policies.Contracts\DagAir.Policies.Contracts.csproj" />
       <ProjectReference Include="..\..\DagAir_Components\DagAir.Components.ApiModels\DagAir.Components.ApiModels.csproj" />
       <ProjectReference Include="..\..\DagAir_Components\DagAir.Components.Healthchecks\DagAir.Components.Healthchecks.csproj" />
       <ProjectReference Include="..\..\DagAir_Components\DagAir.Components.HttpClients\DagAir.Components.HttpClients.csproj" />
+      <ProjectReference Include="..\..\DagAir_Components\DagAir.Components.Logging\DagAir.Components.Logging.csproj" />
+      <ProjectReference Include="..\DagAir.Policies.Contracts\DagAir.Policies.Contracts.csproj" />
       <ProjectReference Include="..\DagAir.Policies.Data\DagAir.Policies.Data.csproj" />
     </ItemGroup>
 

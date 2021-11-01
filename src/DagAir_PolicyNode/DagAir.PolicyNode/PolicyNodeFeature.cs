@@ -1,4 +1,5 @@
-﻿using DagAir.PolicyNode.Integrations;
+﻿using DagAir.Components.HttpClients;
+using DagAir.PolicyNode.Integrations;
 using DagAir.PolicyNode.MeasurementCommands;
 using DagAir.PolicyNode.PolicyEvaluator;
 using Microsoft.Extensions.Configuration;
@@ -12,6 +13,7 @@ namespace DagAir.PolicyNode
         {
             services.AddScoped<IEvaluatePoliciesCommand, EvaluatePoliciesCommand>();
             services.AddScoped<IPolicyEvaluator, PolicyEvaluator.PolicyEvaluator>();
+            services.AddDagAirHttpClientsFeature();
             services.AddPoliciesIntegrationsFeature();
 
             return services;

@@ -8,6 +8,7 @@ namespace DagAir.PolicyNode.Integrations
         public static IServiceCollection AddPoliciesIntegrationsFeature(this IServiceCollection services)
         {
             services.AddScoped<IPoliciesDataService, PoliciesDataService>();
+            services.AddSingleton<IServicesUrls, ServicesUrls>();
 
             return services;
         }

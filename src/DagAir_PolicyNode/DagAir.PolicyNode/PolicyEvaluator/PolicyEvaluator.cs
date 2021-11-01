@@ -8,7 +8,7 @@ namespace DagAir.PolicyNode.PolicyEvaluator
 {
     public class PolicyEvaluator : IPolicyEvaluator
     {
-        public async Task<PoliciesEvaluationResultEvent> Evaluate(MeasurementSentEvent measurementSentEvent, RoomPolicyDto policy)
+        public PoliciesEvaluationResultEvent Evaluate(MeasurementSentEvent measurementSentEvent, RoomPolicyDto policy)
         {
             
             PoliciesEvaluationResultEvent evaluationResultEvent = EvaluateCurrentPolicy(policy, measurementSentEvent);

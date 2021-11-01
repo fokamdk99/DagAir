@@ -12,7 +12,10 @@ namespace DagAir.Sensors
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSensorsFeature();
+            services.AddMvcCore()
+                .AddApiExplorer();
+            services.AddControllers();
+            services.AddConfiguredSwagger();
             var healthChecksToBeDisabled = new List<string>();
             healthChecksToBeDisabled.Add(HealthCheckFeature.RabbitMqHealthCheck);
             services.AddDagAirHealthChecks(healthChecksToBeDisabled);

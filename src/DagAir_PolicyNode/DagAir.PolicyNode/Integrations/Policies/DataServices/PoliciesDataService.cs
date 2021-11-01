@@ -8,10 +8,10 @@ namespace DagAir.PolicyNode.Integrations.Policies.DataServices
 {
     public class PoliciesDataService : IPoliciesDataService
     {
-        private readonly IDagAirHttpClient _client;
+        private readonly DagAirHttpClient _client;
         private readonly IServicesUrls _servicesUrls;
 
-        public PoliciesDataService(IDagAirHttpClient client, IServicesUrls servicesUrls)
+        public PoliciesDataService(DagAirHttpClient client, IServicesUrls servicesUrls)
         {
             _client = client;
             _servicesUrls = servicesUrls;
