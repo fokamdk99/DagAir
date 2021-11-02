@@ -6,6 +6,7 @@ namespace DagAir.Policies.Contracts.DTOs
     {
         public long Id { get; set; }
         public string Name { get; set; }
+        public int CategoryNumber { get; set; }
         public List<RoomPolicyDto> RoomPolicies { get; set; }
     }
 }

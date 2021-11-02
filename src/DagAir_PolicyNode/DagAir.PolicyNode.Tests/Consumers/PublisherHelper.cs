@@ -4,7 +4,7 @@ using FluentAssertions;
 using MassTransit;
 using MassTransit.Testing;
 
-namespace DagAir.PolicyNode.Tests
+namespace DagAir.PolicyNode.Tests.Consumers
 {
     internal static class PublisherHelper
     {

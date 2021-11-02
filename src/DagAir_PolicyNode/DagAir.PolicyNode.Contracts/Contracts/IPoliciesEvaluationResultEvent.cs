@@ -2,9 +2,9 @@
 {
     public interface IPoliciesEvaluationResultEvent
     {
-        int TemperatureStatus { get; set; }
-        int HumidityStatus { get; set; }
-        int IlluminanceStatus { get; set; }
+        EvaluatorResult TemperatureStatus { get; set; }
+        EvaluatorResult HumidityStatus { get; set; }
+        EvaluatorResult IlluminanceStatus { get; set; }
         string Message { get; set; }
     }
 }

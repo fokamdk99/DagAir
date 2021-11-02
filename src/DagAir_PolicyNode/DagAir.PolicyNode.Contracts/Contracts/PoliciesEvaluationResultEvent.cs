@@ -2,9 +2,9 @@
 {
     public class PoliciesEvaluationResultEvent : IPoliciesEvaluationResultEvent
     {
-        public int TemperatureStatus { get; set; }
-        public int HumidityStatus { get; set; }
-        public int IlluminanceStatus { get; set; }
+        public EvaluatorResult TemperatureStatus { get; set; }
+        public EvaluatorResult HumidityStatus { get; set; }
+        public EvaluatorResult IlluminanceStatus { get; set; }
         public string Message { get; set; }
     }
 }
