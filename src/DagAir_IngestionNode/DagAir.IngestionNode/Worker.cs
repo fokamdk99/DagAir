@@ -60,6 +60,13 @@ namespace DagAir.IngestionNode
                 return Task.CompletedTask;
             }
 
+            ReceiveMessages();
+
+            return Task.CompletedTask;
+        }
+
+        private void ReceiveMessages()
+        {
             using (IServiceScope scope = _serviceProvider.CreateScope())
             {
                 INewMeasurementReceivedHandler newMeasurementReceivedHandler =
@@ -79,8 +86,6 @@ namespace DagAir.IngestionNode
                     autoAck: true,
                     consumer: consumer);
             }
-
-            return Task.CompletedTask;
         }
 
         private NewMeasurementReceivedCommand DeserializeMeasurement(string message)

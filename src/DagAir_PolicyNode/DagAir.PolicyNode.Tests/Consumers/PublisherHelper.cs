@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
+using DagAir.PolicyNode.Contracts.Contracts;
 using FluentAssertions;
 using MassTransit;
 using MassTransit.Testing;
+using NUnit.Framework;
 
 namespace DagAir.PolicyNode.Tests.Consumers
 {
@@ -25,6 +27,12 @@ namespace DagAir.PolicyNode.Tests.Consumers
 
             var message = await testHarness!.Consumed.SelectAsync(x => x.Context.MessageId == messageIdentifier).First();
             message.Exception.Should().BeNull("Message has been consumed without any errors");
+        }
+
+        internal static async Task CheckThatEventIsPublished<T>(InMemoryTestHarness testHarness) where T : class
+        {
+            var messageHasBennPublished = await testHarness.Published.Any<T>();
+            Assert.IsTrue(messageHasBennPublished);
         }
     }
 }

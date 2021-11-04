@@ -9,6 +9,16 @@ namespace DagAir.PolicyNode.Tests
     {
         public async Task<RoomPolicyDto> GetRoomPolicyByRoomId(long roomId)
         {
+            return CreateNewRoomPolicyDto(20, 100, 0.45f, 2, 20, 0.1f);
+        }
+
+        internal static RoomPolicyDto CreateNewRoomPolicyDto(float temperature, 
+            float illuminance, 
+            float humidity,
+            float temperatureMargin,
+            float illuminanceMargin,
+            float HumidityMargin)
+        {
             return new RoomPolicyDto()
             {
                 Id = 1,
@@ -23,12 +33,12 @@ namespace DagAir.PolicyNode.Tests
                 ExpectedConditions = new ExpectedRoomConditionsDto()
                 {
                     Id = 1,
-                    Temperature = 20,
-                    Illuminance = 100,
-                    Humidity = 0.45f,
-                    TemperatureMargin = 2,
-                    IlluminanceMargin = 20,
-                    HumidityMargin = 0.1f
+                    Temperature = temperature,
+                    Illuminance = illuminance,
+                    Humidity = humidity,
+                    TemperatureMargin = temperatureMargin,
+                    IlluminanceMargin = illuminanceMargin,
+                    HumidityMargin = HumidityMargin
                 },
                 Category = new RoomPolicyCategoryDto()
                 {

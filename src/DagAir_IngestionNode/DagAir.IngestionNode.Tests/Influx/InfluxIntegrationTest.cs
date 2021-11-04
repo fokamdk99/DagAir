@@ -1,16 +1,21 @@
 ﻿using System;
 using System.Threading.Tasks;
+using DagAir.IngestionNode.Data.Influx;
+using InfluxDB.Client;
+using InfluxDB.Client.Api.Domain;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NUnit.Framework;
 
-namespace DagAir.IngestionNode.Tests
+namespace DagAir.IngestionNode.Tests.Influx
 {
     [Category("Integration")]
-    public abstract class MassTransitIntegrationTest
+    public abstract class InfluxIntegrationTest
     {
+        protected InfluxDBClient Client;
+        protected Bucket TestBucket;
         protected IServiceProvider Services => CurrentHost!.Services;
-
+        protected IInfluxConfiguration InfluxConfiguration { get; private set; }
         protected IHost CurrentHost { get; private set; }
 
         [SetUp]
@@ -19,12 +24,16 @@ namespace DagAir.IngestionNode.Tests
             await SetupPreHost();
 
             CurrentHost = HostProvider.Create(AddOverrides);
+
+            (Client, TestBucket, InfluxConfiguration) = await InfluxBucket.CreateBucketOnce(Services, Client, TestBucket, InfluxConfiguration);
+            await InfluxBucket.Reset(Client, InfluxConfiguration);
             await SetupTest();
         }
 
         [TearDown]
-        protected virtual void CleanUp()
+        protected virtual async Task CleanUp()
         {
+            Client.Dispose();
             CurrentHost?.Dispose();
         }
 

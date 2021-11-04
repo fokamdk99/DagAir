@@ -2,37 +2,63 @@
 using System.Threading.Tasks;
 using DagAir.IngestionNode.Contracts;
 using DagAir.IngestionNode.Influx.Handlers;
-using DagAir.Components.MassTransit.RabbitMq.Publisher;
 using DagAir.IngestionNode.Measurements.Commands;
 using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 
 namespace DagAir.IngestionNode.Tests.Influx
 {
-    public class WriteDataToInfluxTests : IntegrationTest
+    public class SaveMeasurementsToInfluxCommandTests : InfluxIntegrationTest
     {
         [Test]
-        public async Task WhenSaveMeasurementsInfluxToInfluxCommandHandled_ShouldCreateNewRecord()
+        public async Task WhenSaveMeasurementsToInfluxCommandHandled_ShouldCreateNewRecord()
         {
             var query = $"from(bucket: \"{TestBucket.Name}\") |> range(start: 0)";
-            var tables = await Client.GetQueryApi().QueryAsync(query, InfluxConfiguration.OrgId);
-            int numberOfRowsBeforeWrite = tables.Count;
-
-            var command = new SaveMeasurementsToInfluxHandler(Client, InfluxConfiguration, Services.GetRequiredService<IEventPublisher>());
-            var insertedEvent = CreateMockMeasurementsInsertedEvent();
+            var temperatureQuery = CreateInfluxQuery("temperature");
+            var illuminanceQuery = CreateInfluxQuery("illuminance");
+            var humidityQuery = CreateInfluxQuery("humidity");
+            var queryResultsBeforeWrite = await Client.GetQueryApi().QueryAsync(query, InfluxConfiguration.OrgId);
+            int numberOfRowsBeforeWrite = queryResultsBeforeWrite.Count;
             
+            var command = new SaveMeasurementsToInfluxHandler(Client, InfluxConfiguration);
+            var insertedEvent = CreateMockMeasurementsInsertedEvent();
             await command.Handle(insertedEvent);
+            var queryResultsAfterWrite = await Client.GetQueryApi().QueryAsync(query, InfluxConfiguration.OrgId);
+            int numberOfRowsAfterWrite = queryResultsAfterWrite.Count;
 
-            tables = await Client.GetQueryApi().QueryAsync(query, InfluxConfiguration.OrgId);
-            int numberOfRowsAfterWrite = tables.ElementAt(0).Records.Count;
+            Assert.AreEqual(numberOfRowsBeforeWrite + 3, numberOfRowsAfterWrite);
+            
+            var temperatureResults = await Client.GetQueryApi().QueryAsync(temperatureQuery, InfluxConfiguration.OrgId);
 
-            Assert.AreEqual(numberOfRowsBeforeWrite + 1, numberOfRowsAfterWrite);
+            Assert.AreEqual(temperatureResults.ElementAt(0).Records.ElementAt(0).Values["_value"],
+                insertedEvent.Measurement.Temperature);
+
+            var illuminanceResults = await Client.GetQueryApi().QueryAsync(illuminanceQuery, InfluxConfiguration.OrgId);
+            
+            Assert.AreEqual(illuminanceResults.ElementAt(0).Records.ElementAt(0).Values["_value"],
+                insertedEvent.Measurement.Illuminance);
+
+            var humidityResults = await Client.GetQueryApi().QueryAsync(humidityQuery, InfluxConfiguration.OrgId);
+            
+            Assert.AreEqual(humidityResults.ElementAt(0).Records.ElementAt(0).Values["_value"],
+                insertedEvent.Measurement.Humidity);
         }
 
+        private string CreateInfluxQuery(string field)
+        {
+            return $"from(bucket: \"{TestBucket.Name}\")\n |> range(start: 0)"
+                   + $" |> filter(fn: (r) => (r[\"_measurement\"] == \"influxroommeasurement\" and r[\"_field\"] == \"{field}\"))";
+        }
+        
         private NewMeasurementReceivedCommand CreateMockMeasurementsInsertedEvent()
         {
-            var measurement = new RoomMeasurement((float) 17.5, (float) 0.8, (float) 55.5);
+            var measurement = new RoomMeasurement((float) 18, (float) 0.8, (float) 55.5);
             return new NewMeasurementReceivedCommand(measurement, "id_1");
+        }
+
+        protected override async Task SetupPreHost()
+        {
+            
         }
         
         protected override void AddOverrides(IServiceCollection services)

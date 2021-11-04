@@ -1,12 +1,11 @@
 using System.Threading.Tasks;
-using InfluxDB.Client;
 using InfluxDB.Client.Api.Domain;
 using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 
-namespace DagAir.IngestionNode.Tests.Data.Migrations.Influx
+namespace DagAir.IngestionNode.Tests.Influx
 {
-    public class Tests : IntegrationTest
+    public class Tests : InfluxIntegrationTest
     {
         private string CreatedBucketId { get; set; }
 

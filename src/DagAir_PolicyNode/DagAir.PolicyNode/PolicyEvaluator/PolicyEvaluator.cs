@@ -26,12 +26,12 @@ namespace DagAir.PolicyNode.PolicyEvaluator
             if (measurementSentEvent.Temperature >= expectedConditions.Temperature + expectedConditions.TemperatureMargin)
             {
                 resultEvent.TemperatureStatus = EvaluatorResult.TooHigh;
-                resultEvent.Message += "Current temperature level is too high. Consider turning off the heat.";
+                resultEvent.Message += MessageConsts.TemperatureTooHigh;
             }
             else if (measurementSentEvent.Temperature < expectedConditions.Temperature - expectedConditions.TemperatureMargin)
             {
                 resultEvent.TemperatureStatus = EvaluatorResult.TooLow;
-                resultEvent.Message += "Current temperature level is too low. Consider turning on the heat.";
+                resultEvent.Message += MessageConsts.TemperatureTooLow;
             }
             else
             {
@@ -41,12 +41,12 @@ namespace DagAir.PolicyNode.PolicyEvaluator
             if (measurementSentEvent.Illuminance >= expectedConditions.Illuminance + expectedConditions.IlluminanceMargin)
             {
                 resultEvent.IlluminanceStatus = EvaluatorResult.TooHigh;
-                resultEvent.Message += "Current illuminance level is too high. Consider switching off the lights.";
+                resultEvent.Message += MessageConsts.IlluminanceTooHigh;
             }
             else if (measurementSentEvent.Illuminance < expectedConditions.Illuminance - expectedConditions.IlluminanceMargin)
             {
                 resultEvent.IlluminanceStatus = EvaluatorResult.TooLow;
-                resultEvent.Message += "Current illuminance level is too low. Consider switching on the lights.";
+                resultEvent.Message += MessageConsts.IlluminanceTooLow;
             }
             else
             {
@@ -56,12 +56,12 @@ namespace DagAir.PolicyNode.PolicyEvaluator
             if (measurementSentEvent.Humidity >= expectedConditions.Humidity + expectedConditions.HumidityMargin)
             {
                 resultEvent.HumidityStatus = EvaluatorResult.TooHigh;
-                resultEvent.Message += "Current humidity level is too high. Consider opening the windows.";
+                resultEvent.Message += MessageConsts.HumidityTooHigh;
             }
             else if (measurementSentEvent.Humidity < expectedConditions.Humidity - expectedConditions.HumidityMargin)
             {
                 resultEvent.HumidityStatus = EvaluatorResult.TooLow;
-                resultEvent.Message += "Current humidity level is too low. Consider closing the windows.";
+                resultEvent.Message += MessageConsts.HumidityTooLow;
             }
             else
             {
@@ -70,7 +70,7 @@ namespace DagAir.PolicyNode.PolicyEvaluator
 
             if (String.IsNullOrEmpty(resultEvent.Message))
             {
-                resultEvent.Message += "Current room condition is compliant with expectations.";
+                resultEvent.Message += MessageConsts.MeasurementsInOrder;
             }
 
             return resultEvent;

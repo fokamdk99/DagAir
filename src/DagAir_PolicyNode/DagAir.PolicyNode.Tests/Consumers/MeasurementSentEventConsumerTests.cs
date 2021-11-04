@@ -1,7 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿#nullable enable
+using System.Threading.Tasks;
 using DagAir.Components.MassTransit.RabbitMq.Publisher;
 using DagAir.IngestionNode.Contracts;
 using DagAir.PolicyNode.Consumers;
+using DagAir.PolicyNode.Contracts.Contracts;
 using DagAir.PolicyNode.Integrations.Policies.DataServices;
 using MassTransit.Testing;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,8 +21,8 @@ namespace DagAir.PolicyNode.Tests.Consumers
             var @event = CreateMeasurementSentEvent();
             
             await PublisherHelper.PublishAndWaitToBeConsumed(@event, _testHarness);
-            
-            Assert.Pass();
+
+            await PublisherHelper.CheckThatEventIsPublished<PoliciesEvaluationResultEvent>(_testHarness);
         }
 
         private MeasurementSentEvent CreateMeasurementSentEvent()
