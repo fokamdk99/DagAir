@@ -4,7 +4,7 @@ using AutoMapper;
 
 namespace DagAir.Components.Tests
 {
-    public class Tests
+    public class MapperConfigurationTests
     {
         private MapperConfiguration _config;
         

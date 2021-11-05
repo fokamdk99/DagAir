@@ -34,8 +34,8 @@ namespace DagAir.Policies.Policies.Queries
             }
             catch (Exception e)
             {
-                _logger.LogError($"No valid policy has been found. Details: {e.Message}");
-                throw new Exception(e.Message);
+                _logger.LogError($"No valid policy for roomId {roomId} has been found. Details: {e.Message}");
+                return null;
             }
         }
     }

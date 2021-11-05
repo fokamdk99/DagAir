@@ -1,6 +1,6 @@
 ﻿namespace DagAir.Policies.Data.AppContext
 {
-    public interface IDagAirAppContextProvider
+    public interface IDagAirPoliciesAppContextProvider
     {
         DagAirPoliciesAppContext Provide();
     }

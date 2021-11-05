@@ -25,8 +25,7 @@ namespace DagAir.Policies
                 .UseDagAirLogger()
                 .ConfigureServices((hostBuilderContext, services) =>
                 {
-                    services
-                        .AddPoliciesFeature(hostBuilderContext.Configuration);
+                    services.AddPoliciesFeature(hostBuilderContext.Configuration);
                 })
                 .ConfigureWebHostDefaults(ConfigureWebHost);
 

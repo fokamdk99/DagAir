@@ -1,13 +1,28 @@
 using System.Threading.Tasks;
+using DagAir.IngestionNode.Data.Influx;
+using InfluxDB.Client;
 using InfluxDB.Client.Api.Domain;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 
 namespace DagAir.IngestionNode.Tests.Influx
 {
-    public class Tests : InfluxIntegrationTest
+    public class Tests
     {
         private string CreatedBucketId { get; set; }
+        private InfluxDBClient Client { get; set; }
+        private IInfluxConfiguration InfluxConfiguration { get; set; }
+        private IHost TestHost { get; set; } 
+
+        [SetUp]
+        public async Task Setup()
+        {
+            TestHost = HostProvider.Create();
+            Client = TestHost.Services.GetRequiredService<InfluxDBClient>();
+            InfluxConfiguration = TestHost.Services.GetRequiredService<IInfluxConfiguration>();
+        }
 
         [Test]
         public async Task WhenCreateBucketApiUsed_ShouldCreateNewBucket()
@@ -18,16 +33,12 @@ namespace DagAir.IngestionNode.Tests.Influx
              Assert.That(bucket != null);
          }
 
-        protected override void AddOverrides(IServiceCollection services)
-        {
-            
-        }
-
         [TearDown]
-        protected override async Task CleanUp()
+        protected async Task CleanUp()
         {
             await Client.GetBucketsApi().DeleteBucketAsync(CreatedBucketId);
-            await base.CleanUp();
+            Client.Dispose();
+            TestHost.Dispose();
         }
     }
 }

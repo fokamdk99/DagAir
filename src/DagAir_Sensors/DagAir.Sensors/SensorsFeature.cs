@@ -2,7 +2,6 @@
 using DagAir.Sensors.Contracts.DTOs;
 using DagAir.Sensors.Data;
 using DagAir.Sensors.Data.AppEntities;
-using DagAir.Sensors.Infrastructure.Swagger;
 using DagAir.Sensors.Sensors;
 using Microsoft.Extensions.DependencyInjection;
 

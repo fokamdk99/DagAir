@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DagAir.Sensors.Sensors
 {
-    [Route("sensors")]
     public class SensorsController : SensorControllerBase
     {
         private readonly IMapper _mapper;
@@ -55,7 +54,7 @@ namespace DagAir.Sensors.Sensors
         
         private NotFoundObjectResult GetCurrentSensorNotFoundMessage(long id)
         {
-            return NotFound($"A current room with Id: {id} has not been found");
+            return NotFound($"No sensor with Id: {id} has not been found");
         }
     }
 }

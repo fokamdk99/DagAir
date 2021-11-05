@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DagAir.Policies.Policies
 {
-    [Route("policies")]
     public class PoliciesController : PolicyControllerBase
     {
         private readonly IMapper _mapper;
@@ -22,15 +21,26 @@ namespace DagAir.Policies.Policies
             _getCurrentRoomPolicyQuery = getCurrentRoomPolicyQuery;
         }
 
-        [HttpGet("{roomId}")]
+        [HttpGet("policies/{roomId}")]
         [ProducesResponseType(typeof(JsonApiDocument<RoomPolicyDto>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(JsonApiError), (int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> GetCurrentRoomPolicy(long roomId)
         {
             var roomPolicy = await _getCurrentRoomPolicyQuery.Handle(roomId);
+            
+            if (roomPolicy == null)
+            {
+                return GetCurrentRoomPolicyNotFoundMessage(roomId);
+            }
 
             RoomPolicyDto roomPolicyDto = _mapper.Map<RoomPolicyDto>(roomPolicy);
             
             return Ok(new JsonApiDocument<RoomPolicyDto>(roomPolicyDto));
+        }
+        
+        private NotFoundObjectResult GetCurrentRoomPolicyNotFoundMessage(long roomId)
+        {
+            return NotFound($"No current room policy for room with Id: {roomId} has not been found");
         }
     }
 }

@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 
 namespace DagAir.Policies.Data.AppContext
 {
-    public class DagAirPoliciesAppContextProvider : IDagAirAppContextProvider
+    public class DagAirPoliciesAppContextProvider : IDagAirPoliciesAppContextProvider
     {
         private const string ConnectionStringName = "DagAir.Policies";
         private readonly string _connectionString;
