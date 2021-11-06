@@ -29,7 +29,7 @@ namespace DagAir.IngestionNode.Migrations
             await CreateBucketService.CreateBucket(
                 cfg.Token.ToCharArray(),
                 cfg.BucketName,
-                cfg.OrgId,
+                cfg.Org,
                 cfg.Url,
                 cfg.Retention
             );

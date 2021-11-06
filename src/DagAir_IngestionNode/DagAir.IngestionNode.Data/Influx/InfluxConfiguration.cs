@@ -6,7 +6,6 @@ namespace DagAir.IngestionNode.Data.Influx
     {
         public string Token { get; private set; }
         public string Org { get; private set; }
-        public string OrgId { get; private set; }
         public string BucketName { get; private set; }
         public string Url { get; private set; }
         public int Retention { get; private set; }

@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading.Tasks;
 using DagAir.IngestionNode.Data.Influx;
 using InfluxDB.Client;
@@ -5,7 +6,6 @@ using InfluxDB.Client.Api.Domain;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
 
 namespace DagAir.IngestionNode.Tests.Influx
 {
@@ -28,7 +28,8 @@ namespace DagAir.IngestionNode.Tests.Influx
         public async Task WhenCreateBucketApiUsed_ShouldCreateNewBucket()
          {
              var retention = new BucketRetentionRules(BucketRetentionRules.TypeEnum.Expire, InfluxConfiguration.Retention);
-             var bucket = await Client.GetBucketsApi().CreateBucketAsync(InfluxConfiguration.BucketName + "CreateBucketTest", retention, InfluxConfiguration.OrgId);
+             var organizationId = await InfluxHelper.GetOrganizationIdByOrganizationName(Client, InfluxConfiguration);
+             var bucket = await Client.GetBucketsApi().CreateBucketAsync(InfluxConfiguration.BucketName + "CreateBucketTest", retention, organizationId);
              CreatedBucketId = bucket.Id;
              Assert.That(bucket != null);
          }

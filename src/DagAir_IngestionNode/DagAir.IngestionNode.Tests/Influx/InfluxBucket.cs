@@ -28,7 +28,9 @@ namespace DagAir.IngestionNode.Tests.Influx
             {
                 await client.GetBucketsApi().DeleteBucketAsync(existingBucket.Id);
             }
-            testBucket = await client.GetBucketsApi().CreateBucketAsync(influxConfiguration.BucketName, retention, influxConfiguration.OrgId);
+
+            var organizationId = await InfluxHelper.GetOrganizationIdByOrganizationName(client, influxConfiguration);
+            testBucket = await client.GetBucketsApi().CreateBucketAsync(influxConfiguration.BucketName, retention, organizationId);
             return (client, testBucket, influxConfiguration);
         }
 

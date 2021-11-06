@@ -29,9 +29,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DagAir_Components\DagAir.Components.Logging\DagAir.Components.Logging.csproj" />
-      <ProjectReference Include="..\DagAir_Policies\DagAir.Policies.Data\DagAir.Policies.Data.csproj" />
-      <ProjectReference Include="..\DagAir_Policies\DagAir.Policies\DagAir.Policies.csproj" />
+      <ProjectReference Include="..\..\DagAir_Components\DagAir.Components.Logging\DagAir.Components.Logging.csproj" />
+      <ProjectReference Include="..\DagAir.Policies.Data\DagAir.Policies.Data.csproj" />
+      <ProjectReference Include="..\DagAir.Policies\DagAir.Policies.csproj" />
     </ItemGroup>
 
 </Project>

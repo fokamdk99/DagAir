@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+  influxdb:
+    image: influxdb:2.0.8
+    volumes:
+      - test_influxdb_volume:/var/lib/influxdb2
+    ports:
+      - '8086:8086'
+  influxdb_cli:
+    links:
+      - influxdb
+    image: influxdb:2.0.8
+    volumes:
+      - test_influxdb_volume:/var/lib/influxdb2
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=test_username1
+      - DOCKER_INFLUXDB_INIT_PASSWORD=test_password1
+      - DOCKER_INFLUXDB_INIT_ORG=test_org1
+      - DOCKER_INFLUXDB_INIT_BUCKET=test_bucket1
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=test_token1
+    restart: on-failure:5
+    depends_on:
+      - influxdb
+
+volumes:
+  test_influxdb_volume:

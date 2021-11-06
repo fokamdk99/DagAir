@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using DagAir.IngestionNode.Contracts;
 using DagAir.IngestionNode.Influx.Handlers;
@@ -17,28 +18,30 @@ namespace DagAir.IngestionNode.Tests.Influx
             var temperatureQuery = CreateInfluxQuery("temperature");
             var illuminanceQuery = CreateInfluxQuery("illuminance");
             var humidityQuery = CreateInfluxQuery("humidity");
-            var queryResultsBeforeWrite = await Client.GetQueryApi().QueryAsync(query, InfluxConfiguration.OrgId);
+            var organizationId = await InfluxHelper.GetOrganizationIdByOrganizationName(Client, InfluxConfiguration);
+            var queryResultsBeforeWrite = await Client.GetQueryApi().QueryAsync(query, organizationId);
             int numberOfRowsBeforeWrite = queryResultsBeforeWrite.Count;
             
             var command = new SaveMeasurementsToInfluxHandler(Client, InfluxConfiguration);
             var insertedEvent = CreateMockMeasurementsInsertedEvent();
             await command.Handle(insertedEvent);
-            var queryResultsAfterWrite = await Client.GetQueryApi().QueryAsync(query, InfluxConfiguration.OrgId);
+            Thread.Sleep(3000); //TODO: investigate the issue
+            var queryResultsAfterWrite = await Client.GetQueryApi().QueryAsync(query, organizationId);
             int numberOfRowsAfterWrite = queryResultsAfterWrite.Count;
 
             Assert.AreEqual(numberOfRowsBeforeWrite + 3, numberOfRowsAfterWrite);
             
-            var temperatureResults = await Client.GetQueryApi().QueryAsync(temperatureQuery, InfluxConfiguration.OrgId);
+            var temperatureResults = await Client.GetQueryApi().QueryAsync(temperatureQuery, organizationId);
 
             Assert.AreEqual(temperatureResults.ElementAt(0).Records.ElementAt(0).Values["_value"],
                 insertedEvent.Measurement.Temperature);
 
-            var illuminanceResults = await Client.GetQueryApi().QueryAsync(illuminanceQuery, InfluxConfiguration.OrgId);
+            var illuminanceResults = await Client.GetQueryApi().QueryAsync(illuminanceQuery, organizationId);
             
             Assert.AreEqual(illuminanceResults.ElementAt(0).Records.ElementAt(0).Values["_value"],
                 insertedEvent.Measurement.Illuminance);
 
-            var humidityResults = await Client.GetQueryApi().QueryAsync(humidityQuery, InfluxConfiguration.OrgId);
+            var humidityResults = await Client.GetQueryApi().QueryAsync(humidityQuery, organizationId);
             
             Assert.AreEqual(humidityResults.ElementAt(0).Records.ElementAt(0).Values["_value"],
                 insertedEvent.Measurement.Humidity);
