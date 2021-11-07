@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading;
 using DagAir.Components.Nuke.Components;
@@ -10,6 +11,7 @@ using Nuke.Common.Git;
 using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
 using Nuke.Common.Tooling;
+using Nuke.Common.Tools.Docker;
 using Nuke.Common.Tools.DotNet;
 using Nuke.Common.Tools.GitVersion;
 using Nuke.Common.Utilities.Collections;
@@ -47,9 +49,48 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository, IHaveGitVersion, IHa
 
     Target Restore => _ => _
         .DependsOn(Clean)
+        .Triggers(StartTestInfluxContainer)
         .Executes(() =>
         {
             DotNetRestore(s => s.EnsureNotNull(this as IHaveSolution, (_, o) => s.SetProjectFile(o.Solution)));
+        });
+    
+    
+    Target StartTestInfluxContainer => _ => _
+        .After(Restore)
+        .Executes(() =>
+        {
+            DockerComposeTasks.DockerCompose("-f docker-compose.tests.infrastructure.yml pull");
+            DockerComposeTasks.DockerCompose("-f docker-compose.tests.infrastructure.yml up -d");
+
+            bool isInfluxReady = false;
+            for (int i = 0; i < 10; i++)
+            {
+                if (isInfluxReady)
+                {
+                    break;
+                }
+                var execSettings = new DockerExecSettings()
+                    .SetInteractive(true)
+                    .SetTty(true)
+                    .SetContainer("influxdb")
+                    .SetCommand("influx ping");
+                
+                var result = DockerTasks.DockerExec(execSettings);
+                foreach (var output in result)
+                {
+                    if (output.Text == "OK")
+                    {
+                        isInfluxReady = true;
+                        Logger.Info("Influxdb is ready!");
+                    }
+                    else
+                    {
+                        Thread.Sleep(2);
+                        Logger.Warn("Influxdb is not ready yet.");
+                    }
+                }
+            }
         });
 
     Target Compile => _ => _
@@ -71,7 +112,7 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository, IHaveGitVersion, IHa
     
     
     Target Test => _ => _
-        .DependsOn(Compile)
+        .DependsOn(Compile, StartTestInfluxContainer)
         .Triggers(RemoveTestInfluxContainer)
         .Executes(() =>
         {
