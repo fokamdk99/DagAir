@@ -18,6 +18,15 @@ jobs:
         with:
           dotnet-version: 5.0.102
 
+      - name: Setup InfluxDB
+        uses: influxdata/influxdb-action@v3
+        with:
+          influxdb_version: 2.0.8
+          influxdb_org: test_org1
+          influxdb_user: test_user1
+          influxdb_password: test_password1
+          influxdb_bucket: test_bucket1
+
       - name: Build @ Test
         shell: bash
         run: ./build.sh --verbosity verbose

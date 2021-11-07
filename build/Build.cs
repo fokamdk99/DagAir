@@ -62,8 +62,8 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository, IHaveGitVersion, IHa
         .After(Restore)
         .Executes(() =>
         {
-            DockerComposeTasks.DockerCompose("-f docker-compose.tests.infrastructure.yml pull -q");
-            DockerComposeTasks.DockerCompose("-f docker-compose.tests.infrastructure.yml up -d");
+            //DockerComposeTasks.DockerCompose("-f docker-compose.tests.infrastructure.yml pull -q");
+            //DockerComposeTasks.DockerCompose("-f docker-compose.tests.infrastructure.yml up -d");
 
             var logSettings = new DockerLogsSettings()
                 .SetProcessToolPath(ToolPathResolver.GetPathExecutable("docker"))
@@ -96,8 +96,9 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository, IHaveGitVersion, IHa
     
     
     Target Test => _ => _
-        .DependsOn(Compile, StartTestInfluxContainer)
-        .Triggers(RemoveTestInfluxContainer)
+        //.DependsOn(Compile, StartTestInfluxContainer)
+        .DependsOn(Compile)
+        //.Triggers(RemoveTestInfluxContainer)
         .Executes(() =>
         {
             Thread.Sleep(10000);
@@ -105,11 +106,13 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository, IHaveGitVersion, IHa
             DotNet($"test {solution} --no-build -c {Configuration}");
         });
 
+    /*
     Target RemoveTestInfluxContainer => _ => _
         .DependsOn(Test)
         .Executes(() =>
         {
             DockerComposeTasks.DockerCompose("-f docker-compose.tests.infrastructure.yml rm -f -s");
         });
+    */
         
 }
