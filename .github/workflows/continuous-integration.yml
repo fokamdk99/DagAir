@@ -20,7 +20,7 @@ jobs:
 
       - name: Setup test infrastructure
         shell: bash
-        run: ./docker-compose -f docker-compose.tests.infrastructure.yml pull && docker-compose -f docker-compose.tests.infrastructure.yml up -d
+        run: docker-compose -f docker-compose.tests.infrastructure.yml pull && docker-compose -f docker-compose.tests.infrastructure.yml up -d
 
       - name: Build @ Test
         shell: bash
