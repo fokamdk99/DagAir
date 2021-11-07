@@ -24,8 +24,7 @@ namespace DagAir.IngestionNode.Tests.Influx
             Client = TestHost.Services.GetRequiredService<InfluxDBClient>();
             InfluxConfiguration = TestHost.Services.GetRequiredService<IInfluxConfiguration>();
         }
-
-        [Obsolete]
+        [Ignore("Influx dependent")]
         [Test]
         public async Task WhenCreateBucketApiUsed_ShouldCreateNewBucket()
          {

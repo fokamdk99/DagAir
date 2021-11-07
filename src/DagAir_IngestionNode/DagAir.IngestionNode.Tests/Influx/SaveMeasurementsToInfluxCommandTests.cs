@@ -12,7 +12,7 @@ namespace DagAir.IngestionNode.Tests.Influx
 {
     public class SaveMeasurementsToInfluxCommandTests : InfluxIntegrationTest
     {
-        [Obsolete]
+        [Ignore("Influx dependent")]
         [Test]
         public async Task WhenSaveMeasurementsToInfluxCommandHandled_ShouldCreateNewRecord()
         {
