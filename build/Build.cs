@@ -72,9 +72,11 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository, IHaveGitVersion, IHa
                 }
                 var execSettings = new DockerExecSettings()
                     .SetContainer("influxdb")
-                    .SetCommand("/usr/local/bin/influx ping");
+                    .SetWorkdir("/usr/local/bin/")
+                    .SetCommand("influx ping");
                 
                 var result = DockerTasks.DockerExec(execSettings);
+                vara tmp1 = DockerTasks.Docker
                 foreach (var output in result)
                 {
                     if (output.Text == "OK")
