@@ -76,7 +76,6 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository, IHaveGitVersion, IHa
                     .SetCommand("influx ping");
                 
                 var result = DockerTasks.DockerExec(execSettings);
-                vara tmp1 = DockerTasks.Docker
                 foreach (var output in result)
                 {
                     if (output.Text == "OK")
