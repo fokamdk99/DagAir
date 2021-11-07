@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Threading;
 using DagAir.Components.Nuke.Components;
 using DagAir.Components.Nuke.Tasks;
+using NuGet.Packaging.Signing;
 using Nuke.Common;
 using Nuke.Common.CI;
 using Nuke.Common.Execution;
@@ -66,7 +67,9 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository, IHaveGitVersion, IHa
 
             var logSettings = new DockerLogsSettings()
                 .SetProcessToolPath(ToolPathResolver.GetPathExecutable("docker"))
-                .SetContainer("influxdb");
+                .SetContainer("influxdb")
+                .SetTimestamps(true)
+                .SetUntil("10m");
             var influxdbLogs = DockerTasks.DockerLogs(logSettings);
             foreach (var output in influxdbLogs)
             {
