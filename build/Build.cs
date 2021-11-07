@@ -71,8 +71,8 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository, IHaveGitVersion, IHa
                     break;
                 }
                 var execSettings = new DockerExecSettings()
+                    .SetProcessToolPath(ToolPathResolver.GetPathExecutable("docker"))
                     .SetContainer("influxdb")
-                    .SetWorkdir("/usr/local/bin/")
                     .SetCommand("influx ping");
                 
                 var result = DockerTasks.DockerExec(execSettings);
