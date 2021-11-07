@@ -75,42 +75,6 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository, IHaveGitVersion, IHa
             {
                 Logger.Info(output.Text);
             }
-
-            bool isInfluxReady = false;
-            for (int i = 0; i < 10; i++)
-            {
-                if (isInfluxReady)
-                {
-                    break;
-                }
-                var execSettings = new DockerExecSettings()
-                    .SetProcessToolPath(ToolPathResolver.GetPathExecutable("docker"))
-                    .SetContainer("influxdb")
-                    .SetCommand("influx")
-                    .SetArgs("ping");
-
-                try
-                {
-                    var result = DockerTasks.DockerExec(execSettings);
-                    foreach (var output in result)
-                    {
-                        if (output.Text == "OK")
-                        {
-                            isInfluxReady = true;
-                            Logger.Info("Influxdb is ready!");
-                        }
-                        else
-                        {
-                            Thread.Sleep(2000);
-                            Logger.Warn("Influxdb is not ready yet.");
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Logger.Warn($"Influxdb is not ready yet. Details: {ex.Message}", ex);
-                }
-            }
         });
 
     Target Compile => _ => _
