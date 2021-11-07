@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using DagAir.IngestionNode.Data.Influx;
@@ -24,6 +25,7 @@ namespace DagAir.IngestionNode.Tests.Influx
             InfluxConfiguration = TestHost.Services.GetRequiredService<IInfluxConfiguration>();
         }
 
+        [Obsolete]
         [Test]
         public async Task WhenCreateBucketApiUsed_ShouldCreateNewBucket()
          {

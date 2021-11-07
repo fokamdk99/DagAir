@@ -201,17 +201,13 @@ $(document).ready(function() {
   $("#Clean").addClass('highlight');
   $("#Restore").addClass('highlight');
   $("#Compile").addClass('highlight');
-  $("#StartTestInfluxContainer").addClass('highlight');
   $("#Test").addClass('highlight');
-  $("#RemoveTestInfluxContainer").addClass('highlight');
   $("#Clean").hover(
     function() {
         $("#Clean").removeClass('highlight');
         $("#Restore").removeClass('highlight');
-        $("#StartTestInfluxContainer").removeClass('highlight');
         $("#Compile").removeClass('highlight');
         $("#Test").removeClass('highlight');
-        $("#RemoveTestInfluxContainer").removeClass('highlight');
         $("#Clean").addClass('highlight');
     },
     function() {
@@ -219,138 +215,66 @@ $(document).ready(function() {
         $("#Clean").addClass('highlight');
         $("#Restore").addClass('highlight');
         $("#Compile").addClass('highlight');
-        $("#StartTestInfluxContainer").addClass('highlight');
         $("#Test").addClass('highlight');
-        $("#RemoveTestInfluxContainer").addClass('highlight');
     });
   $("#Restore").hover(
     function() {
         $("#Clean").removeClass('highlight');
         $("#Restore").removeClass('highlight');
-        $("#StartTestInfluxContainer").removeClass('highlight');
         $("#Compile").removeClass('highlight');
         $("#Test").removeClass('highlight');
-        $("#RemoveTestInfluxContainer").removeClass('highlight');
         $("#Clean").addClass('highlight');
         $("#Restore").addClass('highlight');
-        $("#StartTestInfluxContainer").addClass('highlight');
     },
     function() {
         $("#Clean").removeClass('highlight');
         $("#Restore").removeClass('highlight');
-        $("#StartTestInfluxContainer").removeClass('highlight');
         $("#Clean").addClass('highlight');
         $("#Restore").addClass('highlight');
         $("#Compile").addClass('highlight');
-        $("#StartTestInfluxContainer").addClass('highlight');
         $("#Test").addClass('highlight');
-        $("#RemoveTestInfluxContainer").addClass('highlight');
-    });
-  $("#StartTestInfluxContainer").hover(
-    function() {
-        $("#Clean").removeClass('highlight');
-        $("#Restore").removeClass('highlight');
-        $("#StartTestInfluxContainer").removeClass('highlight');
-        $("#Compile").removeClass('highlight');
-        $("#Test").removeClass('highlight');
-        $("#RemoveTestInfluxContainer").removeClass('highlight');
-        $("#StartTestInfluxContainer").addClass('highlight');
-    },
-    function() {
-        $("#StartTestInfluxContainer").removeClass('highlight');
-        $("#Clean").addClass('highlight');
-        $("#Restore").addClass('highlight');
-        $("#Compile").addClass('highlight');
-        $("#StartTestInfluxContainer").addClass('highlight');
-        $("#Test").addClass('highlight');
-        $("#RemoveTestInfluxContainer").addClass('highlight');
     });
   $("#Compile").hover(
     function() {
         $("#Clean").removeClass('highlight');
         $("#Restore").removeClass('highlight');
-        $("#StartTestInfluxContainer").removeClass('highlight');
         $("#Compile").removeClass('highlight');
         $("#Test").removeClass('highlight');
-        $("#RemoveTestInfluxContainer").removeClass('highlight');
         $("#Clean").addClass('highlight');
         $("#Restore").addClass('highlight');
         $("#Compile").addClass('highlight');
-        $("#StartTestInfluxContainer").addClass('highlight');
         $("#Test").addClass('highlight');
-        $("#RemoveTestInfluxContainer").addClass('highlight');
     },
     function() {
         $("#Clean").removeClass('highlight');
         $("#Restore").removeClass('highlight');
         $("#Compile").removeClass('highlight');
-        $("#StartTestInfluxContainer").removeClass('highlight');
         $("#Test").removeClass('highlight');
-        $("#RemoveTestInfluxContainer").removeClass('highlight');
         $("#Clean").addClass('highlight');
         $("#Restore").addClass('highlight');
         $("#Compile").addClass('highlight');
-        $("#StartTestInfluxContainer").addClass('highlight');
         $("#Test").addClass('highlight');
-        $("#RemoveTestInfluxContainer").addClass('highlight');
     });
   $("#Test").hover(
     function() {
         $("#Clean").removeClass('highlight');
         $("#Restore").removeClass('highlight');
-        $("#StartTestInfluxContainer").removeClass('highlight');
         $("#Compile").removeClass('highlight');
         $("#Test").removeClass('highlight');
-        $("#RemoveTestInfluxContainer").removeClass('highlight');
         $("#Clean").addClass('highlight');
         $("#Restore").addClass('highlight');
         $("#Compile").addClass('highlight');
-        $("#StartTestInfluxContainer").addClass('highlight');
         $("#Test").addClass('highlight');
-        $("#RemoveTestInfluxContainer").addClass('highlight');
     },
     function() {
         $("#Clean").removeClass('highlight');
         $("#Restore").removeClass('highlight');
         $("#Compile").removeClass('highlight');
-        $("#StartTestInfluxContainer").removeClass('highlight');
         $("#Test").removeClass('highlight');
-        $("#RemoveTestInfluxContainer").removeClass('highlight');
         $("#Clean").addClass('highlight');
         $("#Restore").addClass('highlight');
         $("#Compile").addClass('highlight');
-        $("#StartTestInfluxContainer").addClass('highlight');
         $("#Test").addClass('highlight');
-        $("#RemoveTestInfluxContainer").addClass('highlight');
-    });
-  $("#RemoveTestInfluxContainer").hover(
-    function() {
-        $("#Clean").removeClass('highlight');
-        $("#Restore").removeClass('highlight');
-        $("#StartTestInfluxContainer").removeClass('highlight');
-        $("#Compile").removeClass('highlight');
-        $("#Test").removeClass('highlight');
-        $("#RemoveTestInfluxContainer").removeClass('highlight');
-        $("#Clean").addClass('highlight');
-        $("#Restore").addClass('highlight');
-        $("#Compile").addClass('highlight');
-        $("#StartTestInfluxContainer").addClass('highlight');
-        $("#Test").addClass('highlight');
-        $("#RemoveTestInfluxContainer").addClass('highlight');
-    },
-    function() {
-        $("#Clean").removeClass('highlight');
-        $("#Restore").removeClass('highlight');
-        $("#Compile").removeClass('highlight');
-        $("#StartTestInfluxContainer").removeClass('highlight');
-        $("#Test").removeClass('highlight');
-        $("#RemoveTestInfluxContainer").removeClass('highlight');
-        $("#Clean").addClass('highlight');
-        $("#Restore").addClass('highlight');
-        $("#Compile").addClass('highlight');
-        $("#StartTestInfluxContainer").addClass('highlight');
-        $("#Test").addClass('highlight');
-        $("#RemoveTestInfluxContainer").addClass('highlight');
     });
 
 });
@@ -397,12 +321,9 @@ $(document).ready(function() {
     <div class="mermaid">
 graph LR
 Clean --> Restore
-Restore -.-> StartTestInfluxContainer
 Restore --> Compile
-StartTestInfluxContainer --> Test
 Compile --> Test
-Test --> RemoveTestInfluxContainer
-RemoveTestInfluxContainer
+Test
 
 
 linkStyle default interpolate basis

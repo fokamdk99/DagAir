@@ -73,9 +73,7 @@
             "enum": [
               "Clean",
               "Compile",
-              "RemoveTestInfluxContainer",
               "Restore",
-              "StartTestInfluxContainer",
               "Test"
             ]
           }
@@ -92,9 +90,7 @@
             "enum": [
               "Clean",
               "Compile",
-              "RemoveTestInfluxContainer",
               "Restore",
-              "StartTestInfluxContainer",
               "Test"
             ]
           }

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using DagAir.IngestionNode.Contracts;
@@ -11,6 +12,7 @@ namespace DagAir.IngestionNode.Tests.Influx
 {
     public class SaveMeasurementsToInfluxCommandTests : InfluxIntegrationTest
     {
+        [Obsolete]
         [Test]
         public async Task WhenSaveMeasurementsToInfluxCommandHandled_ShouldCreateNewRecord()
         {

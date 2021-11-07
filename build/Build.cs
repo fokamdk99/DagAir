@@ -1,25 +1,11 @@
-using System;
-using System.ComponentModel;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Threading;
 using DagAir.Components.Nuke.Components;
-using DagAir.Components.Nuke.Tasks;
-using NuGet.Packaging.Signing;
 using Nuke.Common;
 using Nuke.Common.CI;
 using Nuke.Common.Execution;
-using Nuke.Common.Git;
 using Nuke.Common.IO;
-using Nuke.Common.ProjectModel;
-using Nuke.Common.Tooling;
-using Nuke.Common.Tools.Docker;
 using Nuke.Common.Tools.DotNet;
-using Nuke.Common.Tools.GitVersion;
 using Nuke.Common.Utilities.Collections;
-using static Nuke.Common.EnvironmentInfo;
 using static Nuke.Common.IO.FileSystemTasks;
-using static Nuke.Common.IO.PathConstruction;
 using static Nuke.Common.Tools.DotNet.DotNetTasks;
 
 [CheckBuildProjectConfigurations]
@@ -51,30 +37,9 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository, IHaveGitVersion, IHa
 
     Target Restore => _ => _
         .DependsOn(Clean)
-        .Triggers(StartTestInfluxContainer)
         .Executes(() =>
         {
             DotNetRestore(s => s.EnsureNotNull(this as IHaveSolution, (_, o) => s.SetProjectFile(o.Solution)));
-        });
-    
-    
-    Target StartTestInfluxContainer => _ => _
-        .After(Restore)
-        .Executes(() =>
-        {
-            //DockerComposeTasks.DockerCompose("-f docker-compose.tests.infrastructure.yml pull -q");
-            //DockerComposeTasks.DockerCompose("-f docker-compose.tests.infrastructure.yml up -d");
-
-            var logSettings = new DockerLogsSettings()
-                .SetProcessToolPath(ToolPathResolver.GetPathExecutable("docker"))
-                .SetContainer("influxdb")
-                .SetTimestamps(true)
-                .SetTail("1000");
-            var influxdbLogs = DockerTasks.DockerLogs(logSettings);
-            foreach (var output in influxdbLogs)
-            {
-                Logger.Info(output.Text);
-            }
         });
 
     Target Compile => _ => _
@@ -93,26 +58,12 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository, IHaveGitVersion, IHa
                 )
                 .EnableNoRestore());
         });
-    
-    
+
     Target Test => _ => _
-        //.DependsOn(Compile, StartTestInfluxContainer)
         .DependsOn(Compile)
-        //.Triggers(RemoveTestInfluxContainer)
         .Executes(() =>
         {
-            Thread.Sleep(10000);
             var solution = (this as IHaveSolution).Solution;
             DotNet($"test {solution} --no-build -c {Configuration}");
         });
-
-    /*
-    Target RemoveTestInfluxContainer => _ => _
-        .DependsOn(Test)
-        .Executes(() =>
-        {
-            DockerComposeTasks.DockerCompose("-f docker-compose.tests.infrastructure.yml rm -f -s");
-        });
-    */
-        
 }
