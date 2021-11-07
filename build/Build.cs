@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading;
 using DagAir.Components.Nuke.Components;
 using DagAir.Components.Nuke.Tasks;
@@ -75,20 +76,27 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository, IHaveGitVersion, IHa
                     .SetContainer("influxdb")
                     .SetCommand("influx")
                     .SetArgs("ping");
-                
-                var result = DockerTasks.DockerExec(execSettings);
-                foreach (var output in result)
+
+                try
                 {
-                    if (output.Text == "OK")
+                    var result = DockerTasks.DockerExec(execSettings);
+                    foreach (var output in result)
                     {
-                        isInfluxReady = true;
-                        Logger.Info("Influxdb is ready!");
+                        if (output.Text == "OK")
+                        {
+                            isInfluxReady = true;
+                            Logger.Info("Influxdb is ready!");
+                        }
+                        else
+                        {
+                            Thread.Sleep(2000);
+                            Logger.Warn("Influxdb is not ready yet.");
+                        }
                     }
-                    else
-                    {
-                        Thread.Sleep(2000);
-                        Logger.Warn("Influxdb is not ready yet.");
-                    }
+                }
+                catch (Exception ex)
+                {
+                    Logger.Warn($"Influxdb is not ready yet. Details: {ex.Message}", ex);
                 }
             }
         });
