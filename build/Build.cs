@@ -47,18 +47,9 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository, IHaveGitVersion, IHa
 
     Target Restore => _ => _
         .DependsOn(Clean)
-        .Triggers(StartTestInfluxContainer)
         .Executes(() =>
         {
             DotNetRestore(s => s.EnsureNotNull(this as IHaveSolution, (_, o) => s.SetProjectFile(o.Solution)));
-        });
-    
-    Target StartTestInfluxContainer => _ => _
-        .After(Restore)
-        .Executes(() =>
-        {
-            DockerComposeTasks.DockerCompose("-f docker-compose.tests.infrastructure.yml pull");
-            DockerComposeTasks.DockerCompose("-f docker-compose.tests.infrastructure.yml up -d");
         });
 
     Target Compile => _ => _
@@ -80,7 +71,7 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository, IHaveGitVersion, IHa
     
     
     Target Test => _ => _
-        .DependsOn(Compile, StartTestInfluxContainer)
+        .DependsOn(Compile)
         .Triggers(RemoveTestInfluxContainer)
         .Executes(() =>
         {
