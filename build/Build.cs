@@ -62,7 +62,16 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository, IHaveGitVersion, IHa
         .Executes(() =>
         {
             DockerComposeTasks.DockerCompose("-f docker-compose.tests.infrastructure.yml pull -q");
-            DockerComposeTasks.DockerCompose("-f docker-compose.tests.infrastructure.yml up");
+            DockerComposeTasks.DockerCompose("-f docker-compose.tests.infrastructure.yml up -d");
+
+            var logSettings = new DockerLogsSettings()
+                .SetProcessToolPath(ToolPathResolver.GetPathExecutable("docker"))
+                .SetContainer("influxdb");
+            var influxdbLogs = DockerTasks.DockerLogs(logSettings);
+            foreach (var output in influxdbLogs)
+            {
+                Logger.Info(output.Text);
+            }
 
             bool isInfluxReady = false;
             for (int i = 0; i < 10; i++)
