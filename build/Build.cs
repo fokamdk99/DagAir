@@ -69,7 +69,7 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository, IHaveGitVersion, IHa
                 .SetProcessToolPath(ToolPathResolver.GetPathExecutable("docker"))
                 .SetContainer("influxdb")
                 .SetTimestamps(true)
-                .SetUntil("10m");
+                .SetSince("10m");
             var influxdbLogs = DockerTasks.DockerLogs(logSettings);
             foreach (var output in influxdbLogs)
             {
