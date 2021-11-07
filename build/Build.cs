@@ -60,7 +60,7 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository, IHaveGitVersion, IHa
         .After(Restore)
         .Executes(() =>
         {
-            DockerComposeTasks.DockerCompose("-f docker-compose.tests.infrastructure.yml pull");
+            DockerComposeTasks.DockerCompose("-f docker-compose.tests.infrastructure.yml pull -q");
             DockerComposeTasks.DockerCompose("-f docker-compose.tests.infrastructure.yml up -d");
 
             bool isInfluxReady = false;
@@ -71,8 +71,6 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository, IHaveGitVersion, IHa
                     break;
                 }
                 var execSettings = new DockerExecSettings()
-                    .SetInteractive(true)
-                    .SetTty(true)
                     .SetContainer("influxdb")
                     .SetCommand("influx ping");
                 
