@@ -63,8 +63,6 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository, IHaveGitVersion, IHa
             DockerComposeTasks.DockerCompose("-f docker-compose.tests.infrastructure.yml pull");
             DockerComposeTasks.DockerCompose("-f docker-compose.tests.infrastructure.yml up -d");
 
-            Thread.Sleep(20000);
-            
             bool isInfluxReady = false;
             for (int i = 0; i < 10; i++)
             {

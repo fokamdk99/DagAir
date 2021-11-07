@@ -33,6 +33,7 @@ namespace DagAir.Components.Nuke.Tasks
                 CustomLogger,
                 outputFilter);
 
+            process.WaitForExit();
             process.AssertZeroExitCode();
             return process.Output;
         }
