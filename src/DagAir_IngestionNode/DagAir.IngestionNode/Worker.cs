@@ -35,7 +35,8 @@ namespace DagAir.IngestionNode
             _serviceProvider = serviceProvider;
             _factory = new ConnectionFactory()
             {
-                HostName = cfg.HostName
+                HostName = cfg.HostName,
+                VirtualHost = cfg.VirtualHost
             };
             _connection = _factory.CreateConnection();
             _channel = _connection.CreateModel();
@@ -77,7 +78,8 @@ namespace DagAir.IngestionNode
                 {
                     var body = ea.Body.ToArray();
                     var message = Encoding.UTF8.GetString(body);
-                    Console.WriteLine("[x][{0}] {1}", DateTime.Now, message);
+                    //Console.WriteLine("[x][{0}] {1}", DateTime.Now, message);
+                    _logger.LogInformation("[x][{0}] {1}", DateTime.Now, message);
 
                     var newMeasurementReceived = DeserializeMeasurement(message);
                     newMeasurementReceivedHandler.Handle(newMeasurementReceived);
