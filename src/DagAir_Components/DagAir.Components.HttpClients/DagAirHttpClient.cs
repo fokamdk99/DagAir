@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Text;
@@ -24,7 +25,8 @@ namespace DagAir.Components.HttpClients
         public async Task<(T, HttpStatusCode)> GetAsync<T>(string url)
         {
             var response = await _client.GetAsync(url);
-            return (DeserializeModel<T>(response), response.StatusCode);
+            var content = await response.Content.ReadAsStreamAsync();
+            return (await DeserializeModel<T>(content), response.StatusCode);
         }
 
         public async Task<HttpStatusCode> PostAsync<T>(string url, T request)
@@ -37,7 +39,7 @@ namespace DagAir.Components.HttpClients
         public async Task<HttpStatusCode> PutAsync<T>(string url, T request)
         {
             var serializedRequest = SerializeRequest(request);
-            var response = await _client.PostAsync(url, serializedRequest);
+            var response = await _client.PutAsync(url, serializedRequest);
             return response.StatusCode;
         }
 
@@ -52,11 +54,11 @@ namespace DagAir.Components.HttpClients
             return new StringContent(JsonSerializer.Serialize(request), Encoding.UTF8, "application/json");
         }
         
-        private T DeserializeModel<T>(HttpResponseMessage httpResponse)
+        private async Task<T> DeserializeModel<T>(Stream contentStream)
         {
             try
             {
-                var responseData = JsonSerializer.Deserialize<JsonApiDocument<T>>(httpResponse.Content.ToString());
+                var responseData = await JsonSerializer.DeserializeAsync<JsonApiDocument<T>>(contentStream,new JsonSerializerOptions { IgnoreNullValues = true, PropertyNameCaseInsensitive = true });
                 return responseData!.Data;
             }
             catch (Exception e)

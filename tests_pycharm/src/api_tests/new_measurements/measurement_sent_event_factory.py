@@ -13,7 +13,7 @@ class MeasurementSentEvent:
 
 
 def generate_measurement_sent_event_json():
-    measurement_sent_event = MeasurementSentEvent(20, 120, 0.45, "sensor_nr1")
+    measurement_sent_event = MeasurementSentEvent(20, 120, 0.45, "1")
     new_measurement = str(measurement_sent_event.Temperature) + ";" \
                       + str(measurement_sent_event.Illuminance) + ";" \
                       + str(measurement_sent_event.Humidity) + ";" + measurement_sent_event.sensor_id

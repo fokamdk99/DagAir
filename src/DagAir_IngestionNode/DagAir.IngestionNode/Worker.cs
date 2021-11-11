@@ -44,6 +44,7 @@ namespace DagAir.IngestionNode
             _channel.ExchangeDeclare(cfg.SensorExchange, ExchangeType.Topic, durable: true);
 
             var queueName = _channel.QueueDeclare().QueueName;
+            _logger.LogInformation($"Queue name: {queueName}");
 
             _channel.QueueBind(queue: queueName,
                 exchange: cfg.SensorExchange,
