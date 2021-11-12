@@ -22,7 +22,11 @@ namespace DagAir.Policies.Policies.Queries
         
         public async Task<RoomPolicy> Handle(long roomId)
         {
-            var roomPolicies = await _context.RoomPolicies.Where(x => x.RoomId == roomId).Include(x => x.Category).ToListAsync();
+            var roomPolicies = await _context.RoomPolicies
+                .Where(x => x.RoomId == roomId)
+                .Include(x => x.Category)
+                .Include(x => x.ExpectedConditions)
+                .ToListAsync();
             var currentTime = DateTime.Now;
             var todaysPolicies = roomPolicies.Where(x =>
                 String.IsNullOrEmpty(x.RepeatOn) || x.RepeatOn.Contains(currentTime.ToString("ddd")));
