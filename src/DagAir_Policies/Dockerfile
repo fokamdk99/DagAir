@@ -10,7 +10,6 @@ COPY ["./DagAir_Policies/DagAir.Policies.Contracts/", "./DagAir_Policies/DagAir.
 COPY ["./DagAir_Policies/DagAir.Policies.Data/", "./DagAir_Policies/DagAir.Policies.Data/"]
 COPY ["./DagAir_Components/DagAir.Components.ApiModels/", "./DagAir_Components/DagAir.Components.ApiModels/"]
 COPY ["./DagAir_Components/DagAir.Components.Healthchecks/", "./DagAir_Components/DagAir.Components.Healthchecks/"]
-COPY ["./DagAir_Components/DagAir.Components.HttpClients/", "./DagAir_Components/DagAir.Components.HttpClients/"]
 COPY ["./DagAir_Components/DagAir.Components.Logging/", "./DagAir_Components/DagAir.Components.Logging/"]
 COPY ["./DagAir_IngestionNode/DagAir.IngestionNode.Contracts/", "./DagAir_IngestionNode/DagAir.IngestionNode.Contracts/"]
 

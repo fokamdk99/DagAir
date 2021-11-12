@@ -17,7 +17,6 @@
       <ProjectReference Include="..\..\DagAir_Components\DagAir.Components.Logging\DagAir.Components.Logging.csproj" />
       <ProjectReference Include="..\..\DagAir_Components\DagAir.Components.MassTransit.RabbitMq\DagAir.Components.MassTransit.RabbitMq.csproj" />
       <ProjectReference Include="..\..\DagAir_IngestionNode\DagAir.IngestionNode.Contracts\DagAir.IngestionNode.Contracts.csproj" />
-      <ProjectReference Include="..\..\DagAir_IngestionNode\DagAir.IngestionNode.Infrastructure\DagAir.IngestionNode.Infrastructure.csproj" />
       <ProjectReference Include="..\..\DagAir_Policies\DagAir.Policies.Contracts\DagAir.Policies.Contracts.csproj" />
         <ProjectReference Include="..\DagAir.PolicyNode.Contracts\DagAir.PolicyNode.Contracts.csproj" />
         <ProjectReference Include="..\DagAir.PolicyNode.Infrastructure\DagAir.PolicyNode.Infrastructure.csproj" />
