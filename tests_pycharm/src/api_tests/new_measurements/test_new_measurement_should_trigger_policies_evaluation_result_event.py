@@ -10,7 +10,7 @@ def test_when_new_measurement_sent_should_trigger_policies_evaluation_result_eve
     #check that influxdb is available and bucket named 'dagair_bucket' exists
     env_provider = EnvironmentProvider()
     influxdb_path = env_provider.get_influxdb()
-    token = "04QQQNYZs0E1KWImbwYgWBDPg6m6AhI-uATbrJzgEbMBPcPGI8g_iCrAQeD5yBitaoxKmtUvrijHQsdfIz2I1A=="
+    token = "test_token1"
     client = InfluxDBClient(url=influxdb_path, token=token)
     influx_res = client.buckets_api().find_bucket_by_name("dagair_bucket")
     assert influx_res is not None, "Influxdb is not available at the moment or bucket named 'dagair_bucket' does not exist"
