@@ -8,7 +8,7 @@ using NUnit.Framework;
 
 namespace DagAir.Policies.Tests.Policies
 {
-    public class SensorsEndpointPathsTests : IntegrationTestServer
+    public class PoliciesEndpointPathsTests : IntegrationTestServer
     {
         private HttpClient _client;
 
@@ -47,8 +47,10 @@ namespace DagAir.Policies.Tests.Policies
         private async Task AddDataToTheDatabase()
         {
             await AppContext.Database.EnsureDeletedAsync();
-            await AddPoliciesToTheDatabase();
+            await AddExpectedRoomConditionsToTheDatabase();
             await AddRoomPolicyCategoriesToTheDatabase();
+            await AddPoliciesToTheDatabase();
+            
             await AppContext.SaveChangesAsync();
         }
 
@@ -81,5 +83,23 @@ namespace DagAir.Policies.Tests.Policies
 
             await AppContext.RoomPolicyCategories.AddAsync(roomPolicyCategory);
         }
+        
+        public async Task AddExpectedRoomConditionsToTheDatabase()
+        {
+            var expectedRoomConditions = new ExpectedRoomConditions
+            {
+                Id = 1,
+                Temperature = 20,
+                Illuminance = 100,
+                Humidity = 0.4f,
+                TemperatureMargin = 2,
+                IlluminanceMargin = 20,
+                HumidityMargin = 0.1f
+            };
+
+            await AppContext.ExpectedRoomConditions.AddAsync(expectedRoomConditions);
+        }
+        
+        
     }
 }
