@@ -63,6 +63,8 @@ services:
       target: final
       context: ./src
       dockerfile: ./DagAir_IngestionNode/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
     ports:
       - "8082:80"
     depends_on:
@@ -75,6 +77,8 @@ services:
       target: final
       context: ./src
       dockerfile: ./DagAir_PolicyNode/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
     ports:
       - "8083:80"
     depends_on:
