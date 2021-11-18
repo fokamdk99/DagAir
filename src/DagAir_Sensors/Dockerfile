@@ -14,10 +14,10 @@ COPY ["./DagAir_Components/DagAir.Components.Logging/", "./DagAir_Components/Dag
 
 RUN dotnet restore ./DagAir_Sensors/DagAir.Sensors/DagAir.Sensors.csproj
 RUN dotnet build ./DagAir_Sensors/DagAir.Sensors/DagAir.Sensors.csproj --no-restore
-RUN dotnet publish ./DagAir_Sensors/DagAir.Sensors/DagAir.Sensors.csproj -c Debug -o /app/publish
+RUN dotnet publish ./DagAir_Sensors/DagAir.Sensors/DagAir.Sensors.csproj -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=build /app/publish .
 
-ENTRYPOINT ["dotnet", "./DagAir_Sensors/DagAir.Sensors/DagAir.Sensors.dll"]
+ENTRYPOINT ["dotnet", "DagAir.Sensors.dll"]

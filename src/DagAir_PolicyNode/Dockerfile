@@ -18,10 +18,10 @@ COPY ["./DagAir_Components/DagAir.Components.Logging/", "./DagAir_Components/Dag
 
 RUN dotnet restore ./DagAir_PolicyNode/DagAir.PolicyNode/DagAir.PolicyNode.csproj
 RUN dotnet build ./DagAir_PolicyNode/DagAir.PolicyNode/DagAir.PolicyNode.csproj --no-restore
-RUN dotnet publish ./DagAir_PolicyNode/DagAir.PolicyNode/DagAir.PolicyNode.csproj -c Debug -o /app/publish
+RUN dotnet publish ./DagAir_PolicyNode/DagAir.PolicyNode/DagAir.PolicyNode.csproj -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=build /app/publish .
 
-ENTRYPOINT ["dotnet", "./DagAir_PolicyNode/DagAir.PolicyNode/DagAir.PolicyNode.dll"]
+ENTRYPOINT ["dotnet", "DagAir.PolicyNode.dll"]

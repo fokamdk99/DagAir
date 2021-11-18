@@ -1,0 +1,17 @@
+FROM rabbitmq:3.9-management as final
+EXPOSE 15672
+EXPOSE 5672
+EXPOSE 1883
+
+ADD rabbitmq.conf /etc/rabbitmq/
+ADD definitions.json /etc/rabbitmq/
+
+RUN chown rabbitmq:rabbitmq /etc/rabbitmq/rabbitmq.conf /etc/rabbitmq/definitions.json
+
+ENV RABBITMQ_USER user
+ENV RABBITMQ_PASSWORD password
+
+COPY ["./initialize_rabbitmq.sh", "./"]
+RUN chmod +x ./initialize_rabbitmq.sh
+
+CMD ["./initialize_rabbitmq.sh"]

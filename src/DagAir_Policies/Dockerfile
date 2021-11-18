@@ -15,10 +15,10 @@ COPY ["./DagAir_IngestionNode/DagAir.IngestionNode.Contracts/", "./DagAir_Ingest
 
 RUN dotnet restore ./DagAir_Policies/DagAir.Policies/DagAir.Policies.csproj
 RUN dotnet build ./DagAir_Policies/DagAir.Policies/DagAir.Policies.csproj --no-restore
-RUN dotnet publish ./DagAir_Policies/DagAir.Policies/DagAir.Policies.csproj -c Debug -o /app/publish
+RUN dotnet publish ./DagAir_Policies/DagAir.Policies/DagAir.Policies.csproj -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=build /app/publish .
 
-ENTRYPOINT ["dotnet", "./DagAir_Policies/DagAir.Policies/DagAir.Policies.dll"]
+ENTRYPOINT ["dotnet", "DagAir.Policies.dll"]

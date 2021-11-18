@@ -18,10 +18,10 @@ COPY ["./DagAir_Components/DagAir.Components.Logging/", "./DagAir_Components/Dag
 
 RUN dotnet restore ./DagAir_IngestionNode/DagAir.IngestionNode/DagAir.IngestionNode.csproj
 RUN dotnet build ./DagAir_IngestionNode/DagAir.IngestionNode/DagAir.IngestionNode.csproj --no-restore
-RUN dotnet publish ./DagAir_IngestionNode/DagAir.IngestionNode/DagAir.IngestionNode.csproj -c Debug -o /app/publish
+RUN dotnet publish ./DagAir_IngestionNode/DagAir.IngestionNode/DagAir.IngestionNode.csproj -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=build /app/publish .
 
-ENTRYPOINT ["dotnet", "./DagAir_IngestionNode/DagAir.IngestionNode/DagAir.IngestionNode.dll"]
+ENTRYPOINT ["dotnet", "DagAir.IngestionNode.dll"]

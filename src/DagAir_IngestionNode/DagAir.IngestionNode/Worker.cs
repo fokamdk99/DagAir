@@ -24,6 +24,7 @@ namespace DagAir.IngestionNode
         private readonly IModel _channel;
         private readonly ILogger<Worker> _logger;
         private readonly IServiceProvider _serviceProvider;
+        private readonly bool isRabbitMqReady = false;
 
         public Worker(
             ISensorRabbitMqConfiguration cfg, 
@@ -38,8 +39,22 @@ namespace DagAir.IngestionNode
                 HostName = cfg.HostName,
                 VirtualHost = cfg.VirtualHost
             };
-            _connection = _factory.CreateConnection();
-            _channel = _connection.CreateModel();
+            _factory.AutomaticRecoveryEnabled = true;
+            _factory.NetworkRecoveryInterval = TimeSpan.FromSeconds(10);
+            while (!isRabbitMqReady)
+            {
+                try {
+                    _connection = _factory.CreateConnection();
+                    isRabbitMqReady = true;
+                } catch (RabbitMQ.Client.Exceptions.BrokerUnreachableException e)
+                {
+                    var timeout = 10000;
+                    _logger.LogWarning($"RabbitMq is unreachable at the moment. Retrying in {timeout/1000} seconds. Details: {e.Message}");
+                    Thread.Sleep(timeout);
+                }
+            }
+            
+            _channel = _connection!.CreateModel();
             
             _channel.ExchangeDeclare(cfg.SensorExchange, ExchangeType.Topic, durable: true);
 

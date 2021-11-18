@@ -1,0 +1,111 @@
+version: "3.9"
+
+services:
+  influxdb:
+    image: influxdb:2.0.8
+    container_name: influxdb1
+    volumes:
+      - test_influxdb_volume:/var/lib/influxdb2
+    ports:
+      - '8086:8086'
+  influxdb_cli:
+    links:
+      - influxdb
+    image: influxdb:2.0.8
+    volumes:
+      - test_influxdb_volume:/var/lib/influxdb2
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=test_username1
+      - DOCKER_INFLUXDB_INIT_PASSWORD=test_password1
+      - DOCKER_INFLUXDB_INIT_ORG=test_org1
+      - DOCKER_INFLUXDB_INIT_BUCKET=test_bucket1
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=test_token1
+    restart: on-failure:5
+    depends_on:
+      - influxdb
+
+  rabbitmq:
+    build:
+      target: final
+      context: ./
+      dockerfile: ./Dockerfile.RabbitMq
+    container_name: 'rabbitmq'
+    ports:
+      - 1883:1883
+      - 5672:5672
+      - 15672:15672
+    networks:
+      - dagair_network
+
+  sensors_api:
+    build:
+      target: final
+      context: ./src
+      dockerfile: ./DagAir_Sensors/Dockerfile
+    ports:
+      - "8080:80"
+    networks:
+      - dagair_network
+  
+  policies_api:
+    build:
+      target: final
+      context: ./src
+      dockerfile: ./DagAir_Policies/Dockerfile
+    ports:
+      - "8081:80"
+    networks:
+      - dagair_network
+
+  ingestion_node:
+    build:
+      target: final
+      context: ./src
+      dockerfile: ./DagAir_IngestionNode/Dockerfile
+    ports:
+      - "8082:80"
+    depends_on:
+      - rabbitmq
+    networks:
+      - dagair_network
+
+  policy_node:
+    build:
+      target: final
+      context: ./src
+      dockerfile: ./DagAir_PolicyNode/Dockerfile
+    ports:
+      - "8083:80"
+    depends_on:
+      - rabbitmq
+    networks:
+      - dagair_network
+
+  client_node:
+    build:
+      target: final
+      context: ./src
+      dockerfile: ./DagAir_ClientNode/Dockerfile
+    ports:
+      - "8084:80"
+    depends_on:
+      - rabbitmq
+    networks:
+      - dagair_network
+
+  web_client_app:
+    build:
+      target: final
+      context: ./src
+      dockerfile: ./DagAir_WebApplications/Dockerfile.WebClientApp
+    ports:
+      - "8085:80"
+    networks:
+      - dagair_network
+
+volumes:
+  test_influxdb_volume:
+
+networks:
+  dagair_network:
