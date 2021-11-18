@@ -19,12 +19,11 @@ namespace DagAir.IngestionNode
     {
         private const int NumberOfParameters = 4; 
         
-        private ConnectionFactory _factory;
-        private readonly IConnection _connection;
-        private readonly IModel _channel;
+        private IConnection _connection;
+        private IModel _channel;
         private readonly ILogger<Worker> _logger;
         private readonly IServiceProvider _serviceProvider;
-        private readonly bool isRabbitMqReady = false;
+        private readonly ISensorRabbitMqConfiguration _rabbitMqConfiguration;
 
         public Worker(
             ISensorRabbitMqConfiguration cfg, 
@@ -34,52 +33,36 @@ namespace DagAir.IngestionNode
         {
             _logger = logger;
             _serviceProvider = serviceProvider;
-            _factory = new ConnectionFactory()
+            _rabbitMqConfiguration = cfg;
+        }
+
+        protected override async Task ExecuteAsync(CancellationToken cancellationToken)
+        {
+            using (IServiceScope scope = _serviceProvider.CreateScope())
             {
-                HostName = cfg.HostName,
-                VirtualHost = cfg.VirtualHost
-            };
-            _factory.AutomaticRecoveryEnabled = true;
-            _factory.NetworkRecoveryInterval = TimeSpan.FromSeconds(10);
-            while (!isRabbitMqReady)
-            {
-                try {
-                    _connection = _factory.CreateConnection();
-                    isRabbitMqReady = true;
-                } catch (RabbitMQ.Client.Exceptions.BrokerUnreachableException e)
-                {
-                    var timeout = 10000;
-                    _logger.LogWarning($"RabbitMq is unreachable at the moment. Retrying in {timeout/1000} seconds. Details: {e.Message}");
-                    Thread.Sleep(timeout);
-                }
+                _connection = scope.ServiceProvider.GetRequiredService<IConnection>();
             }
             
             _channel = _connection!.CreateModel();
-            
-            _channel.ExchangeDeclare(cfg.SensorExchange, ExchangeType.Topic, durable: true);
+            _channel.ExchangeDeclare(_rabbitMqConfiguration.SensorExchange, ExchangeType.Topic, durable: true);
 
             var queueName = _channel.QueueDeclare().QueueName;
             _logger.LogInformation($"Queue name: {queueName}");
 
             _channel.QueueBind(queue: queueName,
-                exchange: cfg.SensorExchange,
-                routingKey: cfg.RoutingKey);
+                exchange: _rabbitMqConfiguration.SensorExchange,
+                routingKey: _rabbitMqConfiguration.RoutingKey);
             
             _logger.LogInformation("Sensor rabbit mq configuration: waiting for messages");
-        }
 
-        protected override Task ExecuteAsync(CancellationToken cancellationToken)
-        {
             if (cancellationToken.IsCancellationRequested)
             {
                 _channel.Dispose();
                 _connection.Dispose();
-                return Task.CompletedTask;
+                return;
             }
 
             ReceiveMessages();
-
-            return Task.CompletedTask;
         }
 
         private void ReceiveMessages()
@@ -94,7 +77,6 @@ namespace DagAir.IngestionNode
                 {
                     var body = ea.Body.ToArray();
                     var message = Encoding.UTF8.GetString(body);
-                    //Console.WriteLine("[x][{0}] {1}", DateTime.Now, message);
                     _logger.LogInformation("[x][{0}] {1}", DateTime.Now, message);
 
                     var newMeasurementReceived = DeserializeMeasurement(message);

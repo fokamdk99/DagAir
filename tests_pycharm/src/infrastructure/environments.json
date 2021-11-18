@@ -1,9 +1,22 @@
 {
     "local": {
+        "DAGAIR_SENSORS": "http://localhost:9002",
+        "DAGAIR_POLICIES": "http://localhost:12000",
         "DAGAIR_INGESTION_NODE": "http://localhost:5000",
         "DAGAIR_POLICYNODE": "http://localhost:6000",
-        "DAGAIR_POLICIES": "http://localhost:12000",
-        "DAGAIR_SENSORS": "http://localhost:9002",
+        "INFLUXDB": "http://localhost:8086",
+        "RABBITMQ_API_HOST": "http://localhost:15672",
+        "RABBITMQ_VHOST": "dagair",
+        "RABBITMQ_USERNAME": "guest",
+        "RABBITMQ_PASSWORD": "guest"
+    },
+    "docker": {
+        "DAGAIR_SENSORS": "http://localhost:8080",
+        "DAGAIR_POLICIES": "http://localhost:8081",
+        "DAGAIR_INGESTION_NODE": "http://localhost:8082",
+        "DAGAIR_POLICYNODE": "http://localhost:8083",
+        "DAGAIR_CLIENTNODE": "http://localhost:8084",
+        "WEB_CLIENT_APP": "http://localhost:8085",
         "INFLUXDB": "http://localhost:8086",
         "RABBITMQ_API_HOST": "http://localhost:15672",
         "RABBITMQ_VHOST": "dagair",
