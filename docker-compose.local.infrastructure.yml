@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  influxdb:
+    image: influxdb:2.0.8
+    container_name: influxdb1
+    volumes:
+      - local_influxdb1:/var/lib/influxdb2
+      - local_influxdb2:/etc/influxdb2
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=local_username1
+      - DOCKER_INFLUXDB_INIT_PASSWORD=local_password1
+      - DOCKER_INFLUXDB_INIT_ORG=local_org1
+      - DOCKER_INFLUXDB_INIT_BUCKET=local_bucket1
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=local_token1
+    ports:
+      - '8086:8086'
+    networks:
+      - dagair_network
+
+volumes:
+  local_influxdb1:
+  local_influxdb2:
+
+networks:
+  dagair_network:

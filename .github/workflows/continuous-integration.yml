@@ -29,4 +29,4 @@ jobs:
 
       - name: Build @ Test
         shell: bash
-        run: ./build.sh --verbosity verbose
+        run: ./build.sh Test --verbosity verbose

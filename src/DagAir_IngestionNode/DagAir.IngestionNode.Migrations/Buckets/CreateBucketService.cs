@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using InfluxDB.Client;
 using InfluxDB.Client.Api.Domain;
 
-namespace DagAir.IngestionNode.Data.Buckets
+namespace DagAir.IngestionNode.Migrations.Buckets
 {
     
     public static class CreateBucketService

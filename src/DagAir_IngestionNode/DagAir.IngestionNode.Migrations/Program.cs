@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using DagAir.IngestionNode.Data;
-using DagAir.IngestionNode.Data.Buckets;
 using DagAir.IngestionNode.Data.Influx;
+using DagAir.IngestionNode.Migrations.Buckets;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
