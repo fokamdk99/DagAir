@@ -1,7 +1,0 @@
-1c9e7418eccf029fb388fc43462fdafc
-Clean
-Restore
-Compile
-StartTestInfluxContainer
-Test
-RemoveTestInfluxContainer
