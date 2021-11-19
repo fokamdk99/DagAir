@@ -74,6 +74,8 @@
               "Clean",
               "Compile",
               "Restore",
+              "RunDatabaseMigration",
+              "SetupLocally",
               "Test"
             ]
           }
@@ -91,6 +93,8 @@
               "Clean",
               "Compile",
               "Restore",
+              "RunDatabaseMigration",
+              "SetupLocally",
               "Test"
             ]
           }

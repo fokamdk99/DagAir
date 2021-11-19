@@ -5,25 +5,19 @@ services:
     image: influxdb:2.0.8
     container_name: influxdb1
     volumes:
-      - test_influxdb_volume:/var/lib/influxdb2
-    ports:
-      - '8086:8086'
-  influxdb_cli:
-    links:
-      - influxdb
-    image: influxdb:2.0.8
-    volumes:
-      - test_influxdb_volume:/var/lib/influxdb2
+      - local_influxdb1:/var/lib/influxdb2
+      - local_influxdb2:/etc/influxdb2
     environment:
       - DOCKER_INFLUXDB_INIT_MODE=setup
-      - DOCKER_INFLUXDB_INIT_USERNAME=test_username1
-      - DOCKER_INFLUXDB_INIT_PASSWORD=test_password1
-      - DOCKER_INFLUXDB_INIT_ORG=test_org1
-      - DOCKER_INFLUXDB_INIT_BUCKET=test_bucket1
-      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=test_token1
-    restart: on-failure:5
-    depends_on:
-      - influxdb
+      - DOCKER_INFLUXDB_INIT_USERNAME=local_username1
+      - DOCKER_INFLUXDB_INIT_PASSWORD=local_password1
+      - DOCKER_INFLUXDB_INIT_ORG=local_org1
+      - DOCKER_INFLUXDB_INIT_BUCKET=local_bucket1
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=local_token1
+    ports:
+      - '8086:8086'
+    networks:
+      - dagair_network
 
   rabbitmq:
     build:
@@ -50,6 +44,7 @@ services:
       - "8080:80"
     networks:
       - dagair_network
+    restart: always
   
   policies_api:
     build:
@@ -63,6 +58,7 @@ services:
       - "8081:80"
     networks:
       - dagair_network
+    restart: always
 
   ingestion_node:
     build:
@@ -77,6 +73,7 @@ services:
       - rabbitmq
     networks:
       - dagair_network
+    restart: always
 
   policy_node:
     build:
@@ -91,6 +88,7 @@ services:
       - rabbitmq
     networks:
       - dagair_network
+    restart: always
 
   client_node:
     build:
@@ -103,6 +101,7 @@ services:
       - rabbitmq
     networks:
       - dagair_network
+    restart: always
 
   web_client_app:
     build:
@@ -113,9 +112,11 @@ services:
       - "8085:80"
     networks:
       - dagair_network
+    restart: always
 
 volumes:
-  test_influxdb_volume:
+  local_influxdb1:
+  local_influxdb2:
 
 networks:
   dagair_network:
