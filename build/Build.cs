@@ -51,7 +51,6 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository, IHaveProjectName
 
     Target Compile => _ => _
         .DependsOn(Restore)
-        .Triggers(Test)
         .Executes(() =>
         {
             DotNetBuild(s => s
@@ -79,7 +78,7 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository, IHaveProjectName
         .Triggers(RunDatabaseMigration);
 
     Target RunDatabaseMigration => _ => _
-        .DependsOn(Compile)
+        .DependsOn(SetupLocally)
         .Executes(() =>
         {
             var solution = (this as IHaveSolution).Solution;
