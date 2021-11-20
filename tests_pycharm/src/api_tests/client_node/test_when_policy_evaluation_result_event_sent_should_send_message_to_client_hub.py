@@ -1,8 +1,8 @@
 from src.infrastructure.environment_provider import EnvironmentProvider
 from src.infrastructure.rabbitmq import consts
 from src.infrastructure.helpers import request_helper
-from src.api_tests.client_node.policies_evaluation_result_event_factory import PoliciesEvaluationResultEvent
 import json
+
 
 def test_when_policy_evaluation_result_event_sent_should_send_message_to_client_hub():
     env_provider = EnvironmentProvider()
