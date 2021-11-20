@@ -95,6 +95,8 @@ services:
       target: final
       context: ./src
       dockerfile: ./DagAir_ClientNode/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
     ports:
       - "8084:80"
     depends_on:
