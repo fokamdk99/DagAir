@@ -4,7 +4,7 @@ using MySql.EntityFrameworkCore.Metadata;
 
 namespace DagAir.Facilities.Data.Migrations.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class AddInitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -20,7 +20,7 @@ namespace DagAir.Facilities.Data.Migrations.Migrations
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     name = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: false),
                     address_id = table.Column<long>(type: "bigint", nullable: false),
-                    created = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(CURRENT_DATE)"),
+                    created = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     modified = table.Column<DateTime>(type: "datetime", nullable: true)
                 },
                 constraints: table =>
@@ -37,7 +37,7 @@ namespace DagAir.Facilities.Data.Migrations.Migrations
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     name = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: false),
                     organization_id = table.Column<long>(type: "bigint", nullable: false),
-                    created = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(CURRENT_DATE)"),
+                    created = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     modified = table.Column<DateTime>(type: "datetime", nullable: true)
                 },
                 constraints: table =>
@@ -62,7 +62,7 @@ namespace DagAir.Facilities.Data.Migrations.Migrations
                     number = table.Column<string>(type: "text", nullable: false),
                     floor = table.Column<int>(type: "int", nullable: false),
                     affiliate_id = table.Column<long>(type: "bigint", nullable: false),
-                    created = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(CURRENT_DATE)"),
+                    created = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     modified = table.Column<DateTime>(type: "datetime", nullable: true)
                 },
                 constraints: table =>
@@ -80,50 +80,50 @@ namespace DagAir.Facilities.Data.Migrations.Migrations
             migrationBuilder.InsertData(
                 schema: "DagAir.Facilities",
                 table: "organizations",
-                columns: new[] { "id", "address_id", "created", "modified", "name" },
-                values: new object[] { 1L, 1L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Warsaw University Of Technology" });
+                columns: new[] { "id", "address_id", "modified", "name" },
+                values: new object[] { 1L, 1L, null, "Warsaw University Of Technology" });
 
             migrationBuilder.InsertData(
                 schema: "DagAir.Facilities",
                 table: "organizations",
-                columns: new[] { "id", "address_id", "created", "modified", "name" },
-                values: new object[] { 2L, 1L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Warsaw School Of Economics" });
+                columns: new[] { "id", "address_id", "modified", "name" },
+                values: new object[] { 2L, 1L, null, "Warsaw School Of Economics" });
 
             migrationBuilder.InsertData(
                 schema: "DagAir.Facilities",
                 table: "affiliates",
-                columns: new[] { "id", "created", "modified", "name", "organization_id" },
-                values: new object[] { 1L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Faculty of Electronics and Information Technology", 1L });
+                columns: new[] { "id", "modified", "name", "organization_id" },
+                values: new object[] { 1L, null, "Faculty of Electronics and Information Technology", 1L });
 
             migrationBuilder.InsertData(
                 schema: "DagAir.Facilities",
                 table: "affiliates",
-                columns: new[] { "id", "created", "modified", "name", "organization_id" },
-                values: new object[] { 2L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Faculty of Mathematics and Information Science", 1L });
+                columns: new[] { "id", "modified", "name", "organization_id" },
+                values: new object[] { 2L, null, "Faculty of Mathematics and Information Science", 1L });
 
             migrationBuilder.InsertData(
                 schema: "DagAir.Facilities",
                 table: "affiliates",
-                columns: new[] { "id", "created", "modified", "name", "organization_id" },
-                values: new object[] { 3L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Collegium Of Economic Analysis", 2L });
+                columns: new[] { "id", "modified", "name", "organization_id" },
+                values: new object[] { 3L, null, "Collegium Of Economic Analysis", 2L });
 
             migrationBuilder.InsertData(
                 schema: "DagAir.Facilities",
                 table: "rooms",
-                columns: new[] { "id", "affiliate_id", "created", "floor", "modified", "number" },
-                values: new object[] { 1L, 1L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, "133" });
+                columns: new[] { "id", "affiliate_id", "floor", "modified", "number" },
+                values: new object[] { 1L, 1L, 1, null, "133" });
 
             migrationBuilder.InsertData(
                 schema: "DagAir.Facilities",
                 table: "rooms",
-                columns: new[] { "id", "affiliate_id", "created", "floor", "modified", "number" },
-                values: new object[] { 2L, 2L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, "117" });
+                columns: new[] { "id", "affiliate_id", "floor", "modified", "number" },
+                values: new object[] { 2L, 2L, 1, null, "117" });
 
             migrationBuilder.InsertData(
                 schema: "DagAir.Facilities",
                 table: "rooms",
-                columns: new[] { "id", "affiliate_id", "created", "floor", "modified", "number" },
-                values: new object[] { 3L, 3L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, null, "52" });
+                columns: new[] { "id", "affiliate_id", "floor", "modified", "number" },
+                values: new object[] { 3L, 3L, 2, null, "52" });
 
             migrationBuilder.CreateIndex(
                 name: "ix_affiliates_organization_id",

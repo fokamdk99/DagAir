@@ -19,7 +19,7 @@ namespace DagAir.Addresses.Data.Migrations.Migrations
                     id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     name = table.Column<string>(type: "text", nullable: false),
-                    created = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(CURRENT_DATE)"),
+                    created = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     modified = table.Column<DateTime>(type: "datetime", nullable: true)
                 },
                 constraints: table =>
@@ -35,7 +35,7 @@ namespace DagAir.Addresses.Data.Migrations.Migrations
                     id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     name = table.Column<string>(type: "text", nullable: false),
-                    created = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(CURRENT_DATE)"),
+                    created = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     modified = table.Column<DateTime>(type: "datetime", nullable: true)
                 },
                 constraints: table =>
@@ -51,7 +51,7 @@ namespace DagAir.Addresses.Data.Migrations.Migrations
                     id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     number = table.Column<string>(type: "text", nullable: false),
-                    created = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(CURRENT_DATE)"),
+                    created = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     modified = table.Column<DateTime>(type: "datetime", nullable: true)
                 },
                 constraints: table =>
@@ -69,7 +69,7 @@ namespace DagAir.Addresses.Data.Migrations.Migrations
                     country_id = table.Column<long>(type: "bigint", nullable: false),
                     city_id = table.Column<long>(type: "bigint", nullable: false),
                     postal_code_id = table.Column<long>(type: "bigint", nullable: false),
-                    created = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(CURRENT_DATE)"),
+                    created = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     modified = table.Column<DateTime>(type: "datetime", nullable: true)
                 },
                 constraints: table =>
@@ -101,44 +101,44 @@ namespace DagAir.Addresses.Data.Migrations.Migrations
             migrationBuilder.InsertData(
                 schema: "DagAir.Addresses",
                 table: "cities",
-                columns: new[] { "id", "created", "modified", "name" },
+                columns: new[] { "id", "modified", "name" },
                 values: new object[,]
                 {
-                    { 1L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Stockholm" },
-                    { 2L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Reykjavik" }
+                    { 1L, null, "Stockholm" },
+                    { 2L, null, "Reykjavik" }
                 });
 
             migrationBuilder.InsertData(
                 schema: "DagAir.Addresses",
                 table: "countries",
-                columns: new[] { "id", "created", "modified", "name" },
+                columns: new[] { "id", "modified", "name" },
                 values: new object[,]
                 {
-                    { 1L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Sweden" },
-                    { 2L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Iceland" }
+                    { 1L, null, "Sweden" },
+                    { 2L, null, "Iceland" }
                 });
 
             migrationBuilder.InsertData(
                 schema: "DagAir.Addresses",
                 table: "postal_codes",
-                columns: new[] { "id", "created", "modified", "number" },
+                columns: new[] { "id", "modified", "number" },
                 values: new object[,]
                 {
-                    { 1L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "04-265" },
-                    { 2L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "25-685" }
+                    { 1L, null, "04-265" },
+                    { 2L, null, "25-685" }
                 });
 
             migrationBuilder.InsertData(
                 schema: "DagAir.Addresses",
                 table: "addresses",
-                columns: new[] { "id", "city_id", "country_id", "created", "modified", "postal_code_id" },
-                values: new object[] { 1L, 1L, 1L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1L });
+                columns: new[] { "id", "city_id", "country_id", "modified", "postal_code_id" },
+                values: new object[] { 1L, 1L, 1L, null, 1L });
 
             migrationBuilder.InsertData(
                 schema: "DagAir.Addresses",
                 table: "addresses",
-                columns: new[] { "id", "city_id", "country_id", "created", "modified", "postal_code_id" },
-                values: new object[] { 2L, 2L, 2L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 2L });
+                columns: new[] { "id", "city_id", "country_id", "modified", "postal_code_id" },
+                values: new object[] { 2L, 2L, 2L, null, 2L });
 
             migrationBuilder.CreateIndex(
                 name: "ix_addresses_city_id",

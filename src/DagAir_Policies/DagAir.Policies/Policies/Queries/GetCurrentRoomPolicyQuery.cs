@@ -27,6 +27,7 @@ namespace DagAir.Policies.Policies.Queries
                 .Include(x => x.Category)
                 .Include(x => x.ExpectedConditions)
                 .ToListAsync();
+
             var currentTime = DateTime.Now;
             var todaysPolicies = roomPolicies.Where(x =>
                 String.IsNullOrEmpty(x.RepeatOn) || x.RepeatOn.Contains(currentTime.ToString("ddd")));

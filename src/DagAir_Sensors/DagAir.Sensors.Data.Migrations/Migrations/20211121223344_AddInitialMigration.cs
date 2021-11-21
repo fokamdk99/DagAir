@@ -4,7 +4,7 @@ using MySql.EntityFrameworkCore.Metadata;
 
 namespace DagAir.Sensors.Data.Migrations.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class AddInitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -21,7 +21,7 @@ namespace DagAir.Sensors.Data.Migrations.Migrations
                     name = table.Column<string>(type: "text", nullable: false),
                     date_of_establishment = table.Column<DateTime>(type: "datetime", nullable: false),
                     address_id = table.Column<long>(type: "bigint", nullable: false),
-                    created = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(CURRENT_DATE)"),
+                    created = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     modified = table.Column<DateTime>(type: "datetime", nullable: true)
                 },
                 constraints: table =>
@@ -39,7 +39,7 @@ namespace DagAir.Sensors.Data.Migrations.Migrations
                     name = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: false),
                     version = table.Column<string>(type: "text", nullable: false),
                     producer_id = table.Column<long>(type: "bigint", nullable: false),
-                    created = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(CURRENT_DATE)"),
+                    created = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     modified = table.Column<DateTime>(type: "datetime", nullable: true)
                 },
                 constraints: table =>
@@ -65,7 +65,7 @@ namespace DagAir.Sensors.Data.Migrations.Migrations
                     sensor_model_id = table.Column<long>(type: "bigint", nullable: false),
                     room_id = table.Column<long>(type: "bigint", nullable: false),
                     affiliate_id = table.Column<long>(type: "bigint", nullable: false),
-                    created = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(CURRENT_DATE)"),
+                    created = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     modified = table.Column<DateTime>(type: "datetime", nullable: true)
                 },
                 constraints: table =>
@@ -83,50 +83,50 @@ namespace DagAir.Sensors.Data.Migrations.Migrations
             migrationBuilder.InsertData(
                 schema: "DagAir.Sensors",
                 table: "producers",
-                columns: new[] { "id", "address_id", "created", "date_of_establishment", "modified", "name" },
-                values: new object[] { 1L, 1L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 10, 16, 23, 41, 20, 724, DateTimeKind.Local).AddTicks(4435), null, "Saturn" });
+                columns: new[] { "id", "address_id", "date_of_establishment", "modified", "name" },
+                values: new object[] { 1L, 1L, new DateTime(2021, 11, 19, 23, 33, 43, 842, DateTimeKind.Local).AddTicks(5997), null, "Saturn" });
 
             migrationBuilder.InsertData(
                 schema: "DagAir.Sensors",
                 table: "producers",
-                columns: new[] { "id", "address_id", "created", "date_of_establishment", "modified", "name" },
-                values: new object[] { 2L, 2L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 10, 11, 23, 41, 20, 727, DateTimeKind.Local).AddTicks(4005), null, "Euro agd" });
+                columns: new[] { "id", "address_id", "date_of_establishment", "modified", "name" },
+                values: new object[] { 2L, 2L, new DateTime(2021, 11, 14, 23, 33, 43, 844, DateTimeKind.Local).AddTicks(8028), null, "Euro agd" });
 
             migrationBuilder.InsertData(
                 schema: "DagAir.Sensors",
                 table: "sensor_models",
-                columns: new[] { "id", "created", "modified", "name", "producer_id", "version" },
-                values: new object[] { 1L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "illuminati", 1L, "v1" });
+                columns: new[] { "id", "modified", "name", "producer_id", "version" },
+                values: new object[] { 1L, null, "illuminati", 1L, "v1" });
 
             migrationBuilder.InsertData(
                 schema: "DagAir.Sensors",
                 table: "sensor_models",
-                columns: new[] { "id", "created", "modified", "name", "producer_id", "version" },
-                values: new object[] { 2L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "humidati", 1L, "v1" });
+                columns: new[] { "id", "modified", "name", "producer_id", "version" },
+                values: new object[] { 2L, null, "humidati", 1L, "v1" });
 
             migrationBuilder.InsertData(
                 schema: "DagAir.Sensors",
                 table: "sensor_models",
-                columns: new[] { "id", "created", "modified", "name", "producer_id", "version" },
-                values: new object[] { 3L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "tempurati", 2L, "v1" });
+                columns: new[] { "id", "modified", "name", "producer_id", "version" },
+                values: new object[] { 3L, null, "tempurati", 2L, "v1" });
 
             migrationBuilder.InsertData(
                 schema: "DagAir.Sensors",
                 table: "sensors",
-                columns: new[] { "id", "affiliate_id", "created", "last_data_sent_date", "modified", "room_id", "sensor_model_id" },
-                values: new object[] { 1L, 1L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 10, 18, 18, 41, 20, 729, DateTimeKind.Local).AddTicks(6796), null, 1L, 1L });
+                columns: new[] { "id", "affiliate_id", "last_data_sent_date", "modified", "room_id", "sensor_model_id" },
+                values: new object[] { 1L, 1L, new DateTime(2021, 11, 21, 18, 33, 43, 846, DateTimeKind.Local).AddTicks(2687), null, 1L, 1L });
 
             migrationBuilder.InsertData(
                 schema: "DagAir.Sensors",
                 table: "sensors",
-                columns: new[] { "id", "affiliate_id", "created", "last_data_sent_date", "modified", "room_id", "sensor_model_id" },
-                values: new object[] { 2L, 1L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 10, 18, 20, 41, 20, 729, DateTimeKind.Local).AddTicks(7859), null, 1L, 2L });
+                columns: new[] { "id", "affiliate_id", "last_data_sent_date", "modified", "room_id", "sensor_model_id" },
+                values: new object[] { 2L, 1L, new DateTime(2021, 11, 21, 20, 33, 43, 846, DateTimeKind.Local).AddTicks(3388), null, 1L, 2L });
 
             migrationBuilder.InsertData(
                 schema: "DagAir.Sensors",
                 table: "sensors",
-                columns: new[] { "id", "affiliate_id", "created", "last_data_sent_date", "modified", "room_id", "sensor_model_id" },
-                values: new object[] { 3L, 1L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 10, 18, 22, 41, 20, 729, DateTimeKind.Local).AddTicks(7873), null, 1L, 3L });
+                columns: new[] { "id", "affiliate_id", "last_data_sent_date", "modified", "room_id", "sensor_model_id" },
+                values: new object[] { 3L, 1L, new DateTime(2021, 11, 21, 22, 33, 43, 846, DateTimeKind.Local).AddTicks(3397), null, 1L, 3L });
 
             migrationBuilder.CreateIndex(
                 name: "ix_sensor_models_producer_id",

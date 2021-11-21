@@ -29,20 +29,14 @@ namespace DagAir.Policies.Data.AppEntitiesConfiguration
                 .IsRequired();
 
             builder.HasOne(e => e.ExpectedConditions)
-                .WithOne(x => x.RoomPolicy)
-                .HasForeignKey<RoomPolicy>(e => e.ExpectedConditionsId)
+                .WithMany(x => x.RoomPolicies)
+                .HasForeignKey(e => e.ExpectedConditionsId)
                 .IsRequired();
             
             builder.HasOne(e => e.Category)
                 .WithMany(x => x.RoomPolicies)
                 .HasForeignKey(e => e.CategoryId)
                 .IsRequired();
-            
-            
-            builder.Property(e => e.Created)
-                .IsRequired();
-
-            builder.Property(e => e.Modified);
         }
     }
 }

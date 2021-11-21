@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DagAir.Policies.Data.Migrations.Migrations
 {
     [DbContext(typeof(DagAirPoliciesAppContext))]
-    [Migration("20211025204803_AddSeedData")]
-    partial class AddSeedData
+    [Migration("20211121222623_AddInitialMigration")]
+    partial class AddInitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,9 +28,10 @@ namespace DagAir.Policies.Data.Migrations.Migrations
                         .HasColumnName("id");
 
                     b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasColumnName("created")
-                        .HasDefaultValueSql("(CURRENT_DATE)");
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<float>("Humidity")
                         .HasColumnType("float")
@@ -51,6 +52,10 @@ namespace DagAir.Policies.Data.Migrations.Migrations
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime")
                         .HasColumnName("modified");
+
+                    b.Property<long?>("RoomPolicyId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("room_policy_id");
 
                     b.Property<float>("Temperature")
                         .HasColumnType("float")
@@ -102,9 +107,10 @@ namespace DagAir.Policies.Data.Migrations.Migrations
                         .HasColumnName("category_id");
 
                     b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasColumnName("created")
-                        .HasDefaultValueSql("(CURRENT_DATE)");
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime")
@@ -139,7 +145,6 @@ namespace DagAir.Policies.Data.Migrations.Migrations
                         .HasDatabaseName("ix_room_policies_category_id");
 
                     b.HasIndex("ExpectedConditionsId")
-                        .IsUnique()
                         .HasDatabaseName("ix_room_policies_expected_conditions_id");
 
                     b.ToTable("room_policies");
@@ -150,22 +155,33 @@ namespace DagAir.Policies.Data.Migrations.Migrations
                             Id = 1L,
                             CategoryId = 1L,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EndDate = new DateTime(2021, 10, 25, 0, 48, 3, 0, DateTimeKind.Unspecified),
+                            EndDate = new DateTime(2021, 11, 21, 1, 26, 22, 0, DateTimeKind.Unspecified),
                             ExpectedConditionsId = 1L,
                             RepeatOn = "Monday, Thursday",
                             RoomId = 1L,
-                            StartDate = new DateTime(2021, 10, 25, 22, 48, 3, 0, DateTimeKind.Unspecified)
+                            StartDate = new DateTime(2021, 11, 21, 23, 26, 22, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 2L,
                             CategoryId = 2L,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EndDate = new DateTime(2021, 10, 25, 23, 48, 3, 0, DateTimeKind.Unspecified),
+                            EndDate = new DateTime(2021, 11, 21, 0, 26, 22, 0, DateTimeKind.Unspecified),
                             ExpectedConditionsId = 2L,
                             RepeatOn = "Wednesday",
                             RoomId = 1L,
-                            StartDate = new DateTime(2021, 10, 25, 19, 48, 3, 0, DateTimeKind.Unspecified)
+                            StartDate = new DateTime(2021, 11, 21, 20, 26, 22, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CategoryId = 2L,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EndDate = new DateTime(2021, 10, 5, 23, 59, 59, 0, DateTimeKind.Unspecified),
+                            ExpectedConditionsId = 2L,
+                            RepeatOn = "",
+                            RoomId = 1L,
+                            StartDate = new DateTime(2021, 11, 5, 1, 1, 1, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -176,10 +192,15 @@ namespace DagAir.Policies.Data.Migrations.Migrations
                         .HasColumnType("bigint")
                         .HasColumnName("id");
 
+                    b.Property<int>("CategoryNumber")
+                        .HasColumnType("int")
+                        .HasColumnName("category_number");
+
                     b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasColumnName("created")
-                        .HasDefaultValueSql("(CURRENT_DATE)");
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime")
@@ -200,24 +221,28 @@ namespace DagAir.Policies.Data.Migrations.Migrations
                         new
                         {
                             Id = 1L,
+                            CategoryNumber = 0,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Default"
                         },
                         new
                         {
                             Id = 2L,
+                            CategoryNumber = 1,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Organizational"
                         },
                         new
                         {
                             Id = 3L,
+                            CategoryNumber = 2,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Departmental"
                         },
                         new
                         {
                             Id = 4L,
+                            CategoryNumber = 3,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Custom"
                         });
@@ -233,8 +258,8 @@ namespace DagAir.Policies.Data.Migrations.Migrations
                         .IsRequired();
 
                     b.HasOne("DagAir.Policies.Data.AppEntities.ExpectedRoomConditions", "ExpectedConditions")
-                        .WithOne("RoomPolicy")
-                        .HasForeignKey("DagAir.Policies.Data.AppEntities.RoomPolicy", "ExpectedConditionsId")
+                        .WithMany("RoomPolicies")
+                        .HasForeignKey("ExpectedConditionsId")
                         .HasConstraintName("fk_room_policies_expected_room_conditions_expected_conditions_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -246,7 +271,7 @@ namespace DagAir.Policies.Data.Migrations.Migrations
 
             modelBuilder.Entity("DagAir.Policies.Data.AppEntities.ExpectedRoomConditions", b =>
                 {
-                    b.Navigation("RoomPolicy");
+                    b.Navigation("RoomPolicies");
                 });
 
             modelBuilder.Entity("DagAir.Policies.Data.AppEntities.RoomPolicyCategory", b =>

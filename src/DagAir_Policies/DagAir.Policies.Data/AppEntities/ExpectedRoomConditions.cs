@@ -1,4 +1,5 @@
-﻿using DagAir.IngestionNode.Contracts;
+﻿using System.Collections.Generic;
+using DagAir.IngestionNode.Contracts;
 
 namespace DagAir.Policies.Data.AppEntities
 {
@@ -12,6 +13,6 @@ namespace DagAir.Policies.Data.AppEntities
         public float IlluminanceMargin { get; set; }
         public float HumidityMargin { get; set; }
         public long? RoomPolicyId { get; set; }
-        public virtual RoomPolicy RoomPolicy { get; set; }
+        public virtual ICollection<RoomPolicy> RoomPolicies { get; set; }
     }
 }

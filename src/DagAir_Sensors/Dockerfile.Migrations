@@ -1,0 +1,19 @@
+FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+
+FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+WORKDIR /app
+COPY ["./DagAir_Sensors/DagAir.Sensors.Data.Migrations/", "./DagAir_Sensors/DagAir.Sensors.Data.Migrations/"]
+COPY ["./DagAir_Sensors/DagAir.Sensors.Data/", "./DagAir_Sensors/DagAir.Sensors.Data/"]
+
+RUN dotnet restore ./DagAir_Sensors/DagAir.Sensors.Data.Migrations/DagAir.Sensors.Data.Migrations.csproj
+RUN dotnet build ./DagAir_Sensors/DagAir.Sensors.Data.Migrations/DagAir.Sensors.Data.Migrations.csproj --no-restore
+RUN dotnet publish ./DagAir_Sensors/DagAir.Sensors.Data.Migrations/DagAir.Sensors.Data.Migrations.csproj -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=build /app/publish .
+
+ENTRYPOINT ["dotnet", "DagAir.Sensors.Data.Migrations.dll"]

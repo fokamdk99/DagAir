@@ -14,10 +14,7 @@ namespace DagAir.Addresses
         {
             services.AddMvcCore()
                 .AddApiExplorer();
-            services.AddControllers()
-                .AddNewtonsoftJson(options =>
-                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-                );
+            services.AddControllers();
             services.AddConfiguredSwagger();
             
             var healthChecksToBeDisabled = new List<string>();

@@ -2,8 +2,10 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using DagAir.Components.ApiModels.Json;
+using DagAir.Policies.Contracts.Commands;
 using DagAir.Policies.Contracts.DTOs;
 using DagAir.Policies.Infrastructure.UserApi;
+using DagAir.Policies.Policies.Commands;
 using DagAir.Policies.Policies.Queries;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,12 +15,15 @@ namespace DagAir.Policies.Policies
     {
         private readonly IMapper _mapper;
         private IGetCurrentRoomPolicyQuery _getCurrentRoomPolicyQuery;
+        private readonly ICommandHandler<AddNewRoomPolicyCommand> _addNewRoomPolicyCommandHandler;
 
         public PoliciesController(IMapper mapper,
-            IGetCurrentRoomPolicyQuery getCurrentRoomPolicyQuery)
+            IGetCurrentRoomPolicyQuery getCurrentRoomPolicyQuery, 
+            ICommandHandler<AddNewRoomPolicyCommand> addNewRoomPolicyCommandHandler)
         {
             _mapper = mapper;
             _getCurrentRoomPolicyQuery = getCurrentRoomPolicyQuery;
+            _addNewRoomPolicyCommandHandler = addNewRoomPolicyCommandHandler;
         }
 
         [HttpGet("policies/{roomId}")]
@@ -36,6 +41,16 @@ namespace DagAir.Policies.Policies
             RoomPolicyDto roomPolicyDto = _mapper.Map<RoomPolicyDto>(roomPolicy);
             
             return Ok(new JsonApiDocument<RoomPolicyDto>(roomPolicyDto));
+        }
+
+        [HttpPost("policies")]
+        [ProducesResponseType(typeof(JsonApiDocument<RoomPolicyDto>), (int) HttpStatusCode.Created)]
+        [ProducesResponseType(typeof(JsonApiError), (int) HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> CreateNewRoomPolicy(AddNewRoomPolicyCommand addNewRoomPolicyCommand)
+        {
+            var policy = await _addNewRoomPolicyCommandHandler.Handle(addNewRoomPolicyCommand);
+
+            return Created(policy);
         }
         
         private NotFoundObjectResult GetCurrentRoomPolicyNotFoundMessage(long roomId)

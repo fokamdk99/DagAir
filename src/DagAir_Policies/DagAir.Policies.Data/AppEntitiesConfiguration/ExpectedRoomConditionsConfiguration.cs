@@ -24,14 +24,9 @@ namespace DagAir.Policies.Data.AppEntitiesConfiguration
             builder.Property(e => e.IlluminanceMargin);
             builder.Property(e => e.HumidityMargin);
             builder.Property(e => e.RoomPolicyId);
-            
-            builder.Property(e => e.Created)
-                .IsRequired();
 
-            builder.HasOne(e => e.RoomPolicy)
+            builder.HasMany(e => e.RoomPolicies)
                 .WithOne(x => x.ExpectedConditions);
-
-            builder.Property(e => e.Modified);
         }
     }
 }

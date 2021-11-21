@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DagAir.Sensors.Data.Migrations.Migrations
 {
     [DbContext(typeof(DagAirSensorAppContext))]
-    [Migration("20211018214121_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20211121223344_AddInitialMigration")]
+    partial class AddInitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,7 +20,7 @@ namespace DagAir.Sensors.Data.Migrations.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
                 .HasAnnotation("ProductVersion", "5.0.10");
 
-            modelBuilder.Entity("DagAir.QueryNode.Data.AppEntitities.Producer", b =>
+            modelBuilder.Entity("DagAir.Sensors.Data.AppEntities.Producer", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -32,9 +32,10 @@ namespace DagAir.Sensors.Data.Migrations.Migrations
                         .HasColumnName("address_id");
 
                     b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasColumnName("created")
-                        .HasDefaultValueSql("(CURRENT_DATE)");
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<DateTime>("DateOfEstablishment")
                         .HasColumnType("datetime")
@@ -60,7 +61,7 @@ namespace DagAir.Sensors.Data.Migrations.Migrations
                             Id = 1L,
                             AddressId = 1L,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfEstablishment = new DateTime(2021, 10, 16, 23, 41, 20, 724, DateTimeKind.Local).AddTicks(4435),
+                            DateOfEstablishment = new DateTime(2021, 11, 19, 23, 33, 43, 842, DateTimeKind.Local).AddTicks(5997),
                             Name = "Saturn"
                         },
                         new
@@ -68,12 +69,12 @@ namespace DagAir.Sensors.Data.Migrations.Migrations
                             Id = 2L,
                             AddressId = 2L,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfEstablishment = new DateTime(2021, 10, 11, 23, 41, 20, 727, DateTimeKind.Local).AddTicks(4005),
+                            DateOfEstablishment = new DateTime(2021, 11, 14, 23, 33, 43, 844, DateTimeKind.Local).AddTicks(8028),
                             Name = "Euro agd"
                         });
                 });
 
-            modelBuilder.Entity("DagAir.QueryNode.Data.AppEntitities.Sensor", b =>
+            modelBuilder.Entity("DagAir.Sensors.Data.AppEntities.Sensor", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -85,9 +86,10 @@ namespace DagAir.Sensors.Data.Migrations.Migrations
                         .HasColumnName("affiliate_id");
 
                     b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasColumnName("created")
-                        .HasDefaultValueSql("(CURRENT_DATE)");
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<DateTime>("LastDataSentDate")
                         .HasColumnType("datetime")
@@ -119,7 +121,7 @@ namespace DagAir.Sensors.Data.Migrations.Migrations
                             Id = 1L,
                             AffiliateId = 1L,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastDataSentDate = new DateTime(2021, 10, 18, 18, 41, 20, 729, DateTimeKind.Local).AddTicks(6796),
+                            LastDataSentDate = new DateTime(2021, 11, 21, 18, 33, 43, 846, DateTimeKind.Local).AddTicks(2687),
                             RoomId = 1L,
                             SensorModelId = 1L
                         },
@@ -128,7 +130,7 @@ namespace DagAir.Sensors.Data.Migrations.Migrations
                             Id = 2L,
                             AffiliateId = 1L,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastDataSentDate = new DateTime(2021, 10, 18, 20, 41, 20, 729, DateTimeKind.Local).AddTicks(7859),
+                            LastDataSentDate = new DateTime(2021, 11, 21, 20, 33, 43, 846, DateTimeKind.Local).AddTicks(3388),
                             RoomId = 1L,
                             SensorModelId = 2L
                         },
@@ -137,13 +139,13 @@ namespace DagAir.Sensors.Data.Migrations.Migrations
                             Id = 3L,
                             AffiliateId = 1L,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastDataSentDate = new DateTime(2021, 10, 18, 22, 41, 20, 729, DateTimeKind.Local).AddTicks(7873),
+                            LastDataSentDate = new DateTime(2021, 11, 21, 22, 33, 43, 846, DateTimeKind.Local).AddTicks(3397),
                             RoomId = 1L,
                             SensorModelId = 3L
                         });
                 });
 
-            modelBuilder.Entity("DagAir.QueryNode.Data.AppEntitities.SensorModel", b =>
+            modelBuilder.Entity("DagAir.Sensors.Data.AppEntities.SensorModel", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -151,9 +153,10 @@ namespace DagAir.Sensors.Data.Migrations.Migrations
                         .HasColumnName("id");
 
                     b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasColumnName("created")
-                        .HasDefaultValueSql("(CURRENT_DATE)");
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime")
@@ -209,9 +212,9 @@ namespace DagAir.Sensors.Data.Migrations.Migrations
                         });
                 });
 
-            modelBuilder.Entity("DagAir.QueryNode.Data.AppEntitities.Sensor", b =>
+            modelBuilder.Entity("DagAir.Sensors.Data.AppEntities.Sensor", b =>
                 {
-                    b.HasOne("DagAir.QueryNode.Data.AppEntitities.SensorModel", "SensorModel")
+                    b.HasOne("DagAir.Sensors.Data.AppEntities.SensorModel", "SensorModel")
                         .WithMany("Sensors")
                         .HasForeignKey("SensorModelId")
                         .HasConstraintName("fk_sensors_sensor_models_sensor_model_id")
@@ -221,9 +224,9 @@ namespace DagAir.Sensors.Data.Migrations.Migrations
                     b.Navigation("SensorModel");
                 });
 
-            modelBuilder.Entity("DagAir.QueryNode.Data.AppEntitities.SensorModel", b =>
+            modelBuilder.Entity("DagAir.Sensors.Data.AppEntities.SensorModel", b =>
                 {
-                    b.HasOne("DagAir.QueryNode.Data.AppEntitities.Producer", "Producer")
+                    b.HasOne("DagAir.Sensors.Data.AppEntities.Producer", "Producer")
                         .WithMany("SensorModels")
                         .HasForeignKey("ProducerId")
                         .HasConstraintName("fk_sensor_models_producers_producer_id")
@@ -233,12 +236,12 @@ namespace DagAir.Sensors.Data.Migrations.Migrations
                     b.Navigation("Producer");
                 });
 
-            modelBuilder.Entity("DagAir.QueryNode.Data.AppEntitities.Producer", b =>
+            modelBuilder.Entity("DagAir.Sensors.Data.AppEntities.Producer", b =>
                 {
                     b.Navigation("SensorModels");
                 });
 
-            modelBuilder.Entity("DagAir.QueryNode.Data.AppEntitities.SensorModel", b =>
+            modelBuilder.Entity("DagAir.Sensors.Data.AppEntities.SensorModel", b =>
                 {
                     b.Navigation("Sensors");
                 });

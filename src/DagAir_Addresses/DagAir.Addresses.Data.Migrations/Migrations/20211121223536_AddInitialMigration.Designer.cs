@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DagAir.Addresses.Data.Migrations.Migrations
 {
     [DbContext(typeof(DagAirAddressesAppContext))]
-    [Migration("20211120142032_AddInitialMigration")]
+    [Migration("20211121223536_AddInitialMigration")]
     partial class AddInitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,9 +36,10 @@ namespace DagAir.Addresses.Data.Migrations.Migrations
                         .HasColumnName("country_id");
 
                     b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasColumnName("created")
-                        .HasDefaultValueSql("(CURRENT_DATE)");
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime")
@@ -89,9 +90,10 @@ namespace DagAir.Addresses.Data.Migrations.Migrations
                         .HasColumnName("id");
 
                     b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasColumnName("created")
-                        .HasDefaultValueSql("(CURRENT_DATE)");
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime")
@@ -130,9 +132,10 @@ namespace DagAir.Addresses.Data.Migrations.Migrations
                         .HasColumnName("id");
 
                     b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasColumnName("created")
-                        .HasDefaultValueSql("(CURRENT_DATE)");
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime")
@@ -171,9 +174,10 @@ namespace DagAir.Addresses.Data.Migrations.Migrations
                         .HasColumnName("id");
 
                     b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasColumnName("created")
-                        .HasDefaultValueSql("(CURRENT_DATE)");
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime")

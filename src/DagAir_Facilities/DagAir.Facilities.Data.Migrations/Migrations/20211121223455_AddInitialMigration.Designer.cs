@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DagAir.Facilities.Data.Migrations.Migrations
 {
     [DbContext(typeof(DagAirFacilitiesAppContext))]
-    [Migration("20211020204914_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20211121223455_AddInitialMigration")]
+    partial class AddInitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,9 +28,10 @@ namespace DagAir.Facilities.Data.Migrations.Migrations
                         .HasColumnName("id");
 
                     b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasColumnName("created")
-                        .HasDefaultValueSql("(CURRENT_DATE)");
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime")
@@ -90,9 +91,10 @@ namespace DagAir.Facilities.Data.Migrations.Migrations
                         .HasColumnName("address_id");
 
                     b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasColumnName("created")
-                        .HasDefaultValueSql("(CURRENT_DATE)");
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime")
@@ -138,9 +140,10 @@ namespace DagAir.Facilities.Data.Migrations.Migrations
                         .HasColumnName("affiliate_id");
 
                     b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasColumnName("created")
-                        .HasDefaultValueSql("(CURRENT_DATE)");
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<int>("Floor")
                         .HasColumnType("int")

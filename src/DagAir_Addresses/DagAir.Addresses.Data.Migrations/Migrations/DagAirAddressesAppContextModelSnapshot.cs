@@ -34,9 +34,10 @@ namespace DagAir.Addresses.Data.Migrations.Migrations
                         .HasColumnName("country_id");
 
                     b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasColumnName("created")
-                        .HasDefaultValueSql("(CURRENT_DATE)");
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime")
@@ -87,9 +88,10 @@ namespace DagAir.Addresses.Data.Migrations.Migrations
                         .HasColumnName("id");
 
                     b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasColumnName("created")
-                        .HasDefaultValueSql("(CURRENT_DATE)");
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime")
@@ -128,9 +130,10 @@ namespace DagAir.Addresses.Data.Migrations.Migrations
                         .HasColumnName("id");
 
                     b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasColumnName("created")
-                        .HasDefaultValueSql("(CURRENT_DATE)");
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime")
@@ -169,9 +172,10 @@ namespace DagAir.Addresses.Data.Migrations.Migrations
                         .HasColumnName("id");
 
                     b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasColumnName("created")
-                        .HasDefaultValueSql("(CURRENT_DATE)");
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime")

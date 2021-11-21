@@ -19,11 +19,6 @@ namespace DagAir.Policies.Data.AppEntitiesConfiguration
 
             builder.HasMany(e => e.RoomPolicies)
                 .WithOne(x => x.Category);
-            
-            builder.Property(e => e.Created)
-                .IsRequired();
-
-            builder.Property(e => e.Modified);
         }
     }
 }

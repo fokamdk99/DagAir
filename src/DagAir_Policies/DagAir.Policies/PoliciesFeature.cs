@@ -26,6 +26,15 @@ namespace DagAir.Policies
                 CreateMap<RoomPolicy, RoomPolicyDto>();
                 CreateMap<RoomPolicyCategory, RoomPolicyCategoryDto>();
                 CreateMap<ExpectedRoomConditions, ExpectedRoomConditionsDto>();
+                CreateMap<RoomPolicyDto, RoomPolicy>()
+                    .ForMember(x => x.Created, opts => opts.Ignore())
+                    .ForMember(x => x.Modified, opts => opts.Ignore());
+                CreateMap<ExpectedRoomConditionsDto, ExpectedRoomConditions>()
+                    .ForMember(x => x.Created, opts => opts.Ignore())
+                    .ForMember(x => x.Modified, opts => opts.Ignore());
+                CreateMap<RoomPolicyCategoryDto, RoomPolicyCategory>()
+                    .ForMember(x => x.Created, opts => opts.Ignore())
+                    .ForMember(x => x.Modified, opts => opts.Ignore());
             }
         }
     }
