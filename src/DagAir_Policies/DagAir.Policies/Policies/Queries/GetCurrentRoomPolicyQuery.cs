@@ -31,7 +31,13 @@ namespace DagAir.Policies.Policies.Queries
             var currentTime = DateTime.Now;
             var todaysPolicies = roomPolicies.Where(x =>
                 String.IsNullOrEmpty(x.RepeatOn) || x.RepeatOn.Contains(currentTime.ToString("ddd")));
-            var currentTimePolicies = todaysPolicies.Where(x => x.StartDate.Hour < currentTime.Hour && x.EndDate.Hour > currentTime.Hour);
+            var currentTimePolicies = todaysPolicies.Where(x =>
+            {
+                var fulfillsConditions = (x.StartDate.Hour < currentTime.Hour && currentTime.Hour < x.EndDate.Hour)
+                                         || (x.EndDate < x.StartDate && x.StartDate.Hour < currentTime.Hour)
+                                         || (currentTime.Hour < x.EndDate.Hour && x.EndDate.Hour < x.StartDate.Hour);
+                return fulfillsConditions;
+            });
             var orderedPolicies = currentTimePolicies.OrderByDescending(x => x.Category.CategoryNumber);
             try
             {
