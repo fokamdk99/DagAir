@@ -31,7 +31,8 @@ namespace DagAir.Policies
                     .ForMember(x => x.Modified, opts => opts.Ignore());
                 CreateMap<ExpectedRoomConditionsDto, ExpectedRoomConditions>()
                     .ForMember(x => x.Created, opts => opts.Ignore())
-                    .ForMember(x => x.Modified, opts => opts.Ignore());
+                    .ForMember(x => x.Modified, opts => opts.Ignore())
+                    .ForMember(x => x.RoomPolicies, opts => opts.Ignore());
                 CreateMap<RoomPolicyCategoryDto, RoomPolicyCategory>()
                     .ForMember(x => x.Created, opts => opts.Ignore())
                     .ForMember(x => x.Modified, opts => opts.Ignore());
