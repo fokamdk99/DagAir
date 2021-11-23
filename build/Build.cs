@@ -66,24 +66,27 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository
             EnsureCleanDirectory(ArtifactsDirectory);
         });
 
+    
+    Target RestoreTestProject => _ => _
+        .DependsOn(Clean)
+        .Requires(() => ProjectName)
+        .Executes(() =>
+        {
+            var solution = (this as IHaveSolution).Solution;
+            var project = solution.AllProjects.Single(x => x.Name == TestProjectNames[ProjectName]);
+            DotNetRestore(s => s.EnsureNotNull(this as IHaveSolution, (_, o) => s.SetProjectFile(project)));
+        });
+    
     Target RestoreProject => _ => _
         .DependsOn(Clean)
         .Requires(() => ProjectName)
         .Executes(() =>
         {
             var solution = (this as IHaveSolution).Solution;
-            Project project;
-            if (ProjectName.EndsWith("Tests"))
-            {
-                project = solution.AllProjects.Single(x => x.Name == TestProjectNames[ProjectName]);
-            }
-            else
-            {
-                project = solution.AllProjects.Single(x => x.Name == ProjectNames[ProjectName]);
-            }
-            
+            var project = solution.AllProjects.Single(x => x.Name == ProjectNames[ProjectName]);
             DotNetRestore(s => s.EnsureNotNull(this as IHaveSolution, (_, o) => s.SetProjectFile(project)));
         });
+    
     Target Restore => _ => _
         .DependsOn(Clean)
         .Executes(() =>
@@ -91,21 +94,24 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository
             DotNetRestore(s => s.EnsureNotNull(this as IHaveSolution, (_, o) => s.SetProjectFile(o.Solution)));
         });
     
+    Target CompileTestProject => _ => _
+        .DependsOn(RestoreTestProject)
+        .Executes(() =>
+        {
+            var solution = (this as IHaveSolution).Solution;
+            var project = solution.AllProjects.Single(x => x.Name == TestProjectNames[ProjectName]);
+            DotNetBuild(s => s
+                .EnsureNotNull(this as IHaveSolution, (_, o) => s.SetProjectFile(project))
+                .SetConfiguration(Configuration)
+                .EnableNoRestore());
+        });
+    
     Target CompileProject => _ => _
         .DependsOn(RestoreProject)
         .Executes(() =>
         {
             var solution = (this as IHaveSolution).Solution;
-            Project project;
-            if (ProjectName.EndsWith("Tests"))
-            {
-                project = solution.AllProjects.Single(x => x.Name == TestProjectNames[ProjectName]);
-            }
-            else
-            {
-                project = solution.AllProjects.Single(x => x.Name == ProjectNames[ProjectName]);
-            }
-            
+            var project = solution.AllProjects.Single(x => x.Name == ProjectNames[ProjectName]);
             DotNetBuild(s => s
                 .EnsureNotNull(this as IHaveSolution, (_, o) => s.SetProjectFile(project))
                 .SetConfiguration(Configuration)
@@ -123,7 +129,7 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository
         });
 
     Target TestProject => _ => _
-        .DependsOn(CompileProject)
+        .DependsOn(CompileTestProject)
         .Executes(() =>
         {
             var solution = (this as IHaveSolution).Solution;

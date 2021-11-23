@@ -51,7 +51,7 @@ jobs:
         version="${{ steps.gitversion.outputs.nugetVersionV2 }}-${{ steps.gitversion.outputs.shortSha }}"
 
         if [ ${{ steps.gitversion.outputs.commitsSinceVersionSource }} -gt 0 ]; then
-          version="${{ steps.gitversion.outputs.secapedBranchName }}-$version"
+          version="${{ steps.gitversion.outputs.escapedBranchName }}-$version"
         fi
 
         echo "APP_IMAGE_TAG=${appImageName}:$version" >> $GITHUB_ENV
