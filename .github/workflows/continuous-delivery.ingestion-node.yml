@@ -60,7 +60,7 @@ jobs:
       run: |
         docker build \
         -f ./src/DagAir_IngestionNode/Dockerfile \
-        --tag ${{ env.APP_IMAGE_TAG }}
+        --tag ${{ env.APP_IMAGE_TAG }} \
         .
 
     - name: Docker tag images

@@ -8,6 +8,7 @@ using Nuke.Common;
 using Nuke.Common.CI;
 using Nuke.Common.Execution;
 using Nuke.Common.IO;
+using Nuke.Common.ProjectModel;
 using Nuke.Common.Tooling;
 using Nuke.Common.Tools.DotNet;
 using Nuke.Common.Tools.GitVersion;
@@ -71,7 +72,16 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository
         .Executes(() =>
         {
             var solution = (this as IHaveSolution).Solution;
-            var project = solution.AllProjects.Single(x => x.Name == ProjectNames[ProjectName]);
+            Project project;
+            if (ProjectName.EndsWith("Tests"))
+            {
+                project = solution.AllProjects.Single(x => x.Name == TestProjectNames[ProjectName]);
+            }
+            else
+            {
+                project = solution.AllProjects.Single(x => x.Name == ProjectNames[ProjectName]);
+            }
+            
             DotNetRestore(s => s.EnsureNotNull(this as IHaveSolution, (_, o) => s.SetProjectFile(project)));
         });
     Target Restore => _ => _
@@ -86,7 +96,16 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository
         .Executes(() =>
         {
             var solution = (this as IHaveSolution).Solution;
-            var project = solution.AllProjects.Single(x => x.Name == ProjectNames[ProjectName]);
+            Project project;
+            if (ProjectName.EndsWith("Tests"))
+            {
+                project = solution.AllProjects.Single(x => x.Name == TestProjectNames[ProjectName]);
+            }
+            else
+            {
+                project = solution.AllProjects.Single(x => x.Name == ProjectNames[ProjectName]);
+            }
+            
             DotNetBuild(s => s
                 .EnsureNotNull(this as IHaveSolution, (_, o) => s.SetProjectFile(project))
                 .SetConfiguration(Configuration)
