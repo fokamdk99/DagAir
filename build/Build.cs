@@ -41,7 +41,7 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository
         {"policyNode","DagAir.PolicyNode.Tests"},
         {"sensors","DagAir.Sensors.Tests"},
         {"policies","DagAir.Policies.Tests"},
-        {"webClientApp", "DagAir.WebApps.WebClientApp"},
+        {"webClientApp", "DagAir.WebApps.ClientApp.Tests"},
         {"clientNode", "DagAir.ClientNode.Tests"}
     };
     
@@ -51,7 +51,7 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository
         {"policyNode","DagAir.PolicyNode"},
         {"sensors","DagAir.Sensors"},
         {"policies","DagAir.Policies"}, 
-        {"webClientApp", "DagAir.WebApps.WebClientApp.Tests"},
+        {"webClientApp", "DagAir.WebApps.ClientApp"},
         {"clientNode", "DagAir.ClientNode"}
     };
 
