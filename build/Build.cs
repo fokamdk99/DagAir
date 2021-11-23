@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using DagAir.Components.Nuke.Components;
@@ -15,7 +17,7 @@ using static Nuke.Common.Tools.DotNet.DotNetTasks;
 
 [CheckBuildProjectConfigurations]
 [ShutdownDotNetAfterServerBuild]
-class Build : NukeBuild, IHaveSolution, IHaveGitRepository, IHaveProjectName
+class Build : NukeBuild, IHaveSolution, IHaveGitRepository
 {
     /// Support plugins are available for:
     ///   - JetBrains ReSharper        https://nuke.build/resharper
@@ -28,9 +30,27 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository, IHaveProjectName
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     readonly Configuration Configuration = Configuration.Release;
 
+    [Parameter("Project name to run specified target on")] 
+    readonly string ProjectName;
+
     [GitVersion(Framework = "net5.0", NoFetch = true)] readonly GitVersion GitVersion;
+
+    readonly Dictionary<string, string> TestProjectNames = new Dictionary<string, string>
+    {
+        {"ingestionNode","DagAir.IngestionNode.Tests"},
+        {"policyNode","DagAir.PolicyNode.Tests"},
+        {"sensors","DagAir.Sensors.Tests"},
+        {"policies","DagAir.Policies.Tests"},
+        {"webClientApp", "DagAir.WebApps.WebClientApp"}
+    };
     
-    public string ProjectName => "DagAir";
+    readonly Dictionary<string, string> ProjectNames = new Dictionary<string, string>
+    {
+        {"ingestionNode","DagAir.IngestionNode"},
+        {"policyNode","DagAir.PolicyNode"},
+        {"sensors","DagAir.Sensors"},
+        {"policies","DagAir.Policies"}
+    };
 
     AbsolutePath SourceDirectory => RootDirectory / "src";
     AbsolutePath ArtifactsDirectory => RootDirectory / "artifacts";
@@ -42,13 +62,34 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository, IHaveProjectName
             EnsureCleanDirectory(ArtifactsDirectory);
         });
 
+    Target RestoreProject => _ => _
+        .DependsOn(Clean)
+        .Requires(() => ProjectName)
+        .Executes(() =>
+        {
+            var solution = (this as IHaveSolution).Solution;
+            var project = solution.AllProjects.Single(x => x.Name == ProjectNames[ProjectName]);
+            DotNetRestore(s => s.EnsureNotNull(this as IHaveSolution, (_, o) => s.SetProjectFile(project)));
+        });
     Target Restore => _ => _
         .DependsOn(Clean)
         .Executes(() =>
         {
             DotNetRestore(s => s.EnsureNotNull(this as IHaveSolution, (_, o) => s.SetProjectFile(o.Solution)));
         });
-
+    
+    Target CompileProject => _ => _
+        .DependsOn(RestoreProject)
+        .Executes(() =>
+        {
+            var solution = (this as IHaveSolution).Solution;
+            var project = solution.AllProjects.Single(x => x.Name == ProjectNames[ProjectName]);
+            DotNetBuild(s => s
+                .EnsureNotNull(this as IHaveSolution, (_, o) => s.SetProjectFile(project))
+                .SetConfiguration(Configuration)
+                .EnableNoRestore());
+        });
+    
     Target Compile => _ => _
         .DependsOn(Restore)
         .Executes(() =>
@@ -59,12 +100,58 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository, IHaveProjectName
                 .EnableNoRestore());
         });
 
-    Target Test => _ => _
-        .DependsOn(Compile)
+    Target TestProject => _ => _
+        .DependsOn(CompileProject)
         .Executes(() =>
         {
             var solution = (this as IHaveSolution).Solution;
-            DotNet($"test {solution} --no-build -c {Configuration}");
+            var project = solution.AllProjects.Single(x => x.Name == TestProjectNames[ProjectName]);
+            DotNet($"test {project} --no-build -c {Configuration}");
+        });
+
+    Target TestAll => _ => _
+        .DependsOn(Compile)
+        .Executes(() =>
+        {
+            foreach (var projectName in TestProjectNames)
+            {
+                var solution = (this as IHaveSolution).Solution;
+                var project = solution.AllProjects.Single(x => x.Name == projectName.Value);
+                DotNet($"test {project} --no-build -c {Configuration}");
+            }
+        });
+
+    Target PackProject => _ => _
+        .DependsOn(CompileProject)
+        .Executes(() =>
+        {
+            var solution = (this as IHaveSolution).Solution;
+            var project = solution.AllProjects.Single(x => x.Name == ProjectNames[ProjectName]);
+            var tempArtifactoryProjectPath = ArtifactsDirectory / project.Name;
+
+            DotNetPublish(s =>
+                s.SetOutput(tempArtifactoryProjectPath)
+                    .SetProject(project.Path)
+                    .SetConfiguration(Configuration)
+                    .SetVersion(GitVersion.NuGetVersionV2)
+                    .SetNoBuild(true));
+        });
+    Target PackAll => _ => _
+        .Executes(() =>
+        {
+            foreach (var projectName in ProjectNames)
+            {
+                var solution = (this as IHaveSolution).Solution;
+                var project = solution.AllProjects.Single(x => x.Name == projectName.Value);
+                var tempArtifactoryProjectPath = ArtifactsDirectory / project.Name;
+
+                DotNetPublish(s =>
+                    s.SetOutput(tempArtifactoryProjectPath)
+                        .SetProject(project.Path)
+                        .SetConfiguration(Configuration)
+                        .SetVersion(GitVersion.NuGetVersionV2)
+                        .SetNoBuild(true));
+            }
         });
 
     Target SetupLocally => _ => _

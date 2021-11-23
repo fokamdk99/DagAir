@@ -61,6 +61,10 @@
             "type": "string"
           }
         },
+        "ProjectName": {
+          "type": "string",
+          "description": "Project name to run specified target on"
+        },
         "Root": {
           "type": "string",
           "description": "Root directory during build execution"
@@ -73,10 +77,15 @@
             "enum": [
               "Clean",
               "Compile",
+              "CompileProject",
+              "PackAll",
+              "PackProject",
               "Restore",
+              "RestoreProject",
               "RunDatabaseMigration",
               "SetupLocally",
-              "Test"
+              "TestAll",
+              "TestProject"
             ]
           }
         },
@@ -92,10 +101,15 @@
             "enum": [
               "Clean",
               "Compile",
+              "CompileProject",
+              "PackAll",
+              "PackProject",
               "Restore",
+              "RestoreProject",
               "RunDatabaseMigration",
               "SetupLocally",
-              "Test"
+              "TestAll",
+              "TestProject"
             ]
           }
         },

@@ -1,0 +1,44 @@
+name: continuous-integration.ingestion-node
+
+on:
+  workflow_dispatch: # allows to trigger workflow on demand
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  continuous-integration:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup InfluxDB
+        uses: influxdata/influxdb-action@v3
+        with:
+          influxdb_version: 2.0.8
+          influxdb_org: local_org1
+          influxdb_user: local_user1
+          influxdb_password: local_password1
+
+      - name: Setup .NET 5.0
+        uses: actions/setup-dotnet@v1.7.2
+        with:
+          dotnet-version: 5.0.102
+
+      - name: Build & Test
+        shell: bash
+        run: ./build.sh TestProject --ProjectName ingestionNode --verbosity verbose
+
+      - name: Pack
+        shell: bash
+        run: ./build.sh PackProject --ProjectName ingestionNode --verbosity verbose
+
+      - name: Check application docker build - ingestion node
+        run: |
+          docker build \
+          -f ./src/DagAir_IngestionNode/Dockerfile \
+          .
