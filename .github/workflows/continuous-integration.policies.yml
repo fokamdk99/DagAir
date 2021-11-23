@@ -39,4 +39,4 @@ jobs:
         run: |
           docker build \
           -f ./src/DagAir_Policies/Dockerfile.Migrations \
-          .
+          ./src

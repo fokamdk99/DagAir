@@ -22,9 +22,9 @@ jobs:
         fetch-depth: 0
 
     - name: Setup .NET 5.0
-        uses: actions/setup-dotnet@v1.7.2
-        with:
-          dotnet-version: 5.0.102
+      uses: actions/setup-dotnet@v1.7.2
+      with:
+        dotnet-version: 5.0.102
 
     - name: Set up GitVersion
       uses: gittools/actions/gitversion/setup@v0.9.10
@@ -34,8 +34,8 @@ jobs:
       uses: gittools/actions/gitversion/setup@v0.9.10
 
     - name: Build & Test
-        shell: bash
-        run: ./build.sh TestProject --ProjectName ingestionNode --verbosity verbose
+      shell: bash
+      run: ./build.sh TestProject --ProjectName ingestionNode --verbosity verbose
 
     - name: Pack
       shell: bash
@@ -55,11 +55,11 @@ jobs:
         echo "APP_IMAGE_TAG=${appImageName}:$version" >> $GITHUB_ENV
 
     - name: Check application docker build - ingestion node
-        run: |
-          docker build \
-          -f ./src/DagAir_IngestionNode/Dockerfile \
-          --tag ${{ env.APP_IMAGE_TAG }}
-          .
+      run: |
+        docker build \
+        -f ./src/DagAir_IngestionNode/Dockerfile \
+        --tag ${{ env.APP_IMAGE_TAG }}
+        .
 
     - name: Docker tag images
       if: |

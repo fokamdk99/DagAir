@@ -49,7 +49,8 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository
         {"ingestionNode","DagAir.IngestionNode"},
         {"policyNode","DagAir.PolicyNode"},
         {"sensors","DagAir.Sensors"},
-        {"policies","DagAir.Policies"}
+        {"policies","DagAir.Policies"},
+        {"clientNode", "DagAir.ClientNode"}
     };
 
     AbsolutePath SourceDirectory => RootDirectory / "src";

@@ -33,4 +33,4 @@ jobs:
         run: |
           docker build \
           -f ./src/DagAir_WebApplications/Dockerfile.WebClientApp \
-          .
+          ./src
