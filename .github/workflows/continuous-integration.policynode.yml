@@ -1,4 +1,4 @@
-name: continuous-integration.policy-node
+name: ci.policy-node
 
 on:
   workflow_dispatch: # allows to trigger workflow on demand

@@ -41,7 +41,8 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository
         {"policyNode","DagAir.PolicyNode.Tests"},
         {"sensors","DagAir.Sensors.Tests"},
         {"policies","DagAir.Policies.Tests"},
-        {"webClientApp", "DagAir.WebApps.WebClientApp"}
+        {"webClientApp", "DagAir.WebApps.WebClientApp"},
+        {"clientNode", "DagAir.ClientNode.Tests"}
     };
     
     readonly Dictionary<string, string> ProjectNames = new Dictionary<string, string>
@@ -49,7 +50,8 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository
         {"ingestionNode","DagAir.IngestionNode"},
         {"policyNode","DagAir.PolicyNode"},
         {"sensors","DagAir.Sensors"},
-        {"policies","DagAir.Policies"},
+        {"policies","DagAir.Policies"}, 
+        {"webClientApp", "DagAir.WebApps.WebClientApp.Tests"},
         {"clientNode", "DagAir.ClientNode"}
     };
 

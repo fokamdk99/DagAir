@@ -1,4 +1,4 @@
-name: continuous-integration.ingestion-node
+name: ci.ingestion-node
 
 on:
   workflow_dispatch: # allows to trigger workflow on demand

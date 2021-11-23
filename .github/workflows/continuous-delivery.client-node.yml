@@ -1,4 +1,4 @@
-name: continuous-delivery
+name: cd.client-node
 
 env:
   SERVICE_NAME: dagair-client-node
@@ -28,6 +28,8 @@ jobs:
 
     - name: Set up GitVersion
       uses: gittools/actions/gitversion/setup@v0.9.10
+      with:
+        versionSpec: '5.x'
 
     - name: Determine GitVersion
       id: gitversion

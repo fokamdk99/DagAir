@@ -105,6 +105,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.Addresses.Data.Migra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.Addresses.Tests", "DagAir_Addresses\DagAir.Addresses.Tests\DagAir.Addresses.Tests.csproj", "{55F9C60E-7502-4130-B8F3-6CD2877F2FCE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.ClientNode.Tests", "DagAir.ClientNode.Tests\DagAir.ClientNode.Tests.csproj", "{5BE8D930-2F2F-405F-8A3B-9A4372689827}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.WebApps.ClientApp.Tests", "DagAir.WebApps.ClientApp.Tests\DagAir.WebApps.ClientApp.Tests.csproj", "{5981188B-5957-4E9C-BE0D-78FCE46E75CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -265,6 +269,14 @@ Global
 		{55F9C60E-7502-4130-B8F3-6CD2877F2FCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55F9C60E-7502-4130-B8F3-6CD2877F2FCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55F9C60E-7502-4130-B8F3-6CD2877F2FCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BE8D930-2F2F-405F-8A3B-9A4372689827}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BE8D930-2F2F-405F-8A3B-9A4372689827}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BE8D930-2F2F-405F-8A3B-9A4372689827}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BE8D930-2F2F-405F-8A3B-9A4372689827}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5981188B-5957-4E9C-BE0D-78FCE46E75CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5981188B-5957-4E9C-BE0D-78FCE46E75CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5981188B-5957-4E9C-BE0D-78FCE46E75CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5981188B-5957-4E9C-BE0D-78FCE46E75CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -316,5 +328,7 @@ Global
 		{4A9C97D2-B8A2-4E1D-A3C6-1DF15FE2D490} = {1F61971F-7F4A-4EF2-BB8B-FAC0C731C666}
 		{52B01117-FE22-421D-9C89-A3E60D969BA2} = {1F61971F-7F4A-4EF2-BB8B-FAC0C731C666}
 		{55F9C60E-7502-4130-B8F3-6CD2877F2FCE} = {0D788351-8AE5-45D3-98F5-50D401B662EC}
+		{5BE8D930-2F2F-405F-8A3B-9A4372689827} = {0D788351-8AE5-45D3-98F5-50D401B662EC}
+		{5981188B-5957-4E9C-BE0D-78FCE46E75CE} = {0D788351-8AE5-45D3-98F5-50D401B662EC}
 	EndGlobalSection
 EndGlobal

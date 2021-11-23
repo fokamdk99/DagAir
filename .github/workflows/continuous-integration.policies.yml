@@ -1,4 +1,4 @@
-name: continuous-integration.policies
+name: ci.policies
 
 on:
   workflow_dispatch: # allows to trigger workflow on demand
@@ -33,7 +33,7 @@ jobs:
         run: |
           docker build \
           -f ./src/DagAir_Policies/Dockerfile \
-          .
+          ./src
 
       - name: Check migrations applier docker build - policies api
         run: |

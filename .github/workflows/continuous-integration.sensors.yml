@@ -1,4 +1,4 @@
-name: continuous-integration.sensors
+name: ci.sensors
 
 on:
   workflow_dispatch: # allows to trigger workflow on demand
@@ -33,7 +33,7 @@ jobs:
         run: |
           docker build \
           -f ./src/DagAir_Sensors/Dockerfile \
-          .
+          ./src
 
       - name: Check migrations applier docker build - sensors api
         run: |

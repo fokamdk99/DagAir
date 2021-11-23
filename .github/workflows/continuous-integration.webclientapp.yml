@@ -1,4 +1,4 @@
-name: continuous-integration.webclientapp
+name: ci.webclientapp
 
 on:
   workflow_dispatch: # allows to trigger workflow on demand

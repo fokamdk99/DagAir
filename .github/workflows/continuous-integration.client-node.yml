@@ -1,4 +1,4 @@
-name: continuous-integration.client-node
+name: ci.client-node
 
 on:
   workflow_dispatch: # allows to trigger workflow on demand
