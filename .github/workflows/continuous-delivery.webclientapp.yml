@@ -9,6 +9,8 @@ on:
     branches: 
       - main
       - develop
+    paths:
+      - ./src/DagAir_WebApplications/**
 
     workflow_dispatch:
 
@@ -59,7 +61,7 @@ jobs:
     - name: Check application docker build - webClientApp
       run: |
         docker build \
-        -f ./src/DagAir_WebApplications/Dockerfile \
+        -f ./src/DagAir_WebApplications/Dockerfile.WebClientApp \
         --tag ${{ env.APP_IMAGE_TAG }} \
         ./src
 

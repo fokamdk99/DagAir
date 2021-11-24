@@ -9,6 +9,8 @@ on:
     branches: 
       - main
       - develop
+    paths:
+      - ./src/DagAir_Policies/**
 
     workflow_dispatch:
 

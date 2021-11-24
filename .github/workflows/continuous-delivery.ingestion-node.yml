@@ -9,6 +9,8 @@ on:
     branches: 
       - main
       - develop
+    paths:
+      - ./src/DagAir_IngestionNode/**
 
     workflow_dispatch:
 

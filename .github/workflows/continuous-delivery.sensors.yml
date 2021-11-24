@@ -9,6 +9,8 @@ on:
     branches: 
       - main
       - develop
+    paths:
+      - ./src/DagAir_Sensors/**
 
     workflow_dispatch:
 
