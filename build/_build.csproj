@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\DagAir.Components.Nuke\DagAir.Components.Nuke.csproj" />
+    <ProjectReference Include="..\src\DagAir_Components/DagAir.Components.Nuke\DagAir.Components.Nuke.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -8,7 +7,6 @@ using Nuke.Common;
 using Nuke.Common.CI;
 using Nuke.Common.Execution;
 using Nuke.Common.IO;
-using Nuke.Common.ProjectModel;
 using Nuke.Common.Tooling;
 using Nuke.Common.Tools.DotNet;
 using Nuke.Common.Tools.GitVersion;
@@ -42,7 +40,7 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository
         {"policyNode","DagAir.PolicyNode.Tests"},
         {"sensors","DagAir.Sensors.Tests"},
         {"policies","DagAir.Policies.Tests"},
-        {"webClientApp", "DagAir.WebApps.ClientApp.Tests"},
+        {"webClientApp", "DagAir.WebClientApp.Tests"},
         {"clientNode", "DagAir.ClientNode.Tests"}
     };
     

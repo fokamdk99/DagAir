@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-namespace DagAir.WebApps.ClientApp.Tests
+namespace DagAir.WebClientApp.Tests
 {
     public class Tests
     {
