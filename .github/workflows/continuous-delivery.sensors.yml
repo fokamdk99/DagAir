@@ -61,7 +61,7 @@ jobs:
         docker build \
         -f ./src/DagAir_SensorsNode/Dockerfile \
         --tag ${{ env.APP_IMAGE_TAG }} \
-        .
+        ./src
 
     - name: Docker tag images
       if: |
