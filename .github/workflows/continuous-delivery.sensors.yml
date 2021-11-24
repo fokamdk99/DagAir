@@ -59,7 +59,7 @@ jobs:
     - name: Check application docker build - sensors
       run: |
         docker build \
-        -f ./src/DagAir_SensorsNode/Dockerfile \
+        -f ./src/DagAir_Sensors/Dockerfile \
         --tag ${{ env.APP_IMAGE_TAG }} \
         ./src
 

@@ -26,7 +26,7 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository
     ///   - Microsoft VisualStudio     https://nuke.build/visualstudio
     ///   - Microsoft VSCode           https://nuke.build/vscode
 
-    public static int Main () => Execute<Build>(x => x.SetupLocally);
+    public static int Main () => Execute<Build>(x => x.PackProject);
 
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     readonly Configuration Configuration = Configuration.Release;
@@ -42,7 +42,7 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository
         {"policyNode","DagAir.PolicyNode.Tests"},
         {"sensors","DagAir.Sensors.Tests"},
         {"policies","DagAir.Policies.Tests"},
-        {"webClientApp", "DagAir.WebApps.ClientApp.Tests"},
+        {"webClientApp", "DagAir.WebClientApp.Tests"},
         {"clientNode", "DagAir.ClientNode.Tests"}
     };
     
@@ -52,7 +52,7 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository
         {"policyNode","DagAir.PolicyNode"},
         {"sensors","DagAir.Sensors"},
         {"policies","DagAir.Policies"}, 
-        {"webClientApp", "DagAir.WebApps.ClientApp"},
+        {"webClientApp", "DagAir.WebClientApp"},
         {"clientNode", "DagAir.ClientNode"}
     };
 
