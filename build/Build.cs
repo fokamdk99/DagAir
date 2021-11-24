@@ -42,7 +42,7 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository
         {"policyNode","DagAir.PolicyNode.Tests"},
         {"sensors","DagAir.Sensors.Tests"},
         {"policies","DagAir.Policies.Tests"},
-        {"webClientApp", "DagAir.WebClientApp.Tests"},
+        {"webClientApp", "DagAir.WebApps.ClientApp.Tests"},
         {"clientNode", "DagAir.ClientNode.Tests"}
     };
     
