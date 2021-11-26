@@ -7,7 +7,7 @@ on:
       - main
       - develop
     paths:
-      - ./src/DagAir_IngestionNode/**
+      - src/DagAir_IngestionNode/**
 
 jobs:
   continuous-integration:

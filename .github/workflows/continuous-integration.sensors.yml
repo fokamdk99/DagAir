@@ -7,7 +7,7 @@ on:
       - main
       - develop
     paths:
-      - ./src/DagAir_Sensors/**
+      - src/DagAir_Sensors/**
 
 jobs:
   continuous-integration:

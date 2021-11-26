@@ -7,7 +7,7 @@ on:
       - main
       - develop
     paths:
-      - ./src/DagAir_ClientNode/**
+      - src/DagAir_ClientNode/**
 
 jobs:
   continuous-integration:

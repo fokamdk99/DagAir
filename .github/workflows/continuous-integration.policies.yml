@@ -7,7 +7,7 @@ on:
       - main
       - develop
     paths:
-      - ./src/DagAir_Policies/**
+      - src/DagAir_Policies/**
 
 jobs:
   continuous-integration:

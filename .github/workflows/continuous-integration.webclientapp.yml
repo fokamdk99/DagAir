@@ -7,7 +7,7 @@ on:
       - main
       - develop
     paths:
-      - ./src/DagAir_WebApplications/**
+      - src/DagAir_WebApplications/**
 
 jobs:
   continuous-integration:
