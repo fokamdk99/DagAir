@@ -5,6 +5,8 @@ on:
     branches:
       - main
       - develop
+    paths:
+      - src/DagAir_WebApplications/**
 
   workflow_dispatch: # allows to trigger workflow on demand
 

@@ -6,6 +6,8 @@ on:
     branches:
       - main
       - develop
+    paths:
+      - src/DagAir_Sensors/**
 
 jobs:
   continuous-integration:
