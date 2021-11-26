@@ -1,0 +1,39 @@
+name: ci.webclientapp
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+    paths:
+      - src/DagAir_WebApplications/**
+
+  workflow_dispatch: # allows to trigger workflow on demand
+
+jobs:
+  continuous-integration:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET 5.0
+        uses: actions/setup-dotnet@v1.7.2
+        with:
+          dotnet-version: 5.0.102
+
+      - name: Build & Test
+        shell: bash
+        run: ./build.sh TestProject --ProjectName webClientApp --verbosity verbose
+
+      - name: Pack
+        shell: bash
+        run: ./build.sh PackProject --ProjectName webClientApp --verbosity verbose
+
+      - name: Check application docker build - web client application
+        run: |
+          docker build \
+          -f ./src/DagAir_WebApplications/Dockerfile.WebClientApp \
+          ./src

@@ -1,4 +1,6 @@
-﻿namespace DagAir.Policies.Contracts.DTOs
+﻿using System.Collections.Generic;
+
+namespace DagAir.Policies.Contracts.DTOs
 {
     public class ExpectedRoomConditionsDto
     {
@@ -10,6 +12,6 @@
         public float IlluminanceMargin { get; set; }
         public float HumidityMargin { get; set; }
         public long? RoomPolicyId { get; set; }
-        public RoomPolicyDto RoomPolicy { get; set; }
+        public List<RoomPolicyDto> RoomPolicies { get; set; }
     }
 }

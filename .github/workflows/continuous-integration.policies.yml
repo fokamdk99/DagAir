@@ -1,0 +1,45 @@
+name: ci.policies
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+    paths:
+      - src/DagAir_Policies/**
+
+  workflow_dispatch:
+
+jobs:
+  continuous-integration:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET 5.0
+        uses: actions/setup-dotnet@v1.7.2
+        with:
+          dotnet-version: 5.0.102
+
+      - name: Build & Test
+        shell: bash
+        run: ./build.sh TestProject --ProjectName policies --verbosity verbose
+
+      - name: Pack
+        shell: bash
+        run: ./build.sh PackProject --ProjectName policies --verbosity verbose
+
+      - name: Check application docker build - policies api
+        run: |
+          docker build \
+          -f ./src/DagAir_Policies/Dockerfile \
+          ./src
+
+      - name: Check migrations applier docker build - policies api
+        run: |
+          docker build \
+          -f ./src/DagAir_Policies/Dockerfile.Migrations \
+          ./src

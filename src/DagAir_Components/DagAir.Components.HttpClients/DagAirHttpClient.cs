@@ -29,11 +29,11 @@ namespace DagAir.Components.HttpClients
             return (await DeserializeModel<T>(content), response.StatusCode);
         }
 
-        public async Task<HttpStatusCode> PostAsync<T>(string url, T request)
+        public async Task<HttpResponseMessage> PostAsync<T>(string url, T request)
         {
             var serializedRequest = SerializeRequest(request);
             var response = await _client.PostAsync(url, serializedRequest);
-            return response.StatusCode;
+            return response;
         }
 
         public async Task<HttpStatusCode> PutAsync<T>(string url, T request)
@@ -54,7 +54,7 @@ namespace DagAir.Components.HttpClients
             return new StringContent(JsonSerializer.Serialize(request), Encoding.UTF8, "application/json");
         }
         
-        private async Task<T> DeserializeModel<T>(Stream contentStream)
+        public async Task<T> DeserializeModel<T>(Stream contentStream)
         {
             try
             {

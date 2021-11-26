@@ -17,16 +17,30 @@ namespace DagAir.Sensors
             
             return services;
         }
-
-        public class SensorsMappings : Profile
+    }
+    
+    public class SensorsMappings : Profile
+    {
+        public SensorsMappings()
         {
-            public SensorsMappings()
-            {
-                CreateMap<Producer, ProducerDto>();
-                CreateMap<Sensor, SensorDto>();
-                CreateMap<SensorModel, SensorModelDto>();
-            }
-            
+            CreateMap<Producer, ProducerDto>();
+            CreateMap<Sensor, SensorDto>();
+            CreateMap<SensorModel, SensorModelDto>();
+
+            CreateMap<ProducerDto, Producer>()
+                .ForMember(x => x.Created, opts => opts.Ignore())
+                .ForMember(x => x.Modified, opts => opts.Ignore())
+                .ForMember(x => x.SensorModels, opts => opts.Ignore());
+            CreateMap<SensorDto, Sensor>()
+                .ForMember(x => x.Created, opts => opts.Ignore())
+                .ForMember(x => x.Modified, opts => opts.Ignore())
+                .ForMember(x => x.SensorModel, opts => opts.Ignore());
+            CreateMap<SensorModelDto, SensorModel>()
+                .ForMember(x => x.Created, opts => opts.Ignore())
+                .ForMember(x => x.Modified, opts => opts.Ignore())
+                .ForMember(x => x.Producer, opts => opts.Ignore())
+                .ForMember(x => x.Sensors, opts => opts.Ignore());
         }
+            
     }
 }

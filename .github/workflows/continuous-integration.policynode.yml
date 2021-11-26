@@ -1,0 +1,38 @@
+name: ci.policy-node
+
+on:
+  workflow_dispatch: # allows to trigger workflow on demand
+  push:
+    branches:
+      - main
+      - develop
+    paths:
+      - src/DagAir_PolicyNode/**
+
+jobs:
+  continuous-integration:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET 5.0
+        uses: actions/setup-dotnet@v1.7.2
+        with:
+          dotnet-version: 5.0.102
+
+      - name: Build & Test
+        shell: bash
+        run: ./build.sh TestProject --ProjectName policyNode --verbosity verbose
+
+      - name: Pack
+        shell: bash
+        run: ./build.sh PackProject --ProjectName policyNode --verbosity verbose
+
+      - name: Check application docker build - policy node
+        run: |
+          docker build \
+          -f ./src/DagAir_PolicyNode/Dockerfile \
+          ./src

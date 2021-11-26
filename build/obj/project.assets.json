@@ -7486,8 +7486,8 @@
     },
     "DagAir.Components.Nuke/1.0.0": {
       "type": "project",
-      "path": "../src/DagAir.Components.Nuke/DagAir.Components.Nuke.csproj",
-      "msbuildProject": "../src/DagAir.Components.Nuke/DagAir.Components.Nuke.csproj"
+      "path": "../src/DagAir_Components/DagAir.Components.Nuke/DagAir.Components.Nuke.csproj",
+      "msbuildProject": "../src/DagAir_Components/DagAir.Components.Nuke/DagAir.Components.Nuke.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -7528,8 +7528,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir.Components.Nuke\\DagAir.Components.Nuke.csproj": {
-              "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir.Components.Nuke\\DagAir.Components.Nuke.csproj"
+            "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.Nuke\\DagAir.Components.Nuke.csproj": {
+              "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.Nuke\\DagAir.Components.Nuke.csproj"
             }
           }
         }
