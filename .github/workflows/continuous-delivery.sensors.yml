@@ -1,7 +1,8 @@
-name: cd.sensors
+name: CD-Sensors
 
 env:
   SERVICE_NAME: dagair-sensors
+  MIGRATIONS_APPLIER_NAME: dagair-sensors-database-migration-applier
   CONTAINER_REGISTRY: dagairacr.azurecr.io
 
 on:
@@ -10,7 +11,7 @@ on:
       - main
       - develop
     paths:
-      - ./src/DagAir_Sensors/**
+      - src/DagAir_Sensors/**
 
     workflow_dispatch:
 
@@ -48,7 +49,9 @@ jobs:
     - name: Set image names & main tags
       run: |
         appImageName="${{ env.CONTAINER_REGISTRY }}/${{ env.SERVICE_NAME }}"
+        migrationsApplierImageName="${{ env.CONTAINER_REGISTRY }}/${{ env.MIGRATIONS_APPLIER_NAME }}"
         echo "APP_IMAGE_NAME=$appImageName" >> $GITHUB_ENV
+        echo "MIGRATIONS_APPLIER_IMAGE_NAME=$migrationsApplierImageName" >> $GITHUB_ENV
 
         version="${{ steps.gitversion.outputs.nugetVersionV2 }}-${{ steps.gitversion.outputs.shortSha }}"
 
@@ -57,12 +60,20 @@ jobs:
         fi
 
         echo "APP_IMAGE_TAG=${appImageName}:$version" >> $GITHUB_ENV
+        echo "MIGRATIONS_APPLIER_IMAGE_TAG=${migrationsApplierImageName}:$version" >> $GITHUB_ENV
 
-    - name: Check application docker build - sensors
+    - name: Docker application build - sensors
       run: |
         docker build \
         -f ./src/DagAir_Sensors/Dockerfile \
         --tag ${{ env.APP_IMAGE_TAG }} \
+        ./src
+
+    - name: Docker migrations applier build - sensors
+      run: |
+        docker build \
+        -f ./src/DagAir_Sensors/Dockerfile.Migrations \
+        --tag ${{ env.MIGRATIONS_APPLIER_IMAGE_TAG }} \
         ./src
 
     - name: Docker tag images
@@ -70,6 +81,7 @@ jobs:
         endsWith(github.ref, '/develop')
       run: |
         docker tag ${{ env.APP_IMAGE_TAG }} "${{ env.APP_IMAGE_NAME }}:develop-latest"
+        docker tag ${{ env.MIGRATIONS_APPLIER_IMAGE_TAG }} "${{ env.MIGRATIONS_APPLIER_IMAGE_NAME }}:develop-latest"
 
     - name: Docker login
       uses: docker/login-action@v1
@@ -81,3 +93,4 @@ jobs:
     - name: Docker push images
       run: |
         docker push ${{ env.APP_IMAGE_NAME }} --all-tags
+        docker push ${{ env.MIGRATIONS_APPLIER_IMAGE_NAME }} --all-tags

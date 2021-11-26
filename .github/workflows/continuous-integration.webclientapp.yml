@@ -1,4 +1,4 @@
-name: ci.webclientapp
+name: CI-Webclientapp
 
 on:
   push:

@@ -1,4 +1,4 @@
-name: CI-Policies
+name: CI-Facilities
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
       - develop
     paths:
-      - src/DagAir_Policies/**
+      - src/DagAir_Facilities/**
 
   workflow_dispatch:
 
@@ -26,20 +26,20 @@ jobs:
 
       - name: Build & Test
         shell: bash
-        run: ./build.sh TestProject --ProjectName policies --verbosity verbose
+        run: ./build.sh TestProject --ProjectName facilities --verbosity verbose
 
       - name: Pack
         shell: bash
-        run: ./build.sh PackProject --ProjectName policies --verbosity verbose
+        run: ./build.sh PackProject --ProjectName facilities --verbosity verbose
 
-      - name: Check application docker build - policies api
+      - name: Check application docker build - facilities api
         run: |
           docker build \
-          -f ./src/DagAir_Policies/Dockerfile \
+          -f ./src/DagAir_Facilities/Dockerfile \
           ./src
 
-      - name: Check migrations applier docker build - policies api
+      - name: Check migrations applier docker build - facilities api
         run: |
           docker build \
-          -f ./src/DagAir_Policies/Dockerfile.Migrations \
+          -f ./src/DagAir_Facilities/Dockerfile.Migrations \
           ./src

@@ -1,4 +1,4 @@
-name: ci.client-node
+name: CI-Client-node
 
 on:
   workflow_dispatch: # allows to trigger workflow on demand

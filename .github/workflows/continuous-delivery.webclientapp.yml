@@ -1,4 +1,4 @@
-name: cd.webclientapp
+name: CD-Webclientapp
 
 env:
   SERVICE_NAME: dagair-web-client-app
@@ -10,7 +10,7 @@ on:
       - main
       - develop
     paths:
-      - ./src/DagAir_WebApplications/**
+      - src/DagAir_WebApplications/**
 
     workflow_dispatch:
 

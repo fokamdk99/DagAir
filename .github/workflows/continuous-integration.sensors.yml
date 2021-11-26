@@ -1,4 +1,4 @@
-name: ci.sensors
+name: CI-Sensors
 
 on:
   workflow_dispatch: # allows to trigger workflow on demand

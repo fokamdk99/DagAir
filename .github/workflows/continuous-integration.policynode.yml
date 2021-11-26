@@ -1,4 +1,4 @@
-name: ci.policy-node
+name: CI-Policy-node
 
 on:
   workflow_dispatch: # allows to trigger workflow on demand
