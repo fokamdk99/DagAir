@@ -41,7 +41,9 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository
         {"sensors","DagAir.Sensors.Tests"},
         {"policies","DagAir.Policies.Tests"},
         {"webClientApp", "DagAir.WebClientApp.Tests"},
-        {"clientNode", "DagAir.ClientNode.Tests"}
+        {"clientNode", "DagAir.ClientNode.Tests"},
+        {"facilities", "DagAir.Facilities.Tests"},
+        {"addresses", "DagAir.Addresses.Tests"}
     };
     
     readonly Dictionary<string, string> ProjectNames = new Dictionary<string, string>
@@ -51,7 +53,9 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository
         {"sensors","DagAir.Sensors"},
         {"policies","DagAir.Policies"}, 
         {"webClientApp", "DagAir.WebClientApp"},
-        {"clientNode", "DagAir.ClientNode"}
+        {"clientNode", "DagAir.ClientNode"},
+        {"facilities", "DagAir.Facilities"},
+        {"addresses", "DagAir.Addresses"}
     };
 
     AbsolutePath SourceDirectory => RootDirectory / "src";

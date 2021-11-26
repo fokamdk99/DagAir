@@ -1,0 +1,19 @@
+FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+
+FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+WORKDIR /app
+COPY ["./DagAir_Addresses/DagAir.Addresses.Data.Migrations/", "./DagAir_Addresses/DagAir.Addresses.Data.Migrations/"]
+COPY ["./DagAir_Addresses/DagAir.Addresses.Data/", "./DagAir_Addresses/DagAir.Addresses.Data/"]
+
+RUN dotnet restore ./DagAir_Addresses/DagAir.Addresses.Data.Migrations/DagAir.Addresses.Data.Migrations.csproj
+RUN dotnet build ./DagAir_Addresses/DagAir.Addresses.Data.Migrations/DagAir.Addresses.Data.Migrations.csproj --no-restore
+RUN dotnet publish ./DagAir_Addresses/DagAir.Addresses.Data.Migrations/DagAir.Addresses.Data.Migrations.csproj -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=build /app/publish .
+
+ENTRYPOINT ["dotnet", "DagAir.Addresses.Data.Migrations.dll"]

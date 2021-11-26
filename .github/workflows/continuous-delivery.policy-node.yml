@@ -1,4 +1,4 @@
-name: cd.policy-node
+name: CD-Policy-node
 
 env:
   SERVICE_NAME: dagair-policy-node
@@ -10,7 +10,7 @@ on:
       - main
       - develop
     paths:
-      - ./src/DagAir_PolicyNode/**
+      - src/DagAir_PolicyNode/**
 
     workflow_dispatch:
 
