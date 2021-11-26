@@ -4,6 +4,7 @@ using AutoMapper;
 using DagAir.Components.ApiModels.Json;
 using DagAir.Policies.Contracts.Commands;
 using DagAir.Policies.Contracts.DTOs;
+using DagAir.Policies.Data.AppEntities;
 using DagAir.Policies.Infrastructure.UserApi;
 using DagAir.Policies.Policies.Commands;
 using DagAir.Policies.Policies.Queries;
@@ -14,12 +15,12 @@ namespace DagAir.Policies.Policies
     public class PoliciesController : PolicyControllerBase
     {
         private readonly IMapper _mapper;
-        private IGetCurrentRoomPolicyQuery _getCurrentRoomPolicyQuery;
-        private readonly ICommandHandler<AddNewRoomPolicyCommand> _addNewRoomPolicyCommandHandler;
+        private readonly IGetCurrentRoomPolicyQuery _getCurrentRoomPolicyQuery;
+        private readonly ICommandHandler<AddNewRoomPolicyCommand, RoomPolicy> _addNewRoomPolicyCommandHandler;
 
         public PoliciesController(IMapper mapper,
             IGetCurrentRoomPolicyQuery getCurrentRoomPolicyQuery, 
-            ICommandHandler<AddNewRoomPolicyCommand> addNewRoomPolicyCommandHandler)
+            ICommandHandler<AddNewRoomPolicyCommand, RoomPolicy> addNewRoomPolicyCommandHandler)
         {
             _mapper = mapper;
             _getCurrentRoomPolicyQuery = getCurrentRoomPolicyQuery;
@@ -49,8 +50,10 @@ namespace DagAir.Policies.Policies
         public async Task<IActionResult> CreateNewRoomPolicy(AddNewRoomPolicyCommand addNewRoomPolicyCommand)
         {
             var policy = await _addNewRoomPolicyCommandHandler.Handle(addNewRoomPolicyCommand);
+            
+            RoomPolicyDto roomPolicyDto = _mapper.Map<RoomPolicyDto>(policy);
 
-            return Created(policy);
+            return Created(new JsonApiDocument<RoomPolicyDto>(roomPolicyDto));
         }
         
         private NotFoundObjectResult GetCurrentRoomPolicyNotFoundMessage(long roomId)

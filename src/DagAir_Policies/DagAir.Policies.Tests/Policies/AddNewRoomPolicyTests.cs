@@ -4,17 +4,19 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using DagAir.Components.HttpClients;
 using DagAir.Policies.Contracts.Commands;
 using DagAir.Policies.Contracts.DTOs;
 using DagAir.Policies.Data.AppEntities;
 using FluentAssertions;
+using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 
 namespace DagAir.Policies.Tests.Policies
 {
     public class AddNewRoomPolicyTests : IntegrationTestServer
     {
-        private HttpClient _client;
+        private DagAirHttpClient _dagAirHttpClient;
         
         [Test]
         public async Task WhenAddNewRoomPolicyCommandReceived_ShouldCreateNewRoomPolicyInTheDatabase()
@@ -22,17 +24,22 @@ namespace DagAir.Policies.Tests.Policies
             var path = $"policies-api/policies";
 
             var addNewRoomPolicyCommand = CreateAddNewRoomPolicyCommand();
-            var postBody = new StringContent(JsonSerializer.Serialize(addNewRoomPolicyCommand), Encoding.UTF8, "application/json");
-            var response = await _client.PostAsync(path, postBody);
+            var response = await _dagAirHttpClient.PostAsync(path, addNewRoomPolicyCommand);
 
             response.StatusCode.Should().Be(HttpStatusCode.Created);
+            
+            var data =
+                await _dagAirHttpClient.DeserializeModel<RoomPolicyDto>(await response.Content.ReadAsStreamAsync());
+
+            data.Id.Should().BeGreaterThan(0);
         }
 
         public override async Task OneTimeSetup()
         {
             await base.OneTimeSetup();
 
-            _client = PoliciesApiTestClient.GetTestClient(TestServer, Configuration);
+            var client = PoliciesApiTestClient.GetTestClient(TestServer, Configuration);
+            _dagAirHttpClient = new DagAirHttpClient(client, new Logger<DagAirHttpClient>(new LoggerFactory()));
         }
         
         public override async Task Setup()

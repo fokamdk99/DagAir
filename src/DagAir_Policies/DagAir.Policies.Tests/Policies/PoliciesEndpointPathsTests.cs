@@ -54,15 +54,15 @@ namespace DagAir.Policies.Tests.Policies
             await AppContext.SaveChangesAsync();
         }
 
-        private async Task AddPoliciesToTheDatabase()
+        internal async Task AddPoliciesToTheDatabase()
         {
             var policy = new RoomPolicy()
             {
                 Id = 1,
-                StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddHours(-3).Hour,
+                StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddHours(-1).Hour,
                     DateTime.Now.Minute, DateTime.Now.Second),
                 EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day,
-                    DateTime.Now.AddHours(3).Hour, DateTime.Now.Minute, DateTime.Now.Second),
+                    DateTime.Now.AddHours(1).Hour, DateTime.Now.Minute, DateTime.Now.Second),
                 RepeatOn = "",
                 ExpectedConditionsId = 1L,
                 CategoryId = 1,
@@ -72,7 +72,7 @@ namespace DagAir.Policies.Tests.Policies
             await AppContext.RoomPolicies.AddAsync(policy);
         }
         
-        public async Task AddRoomPolicyCategoriesToTheDatabase()
+        internal async Task AddRoomPolicyCategoriesToTheDatabase()
         {
             var roomPolicyCategory = new RoomPolicyCategory()
             {
@@ -84,7 +84,7 @@ namespace DagAir.Policies.Tests.Policies
             await AppContext.RoomPolicyCategories.AddAsync(roomPolicyCategory);
         }
         
-        public async Task AddExpectedRoomConditionsToTheDatabase()
+        internal async Task AddExpectedRoomConditionsToTheDatabase()
         {
             var expectedRoomConditions = new ExpectedRoomConditions
             {

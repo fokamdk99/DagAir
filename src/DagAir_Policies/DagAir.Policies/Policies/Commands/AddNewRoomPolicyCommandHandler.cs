@@ -4,19 +4,20 @@ using DagAir.Policies.Contracts.Commands;
 using DagAir.Policies.Data.AppContext;
 using DagAir.Policies.Data.AppEntities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace DagAir.Policies.Policies.Commands
 {
-    public class AddNewRoomPolicyCommandHandler : ICommandHandler<AddNewRoomPolicyCommand>
+    public class AddNewRoomPolicyCommandHandler : ICommandHandler<AddNewRoomPolicyCommand, RoomPolicy>
     {
         private readonly IDagAirPoliciesAppContext _context;
         private readonly IMapper _mapper;
+        private readonly ICommandHandler<AddNewExpectedRoomConditionsCommand, ExpectedRoomConditions> _expectedRoomConditionscommandHandler;
         
-        public AddNewRoomPolicyCommandHandler(IDagAirPoliciesAppContext context, IMapper mapper)
+        public AddNewRoomPolicyCommandHandler(IDagAirPoliciesAppContext context, IMapper mapper, ICommandHandler<AddNewExpectedRoomConditionsCommand, ExpectedRoomConditions> expectedRoomConditionscommandHandler)
         {
             _context = context;
             _mapper = mapper;
+            _expectedRoomConditionscommandHandler = expectedRoomConditionscommandHandler;
         }
 
         public async Task<RoomPolicy> Handle(AddNewRoomPolicyCommand command)
@@ -27,19 +28,29 @@ namespace DagAir.Policies.Policies.Commands
             
             if (expectedRoomConditions.Id == 0)
             {
-                await _context.ExpectedRoomConditions.AddAsync(expectedRoomConditions);
-                await _context.SaveChangesAsync();
+                var addNewExpectedConditionsCommand = new AddNewExpectedRoomConditionsCommand
+                {
+                    ExpectedRoomConditionsDto = command.ExpectedRoomConditionsDto
+                };
+                var savedExpectedRoomConditions = await _expectedRoomConditionscommandHandler.Handle(addNewExpectedConditionsCommand);
+
+                roomPolicy.ExpectedConditions = savedExpectedRoomConditions;
+                roomPolicy.ExpectedConditionsId = savedExpectedRoomConditions.Id;
             }
             else
             {
                 expectedRoomConditions =
                     await _context.ExpectedRoomConditions.SingleOrDefaultAsync(x => x.Id == expectedRoomConditions.Id);
+                
+                roomPolicy.ExpectedConditions = expectedRoomConditions;
+                roomPolicy.ExpectedConditionsId = expectedRoomConditions.Id;
             }
+            
+            var category = await _context.RoomPolicyCategories.SingleOrDefaultAsync(x => x.Id == roomPolicyCategory.Id);
 
-            roomPolicy.ExpectedConditions = expectedRoomConditions;
-            roomPolicy.Category =
-                await _context.RoomPolicyCategories.SingleOrDefaultAsync(x => x.Id == roomPolicyCategory.Id);
-
+            roomPolicy.Category = category;
+            roomPolicy.CategoryId = category.Id;
+            
             await _context.RoomPolicies.AddAsync(roomPolicy);
             await _context.SaveChangesAsync();
 

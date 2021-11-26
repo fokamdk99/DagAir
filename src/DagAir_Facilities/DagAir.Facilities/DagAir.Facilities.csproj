@@ -6,10 +6,16 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\DagAir.Facilities.Contracts\DagAir.Facilities.Contracts.csproj" />
       <ProjectReference Include="..\..\DagAir_Components\DagAir.Components.ApiModels\DagAir.Components.ApiModels.csproj" />
       <ProjectReference Include="..\..\DagAir_Components\DagAir.Components.Healthchecks\DagAir.Components.Healthchecks.csproj" />
       <ProjectReference Include="..\..\DagAir_Components\DagAir.Components.Logging\DagAir.Components.Logging.csproj" />
       <ProjectReference Include="..\DagAir.Facilities.Data\DagAir.Facilities.Data.csproj" />
+        <PackageReference Include="AutoMapper" Version="10.1.1" />
+        <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.2.3" />
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.2.3" />
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.2.3" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
     </ItemGroup>
 
 </Project>
