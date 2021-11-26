@@ -1,14 +1,7 @@
 name: ci.policies
 
-on:
-  push:
-    branches:
-      - main
-      - develop
-    paths:
-      - src/DagAir_Policies/**
-
-  workflow_dispatch: # allows to trigger workflow on demand
+on: 
+  workflow_dispatch:
 
 jobs:
   continuous-integration:
