@@ -1,6 +1,13 @@
 name: ci.policies
 
-on: 
+on:
+  push:
+    branches:
+      - main
+      - develop
+    paths:
+      - src/DagAir_Policies/**
+
   workflow_dispatch:
 
 jobs:
