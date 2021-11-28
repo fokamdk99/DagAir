@@ -6,12 +6,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DagAir.Facilities.Organizations.Queries
 {
-    public class GetOrganizationQuery : IGetOrganizationQuery
+    public class GetOrganizationQueryById : IGetOrganizationQueryById
     {
         private readonly IDagAirFacilitiesAppContext _context;
         private readonly IGetAffiliatesByOrganizationQuery _getAffiliatesByOrganizationQuery;
 
-        public GetOrganizationQuery(IDagAirFacilitiesAppContext context, IGetAffiliatesByOrganizationQuery getAffiliatesByOrganizationQuery)
+        public GetOrganizationQueryById(IDagAirFacilitiesAppContext context, IGetAffiliatesByOrganizationQuery getAffiliatesByOrganizationQuery)
         {
             _context = context;
             _getAffiliatesByOrganizationQuery = getAffiliatesByOrganizationQuery;

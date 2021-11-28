@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
 using DagAir.Components.ApiModels.Json;
@@ -14,14 +15,37 @@ namespace DagAir.Facilities.Organizations
     public class OrganizationsController : FacilitiesControllerBase
     {
         private readonly IMapper _mapper;
-        private readonly IGetOrganizationQuery _getOrganizationQuery;
+        private readonly IGetOrganizationQueryById _getOrganizationQueryById;
+        private readonly IGetOrganizationsQuery _getOrganizationsQuery;
         private readonly ICommandHandler<AddNewOrganizationCommand, Organization> _commandHandler;
 
-        public OrganizationsController(IMapper mapper, IGetOrganizationQuery getOrganizationQuery, ICommandHandler<AddNewOrganizationCommand, Organization> commandHandler)
+        public OrganizationsController(IMapper mapper, 
+            IGetOrganizationQueryById getOrganizationQueryById, 
+            IGetOrganizationsQuery getOrganizationsQuery,
+            ICommandHandler<AddNewOrganizationCommand, Organization> commandHandler)
         {
             _mapper = mapper;
-            _getOrganizationQuery = getOrganizationQuery;
+            _getOrganizationQueryById = getOrganizationQueryById;
+            _getOrganizationsQuery = getOrganizationsQuery;
             _commandHandler = commandHandler;
+            
+        }
+        
+        [HttpGet]
+        [Route("organizations")]
+        [ProducesResponseType(typeof(JsonApiDocument<List<OrganizationDto>>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(JsonApiError), (int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> GetOrganizations()
+        {
+            var organizations = await _getOrganizationsQuery.Execute();
+
+            var organizationDtos = new List<OrganizationDto>();
+            foreach (var organization in organizations)
+            {
+                organizationDtos.Add(_mapper.Map<OrganizationDto>(organization));
+            }
+
+            return Ok(new JsonApiDocument<List<OrganizationDto>>(organizationDtos));
         }
 
         [HttpGet]
@@ -30,7 +54,7 @@ namespace DagAir.Facilities.Organizations
         [ProducesResponseType(typeof(JsonApiError), (int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> GetOrganizationById(long organizationId)
         {
-            var organization = await _getOrganizationQuery.Execute(organizationId);
+            var organization = await _getOrganizationQueryById.Execute(organizationId);
             if (organization == null)
             {
                 return GetOrganizationNotFoundMessage(organizationId);
