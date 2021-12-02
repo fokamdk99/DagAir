@@ -1,4 +1,5 @@
 ﻿using DagAir.WebAdminApp.Facilities;
+using DagAir.WebAdminApp.Identity;
 using DagAir.WebAdminApp.Infrastructure.Facilities;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,6 +11,7 @@ namespace DagAir.WebAdminApp.Infrastructure
         {
             services.AddScoped<IFacilitiesHandler, FacilitiesHandler>();
             services.AddSingleton<IExternalServices, ExternalServices>();
+            services.AddScoped<IIdentityHandler, IdentityHandler>();
             
             return services;
         }

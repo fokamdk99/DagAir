@@ -117,6 +117,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.ClientNode.Tests", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.WebAdminApp", "DagAir_WebApplications\DagAir.WebAdminApp\DagAir.WebAdminApp.csproj", "{6A73684A-BC11-438C-BA05-6015224E53FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.IdentityServer", "DagAir.IdentityServer\DagAir.IdentityServer.csproj", "{D17ABE9F-E662-43F7-B987-8D88D1564F43}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.WebAdminApp.Tests", "DagAir.WebAdminApp.Tests\DagAir.WebAdminApp.Tests.csproj", "{53910958-A157-4D19-AB33-CD3AE37D564E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -297,6 +301,14 @@ Global
 		{6A73684A-BC11-438C-BA05-6015224E53FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A73684A-BC11-438C-BA05-6015224E53FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A73684A-BC11-438C-BA05-6015224E53FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D17ABE9F-E662-43F7-B987-8D88D1564F43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D17ABE9F-E662-43F7-B987-8D88D1564F43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D17ABE9F-E662-43F7-B987-8D88D1564F43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D17ABE9F-E662-43F7-B987-8D88D1564F43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53910958-A157-4D19-AB33-CD3AE37D564E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53910958-A157-4D19-AB33-CD3AE37D564E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53910958-A157-4D19-AB33-CD3AE37D564E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53910958-A157-4D19-AB33-CD3AE37D564E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -354,5 +366,6 @@ Global
 		{550F7DB8-682F-48AB-927E-5BDE19B5D145} = {0D788351-8AE5-45D3-98F5-50D401B662EC}
 		{5B0C3995-C194-41CE-BD83-9EE268AC088C} = {0D788351-8AE5-45D3-98F5-50D401B662EC}
 		{6A73684A-BC11-438C-BA05-6015224E53FE} = {C3AE4FC9-498B-4FC0-BBC6-252F47C25C5B}
+		{53910958-A157-4D19-AB33-CD3AE37D564E} = {0D788351-8AE5-45D3-98F5-50D401B662EC}
 	EndGlobalSection
 EndGlobal

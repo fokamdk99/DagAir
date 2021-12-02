@@ -1,13 +1,13 @@
-﻿{
+{
   "profiles": {
-    "DagAir.WebAdminApp": {
+    "SelfHost": {
       "commandName": "Project",
-      "dotnetRunMessages": "true",
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:17001;http://localhost:17000",
+      "launchUrl": ".well-known/openid-configuration",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "applicationUrl": "https://localhost:5001"
     }
   }
 }
