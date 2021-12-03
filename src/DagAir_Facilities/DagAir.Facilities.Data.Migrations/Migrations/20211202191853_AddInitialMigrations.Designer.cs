@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DagAir.Facilities.Data.Migrations.Migrations
 {
     [DbContext(typeof(DagAirFacilitiesAppContext))]
-    [Migration("20211121223455_AddInitialMigration")]
-    partial class AddInitialMigration
+    [Migration("20211202191853_AddInitialMigrations")]
+    partial class AddInitialMigrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -158,6 +158,13 @@ namespace DagAir.Facilities.Data.Migrations.Migrations
                         .HasColumnType("text")
                         .HasColumnName("number");
 
+                    b.Property<byte[]>("UniqueRoomId")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("varbinary(16)")
+                        .HasColumnName("unique_room_id")
+                        .HasDefaultValueSql("(UUID_TO_BIN(UUID()))");
+
                     b.HasKey("Id")
                         .HasName("pk_rooms");
 
@@ -173,7 +180,8 @@ namespace DagAir.Facilities.Data.Migrations.Migrations
                             AffiliateId = 1L,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Floor = 1,
-                            Number = "133"
+                            Number = "133",
+                            UniqueRoomId = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
                         },
                         new
                         {
@@ -181,7 +189,8 @@ namespace DagAir.Facilities.Data.Migrations.Migrations
                             AffiliateId = 2L,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Floor = 1,
-                            Number = "117"
+                            Number = "117",
+                            UniqueRoomId = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
                         },
                         new
                         {
@@ -189,7 +198,8 @@ namespace DagAir.Facilities.Data.Migrations.Migrations
                             AffiliateId = 3L,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Floor = 2,
-                            Number = "52"
+                            Number = "52",
+                            UniqueRoomId = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
                         });
                 });
 

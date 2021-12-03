@@ -11,6 +11,11 @@ namespace DagAir.Facilities.Data.AppEntitiesConfiguration
             builder.ConfigureBase();
             builder.HasKey(e => e.Id);
 
+            builder.Property(e => e.UniqueRoomId)
+                .IsRequired()
+                .HasDefaultValueSql("(UUID_TO_BIN(UUID()))")
+                .ValueGeneratedOnAdd();
+
             builder.Property(e => e.Number)
                 .IsRequired();
 

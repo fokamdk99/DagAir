@@ -20,8 +20,10 @@ namespace DagAir.ClientNode.Consumers
         }
         public async Task Consume(ConsumeContext<PoliciesEvaluationResultEvent> context)
         {
-            _logger.LogInformation($"PoliciesEvaluationResultEvent consumed! Event message: {context.Message.Message}");
-            await _hubContext.Clients.Group("test_group").ReceiveMessage("client_node application", context.Message.Message);
+            var policiesEvaluationResultEvent = context.Message;
+            _logger.LogInformation($"PoliciesEvaluationResultEvent consumed! Unique room id: {policiesEvaluationResultEvent.UniqueRoomId}. " +
+                                   $"Event message: {policiesEvaluationResultEvent.Message}");
+            await _hubContext.Clients.Group(policiesEvaluationResultEvent.UniqueRoomId.ToString()).PoliciesEvaluationResultEvent(policiesEvaluationResultEvent.Message);
             _logger.LogInformation($"Message sent to client web app.");
         }
     }

@@ -60,6 +60,20 @@ services:
       - dagair_network
     restart: always
 
+  facilities_api:
+    build:
+      target: final
+      context: ./src
+      dockerfile: ./DagAir_Facilities/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+      - ConnectionKeys__DagAir.Facilities=${FACILITIES_CONNECTIONKEYS}
+    ports:
+      - "8087:80"
+    networks:
+      - dagair_network
+    restart: always
+
   ingestion_node:
     build:
       target: final

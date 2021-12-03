@@ -31,6 +31,16 @@ class NewMeasurementTestHelper:
         sensors_res = request_helper.get_request(path)
         assert sensors_res.status_code == 204, "Sensors api is not ready."
 
+    def check_policies_api_is_available(self):
+        path = f"{self.env_provider.get_dagair_policies()}/system/health/ready"
+        sensors_res = request_helper.get_request(path)
+        assert sensors_res.status_code == 204, "Policies api is not ready."
+
+    def check_facilities_api_is_available(self):
+        path = f"{self.env_provider.get_dagair_facilities()}/system/health/ready"
+        sensors_res = request_helper.get_request(path)
+        assert sensors_res.status_code == 204, "Facilities api is not ready."
+
     def send_new_measurement_to_rabbitmq(self):
         path = f"{self.rabbitmq_configuration.api_host}/api/exchanges/{self.rabbitmq_configuration.vhost}/{consts.measurements_from_sensors_exchange}/publish"
         headers = {}

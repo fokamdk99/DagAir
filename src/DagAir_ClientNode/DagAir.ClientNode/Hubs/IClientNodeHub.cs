@@ -4,6 +4,6 @@ namespace DagAir.ClientNode.Hubs
 {
     public interface IClientNodeHub
     {
-        Task ReceiveMessage(string user, string message);
+        Task PoliciesEvaluationResultEvent(string message);
     }
 }

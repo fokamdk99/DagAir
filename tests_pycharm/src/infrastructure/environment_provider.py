@@ -28,6 +28,10 @@ class EnvironmentProvider():
         configuration = self.get_configuration()
         return configuration["DAGAIR_POLICIES"]
 
+    def get_dagair_facilities(self):
+        configuration = self.get_configuration()
+        return configuration["DAGAIR_FACILITIES"]
+
     def get_dagair_sensors(self):
         configuration = self.get_configuration()
         return configuration["DAGAIR_SENSORS"]

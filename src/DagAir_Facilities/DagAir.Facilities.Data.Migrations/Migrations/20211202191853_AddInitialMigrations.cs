@@ -4,7 +4,7 @@ using MySql.EntityFrameworkCore.Metadata;
 
 namespace DagAir.Facilities.Data.Migrations.Migrations
 {
-    public partial class AddInitialMigration : Migration
+    public partial class AddInitialMigrations : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -59,6 +59,7 @@ namespace DagAir.Facilities.Data.Migrations.Migrations
                 {
                     id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    unique_room_id = table.Column<byte[]>(type: "varbinary(16)", nullable: false, defaultValueSql: "(UUID_TO_BIN(UUID()))"),
                     number = table.Column<string>(type: "text", nullable: false),
                     floor = table.Column<int>(type: "int", nullable: false),
                     affiliate_id = table.Column<long>(type: "bigint", nullable: false),

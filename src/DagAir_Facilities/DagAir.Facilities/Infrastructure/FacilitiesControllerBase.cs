@@ -5,7 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace DagAir.Facilities.Infrastructure
 {
     [ApiController]
-    [Route("facilities/" + ApiVersions.V1)]
+    [Route("facilities-api")]
+    [ApiVersion(ApiVersions.V1)]
     public abstract class FacilitiesControllerBase : ControllerBase
     {
         protected CreatedResult Created(object value) => Created(string.Empty, value);
