@@ -1,6 +1,8 @@
 ﻿"use strict";
 
-var connection = new signalR.HubConnectionBuilder().withUrl("http://localhost:14000/chatHub").withAutomaticReconnect().build();
+var settings = JSON.parse(data);
+
+var connection = new signalR.HubConnectionBuilder().withUrl(settings["ClientNodeHub"]).withAutomaticReconnect().build();
 
 //Disable send button until connection is established
 document.getElementById("sendButton").disabled = true;
@@ -16,7 +18,7 @@ connection.on("PoliciesEvaluationResultEvent", function (message) {
 
 connection.start({ withCredentials: false }).then(function () {
     document.getElementById("sendButton").disabled = false;
-    console.log("polaczenie rozpoczete!!!")
+    console.log("connection started")
 }).catch(function (err) {
     return console.error(err.toString());
 }).then(function () {

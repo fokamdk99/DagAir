@@ -63,8 +63,8 @@ namespace DagAir.Facilities
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers()
-                    .RequireAuthorization("Facilities Policy");
+                endpoints.MapControllers();
+                    //.RequireAuthorization("Facilities Policy");
                 endpoints.MapHealthCheckEndpoints();
             });
         }

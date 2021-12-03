@@ -6,6 +6,7 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /app
 COPY ["./DagAir_WebApplications/DagAir.WebClientApp/", "./DagAir_WebApplications/DagAir.WebClientApp/"]
+COPY ["./DagAir_Components/DagAir.Components.Logging/", "./DagAir_Components/DagAir.Components.Logging/"]
 
 RUN dotnet restore ./DagAir_WebApplications/DagAir.WebClientApp/DagAir.WebClientApp.csproj
 RUN dotnet build ./DagAir_WebApplications/DagAir.WebClientApp/DagAir.WebClientApp.csproj --no-restore

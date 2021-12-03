@@ -3,15 +3,13 @@ EXPOSE 15672
 EXPOSE 5672
 EXPOSE 1883
 
-ADD rabbitmq.conf /etc/rabbitmq/
-ADD definitions.json /etc/rabbitmq/
+COPY ["./rabbitmq.conf", "/etc/rabbitmq/"]  
+COPY ["./definitions.json", "/etc/rabbitmq/"]  
+COPY ["./initialize_rabbitmq.sh", "./"]
 
 RUN chown rabbitmq:rabbitmq /etc/rabbitmq/rabbitmq.conf /etc/rabbitmq/definitions.json
+RUN sed -i 's/\r//' ./initialize_rabbitmq.sh
 
-ENV RABBITMQ_USER user
-ENV RABBITMQ_PASSWORD password
-
-COPY ["./initialize_rabbitmq.sh", "./"]
 RUN chmod +x ./initialize_rabbitmq.sh
 
 CMD ["./initialize_rabbitmq.sh"]

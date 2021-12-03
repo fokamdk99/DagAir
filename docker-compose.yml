@@ -126,6 +126,8 @@ services:
       dockerfile: ./DagAir_WebApplications/Dockerfile.WebClientApp
     ports:
       - "8085:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
     networks:
       - dagair_network
     restart: always
