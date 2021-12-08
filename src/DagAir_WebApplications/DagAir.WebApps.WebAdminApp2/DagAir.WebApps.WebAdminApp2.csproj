@@ -14,10 +14,10 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\DagAir_Components\DagAir.Components.ApiModels\DagAir.Components.ApiModels.csproj" />
-    <ProjectReference Include="..\DagAir_Components\DagAir.Components.HttpClients\DagAir.Components.HttpClients.csproj" />
-    <ProjectReference Include="..\DagAir_Components\DagAir.Components.Logging\DagAir.Components.Logging.csproj" />
-    <ProjectReference Include="..\DagAir_Facilities\DagAir.Facilities.Contracts\DagAir.Facilities.Contracts.csproj" />
+    <ProjectReference Include="..\..\DagAir_Components\DagAir.Components.ApiModels\DagAir.Components.ApiModels.csproj" />
+    <ProjectReference Include="..\..\DagAir_Components\DagAir.Components.HttpClients\DagAir.Components.HttpClients.csproj" />
+    <ProjectReference Include="..\..\DagAir_Components\DagAir.Components.Logging\DagAir.Components.Logging.csproj" />
+    <ProjectReference Include="..\..\DagAir_Facilities\DagAir.Facilities.Contracts\DagAir.Facilities.Contracts.csproj" />
   </ItemGroup>
 
 </Project>
