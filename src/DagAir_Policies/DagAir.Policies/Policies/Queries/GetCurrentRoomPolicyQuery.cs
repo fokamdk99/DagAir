@@ -35,9 +35,9 @@ namespace DagAir.Policies.Policies.Queries
             
             var currentTimePolicies = todaysPolicies.Where(x =>
             {
-                var fulfillsConditions = (x.StartDate.Hour < currentTime.Hour && currentTime.Hour < x.EndDate.Hour)
-                                         || (x.EndDate < x.StartDate && x.StartDate.Hour < currentTime.Hour)
-                                         || (currentTime.Hour < x.EndDate.Hour && x.EndDate.Hour < x.StartDate.Hour);
+                var fulfillsConditions = (x.StartDate.Hour <= currentTime.Hour && currentTime.Hour <= x.EndDate.Hour)
+                                         || (x.EndDate <= x.StartDate && x.StartDate.Hour <= currentTime.Hour)
+                                         || (currentTime.Hour <= x.EndDate.Hour && x.EndDate.Hour <= x.StartDate.Hour);
                 return fulfillsConditions;
             });
             
