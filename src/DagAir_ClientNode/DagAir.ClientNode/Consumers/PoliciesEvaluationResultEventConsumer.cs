@@ -12,6 +12,11 @@ namespace DagAir.ClientNode.Consumers
         private readonly ILogger<PoliciesEvaluationResultEventConsumer> _logger;
         private readonly IHubContext<ChatHub, IClientNodeHub> _hubContext;
 
+        public PoliciesEvaluationResultEventConsumer()
+        {
+            
+        }
+
         public PoliciesEvaluationResultEventConsumer(ILogger<PoliciesEvaluationResultEventConsumer> logger,
             IHubContext<ChatHub, IClientNodeHub> hubContext)
         {
