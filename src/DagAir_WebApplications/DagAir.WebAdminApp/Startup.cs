@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using DagAir.Components.HealthChecks;
 using DagAir.WebAdminApp.Infrastructure.Swagger;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -25,6 +27,30 @@ namespace DagAir.WebAdminApp
             services.AddControllersWithViews();
             services.AddRazorPages();
             
+            JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
+            
+            /*
+            services.AddAuthentication(options =>
+                {
+                    options.DefaultScheme = "Cookies";
+                    options.DefaultChallengeScheme = "oidc";
+                })
+                .AddCookie("Cookies")
+                .AddOpenIdConnect("oidc", options =>
+                {
+                    options.Authority = "https://localhost:5001";
+
+                    options.ClientId = "TestMvcApp";
+                    options.ClientSecret = "secret";
+                    options.ResponseType = "code";
+                    options.Scope.Add("profile");
+                    options.GetClaimsFromUserInfoEndpoint = true;
+
+                    options.SaveTokens = true;
+                });
+            */
+            
+            
             services.Configure<IdentityOptions>(options =>
             {
                 // Password settings.
@@ -45,6 +71,7 @@ namespace DagAir.WebAdminApp
                     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
                 options.User.RequireUniqueEmail = true;
             });
+            
         }
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
