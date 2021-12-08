@@ -1,4 +1,6 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
 using DagAir.Components.ApiModels.Json;
@@ -15,14 +17,29 @@ namespace DagAir.Facilities.Affiliates
     {
         private readonly IMapper _mapper;
         private readonly IGetAffiliateQuery _getAffiliateQuery;
+        private readonly IGetAffiliatesQuery _getAffiliatesQuery;
         private readonly ICommandHandler<AddNewAffiliateCommand, Affiliate> _addNewRoomPolicyCommandHandler;
 
         public AffiliatesController(IMapper mapper,
-            ICommandHandler<AddNewAffiliateCommand, Affiliate> addNewRoomPolicyCommandHandler, IGetAffiliateQuery getAffiliateQuery)
+            ICommandHandler<AddNewAffiliateCommand, Affiliate> addNewRoomPolicyCommandHandler, 
+            IGetAffiliateQuery getAffiliateQuery, 
+            IGetAffiliatesQuery getAffiliatesQuery)
         {
             _mapper = mapper;
             _addNewRoomPolicyCommandHandler = addNewRoomPolicyCommandHandler;
             _getAffiliateQuery = getAffiliateQuery;
+            _getAffiliatesQuery = getAffiliatesQuery;
+        }
+        
+        [HttpGet("affiliates")]
+        [ProducesResponseType(typeof(JsonApiDocument<List<AffiliateDto>>), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> GetAffiliates()
+        {
+            var affiliates = await _getAffiliatesQuery.Execute();
+
+            var affiliateDtos = affiliates.Select(x => _mapper.Map<AffiliateDto>(x)).ToList();
+
+            return Ok(new JsonApiDocument<List<AffiliateDto>>(affiliateDtos));
         }
 
         [HttpGet("affiliates/{affiliateId}")]
