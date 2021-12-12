@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using DagAir.Facilities.Contracts.DTOs;
 
-namespace DagAir.WebAdminApp.Affiliates
+namespace DagAir.AdminNode.Affiliates
 {
     public interface IAffiliatesHandler
     {

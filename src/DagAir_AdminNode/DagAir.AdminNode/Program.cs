@@ -1,16 +1,9 @@
+#nullable enable
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DagAir.AdminNode.Consumers;
-using DagAir.AdminNode.Infrastructure;
+using DagAir.AdminNode.Infrastructure.RabbitMq;
 using DagAir.Components.Logging;
-using MassTransit;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace DagAir.AdminNode
 {

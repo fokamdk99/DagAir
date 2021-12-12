@@ -9,7 +9,7 @@
         <ul class="nav nav-pills flex-column">
             @foreach (var affiliate in Model.AffiliateDtos)
             {
-                <li>@Html.DisplayFor(modelItem => affiliate.Name)</li>
+                @Html.ActionLink(affiliate.Name, "Affiliate", "Affiliates", new {affiliateId = affiliate.Id}, null)
             }
         </ul>
     </div>

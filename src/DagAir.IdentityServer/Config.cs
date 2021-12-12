@@ -51,8 +51,11 @@ namespace DagAir.IdentityServer
                     //RedirectUris           = { $"{configuration.GetSection("serviceUrls:DagAir.WebAdminApp")}/signin-oidc" }, //https://localhost:5011
                     //PostLogoutRedirectUris = { $"{configuration.GetSection("serviceUrls:DagAir.WebAdminApp")}/signout-callback-oidc" },
                     
-                    RedirectUris           = { "https://localhost:8085/signin-oidc" }, //https://localhost:5011
-                    PostLogoutRedirectUris = { "https://localhost:8085/signout-callback-oidc" },
+                    //RedirectUris           = { "https://localhost:8085/signin-oidc" }, //https://localhost:5011
+                    //PostLogoutRedirectUris = { "https://localhost:8085/signout-callback-oidc" },
+                    
+                    RedirectUris           = { "https://localhost:5011/signin-oidc" }, //https://localhost:5011
+                    PostLogoutRedirectUris = { "https://localhost:5011/signout-callback-oidc" },
 
                     AllowedGrantTypes = GrantTypes.Code,
                     

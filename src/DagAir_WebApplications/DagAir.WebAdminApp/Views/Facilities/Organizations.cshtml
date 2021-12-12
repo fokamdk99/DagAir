@@ -9,7 +9,9 @@
         <ul class="nav nav-pills flex-column">
             @foreach (var organization in Model.OrganizationDtos)
             {
-                <li>@Html.DisplayFor(modelItem => organization.Name)</li>
+                <li>
+                    @Html.ActionLink(organization.Name, "Organization", "Facilities", new {organizationId = organization.Id}, null)
+                </li>
             }
         </ul>
     </div>

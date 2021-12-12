@@ -12,6 +12,7 @@ namespace DagAir.WebAdminApp.Controllers
         private readonly IAffiliatesHandler _affiliatesHandler;
         
         public List<AffiliateDto> AffiliateDtos;
+        public AffiliateDto AffiliateDto;
 
         public AffiliatesController(IAffiliatesHandler affiliatesHandler)
         {
@@ -32,10 +33,30 @@ namespace DagAir.WebAdminApp.Controllers
             var affiliateDtos = await _affiliatesHandler.GetAffiliates();
             AffiliateDtos = affiliateDtos;
         }
+        
+        public async Task<IActionResult> Affiliate(long affiliateId)
+        {
+            await LoadAsyncAffiliate(User, affiliateId);
+            var affiliateModel = new GetAffiliateModel();
+            affiliateModel.AffiliateDto = AffiliateDto;
+            
+            return View(affiliateModel);
+        }
+        
+        private async Task LoadAsyncAffiliate(ClaimsPrincipal user, long affiliateId)
+        {
+            var affiliateDto = await _affiliatesHandler.GetAffiliateById(affiliateId);
+            AffiliateDto = affiliateDto;
+        }
     }
 
     public class GetAffiliatesModel
     {
         public List<AffiliateDto> AffiliateDtos { get; set; }
+    }
+    
+    public class GetAffiliateModel
+    {
+        public AffiliateDto AffiliateDto { get; set; }
     }
 }

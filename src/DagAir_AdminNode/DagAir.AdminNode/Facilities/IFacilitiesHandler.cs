@@ -2,11 +2,11 @@
 using System.Threading.Tasks;
 using DagAir.Facilities.Contracts.DTOs;
 
-namespace DagAir.WebAdminApp.Facilities
+namespace DagAir.AdminNode.Facilities
 {
     public interface IFacilitiesHandler
     {
         Task<List<OrganizationDto>> GetOrganizations();
-        Task<OrganizationDto> GetOrganization(long organizationId);
+        Task<OrganizationDto> GetOrganizationById(long organizationId);
     }
 }

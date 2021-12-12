@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace DagAir.AdminNode.Infrastructure
+namespace DagAir.AdminNode.Infrastructure.RabbitMq
 {
     public static class AdminNodeRabbitMqFeature
     {

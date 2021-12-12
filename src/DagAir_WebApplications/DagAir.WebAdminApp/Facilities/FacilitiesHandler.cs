@@ -41,13 +41,40 @@ namespace DagAir.WebAdminApp.Facilities
             var client = new HttpClient();
             client.SetBearerToken(identityToken.AccessToken);
             _client.ConfigureClient(client);
-            var path = _externalServices.FacilitiesApi + FacilitiesEndpoints.GetOrganizations;
+            var path = _externalServices.AdminNode + FacilitiesEndpoints.GetOrganizations;
             var response = await _client.GetAsync<List<OrganizationDto>>(path);
 
             if (response.Item2 != HttpStatusCode.OK)
             {
                 var message =
                     $"Error while trying to get information about organizations. Status code: ${response.Item2}";
+                _logger.LogError(message);
+                throw new Exception(message);
+            }
+
+            return response.Item1;
+        }
+        
+        public async Task<OrganizationDto> GetOrganization(long organizationId)
+        {
+            var identityResource = new IdentityResource
+            {
+                ClientId = "WebAdminApp",
+                ClientSecret = "secret",
+                Scope = "DagAir.Facilities"
+            };
+            
+            var identityToken = await _identityHandler.IssueToken(identityResource);
+            var client = new HttpClient();
+            client.SetBearerToken(identityToken.AccessToken);
+            _client.ConfigureClient(client);
+            var path = _externalServices.AdminNode + FacilitiesEndpoints.GetOrganizations + organizationId;
+            var response = await _client.GetAsync<OrganizationDto>(path);
+
+            if (response.Item2 != HttpStatusCode.OK)
+            {
+                var message =
+                    $"Error while trying to get information about organization with id {organizationId}. Status code: ${response.Item2}";
                 _logger.LogError(message);
                 throw new Exception(message);
             }

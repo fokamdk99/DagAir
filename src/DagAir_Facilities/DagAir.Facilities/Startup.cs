@@ -25,6 +25,7 @@ namespace DagAir.Facilities
             healthChecksToBeDisabled.Add(HealthCheckFeature.RabbitMqHealthCheck);
             services.AddDagAirHealthChecks(healthChecksToBeDisabled);
 
+            /*
             services.AddAuthentication("Bearer")
                 .AddJwtBearer("Bearer", options =>
                 {
@@ -44,6 +45,7 @@ namespace DagAir.Facilities
                     policy.RequireClaim("scope", "DagAir.Facilities");
                 });
             });
+            */
         }
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -55,7 +57,7 @@ namespace DagAir.Facilities
 
             app.UseConfiguredSwagger();
             
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseRouting();
 
             app.UseAuthentication();

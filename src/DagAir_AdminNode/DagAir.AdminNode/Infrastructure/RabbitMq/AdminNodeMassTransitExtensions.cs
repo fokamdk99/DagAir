@@ -5,7 +5,7 @@ using MassTransit;
 using MassTransit.ExtensionsDependencyInjectionIntegration;
 using MassTransit.RabbitMqTransport;
 
-namespace DagAir.AdminNode.Infrastructure
+namespace DagAir.AdminNode.Infrastructure.RabbitMq
 {
     public static class AdminNodeMassTransitExtensions
     {

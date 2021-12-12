@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DagAir.AdminNode.Hubs;
+using DagAir.AdminNode.Infrastructure.Swagger;
 using DagAir.Components.HealthChecks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -17,9 +18,13 @@ namespace DagAir.AdminNode
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvcCore()
+                .AddApiExplorer();
+            services.AddControllers();
             services.AddSignalR();
             services.AddDagAirHealthChecks(new List<string>());
             services.AddCors();
+            services.AddConfiguredSwagger();
         }
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IConfiguration configuration)
@@ -28,7 +33,10 @@ namespace DagAir.AdminNode
             {
                 app.UseDeveloperExceptionPage();
             }
+            
+            app.UseConfiguredSwagger();
 
+            app.UseHttpsRedirection();
             app.UseRouting();
             
             app.UseCors(builder =>
@@ -40,6 +48,7 @@ namespace DagAir.AdminNode
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllers();
                 endpoints.MapHub<ChatHub>("/chatHub");
                 endpoints.MapHealthCheckEndpoints();
             });
