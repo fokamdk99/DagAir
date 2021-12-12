@@ -42,7 +42,8 @@ namespace DagAir.AdminNode
             app.UseCors(builder =>
             {
                 builder.AllowCredentials();
-                builder.WithOrigins(configuration.GetSection("serviceUrls:webAdminApp").Value);
+                var origin = configuration.GetSection("serviceUrls:webAdminApp").Value; 
+                builder.WithOrigins(origin.Substring(0, origin.Length-1));
                 builder.AllowAnyHeader();
             });
 

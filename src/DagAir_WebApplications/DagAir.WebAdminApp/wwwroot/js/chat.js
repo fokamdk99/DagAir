@@ -1,11 +1,14 @@
 ﻿"use strict";
 
+var uniqueRoomId;
+
+function SetUniqueRoomId(roomId){
+    uniqueRoomId = roomId;
+}
+
 var settings = JSON.parse(data);
 
 var connection = new signalR.HubConnectionBuilder().withUrl(settings["AdminNodeHub"]).withAutomaticReconnect().build();
-
-//Disable send button until connection is established
-document.getElementById("sendButton").disabled = true;
 
 connection.on("PoliciesEvaluationResultEvent", function (message) {
     var li = document.createElement("li");
@@ -17,23 +20,15 @@ connection.on("PoliciesEvaluationResultEvent", function (message) {
 });
 
 connection.start({ withCredentials: false }).then(function () {
-    document.getElementById("sendButton").disabled = false;
-    console.log("connection started")
+    console.log("connection started");
+    console.log("room Id: {0}", uniqueRoomId);
 }).catch(function (err) {
     return console.error(err.toString());
 }).then(function () {
-    connection.invoke("SubscribeToPoliciesEvaluationResultEvent", "1538f2d5-a453-ec11-b57a-00155d0da468").catch(function (err) {
+    console.log("connection started!!")
+    connection.invoke("SubscribeToPoliciesEvaluationResultEvent", uniqueRoomId).catch(function (err) {
         return console.error(err.toString());
     });
 }).catch(function (err) {
     return console.error(err)
-});
-
-document.getElementById("sendButton").addEventListener("click", function (event) {
-    var user = document.getElementById("userInput").value;
-    var message = document.getElementById("messageInput").value;
-    connection.invoke("SubscribeToPoliciesEvaluationResultEvent", user, message).catch(function (err) {
-        return console.error(err.toString());
-    });
-    event.preventDefault();
 });

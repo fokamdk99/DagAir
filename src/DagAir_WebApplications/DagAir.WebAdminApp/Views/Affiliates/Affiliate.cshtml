@@ -23,7 +23,7 @@
                 @foreach (var room in Model.AffiliateDto.Rooms)
                 {
                     <li>
-                        @Html.ActionLink($"Room {room.Number}", "Affiliate", "Affiliates", new {roomId = room.Id}, null)
+                        @Html.ActionLink($"Room {room.Number}", "Room", "Rooms", new {uniqueRoomId = room.UniqueRoomId}, null)
                     </li>
                 }
             </ul>
