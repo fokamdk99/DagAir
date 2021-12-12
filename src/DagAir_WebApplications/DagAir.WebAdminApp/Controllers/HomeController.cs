@@ -7,16 +7,19 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using DagAir.WebAdminApp.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Configuration;
 
 namespace DagAir.WebAdminApp.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IConfiguration _configuration;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IConfiguration configuration)
         {
             _logger = logger;
+            _configuration = configuration;
         }
 
         public IActionResult Index()
@@ -32,7 +35,7 @@ namespace DagAir.WebAdminApp.Controllers
         
         public IActionResult Register()
         {
-            return Redirect("https://localhost:5001/Account/Register");
+            return Redirect($"{_configuration.GetSection("serviceUrls:DagAir.IdentityServer").Value}Account/Register");
         } 
         
         [HttpPost]

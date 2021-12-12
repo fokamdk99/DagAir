@@ -5,8 +5,9 @@
 using IdentityServer4.Models;
 using System.Collections.Generic;
 using IdentityServer4;
+using Microsoft.Extensions.Configuration;
 
-namespace IdentityServerAspNetIdentity
+namespace DagAir.IdentityServer
 {
     public static class Config
     {
@@ -23,7 +24,7 @@ namespace IdentityServerAspNetIdentity
                 new ApiScope("DagAir.Facilities", "Facilities")
             };
 
-        public static IEnumerable<Client> Clients =>
+        public static IEnumerable<Client> Clients (IConfiguration configuration) =>
             new List<Client>
             {
                 new Client
@@ -47,8 +48,11 @@ namespace IdentityServerAspNetIdentity
                 {
                     ClientId = "TestMvcApp",
 
-                    RedirectUris           = { "https://localhost:5011/signin-oidc" },
-                    PostLogoutRedirectUris = { "https://localhost:5011/signout-callback-oidc" },
+                    //RedirectUris           = { $"{configuration.GetSection("serviceUrls:DagAir.WebAdminApp")}/signin-oidc" }, //https://localhost:5011
+                    //PostLogoutRedirectUris = { $"{configuration.GetSection("serviceUrls:DagAir.WebAdminApp")}/signout-callback-oidc" },
+                    
+                    RedirectUris           = { "https://localhost:8085/signin-oidc" }, //https://localhost:5011
+                    PostLogoutRedirectUris = { "https://localhost:8085/signout-callback-oidc" },
 
                     AllowedGrantTypes = GrantTypes.Code,
                     

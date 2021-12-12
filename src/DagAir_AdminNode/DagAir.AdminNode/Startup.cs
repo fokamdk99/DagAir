@@ -7,6 +7,7 @@ using DagAir.Components.HealthChecks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -21,7 +22,7 @@ namespace DagAir.AdminNode
             services.AddCors();
         }
         
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IConfiguration configuration)
         {
             if (env.IsDevelopment())
             {
@@ -33,7 +34,7 @@ namespace DagAir.AdminNode
             app.UseCors(builder =>
             {
                 builder.AllowCredentials();
-                builder.WithOrigins("https://localhost:5011", "http://localhost:8085");
+                builder.WithOrigins(configuration.GetSection("serviceUrls:webAdminApp").Value);
                 builder.AllowAnyHeader();
             });
 

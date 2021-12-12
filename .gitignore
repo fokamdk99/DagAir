@@ -1,2 +1,5 @@
 .env
 .nuke/temp/
+certs/
+tempkey.jwk
+updateUI.ps1

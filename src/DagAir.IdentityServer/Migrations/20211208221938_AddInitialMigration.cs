@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using MySql.EntityFrameworkCore.Metadata;
 
-namespace IdentityServerAspNetIdentity.Migrations
+namespace DagAir.IdentityServer.Migrations
 {
     public partial class AddInitialMigration : Migration
     {

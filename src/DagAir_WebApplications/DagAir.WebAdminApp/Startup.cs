@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 
 namespace DagAir.WebAdminApp
 {
@@ -36,7 +37,7 @@ namespace DagAir.WebAdminApp
                 .AddCookie("Cookies")
                 .AddOpenIdConnect("oidc", options =>
                 {
-                    options.Authority = "https://localhost:5001";
+                    options.Authority = Configuration.GetSection("serviceUrls:DagAir.IdentityServer").Value;
 
                     options.ClientId = "TestMvcApp";
                     options.ClientSecret = "secret";
@@ -45,6 +46,11 @@ namespace DagAir.WebAdminApp
                     options.GetClaimsFromUserInfoEndpoint = true;
 
                     options.SaveTokens = true;
+                    
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateAudience = false
+                    };
                 });
         }
 

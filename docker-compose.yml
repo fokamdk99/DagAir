@@ -9,11 +9,11 @@ services:
       - local_influxdb2:/etc/influxdb2
     environment:
       - DOCKER_INFLUXDB_INIT_MODE=setup
-      - DOCKER_INFLUXDB_INIT_USERNAME=local_username1
-      - DOCKER_INFLUXDB_INIT_PASSWORD=local_password1
-      - DOCKER_INFLUXDB_INIT_ORG=local_org1
-      - DOCKER_INFLUXDB_INIT_BUCKET=local_bucket1
-      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=local_token1
+      - DOCKER_INFLUXDB_INIT_USERNAME=${INFLUXDB_USERNAME}
+      - DOCKER_INFLUXDB_INIT_PASSWORD=${INFLUXDB_PASSWORD}
+      - DOCKER_INFLUXDB_INIT_ORG=${INFLUXDB_ORG}
+      - DOCKER_INFLUXDB_INIT_BUCKET=${INFLUXDB_BUCKET}
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=${INFLUXDB_TOKEN}
     ports:
       - '8086:8086'
     networks:
@@ -119,15 +119,77 @@ services:
       - dagair_network
     restart: always
 
+  admin_node:
+    build:
+      target: final
+      context: ./src
+      dockerfile: ./DagAir_AdminNode/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+    ports:
+      - "8088:80"
+    depends_on:
+      - rabbitmq
+    networks:
+      - dagair_network
+    restart: always
+
   web_client_app:
     build:
       target: final
       context: ./src
       dockerfile: ./DagAir_WebApplications/Dockerfile.WebClientApp
     ports:
-      - "8085:80"
+      - "8089:443"
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
+    networks:
+      - dagair_network
+    restart: always
+
+  web_admin_app:
+    build:
+      target: final
+      context: ./src
+      dockerfile: ./DagAir_WebApplications/Dockerfile.WebAdminApp
+    ports:
+      - "8085:443"
+      - "8091:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+      - ASPNETCORE_URLS=https://+;http://+
+      - ASPNETCORE_HTTPS_PORT=8085
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=${WEB_ADMIN_APP_CERTIFICATE_PASSWORD}
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/${WEB_ADMIN_APP_CERTIFICATE_NAME}
+    volumes:
+      - ${APPDATA}/microsoft/UserSecrets/:/root/.microsoft/usersecrets
+      - ./src/DagAir_WebApplications/DagAir.WebAdminApp/certs:/https/
+      - type: bind # Using a bind volume as only this single file from `certs` directory should end up in the container.
+        source: ./certs/${ROOT_CERTIFICATE_NAME}
+        target: /https-root/${ROOT_CERTIFICATE_NAME}
+    networks:
+      - dagair_network
+    restart: always
+
+  identity_server:
+    build:
+      target: final
+      context: ./src
+      dockerfile: ./DagAir.IdentityServer/Dockerfile
+    ports:
+      - 5001:443
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+      - ASPNETCORE_URLS=https://+;
+      - ASPNETCORE_HTTPS_PORT=443
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=${IDENTITY_SERVER_CERTIFICATE_PASSWORD}
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/${IDENTITY_SERVER_CERTIFICATE_NAME}
+    volumes:
+      - ${APPDATA}/microsoft/UserSecrets/:/root/.microsoft/usersecrets
+      - ./src/DagAir.IdentityServer/certs:/https/
+      - type: bind # Using a bind volume as only this single file from `certs` directory should end up in the container.
+        source: ./certs/${ROOT_CERTIFICATE_NAME}
+        target: /https-root/${ROOT_CERTIFICATE_NAME}
     networks:
       - dagair_network
     restart: always
