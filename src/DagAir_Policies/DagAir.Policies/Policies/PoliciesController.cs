@@ -27,6 +27,11 @@ namespace DagAir.Policies.Policies
             _addNewRoomPolicyCommandHandler = addNewRoomPolicyCommandHandler;
         }
 
+        /// <summary>
+        /// Returns information about a policy currently in force in a room with a given roomId
+        /// </summary>
+        /// <param name="roomId"></param>
+        /// <returns></returns>
         [HttpGet("policies/{roomId}")]
         [ProducesResponseType(typeof(JsonApiDocument<RoomPolicyDto>), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(JsonApiError), (int)HttpStatusCode.NotFound)]
@@ -44,6 +49,11 @@ namespace DagAir.Policies.Policies
             return Ok(new JsonApiDocument<RoomPolicyDto>(roomPolicyDto));
         }
 
+        /// <summary>
+        /// Create a new policy with parameters specified in addNewRoomPolicyCommand
+        /// </summary>
+        /// <param name="addNewRoomPolicyCommand"></param>
+        /// <returns></returns>
         [HttpPost("policies")]
         [ProducesResponseType(typeof(JsonApiDocument<RoomPolicyDto>), (int) HttpStatusCode.Created)]
         [ProducesResponseType(typeof(JsonApiError), (int) HttpStatusCode.BadRequest)]

@@ -7,6 +7,7 @@ paths:
     get:
       tags:
         - Addresses
+      summary: Returns information about an address with a given addressId
       produces:
         - text/plain
         - application/json
@@ -14,6 +15,7 @@ paths:
       parameters:
         - in: path
           name: addressId
+          description: ''
           required: true
           type: integer
           format: int64
@@ -30,6 +32,7 @@ paths:
     get:
       tags:
         - Cities
+      summary: Returns information about a city with a given cityId
       produces:
         - text/plain
         - application/json
@@ -37,6 +40,7 @@ paths:
       parameters:
         - in: path
           name: cityId
+          description: ''
           required: true
           type: integer
           format: int64
@@ -53,6 +57,7 @@ paths:
     get:
       tags:
         - Countries
+      summary: Returns information about a country with a given countryId
       produces:
         - text/plain
         - application/json
@@ -60,6 +65,7 @@ paths:
       parameters:
         - in: path
           name: countryId
+          description: ''
           required: true
           type: integer
           format: int64
@@ -76,6 +82,7 @@ paths:
     get:
       tags:
         - PostalCodes
+      summary: Returns information about an postal code with a given postalCodeId
       produces:
         - text/plain
         - application/json
@@ -83,6 +90,7 @@ paths:
       parameters:
         - in: path
           name: postalCodeId
+          description: ''
           required: true
           type: integer
           format: int64

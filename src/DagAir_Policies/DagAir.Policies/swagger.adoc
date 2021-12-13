@@ -15,7 +15,11 @@ __Version__ : v1
 == Paths
 
 [[_policies-api_expected-room-conditions_post]]
-=== POST /policies-api/expected-room-conditions
+=== Creates new set of expected conditions with parameters specified in addNewExpectedRoomConditionsCommand
+....
+POST /policies-api/expected-room-conditions
+....
+
 
 ==== Parameters
 
@@ -58,7 +62,11 @@ __optional__|<<_addnewexpectedroomconditionscommand,AddNewExpectedRoomConditions
 
 
 [[_policies-api_expected-room-conditions_expectedroomconditionsid_get]]
-=== GET /policies-api/expected-room-conditions/{expectedRoomConditionsId}
+=== Returns information about a set of expected room conditions with a given expectedRoomConditionsId
+....
+GET /policies-api/expected-room-conditions/{expectedRoomConditionsId}
+....
+
 
 ==== Parameters
 
@@ -93,7 +101,11 @@ __required__|integer (int64)
 
 
 [[_policies-api_policies_post]]
-=== POST /policies-api/policies
+=== Create a new policy with parameters specified in addNewRoomPolicyCommand
+....
+POST /policies-api/policies
+....
+
 
 ==== Parameters
 
@@ -136,7 +148,11 @@ __optional__|<<_addnewroompolicycommand,AddNewRoomPolicyCommand>>
 
 
 [[_policies-api_policies_roomid_get]]
-=== GET /policies-api/policies/{roomId}
+=== Returns information about a policy currently in force in a room with a given roomId
+....
+GET /policies-api/policies/{roomId}
+....
+
 
 ==== Parameters
 

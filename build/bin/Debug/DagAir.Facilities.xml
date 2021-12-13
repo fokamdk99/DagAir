@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DagAir.Facilities</name>
+    </assembly>
+    <members>
+        <member name="M:DagAir.Facilities.Affiliates.AffiliatesController.GetAffiliates">
+            <summary>
+            Returns information about all affiliates
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DagAir.Facilities.Affiliates.AffiliatesController.GetAffiliateById(System.Int64)">
+            <summary>
+            Returns information about an affiliate with a given affiliateId
+            </summary>
+            <param name="affiliateId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DagAir.Facilities.Affiliates.AffiliatesController.CreateNewAffiliate(DagAir.Facilities.Contracts.Commands.AddNewAffiliateCommand)">
+            <summary>
+            Creates a new affiliate with parameters specified in addNewAffiliateCommand 
+            </summary>
+            <param name="addNewAffiliateCommand"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DagAir.Facilities.Organizations.OrganizationsController.GetOrganizations">
+            <summary>
+            Returns information about all organizations
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DagAir.Facilities.Organizations.OrganizationsController.GetOrganizationById(System.Int64)">
+            <summary>
+            Returns information about an organization with a given organizationId
+            </summary>
+            <param name="organizationId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DagAir.Facilities.Organizations.OrganizationsController.CreateNewOrganization(DagAir.Facilities.Contracts.Commands.AddNewOrganizationCommand)">
+            <summary>
+            Create a new organization with parameters specified in addNewOrganizationCommand 
+            </summary>
+            <param name="addNewOrganizationCommand"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DagAir.Facilities.Rooms.RoomController.GetCurrentRoomById(System.Int64)">
+            <summary>
+            Returns information about a room with a given roomId
+            </summary>
+            <param name="roomId"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

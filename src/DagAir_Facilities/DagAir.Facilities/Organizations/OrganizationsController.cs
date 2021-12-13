@@ -31,6 +31,10 @@ namespace DagAir.Facilities.Organizations
             
         }
         
+        /// <summary>
+        /// Returns information about all organizations
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("organizations")]
         [ProducesResponseType(typeof(JsonApiDocument<List<OrganizationDto>>), (int)HttpStatusCode.OK)]
@@ -48,6 +52,11 @@ namespace DagAir.Facilities.Organizations
             return Ok(new JsonApiDocument<List<OrganizationDto>>(organizationDtos));
         }
 
+        /// <summary>
+        /// Returns information about an organization with a given organizationId
+        /// </summary>
+        /// <param name="organizationId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("organizations/{organizationId}")]
         [ProducesResponseType(typeof(JsonApiDocument<OrganizationDto>), (int)HttpStatusCode.OK)]
@@ -65,6 +74,11 @@ namespace DagAir.Facilities.Organizations
             return Ok(new JsonApiDocument<OrganizationDto>(organizationDto));
         }
         
+        /// <summary>
+        /// Create a new organization with parameters specified in addNewOrganizationCommand 
+        /// </summary>
+        /// <param name="addNewOrganizationCommand"></param>
+        /// <returns></returns>
         [HttpPost("organizations")]
         [ProducesResponseType(typeof(JsonApiDocument<AffiliateDto>), (int) HttpStatusCode.Created)]
         [ProducesResponseType(typeof(JsonApiError), (int) HttpStatusCode.BadRequest)]

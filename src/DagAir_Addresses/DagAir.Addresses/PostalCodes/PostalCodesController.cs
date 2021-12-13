@@ -21,6 +21,11 @@ namespace DagAir.Addresses.PostalCodes
             _getPostalCodeQuery = getPostalCodeQuery;
         }
         
+        /// <summary>
+        /// Returns information about an postal code with a given postalCodeId
+        /// </summary>
+        /// <param name="postalCodeId"></param>
+        /// <returns></returns>
         [HttpGet("postal-codes/{postalCodeId}")]
         [ProducesResponseType(typeof(JsonApiDocument<PostalCodeDto>), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(JsonApiError), (int)HttpStatusCode.NotFound)]

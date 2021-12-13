@@ -15,7 +15,11 @@ __Version__ : v1
 == Paths
 
 [[_sensors-api_sensors_get]]
-=== GET /sensors-api/sensors
+=== Returns information about all sensors
+....
+GET /sensors-api/sensors
+....
+
 
 ==== Responses
 
@@ -38,15 +42,19 @@ __Version__ : v1
 * Sensors
 
 
-[[_sensors-api_sensors_id_get]]
-=== GET /sensors-api/sensors/{id}
+[[_sensors-api_sensors_sensorid_get]]
+=== Returns information about a sensor with a given sensorId
+....
+GET /sensors-api/sensors/{sensorId}
+....
+
 
 ==== Parameters
 
 [options="header", cols=".^2a,.^3a,.^4a"]
 |===
 |Type|Name|Schema
-|**Path**|**id** +
+|**Path**|**sensorId** +
 __required__|integer (int64)
 |===
 

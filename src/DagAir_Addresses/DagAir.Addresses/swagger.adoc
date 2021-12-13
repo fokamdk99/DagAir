@@ -15,7 +15,11 @@ __Version__ : v1
 == Paths
 
 [[_addresses-api_addresses_addressid_get]]
-=== GET /addresses-api/addresses/{addressId}
+=== Returns information about an address with a given addressId
+....
+GET /addresses-api/addresses/{addressId}
+....
+
 
 ==== Parameters
 
@@ -50,7 +54,11 @@ __required__|integer (int64)
 
 
 [[_addresses-api_cities_cityid_get]]
-=== GET /addresses-api/cities/{cityId}
+=== Returns information about a city with a given cityId
+....
+GET /addresses-api/cities/{cityId}
+....
+
 
 ==== Parameters
 
@@ -85,7 +93,11 @@ __required__|integer (int64)
 
 
 [[_addresses-api_countries_countryid_get]]
-=== GET /addresses-api/countries/{countryId}
+=== Returns information about a country with a given countryId
+....
+GET /addresses-api/countries/{countryId}
+....
+
 
 ==== Parameters
 
@@ -120,7 +132,11 @@ __required__|integer (int64)
 
 
 [[_addresses-api_postal-codes_postalcodeid_get]]
-=== GET /addresses-api/postal-codes/{postalCodeId}
+=== Returns information about an postal code with a given postalCodeId
+....
+GET /addresses-api/postal-codes/{postalCodeId}
+....
+
 
 ==== Parameters
 

@@ -21,6 +21,11 @@ namespace DagAir.Addresses.Addresses
             _getAddressQuery = getAddressQuery;
         }
         
+        /// <summary>
+        /// Returns information about an address with a given addressId
+        /// </summary>
+        /// <param name="addressId"></param>
+        /// <returns></returns>
         [HttpGet("addresses/{addressId}")]
         [ProducesResponseType(typeof(JsonApiDocument<AddressDto>), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(JsonApiError), (int)HttpStatusCode.NotFound)]

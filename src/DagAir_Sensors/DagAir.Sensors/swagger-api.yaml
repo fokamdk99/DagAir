@@ -7,6 +7,7 @@ paths:
     get:
       tags:
         - Sensors
+      summary: Returns information about all sensors
       produces:
         - text/plain
         - application/json
@@ -16,17 +17,19 @@ paths:
           description: Success
           schema:
             $ref: '#/definitions/SensorDtoListJsonApiDocument'
-  '/sensors-api/sensors/{id}':
+  '/sensors-api/sensors/{sensorId}':
     get:
       tags:
         - Sensors
+      summary: Returns information about a sensor with a given sensorId
       produces:
         - text/plain
         - application/json
         - text/json
       parameters:
         - in: path
-          name: id
+          name: sensorId
+          description: ''
           required: true
           type: integer
           format: int64

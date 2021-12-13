@@ -7,6 +7,7 @@ paths:
     get:
       tags:
         - Affiliates
+      summary: Returns information about all affiliates
       produces:
         - text/plain
         - application/json
@@ -19,6 +20,7 @@ paths:
     post:
       tags:
         - Affiliates
+      summary: Creates a new affiliate with parameters specified in addNewAffiliateCommand
       consumes:
         - application/json-patch+json
         - application/json
@@ -31,6 +33,7 @@ paths:
       parameters:
         - in: body
           name: body
+          description: ''
           schema:
             $ref: '#/definitions/AddNewAffiliateCommand'
       responses:
@@ -46,6 +49,7 @@ paths:
     get:
       tags:
         - Affiliates
+      summary: Returns information about an affiliate with a given affiliateId
       produces:
         - text/plain
         - application/json
@@ -53,6 +57,7 @@ paths:
       parameters:
         - in: path
           name: affiliateId
+          description: ''
           required: true
           type: integer
           format: int64
@@ -76,6 +81,7 @@ paths:
     get:
       tags:
         - Organizations
+      summary: Returns information about all organizations
       produces:
         - text/plain
         - application/json
@@ -92,6 +98,7 @@ paths:
     post:
       tags:
         - Organizations
+      summary: Create a new organization with parameters specified in addNewOrganizationCommand
       consumes:
         - application/json-patch+json
         - application/json
@@ -104,6 +111,7 @@ paths:
       parameters:
         - in: body
           name: body
+          description: ''
           schema:
             $ref: '#/definitions/AddNewOrganizationCommand'
       responses:
@@ -119,6 +127,7 @@ paths:
     get:
       tags:
         - Organizations
+      summary: Returns information about an organization with a given organizationId
       produces:
         - text/plain
         - application/json
@@ -126,6 +135,7 @@ paths:
       parameters:
         - in: path
           name: organizationId
+          description: ''
           required: true
           type: integer
           format: int64
@@ -142,6 +152,7 @@ paths:
     get:
       tags:
         - Room
+      summary: Returns information about a room with a given roomId
       produces:
         - text/plain
         - application/json
@@ -149,6 +160,7 @@ paths:
       parameters:
         - in: path
           name: roomId
+          description: ''
           required: true
           type: integer
           format: int64

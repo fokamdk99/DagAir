@@ -31,6 +31,10 @@ namespace DagAir.Facilities.Affiliates
             _getAffiliatesQuery = getAffiliatesQuery;
         }
         
+        /// <summary>
+        /// Returns information about all affiliates
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("affiliates")]
         [ProducesResponseType(typeof(JsonApiDocument<List<AffiliateDto>>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetAffiliates()
@@ -42,6 +46,11 @@ namespace DagAir.Facilities.Affiliates
             return Ok(new JsonApiDocument<List<AffiliateDto>>(affiliateDtos));
         }
 
+        /// <summary>
+        /// Returns information about an affiliate with a given affiliateId
+        /// </summary>
+        /// <param name="affiliateId"></param>
+        /// <returns></returns>
         [HttpGet("affiliates/{affiliateId}")]
         [ProducesResponseType(typeof(JsonApiDocument<AffiliateDto>), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(JsonApiError), (int)HttpStatusCode.NotFound)]
@@ -59,6 +68,11 @@ namespace DagAir.Facilities.Affiliates
             return Ok(new JsonApiDocument<AffiliateDto>(affiliateDto));
         }
 
+        /// <summary>
+        /// Creates a new affiliate with parameters specified in addNewAffiliateCommand 
+        /// </summary>
+        /// <param name="addNewAffiliateCommand"></param>
+        /// <returns></returns>
         [HttpPost("affiliates")]
         [ProducesResponseType(typeof(JsonApiDocument<AffiliateDto>), (int) HttpStatusCode.Created)]
         [ProducesResponseType(typeof(JsonApiError), (int) HttpStatusCode.BadRequest)]

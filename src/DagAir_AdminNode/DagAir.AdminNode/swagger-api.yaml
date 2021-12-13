@@ -7,6 +7,7 @@ paths:
     get:
       tags:
         - AffiliatesAdmin
+      summary: Returns information about all affiliates
       produces:
         - text/plain
         - application/json
@@ -24,6 +25,7 @@ paths:
     get:
       tags:
         - AffiliatesAdmin
+      summary: Returns information about an affiliate with a given affiliateId
       produces:
         - text/plain
         - application/json
@@ -31,6 +33,7 @@ paths:
       parameters:
         - in: path
           name: affiliateId
+          description: ''
           required: true
           type: integer
           format: int64

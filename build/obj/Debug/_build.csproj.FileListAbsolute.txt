@@ -159,3 +159,7 @@ C:\Users\01143844\source\repos\inzynierka\Dagair\build\bin\Debug\DagAir.Policies
 C:\Users\01143844\source\repos\inzynierka\Dagair\build\bin\Debug\DagAir.Policies.Data.pdb
 C:\Users\01143844\source\repos\inzynierka\Dagair\build\bin\Debug\DagAir.Sensors.Contracts.pdb
 C:\Users\01143844\source\repos\inzynierka\Dagair\build\bin\Debug\DagAir.Sensors.Data.pdb
+C:\Users\01143844\source\repos\inzynierka\Dagair\build\bin\Debug\DagAir.Addresses.xml
+C:\Users\01143844\source\repos\inzynierka\Dagair\build\bin\Debug\DagAir.Facilities.xml
+C:\Users\01143844\source\repos\inzynierka\Dagair\build\bin\Debug\DagAir.Policies.xml
+C:\Users\01143844\source\repos\inzynierka\Dagair\build\bin\Debug\DagAir.Sensors.xml

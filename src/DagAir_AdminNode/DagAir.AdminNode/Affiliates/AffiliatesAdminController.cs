@@ -17,6 +17,10 @@ namespace DagAir.AdminNode.Affiliates
             _affiliatesHandler = affiliatesHandler;
         }
         
+        /// <summary>
+        /// Returns information about all affiliates
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("affiliates")]
         [ProducesResponseType(typeof(JsonApiDocument<List<AffiliateDto>>), (int)HttpStatusCode.OK)]
@@ -28,6 +32,11 @@ namespace DagAir.AdminNode.Affiliates
             return Ok(new JsonApiDocument<List<AffiliateDto>>(affiliateDtos));
         }
         
+        /// <summary>
+        /// Returns information about an affiliate with a given affiliateId
+        /// </summary>
+        /// <param name="affiliateId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("affiliates/{affiliateId}")]
         [ProducesResponseType(typeof(JsonApiDocument<AffiliateDto>), (int)HttpStatusCode.OK)]

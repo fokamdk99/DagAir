@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DagAir.Policies</name>
+    </assembly>
+    <members>
+        <member name="M:DagAir.Policies.Policies.PoliciesController.GetCurrentRoomPolicy(System.Int64)">
+            <summary>
+            Returns information about a policy currently in force in a room with a given roomId
+            </summary>
+            <param name="roomId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DagAir.Policies.Policies.PoliciesController.CreateNewRoomPolicy(DagAir.Policies.Contracts.Commands.AddNewRoomPolicyCommand)">
+            <summary>
+            Create a new policy with parameters specified in addNewRoomPolicyCommand
+            </summary>
+            <param name="addNewRoomPolicyCommand"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DagAir.Policies.RoomConditions.ExpectedRoomConditionsController.GetCurrentRoomPolicy(System.Int64)">
+            <summary>
+            Returns information about a set of expected room conditions with a given expectedRoomConditionsId
+            </summary>
+            <param name="expectedRoomConditionsId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DagAir.Policies.RoomConditions.ExpectedRoomConditionsController.CreateNewExpectedRoomConditions(DagAir.Policies.Contracts.Commands.AddNewExpectedRoomConditionsCommand)">
+            <summary>
+            Creates new set of expected conditions with parameters specified in addNewExpectedRoomConditionsCommand
+            </summary>
+            <param name="addNewExpectedRoomConditionsCommand"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

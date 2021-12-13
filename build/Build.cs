@@ -229,25 +229,28 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository
         });
 
     Target GenerateSwaggerDocumentation => _ => _
-        //.DependsOn(Compile)
+        .DependsOn(Compile)
         .Executes(() =>
         {
-            var solution = (this as IHaveSolution).Solution;
-            var projects = solution.AllProjects;
             var projectList = new List<ProjectData>();
-            projectList.Add(new ProjectData{ProjectPath = AdminNodeProjectDirectory, ProjectName = AdminNode, SwaggerDocName = AdminNodeApiVersions.AdminV1});
-            //projectList.Add(new ProjectData{ProjectPath = ClientNodeProjectDirectory, ProjectName = ClientNode, SwaggerDocName = AdminNodeApiVersions.AdminV1});
-            projectList.Add(new ProjectData{ProjectPath = AddressesApiProjectDirectory, ProjectName = AddressesApi, SwaggerDocName = AddressesApiVersions.AddressesV1});
-            projectList.Add(new ProjectData{ProjectPath = FacilitiesApiProjectDirectory, ProjectName = FacilitiesApi, SwaggerDocName = FacilitiesApiVersions.FacilitiesV1});
-            projectList.Add(new ProjectData{ProjectPath = PoliciesApiProjectDirectory, ProjectName = PoliciesApi, SwaggerDocName = PoliciesApiVersions.PoliciesV1});
-            projectList.Add(new ProjectData{ProjectPath = SensorsApiProjectDirectory, ProjectName = SensorsApi, SwaggerDocName = SensorsApiVersions.SensorsV1});
-            
+            projectList.Add(
+                new ProjectData{ProjectPath = AdminNodeProjectDirectory, ProjectName = AdminNode, SwaggerDocName = AdminNodeApiVersions.AdminV1});
+            projectList.Add(
+                new ProjectData{ProjectPath = AddressesApiProjectDirectory, ProjectName = AddressesApi, SwaggerDocName = AddressesApiVersions.AddressesV1});
+            projectList.Add(
+                new ProjectData{ProjectPath = FacilitiesApiProjectDirectory, ProjectName = FacilitiesApi, SwaggerDocName = FacilitiesApiVersions.FacilitiesV1});
+            projectList.Add(
+                new ProjectData{ProjectPath = PoliciesApiProjectDirectory, ProjectName = PoliciesApi, SwaggerDocName = PoliciesApiVersions.PoliciesV1});
+            projectList.Add(
+                new ProjectData{ProjectPath = SensorsApiProjectDirectory, ProjectName = SensorsApi, SwaggerDocName = SensorsApiVersions.SensorsV1});
 
             foreach (var project in projectList)
             {
                 var projectAssembly = project.ProjectPath / "bin" / Configuration / "net5.0" /
                                       $"{project.ProjectName}.dll";
-                SwaggerTasks.GenerateSwaggerDocs($"tofile --output {project.ProjectPath}/swagger-api.yaml --serializeasv2 --yaml {projectAssembly} {project.SwaggerDocName}", RootDirectory);
+                SwaggerTasks
+                    .GenerateSwaggerDocs(
+                        $"tofile --output {project.ProjectPath}/swagger-api.yaml --serializeasv2 --yaml {projectAssembly} {project.SwaggerDocName}", RootDirectory);
 
                 CustomDockerTasks.GenerateAdocFile(
                     $"run --rm -v {project.ProjectPath}:/opt swagger2markup/swagger2markup convert -i /opt/swagger-api.yaml -f /opt/swagger");

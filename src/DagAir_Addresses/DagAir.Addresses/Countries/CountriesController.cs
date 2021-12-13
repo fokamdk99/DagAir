@@ -21,6 +21,11 @@ namespace DagAir.Addresses.Countries
             _getCountryQuery = getCityQuery;
         }
         
+        /// <summary>
+        /// Returns information about a country with a given countryId
+        /// </summary>
+        /// <param name="countryId"></param>
+        /// <returns></returns>
         [HttpGet("countries/{countryId}")]
         [ProducesResponseType(typeof(JsonApiDocument<CountryDto>), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(JsonApiError), (int)HttpStatusCode.NotFound)]

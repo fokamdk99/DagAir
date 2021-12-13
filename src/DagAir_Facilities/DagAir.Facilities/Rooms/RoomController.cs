@@ -20,6 +20,11 @@ namespace DagAir.Facilities.Rooms
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Returns information about a room with a given roomId
+        /// </summary>
+        /// <param name="roomId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("rooms/{roomId}")]
         [ProducesResponseType(typeof(JsonApiDocument<RoomDto>), (int)HttpStatusCode.OK)]

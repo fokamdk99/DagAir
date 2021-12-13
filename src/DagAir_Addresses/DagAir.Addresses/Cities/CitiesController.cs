@@ -21,6 +21,11 @@ namespace DagAir.Addresses.Cities
             _getCityQuery = getCityQuery;
         }
         
+        /// <summary>
+        /// Returns information about a city with a given cityId
+        /// </summary>
+        /// <param name="cityId"></param>
+        /// <returns></returns>
         [HttpGet("cities/{cityId}")]
         [ProducesResponseType(typeof(JsonApiDocument<CityDto>), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(JsonApiError), (int)HttpStatusCode.NotFound)]

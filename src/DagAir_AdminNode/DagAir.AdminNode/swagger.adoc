@@ -15,7 +15,11 @@ __Version__ : v1
 == Paths
 
 [[_admin-node_affiliates_get]]
-=== GET /admin-node/affiliates
+=== Returns information about all affiliates
+....
+GET /admin-node/affiliates
+....
+
 
 ==== Responses
 
@@ -40,7 +44,11 @@ __Version__ : v1
 
 
 [[_admin-node_affiliates_affiliateid_get]]
-=== GET /admin-node/affiliates/{affiliateId}
+=== Returns information about an affiliate with a given affiliateId
+....
+GET /admin-node/affiliates/{affiliateId}
+....
+
 
 ==== Parameters
 

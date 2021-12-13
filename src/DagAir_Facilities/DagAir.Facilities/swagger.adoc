@@ -15,7 +15,11 @@ __Version__ : v1
 == Paths
 
 [[_facilities-api_affiliates_post]]
-=== POST /facilities-api/affiliates
+=== Creates a new affiliate with parameters specified in addNewAffiliateCommand
+....
+POST /facilities-api/affiliates
+....
+
 
 ==== Parameters
 
@@ -58,7 +62,11 @@ __optional__|<<_addnewaffiliatecommand,AddNewAffiliateCommand>>
 
 
 [[_facilities-api_affiliates_get]]
-=== GET /facilities-api/affiliates
+=== Returns information about all affiliates
+....
+GET /facilities-api/affiliates
+....
+
 
 ==== Responses
 
@@ -82,7 +90,11 @@ __optional__|<<_addnewaffiliatecommand,AddNewAffiliateCommand>>
 
 
 [[_facilities-api_affiliates_affiliateid_get]]
-=== GET /facilities-api/affiliates/{affiliateId}
+=== Returns information about an affiliate with a given affiliateId
+....
+GET /facilities-api/affiliates/{affiliateId}
+....
+
 
 ==== Parameters
 
@@ -117,7 +129,11 @@ __required__|integer (int64)
 
 
 [[_facilities-api_organizations_post]]
-=== POST /facilities-api/organizations
+=== Create a new organization with parameters specified in addNewOrganizationCommand
+....
+POST /facilities-api/organizations
+....
+
 
 ==== Parameters
 
@@ -160,7 +176,11 @@ __optional__|<<_addneworganizationcommand,AddNewOrganizationCommand>>
 
 
 [[_facilities-api_organizations_get]]
-=== GET /facilities-api/organizations
+=== Returns information about all organizations
+....
+GET /facilities-api/organizations
+....
+
 
 ==== Responses
 
@@ -185,7 +205,11 @@ __optional__|<<_addneworganizationcommand,AddNewOrganizationCommand>>
 
 
 [[_facilities-api_organizations_organizationid_get]]
-=== GET /facilities-api/organizations/{organizationId}
+=== Returns information about an organization with a given organizationId
+....
+GET /facilities-api/organizations/{organizationId}
+....
+
 
 ==== Parameters
 
@@ -220,7 +244,11 @@ __required__|integer (int64)
 
 
 [[_facilities-api_rooms_roomid_get]]
-=== GET /facilities-api/rooms/{roomId}
+=== Returns information about a room with a given roomId
+....
+GET /facilities-api/rooms/{roomId}
+....
+
 
 ==== Parameters
 
