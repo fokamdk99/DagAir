@@ -1,0 +1,215 @@
+swagger: '2.0'
+info:
+  title: DagAir Policies API v1
+  version: v1
+paths:
+  '/policies-api/expected-room-conditions/{expectedRoomConditionsId}':
+    get:
+      tags:
+        - ExpectedRoomConditions
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - in: path
+          name: expectedRoomConditionsId
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/ExpectedRoomConditionsDtoJsonApiDocument'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/JsonApiError'
+  /policies-api/expected-room-conditions:
+    post:
+      tags:
+        - ExpectedRoomConditions
+      consumes:
+        - application/json-patch+json
+        - application/json
+        - text/json
+        - application/*+json
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/AddNewExpectedRoomConditionsCommand'
+      responses:
+        '201':
+          description: Success
+          schema:
+            $ref: '#/definitions/ExpectedRoomConditionsDtoJsonApiDocument'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/JsonApiError'
+  '/policies-api/policies/{roomId}':
+    get:
+      tags:
+        - Policies
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - in: path
+          name: roomId
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/RoomPolicyDtoJsonApiDocument'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/JsonApiError'
+  /policies-api/policies:
+    post:
+      tags:
+        - Policies
+      consumes:
+        - application/json-patch+json
+        - application/json
+        - text/json
+        - application/*+json
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/AddNewRoomPolicyCommand'
+      responses:
+        '201':
+          description: Success
+          schema:
+            $ref: '#/definitions/RoomPolicyDtoJsonApiDocument'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/JsonApiError'
+definitions:
+  AddNewExpectedRoomConditionsCommand:
+    type: object
+    properties:
+      expectedRoomConditionsDto:
+        $ref: '#/definitions/ExpectedRoomConditionsDto'
+  AddNewRoomPolicyCommand:
+    type: object
+    properties:
+      roomPolicyDto:
+        $ref: '#/definitions/RoomPolicyDto'
+      expectedRoomConditionsDto:
+        $ref: '#/definitions/ExpectedRoomConditionsDto'
+      roomPolicyCategoryDto:
+        $ref: '#/definitions/RoomPolicyCategoryDto'
+  ExpectedRoomConditionsDto:
+    type: object
+    properties:
+      id:
+        format: int64
+        type: integer
+      temperature:
+        format: float
+        type: number
+      illuminance:
+        format: float
+        type: number
+      humidity:
+        format: float
+        type: number
+      temperatureMargin:
+        format: float
+        type: number
+      illuminanceMargin:
+        format: float
+        type: number
+      humidityMargin:
+        format: float
+        type: number
+      roomPolicyId:
+        format: int64
+        type: integer
+      roomPolicies:
+        type: array
+        items:
+          $ref: '#/definitions/RoomPolicyDto'
+  ExpectedRoomConditionsDtoJsonApiDocument:
+    required:
+      - data
+    type: object
+    properties:
+      data:
+        $ref: '#/definitions/ExpectedRoomConditionsDto'
+  JsonApiError:
+    type: object
+    properties:
+      message:
+        type: string
+        readOnly: true
+      messageDetails:
+        type: string
+  RoomPolicyCategoryDto:
+    type: object
+    properties:
+      id:
+        format: int64
+        type: integer
+      name:
+        type: string
+      categoryNumber:
+        format: int32
+        type: integer
+      roomPolicies:
+        type: array
+        items:
+          $ref: '#/definitions/RoomPolicyDto'
+  RoomPolicyDto:
+    type: object
+    properties:
+      id:
+        format: int64
+        type: integer
+      startDate:
+        format: date-time
+        type: string
+      endDate:
+        format: date-time
+        type: string
+      repeatOn:
+        type: string
+      expectedConditionsId:
+        format: int64
+        type: integer
+      categoryId:
+        format: int64
+        type: integer
+      roomId:
+        format: int64
+        type: integer
+      expectedConditions:
+        $ref: '#/definitions/ExpectedRoomConditionsDto'
+      category:
+        $ref: '#/definitions/RoomPolicyCategoryDto'
+  RoomPolicyDtoJsonApiDocument:
+    required:
+      - data
+    type: object
+    properties:
+      data:
+        $ref: '#/definitions/RoomPolicyDto'

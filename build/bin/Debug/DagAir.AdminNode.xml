@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DagAir.AdminNode</name>
+    </assembly>
+    <members>
+        <member name="M:DagAir.AdminNode.Facilities.FacilitiesAdminController.GetOrganizations">
+            <summary>
+            Returns information about all organizations
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DagAir.AdminNode.Facilities.FacilitiesAdminController.GetOrganizationById(System.Int64)">
+            <summary>
+            Returns information about an organization with a given organizationId
+            </summary>
+            <param name="organizationId"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

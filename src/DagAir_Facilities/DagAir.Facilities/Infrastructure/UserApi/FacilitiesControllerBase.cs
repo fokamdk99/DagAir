@@ -6,7 +6,7 @@ namespace DagAir.Facilities.Infrastructure.UserApi
 {
     [ApiController]
     [Route("facilities-api")]
-    [ApiVersion(ApiVersions.V1)]
+    [ApiVersion(FacilitiesApiVersions.V1)]
     public class FacilitiesControllerBase : ControllerBase
     {
         protected CreatedResult Created(object value) => Created(string.Empty, value);

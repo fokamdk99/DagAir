@@ -11,7 +11,7 @@ namespace DagAir.Policies.Infrastructure.Swagger
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint($"/swagger/{ApiVersions.PoliciesV1}/swagger.json", "DagAir Policies Api");
+                c.SwaggerEndpoint($"/swagger/{PoliciesApiVersions.PoliciesV1}/swagger.json", "DagAir Policies Api");
             });
         }
 
@@ -19,7 +19,7 @@ namespace DagAir.Policies.Infrastructure.Swagger
         {
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc(ApiVersions.PoliciesV1, new OpenApiInfo(){Version = ApiVersions.V1, Title = $"DagAir Policies API {ApiVersions.V1}"});
+                c.SwaggerDoc(PoliciesApiVersions.PoliciesV1, new OpenApiInfo(){Version = PoliciesApiVersions.V1, Title = $"DagAir Policies API {PoliciesApiVersions.V1}"});
             });
         }
     }

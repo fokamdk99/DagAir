@@ -1,0 +1,191 @@
+swagger: '2.0'
+info:
+  title: DagAir Addresses API v1
+  version: v1
+paths:
+  '/addresses-api/addresses/{addressId}':
+    get:
+      tags:
+        - Addresses
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - in: path
+          name: addressId
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/AddressDtoJsonApiDocument'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/JsonApiError'
+  '/addresses-api/cities/{cityId}':
+    get:
+      tags:
+        - Cities
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - in: path
+          name: cityId
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/CityDtoJsonApiDocument'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/JsonApiError'
+  '/addresses-api/countries/{countryId}':
+    get:
+      tags:
+        - Countries
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - in: path
+          name: countryId
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/CountryDtoJsonApiDocument'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/JsonApiError'
+  '/addresses-api/postal-codes/{postalCodeId}':
+    get:
+      tags:
+        - PostalCodes
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - in: path
+          name: postalCodeId
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/PostalCodeDtoJsonApiDocument'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/JsonApiError'
+definitions:
+  AddressDto:
+    type: object
+    properties:
+      id:
+        format: int64
+        type: integer
+      countryId:
+        format: int64
+        type: integer
+      cityId:
+        format: int64
+        type: integer
+      postalCodeId:
+        format: int64
+        type: integer
+      country:
+        $ref: '#/definitions/CountryDto'
+      city:
+        $ref: '#/definitions/CityDto'
+      postalCode:
+        $ref: '#/definitions/PostalCodeDto'
+  AddressDtoJsonApiDocument:
+    required:
+      - data
+    type: object
+    properties:
+      data:
+        $ref: '#/definitions/AddressDto'
+  CityDto:
+    type: object
+    properties:
+      id:
+        format: int64
+        type: integer
+      name:
+        type: string
+      addresses:
+        type: array
+        items:
+          $ref: '#/definitions/AddressDto'
+  CityDtoJsonApiDocument:
+    required:
+      - data
+    type: object
+    properties:
+      data:
+        $ref: '#/definitions/CityDto'
+  CountryDto:
+    type: object
+    properties:
+      id:
+        format: int64
+        type: integer
+      name:
+        type: string
+      addresses:
+        type: array
+        items:
+          $ref: '#/definitions/AddressDto'
+  CountryDtoJsonApiDocument:
+    required:
+      - data
+    type: object
+    properties:
+      data:
+        $ref: '#/definitions/CountryDto'
+  JsonApiError:
+    type: object
+    properties:
+      message:
+        type: string
+        readOnly: true
+      messageDetails:
+        type: string
+  PostalCodeDto:
+    type: object
+    properties:
+      id:
+        format: int64
+        type: integer
+      number:
+        type: string
+      addresses:
+        type: array
+        items:
+          $ref: '#/definitions/AddressDto'
+  PostalCodeDtoJsonApiDocument:
+    required:
+      - data
+    type: object
+    properties:
+      data:
+        $ref: '#/definitions/PostalCodeDto'

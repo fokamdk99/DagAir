@@ -1,0 +1,123 @@
+swagger: '2.0'
+info:
+  title: DagAir Sensors API v1
+  version: v1
+paths:
+  /sensors-api/sensors:
+    get:
+      tags:
+        - Sensors
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/SensorDtoListJsonApiDocument'
+  '/sensors-api/sensors/{id}':
+    get:
+      tags:
+        - Sensors
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/SensorDtoJsonApiDocument'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/JsonApiError'
+definitions:
+  JsonApiError:
+    type: object
+    properties:
+      message:
+        type: string
+        readOnly: true
+      messageDetails:
+        type: string
+  ProducerDto:
+    type: object
+    properties:
+      id:
+        format: int64
+        type: integer
+      name:
+        type: string
+      dateOfEstablishment:
+        format: date-time
+        type: string
+      addressId:
+        format: int64
+        type: integer
+      sensorModels:
+        type: array
+        items:
+          $ref: '#/definitions/SensorModelDto'
+  SensorDto:
+    type: object
+    properties:
+      id:
+        format: int64
+        type: integer
+      lastDataSentDate:
+        format: date-time
+        type: string
+      sensorModelId:
+        format: int64
+        type: integer
+      roomId:
+        format: int64
+        type: integer
+      affiliateId:
+        format: int64
+        type: integer
+      sensorModel:
+        $ref: '#/definitions/SensorModelDto'
+  SensorDtoJsonApiDocument:
+    required:
+      - data
+    type: object
+    properties:
+      data:
+        $ref: '#/definitions/SensorDto'
+  SensorDtoListJsonApiDocument:
+    required:
+      - data
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/SensorDto'
+  SensorModelDto:
+    type: object
+    properties:
+      id:
+        format: int64
+        type: integer
+      name:
+        type: string
+      version:
+        type: string
+      producerId:
+        format: int64
+        type: integer
+      producer:
+        $ref: '#/definitions/ProducerDto'
+      sensors:
+        type: array
+        items:
+          $ref: '#/definitions/SensorDto'

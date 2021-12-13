@@ -6,7 +6,7 @@ namespace DagAir.Addresses.Infrastructure.UserApi
 {
     [ApiController]
     [Route("addresses-api")]
-    [ApiVersion(ApiVersions.V1)]
+    [ApiVersion(AddressesApiVersions.V1)]
     public class AddressesControllerBase : ControllerBase
     {
         protected CreatedResult Created(object value) => Created(string.Empty, value);

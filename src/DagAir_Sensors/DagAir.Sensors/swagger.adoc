@@ -1,0 +1,180 @@
+= DagAir Sensors API v1
+
+
+[[_overview]]
+== Overview
+
+=== Version information
+[%hardbreaks]
+__Version__ : v1
+
+
+
+
+[[_paths]]
+== Paths
+
+[[_sensors-api_sensors_get]]
+=== GET /sensors-api/sensors
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|Success|<<_sensordtolistjsonapidocument,SensorDtoListJsonApiDocument>>
+|===
+
+
+==== Produces
+
+* `text/plain`
+* `application/json`
+* `text/json`
+
+
+==== Tags
+
+* Sensors
+
+
+[[_sensors-api_sensors_id_get]]
+=== GET /sensors-api/sensors/{id}
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^4a"]
+|===
+|Type|Name|Schema
+|**Path**|**id** +
+__required__|integer (int64)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|Success|<<_sensordtojsonapidocument,SensorDtoJsonApiDocument>>
+|**404**|Not Found|<<_jsonapierror,JsonApiError>>
+|===
+
+
+==== Produces
+
+* `text/plain`
+* `application/json`
+* `text/json`
+
+
+==== Tags
+
+* Sensors
+
+
+
+
+[[_definitions]]
+== Definitions
+
+[[_jsonapierror]]
+=== JsonApiError
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**message** +
+__optional__ +
+__read-only__|string
+|**messageDetails** +
+__optional__|string
+|===
+
+
+[[_producerdto]]
+=== ProducerDto
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**addressId** +
+__optional__|integer (int64)
+|**dateOfEstablishment** +
+__optional__|string (date-time)
+|**id** +
+__optional__|integer (int64)
+|**name** +
+__optional__|string
+|**sensorModels** +
+__optional__|< <<_sensormodeldto,SensorModelDto>> > array
+|===
+
+
+[[_sensordto]]
+=== SensorDto
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**affiliateId** +
+__optional__|integer (int64)
+|**id** +
+__optional__|integer (int64)
+|**lastDataSentDate** +
+__optional__|string (date-time)
+|**roomId** +
+__optional__|integer (int64)
+|**sensorModel** +
+__optional__|<<_sensormodeldto,SensorModelDto>>
+|**sensorModelId** +
+__optional__|integer (int64)
+|===
+
+
+[[_sensordtojsonapidocument]]
+=== SensorDtoJsonApiDocument
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**data** +
+__required__|<<_sensordto,SensorDto>>
+|===
+
+
+[[_sensordtolistjsonapidocument]]
+=== SensorDtoListJsonApiDocument
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**data** +
+__required__|< <<_sensordto,SensorDto>> > array
+|===
+
+
+[[_sensormodeldto]]
+=== SensorModelDto
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**id** +
+__optional__|integer (int64)
+|**name** +
+__optional__|string
+|**producer** +
+__optional__|<<_producerdto,ProducerDto>>
+|**producerId** +
+__optional__|integer (int64)
+|**sensors** +
+__optional__|< <<_sensordto,SensorDto>> > array
+|**version** +
+__optional__|string
+|===
+
+
+
+
+

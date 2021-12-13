@@ -1,13 +1,21 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
+using DagAir.Addresses.Infrastructure;
+using DagAir.AdminNode.Infrastructure;
 using DagAir.Components.Nuke.Components;
 using DagAir.Components.Nuke.Tasks;
+using DagAir.Facilities.Infrastructure;
+using DagAir.Policies.Infrastructure;
+using DagAir.Sensors.Infrastructure;
 using Nuke.Common;
 using Nuke.Common.CI;
 using Nuke.Common.Execution;
 using Nuke.Common.IO;
+using Nuke.Common.ProjectModel;
 using Nuke.Common.Tooling;
+using Nuke.Common.Tools.Docker;
 using Nuke.Common.Tools.DotNet;
 using Nuke.Common.Tools.GitVersion;
 using Nuke.Common.Utilities.Collections;
@@ -24,7 +32,7 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository
     ///   - Microsoft VisualStudio     https://nuke.build/visualstudio
     ///   - Microsoft VSCode           https://nuke.build/vscode
 
-    public static int Main () => Execute<Build>(x => x.PackProject);
+    public static int Main () => Execute<Build>(x => x.GenerateSwaggerDocumentation);
 
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     readonly Configuration Configuration = Configuration.Release;
@@ -60,6 +68,18 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository
 
     AbsolutePath SourceDirectory => RootDirectory / "src";
     AbsolutePath ArtifactsDirectory => RootDirectory / "artifacts";
+    AbsolutePath AdminNodeProjectDirectory => SourceDirectory / "DagAir_AdminNode/DagAir.AdminNode";
+    AbsolutePath ClientNodeProjectDirectory => SourceDirectory / "DagAir_ClientNode/DagAir.ClientNode";
+    AbsolutePath AddressesApiProjectDirectory => SourceDirectory / "DagAir_Addresses/DagAir.Addresses";
+    AbsolutePath FacilitiesApiProjectDirectory => SourceDirectory / "DagAir_Facilities/DagAir.Facilities";
+    AbsolutePath PoliciesApiProjectDirectory => SourceDirectory / "DagAir_Policies/DagAir.Policies";
+    AbsolutePath SensorsApiProjectDirectory => SourceDirectory / "DagAir_Sensors/DagAir.Sensors";
+    string AdminNode => "DagAir.AdminNode";
+    string ClientNode => "DagAir.ClientNode";
+    string AddressesApi => "DagAir.Addresses";
+    string FacilitiesApi => "DagAir.Facilities";
+    string PoliciesApi => "DagAir.Policies";
+    string SensorsApi => "DagAir.Sensors";
 
     Target Clean => _ => _
         .Executes(() =>
@@ -207,4 +227,37 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository
                     .SetProcessWorkingDirectory(project.Directory));
             }
         });
+
+    Target GenerateSwaggerDocumentation => _ => _
+        //.DependsOn(Compile)
+        .Executes(() =>
+        {
+            var solution = (this as IHaveSolution).Solution;
+            var projects = solution.AllProjects;
+            var projectList = new List<ProjectData>();
+            projectList.Add(new ProjectData{ProjectPath = AdminNodeProjectDirectory, ProjectName = AdminNode, SwaggerDocName = AdminNodeApiVersions.AdminV1});
+            //projectList.Add(new ProjectData{ProjectPath = ClientNodeProjectDirectory, ProjectName = ClientNode, SwaggerDocName = AdminNodeApiVersions.AdminV1});
+            projectList.Add(new ProjectData{ProjectPath = AddressesApiProjectDirectory, ProjectName = AddressesApi, SwaggerDocName = AddressesApiVersions.AddressesV1});
+            projectList.Add(new ProjectData{ProjectPath = FacilitiesApiProjectDirectory, ProjectName = FacilitiesApi, SwaggerDocName = FacilitiesApiVersions.FacilitiesV1});
+            projectList.Add(new ProjectData{ProjectPath = PoliciesApiProjectDirectory, ProjectName = PoliciesApi, SwaggerDocName = PoliciesApiVersions.PoliciesV1});
+            projectList.Add(new ProjectData{ProjectPath = SensorsApiProjectDirectory, ProjectName = SensorsApi, SwaggerDocName = SensorsApiVersions.SensorsV1});
+            
+
+            foreach (var project in projectList)
+            {
+                var projectAssembly = project.ProjectPath / "bin" / Configuration / "net5.0" /
+                                      $"{project.ProjectName}.dll";
+                SwaggerTasks.GenerateSwaggerDocs($"tofile --output {project.ProjectPath}/swagger-api.yaml --serializeasv2 --yaml {projectAssembly} {project.SwaggerDocName}", RootDirectory);
+
+                CustomDockerTasks.GenerateAdocFile(
+                    $"run --rm -v {project.ProjectPath}:/opt swagger2markup/swagger2markup convert -i /opt/swagger-api.yaml -f /opt/swagger");
+            }
+        });
+}
+
+class ProjectData
+{
+    public AbsolutePath ProjectPath { get; set; }
+    public string ProjectName { get; set; }
+    public string SwaggerDocName { get; set; }
 }

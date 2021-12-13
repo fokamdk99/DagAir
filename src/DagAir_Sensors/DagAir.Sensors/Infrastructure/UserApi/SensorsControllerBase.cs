@@ -6,7 +6,7 @@ namespace DagAir.Sensors.Infrastructure.UserApi
 {
     [ApiController]
     [Route("sensors-api")]
-    [ApiVersion(ApiVersions.V1)]
+    [ApiVersion(SensorsApiVersions.V1)]
     public class SensorControllerBase : ControllerBase
     {
         protected CreatedResult Created(object value) => Created(string.Empty, value);

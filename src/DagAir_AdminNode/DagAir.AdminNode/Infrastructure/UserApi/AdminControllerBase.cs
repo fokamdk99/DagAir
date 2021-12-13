@@ -6,7 +6,7 @@ namespace DagAir.AdminNode.Infrastructure.UserApi
 {
     [ApiController]
     [Route("admin-node")]
-    [ApiVersion(ApiVersions.V1)]
+    [ApiVersion(AdminNodeApiVersions.V1)]
     public class AdminControllerBase : ControllerBase
     {
         protected CreatedResult Created(object value) => Created(string.Empty, value);

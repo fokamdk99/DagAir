@@ -14,7 +14,7 @@ namespace DagAir.AdminNode.Infrastructure.Swagger
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint($"/swagger/{ApiVersions.AdminV1}/swagger.json", "DagAir Admin Node");
+                c.SwaggerEndpoint($"/swagger/{AdminNodeApiVersions.AdminV1}/swagger.json", "DagAir Admin Node");
             });
         }
 
@@ -22,7 +22,7 @@ namespace DagAir.AdminNode.Infrastructure.Swagger
         {
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc(ApiVersions.AdminV1, new OpenApiInfo(){Version = ApiVersions.V1, Title = $"DagAir Admin Node {ApiVersions.V1}"});
+                c.SwaggerDoc(AdminNodeApiVersions.AdminV1, new OpenApiInfo(){Version = AdminNodeApiVersions.V1, Title = $"DagAir Admin Node {AdminNodeApiVersions.V1}"});
                 var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
             });
