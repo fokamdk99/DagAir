@@ -17,6 +17,10 @@ namespace DagAir.AdminNode.Facilities
             _facilitiesHandler = facilitiesHandler;
         }
         
+        /// <summary>
+        /// Returns information about all organizations
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("organizations")]
         [ProducesResponseType(typeof(JsonApiDocument<List<OrganizationDto>>), (int)HttpStatusCode.OK)]
@@ -28,6 +32,11 @@ namespace DagAir.AdminNode.Facilities
             return Ok(new JsonApiDocument<List<OrganizationDto>>(organizationDtos));
         }
         
+        /// <summary>
+        /// Returns information about an organization with a given organizationId
+        /// </summary>
+        /// <param name="organizationId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("organizations/{organizationId}")]
         [ProducesResponseType(typeof(JsonApiDocument<OrganizationDto>), (int)HttpStatusCode.OK)]

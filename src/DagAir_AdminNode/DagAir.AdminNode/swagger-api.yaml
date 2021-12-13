@@ -1,0 +1,180 @@
+swagger: '2.0'
+info:
+  title: DagAir Admin Node v1
+  version: v1
+paths:
+  /admin-node/affiliates:
+    get:
+      tags:
+        - AffiliatesAdmin
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/AffiliateDtoListJsonApiDocument'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/JsonApiError'
+  '/admin-node/affiliates/{affiliateId}':
+    get:
+      tags:
+        - AffiliatesAdmin
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - in: path
+          name: affiliateId
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/AffiliateDtoJsonApiDocument'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/JsonApiError'
+  /admin-node/organizations:
+    get:
+      tags:
+        - FacilitiesAdmin
+      summary: Returns information about all organizations
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/OrganizationDtoListJsonApiDocument'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/JsonApiError'
+  '/admin-node/organizations/{organizationId}':
+    get:
+      tags:
+        - FacilitiesAdmin
+      summary: Returns information about an organization with a given organizationId
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - in: path
+          name: organizationId
+          description: ''
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/OrganizationDtoJsonApiDocument'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/JsonApiError'
+definitions:
+  AffiliateDto:
+    type: object
+    properties:
+      id:
+        format: int64
+        type: integer
+      name:
+        type: string
+      organizationId:
+        format: int64
+        type: integer
+      organization:
+        $ref: '#/definitions/OrganizationDto'
+      rooms:
+        type: array
+        items:
+          $ref: '#/definitions/RoomDto'
+  AffiliateDtoJsonApiDocument:
+    required:
+      - data
+    type: object
+    properties:
+      data:
+        $ref: '#/definitions/AffiliateDto'
+  AffiliateDtoListJsonApiDocument:
+    required:
+      - data
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/AffiliateDto'
+  JsonApiError:
+    type: object
+    properties:
+      message:
+        type: string
+        readOnly: true
+      messageDetails:
+        type: string
+  OrganizationDto:
+    type: object
+    properties:
+      id:
+        format: int64
+        type: integer
+      name:
+        type: string
+      addressId:
+        format: int64
+        type: integer
+      affiliates:
+        type: array
+        items:
+          $ref: '#/definitions/AffiliateDto'
+  OrganizationDtoJsonApiDocument:
+    required:
+      - data
+    type: object
+    properties:
+      data:
+        $ref: '#/definitions/OrganizationDto'
+  OrganizationDtoListJsonApiDocument:
+    required:
+      - data
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/OrganizationDto'
+  RoomDto:
+    type: object
+    properties:
+      id:
+        format: int64
+        type: integer
+      uniqueRoomId:
+        format: uuid
+        type: string
+      number:
+        type: string
+      floor:
+        format: int32
+        type: integer
+      affiliateId:
+        format: int64
+        type: integer
+      affiliate:
+        $ref: '#/definitions/AffiliateDto'

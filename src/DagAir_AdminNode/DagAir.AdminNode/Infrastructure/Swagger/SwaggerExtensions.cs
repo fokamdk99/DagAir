@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using System.IO;
+using System.Reflection;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
@@ -20,6 +23,8 @@ namespace DagAir.AdminNode.Infrastructure.Swagger
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc(ApiVersions.AdminV1, new OpenApiInfo(){Version = ApiVersions.V1, Title = $"DagAir Admin Node {ApiVersions.V1}"});
+                var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
             });
         }
     }
