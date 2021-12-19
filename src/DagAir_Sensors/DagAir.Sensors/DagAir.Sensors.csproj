@@ -2,6 +2,8 @@
 
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <NoWarn>$(NoWarn);1591</NoWarn>
         <UserSecretsId>7d47f8e7-0b30-47fc-b462-a4a9e02a9126</UserSecretsId>
     </PropertyGroup>
 

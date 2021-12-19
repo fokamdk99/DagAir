@@ -3,5 +3,6 @@
     public interface IServicesUrls
     {
         string PoliciesApi { get; set; }
+        string FacilitiesApi { get; set; }
     }
 }

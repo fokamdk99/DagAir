@@ -13,7 +13,7 @@ namespace DagAir.Components.HttpClients
     public class DagAirHttpClient : IDagAirHttpClient
     {
         private readonly ILogger<DagAirHttpClient> _logger;
-        private readonly HttpClient _client;
+        private HttpClient _client;
 
         public DagAirHttpClient(HttpClient client,
             ILogger<DagAirHttpClient> logger)
@@ -66,6 +66,11 @@ namespace DagAir.Components.HttpClients
                 _logger.LogError($"Error while deserializing httpResponse. Exception message: {e.Message}");
                 throw new Exception();
             }
+        }
+
+        public void ConfigureClient(HttpClient client)
+        {
+            _client = client;
         }
     }
 }

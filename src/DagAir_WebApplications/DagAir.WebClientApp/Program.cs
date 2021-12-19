@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DagAir.Components.Logging;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -11,16 +12,39 @@ namespace DagAir.WebClientApp
 {
     public class Program
     {
+        private static string[]? _urls; 
+        
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            ConfigureEnvironmentVariables();
+            
+            CreateHostBuilder(args)
+                .Build()
+                .Run();
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
+        private static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
+                .UseConsoleLifetime()
+                .UseDagAirLogger()
+                .ConfigureServices((hostBuilderContext, services) =>
                 {
-                    webBuilder.UseStartup<Startup>();
-                });
+                    
+                })
+                .ConfigureWebHostDefaults(ConfigureWebHost);
+
+        private static void ConfigureWebHost(IWebHostBuilder webHostBuilder)
+        {
+            webHostBuilder.UseStartup<Startup>();
+            webHostBuilder.UseKestrel();
+            webHostBuilder.UseUrls(_urls!);
+        }
+
+        private static void ConfigureEnvironmentVariables()
+        {
+            var urls = Environment.GetEnvironmentVariable("ASPNETCORE_URLS") ?? throw new Exception(
+                "ASPNETCORE_URLS configuration is missing. Please verify that Launchsettings.json has required value.");
+            _urls = urls!.Split(";");
+        }
     }
 }

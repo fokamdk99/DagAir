@@ -1,0 +1,284 @@
+swagger: '2.0'
+info:
+  title: DagAir Facilities API v1
+  version: v1
+paths:
+  /facilities-api/affiliates:
+    get:
+      tags:
+        - Affiliates
+      summary: Returns information about all affiliates
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/AffiliateDtoListJsonApiDocument'
+    post:
+      tags:
+        - Affiliates
+      summary: Creates a new affiliate with parameters specified in addNewAffiliateCommand
+      consumes:
+        - application/json-patch+json
+        - application/json
+        - text/json
+        - application/*+json
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - in: body
+          name: body
+          description: ''
+          schema:
+            $ref: '#/definitions/AddNewAffiliateCommand'
+      responses:
+        '201':
+          description: Success
+          schema:
+            $ref: '#/definitions/AffiliateDtoJsonApiDocument'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/JsonApiError'
+  '/facilities-api/affiliates/{affiliateId}':
+    get:
+      tags:
+        - Affiliates
+      summary: Returns information about an affiliate with a given affiliateId
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - in: path
+          name: affiliateId
+          description: ''
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/AffiliateDtoJsonApiDocument'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/JsonApiError'
+  /identity:
+    get:
+      tags:
+        - Identity
+      responses:
+        '200':
+          description: Success
+  /facilities-api/organizations:
+    get:
+      tags:
+        - Organizations
+      summary: Returns information about all organizations
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/OrganizationDtoListJsonApiDocument'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/JsonApiError'
+    post:
+      tags:
+        - Organizations
+      summary: Create a new organization with parameters specified in addNewOrganizationCommand
+      consumes:
+        - application/json-patch+json
+        - application/json
+        - text/json
+        - application/*+json
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - in: body
+          name: body
+          description: ''
+          schema:
+            $ref: '#/definitions/AddNewOrganizationCommand'
+      responses:
+        '201':
+          description: Success
+          schema:
+            $ref: '#/definitions/AffiliateDtoJsonApiDocument'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/JsonApiError'
+  '/facilities-api/organizations/{organizationId}':
+    get:
+      tags:
+        - Organizations
+      summary: Returns information about an organization with a given organizationId
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - in: path
+          name: organizationId
+          description: ''
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/OrganizationDtoJsonApiDocument'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/JsonApiError'
+  '/facilities-api/rooms/{roomId}':
+    get:
+      tags:
+        - Room
+      summary: Returns information about a room with a given roomId
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - in: path
+          name: roomId
+          description: ''
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/RoomDtoJsonApiDocument'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/JsonApiError'
+definitions:
+  AddNewAffiliateCommand:
+    type: object
+    properties:
+      affiliateDto:
+        $ref: '#/definitions/AffiliateDto'
+  AddNewOrganizationCommand:
+    type: object
+    properties:
+      organizationDto:
+        $ref: '#/definitions/OrganizationDto'
+  AffiliateDto:
+    type: object
+    properties:
+      id:
+        format: int64
+        type: integer
+      name:
+        type: string
+      organizationId:
+        format: int64
+        type: integer
+      organization:
+        $ref: '#/definitions/OrganizationDto'
+      rooms:
+        type: array
+        items:
+          $ref: '#/definitions/RoomDto'
+  AffiliateDtoJsonApiDocument:
+    required:
+      - data
+    type: object
+    properties:
+      data:
+        $ref: '#/definitions/AffiliateDto'
+  AffiliateDtoListJsonApiDocument:
+    required:
+      - data
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/AffiliateDto'
+  JsonApiError:
+    type: object
+    properties:
+      message:
+        type: string
+        readOnly: true
+      messageDetails:
+        type: string
+  OrganizationDto:
+    type: object
+    properties:
+      id:
+        format: int64
+        type: integer
+      name:
+        type: string
+      addressId:
+        format: int64
+        type: integer
+      affiliates:
+        type: array
+        items:
+          $ref: '#/definitions/AffiliateDto'
+  OrganizationDtoJsonApiDocument:
+    required:
+      - data
+    type: object
+    properties:
+      data:
+        $ref: '#/definitions/OrganizationDto'
+  OrganizationDtoListJsonApiDocument:
+    required:
+      - data
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/OrganizationDto'
+  RoomDto:
+    type: object
+    properties:
+      id:
+        format: int64
+        type: integer
+      uniqueRoomId:
+        format: uuid
+        type: string
+      number:
+        type: string
+      floor:
+        format: int32
+        type: integer
+      affiliateId:
+        format: int64
+        type: integer
+      affiliate:
+        $ref: '#/definitions/AffiliateDto'
+  RoomDtoJsonApiDocument:
+    required:
+      - data
+    type: object
+    properties:
+      data:
+        $ref: '#/definitions/RoomDto'

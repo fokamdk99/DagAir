@@ -11,6 +11,8 @@ namespace DagAir.Facilities.Affiliates
         public static IServiceCollection AddAffiliatesEntitiesFeature(this IServiceCollection services)
         {
             services.AddScoped<IGetAffiliateQuery, GetAffiliateQuery>();
+            services.AddScoped<IGetAffiliatesQuery, GetAffiliatesQuery>();
+            services.AddScoped<IGetAffiliatesByOrganizationQuery, GetAffiliatesByOrganizationQuery>();
             services.AddScoped<ICommandHandler<AddNewAffiliateCommand, Affiliate>, AddNewAffiliateCommandHandler>();
 
             return services;

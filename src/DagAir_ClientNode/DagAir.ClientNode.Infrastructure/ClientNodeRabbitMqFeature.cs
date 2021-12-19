@@ -6,7 +6,7 @@ namespace DagAir.ClientNode.Infrastructure
 {
     public static class ClientNodeRabbitMqFeature
     {
-        public static IServiceCollection AddPolicyNodeRabbitMqFeature(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddClientNodeRabbitMqFeature(this IServiceCollection services, IConfiguration configuration)
         {
             var rabbitMqConfiguration =
                 RabbitMqConfiguration.GetConfiguration(configuration, "rabbitMq");

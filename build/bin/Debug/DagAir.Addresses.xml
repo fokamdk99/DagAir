@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DagAir.Addresses</name>
+    </assembly>
+    <members>
+        <member name="M:DagAir.Addresses.Addresses.AddressesController.GetAddress(System.Int64)">
+            <summary>
+            Returns information about an address with a given addressId
+            </summary>
+            <param name="addressId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DagAir.Addresses.Cities.CitiesController.GetCity(System.Int64)">
+            <summary>
+            Returns information about a city with a given cityId
+            </summary>
+            <param name="cityId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DagAir.Addresses.Countries.CountriesController.GetCountry(System.Int64)">
+            <summary>
+            Returns information about a country with a given countryId
+            </summary>
+            <param name="countryId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DagAir.Addresses.PostalCodes.PostalCodesController.GetPostalCode(System.Int64)">
+            <summary>
+            Returns information about an postal code with a given postalCodeId
+            </summary>
+            <param name="postalCodeId"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

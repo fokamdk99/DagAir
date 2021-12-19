@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DagAir.Facilities.Affiliates;
 using DagAir.Facilities.Contracts.DTOs;
+using DagAir.Facilities.Data;
 using DagAir.Facilities.Data.AppEntitities;
 using DagAir.Facilities.Organizations;
 using DagAir.Facilities.Rooms;
@@ -17,6 +18,8 @@ namespace DagAir.Facilities
             services.AddAffiliatesEntitiesFeature();
             services.AddOrganizationsEntitiesFeature();
             services.AddRoomsEntitiesFeature();
+            services.AddDagAirFacilitiesDbContext();
+            services.AddAutoMapper(typeof(FacilitiesFeature).Assembly);
             
             return services;
         }

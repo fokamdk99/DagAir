@@ -1,0 +1,457 @@
+= DagAir Facilities API v1
+
+
+[[_overview]]
+== Overview
+
+=== Version information
+[%hardbreaks]
+__Version__ : v1
+
+
+
+
+[[_paths]]
+== Paths
+
+[[_facilities-api_affiliates_post]]
+=== Creates a new affiliate with parameters specified in addNewAffiliateCommand
+....
+POST /facilities-api/affiliates
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^4a"]
+|===
+|Type|Name|Schema
+|**Body**|**body** +
+__optional__|<<_addnewaffiliatecommand,AddNewAffiliateCommand>>
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**201**|Success|<<_affiliatedtojsonapidocument,AffiliateDtoJsonApiDocument>>
+|**400**|Bad Request|<<_jsonapierror,JsonApiError>>
+|===
+
+
+==== Consumes
+
+* `application/json-patch+json`
+* `application/json`
+* `text/json`
+* `application/*+json`
+
+
+==== Produces
+
+* `text/plain`
+* `application/json`
+* `text/json`
+
+
+==== Tags
+
+* Affiliates
+
+
+[[_facilities-api_affiliates_get]]
+=== Returns information about all affiliates
+....
+GET /facilities-api/affiliates
+....
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|Success|<<_affiliatedtolistjsonapidocument,AffiliateDtoListJsonApiDocument>>
+|===
+
+
+==== Produces
+
+* `text/plain`
+* `application/json`
+* `text/json`
+
+
+==== Tags
+
+* Affiliates
+
+
+[[_facilities-api_affiliates_affiliateid_get]]
+=== Returns information about an affiliate with a given affiliateId
+....
+GET /facilities-api/affiliates/{affiliateId}
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^4a"]
+|===
+|Type|Name|Schema
+|**Path**|**affiliateId** +
+__required__|integer (int64)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|Success|<<_affiliatedtojsonapidocument,AffiliateDtoJsonApiDocument>>
+|**404**|Not Found|<<_jsonapierror,JsonApiError>>
+|===
+
+
+==== Produces
+
+* `text/plain`
+* `application/json`
+* `text/json`
+
+
+==== Tags
+
+* Affiliates
+
+
+[[_facilities-api_organizations_post]]
+=== Create a new organization with parameters specified in addNewOrganizationCommand
+....
+POST /facilities-api/organizations
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^4a"]
+|===
+|Type|Name|Schema
+|**Body**|**body** +
+__optional__|<<_addneworganizationcommand,AddNewOrganizationCommand>>
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**201**|Success|<<_affiliatedtojsonapidocument,AffiliateDtoJsonApiDocument>>
+|**400**|Bad Request|<<_jsonapierror,JsonApiError>>
+|===
+
+
+==== Consumes
+
+* `application/json-patch+json`
+* `application/json`
+* `text/json`
+* `application/*+json`
+
+
+==== Produces
+
+* `text/plain`
+* `application/json`
+* `text/json`
+
+
+==== Tags
+
+* Organizations
+
+
+[[_facilities-api_organizations_get]]
+=== Returns information about all organizations
+....
+GET /facilities-api/organizations
+....
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|Success|<<_organizationdtolistjsonapidocument,OrganizationDtoListJsonApiDocument>>
+|**404**|Not Found|<<_jsonapierror,JsonApiError>>
+|===
+
+
+==== Produces
+
+* `text/plain`
+* `application/json`
+* `text/json`
+
+
+==== Tags
+
+* Organizations
+
+
+[[_facilities-api_organizations_organizationid_get]]
+=== Returns information about an organization with a given organizationId
+....
+GET /facilities-api/organizations/{organizationId}
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^4a"]
+|===
+|Type|Name|Schema
+|**Path**|**organizationId** +
+__required__|integer (int64)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|Success|<<_organizationdtojsonapidocument,OrganizationDtoJsonApiDocument>>
+|**404**|Not Found|<<_jsonapierror,JsonApiError>>
+|===
+
+
+==== Produces
+
+* `text/plain`
+* `application/json`
+* `text/json`
+
+
+==== Tags
+
+* Organizations
+
+
+[[_facilities-api_rooms_roomid_get]]
+=== Returns information about a room with a given roomId
+....
+GET /facilities-api/rooms/{roomId}
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^4a"]
+|===
+|Type|Name|Schema
+|**Path**|**roomId** +
+__required__|integer (int64)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|Success|<<_roomdtojsonapidocument,RoomDtoJsonApiDocument>>
+|**404**|Not Found|<<_jsonapierror,JsonApiError>>
+|===
+
+
+==== Produces
+
+* `text/plain`
+* `application/json`
+* `text/json`
+
+
+==== Tags
+
+* Room
+
+
+[[_identity_get]]
+=== GET /identity
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|Success|No Content
+|===
+
+
+==== Tags
+
+* Identity
+
+
+
+
+[[_definitions]]
+== Definitions
+
+[[_addnewaffiliatecommand]]
+=== AddNewAffiliateCommand
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**affiliateDto** +
+__optional__|<<_affiliatedto,AffiliateDto>>
+|===
+
+
+[[_addneworganizationcommand]]
+=== AddNewOrganizationCommand
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**organizationDto** +
+__optional__|<<_organizationdto,OrganizationDto>>
+|===
+
+
+[[_affiliatedto]]
+=== AffiliateDto
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**id** +
+__optional__|integer (int64)
+|**name** +
+__optional__|string
+|**organization** +
+__optional__|<<_organizationdto,OrganizationDto>>
+|**organizationId** +
+__optional__|integer (int64)
+|**rooms** +
+__optional__|< <<_roomdto,RoomDto>> > array
+|===
+
+
+[[_affiliatedtojsonapidocument]]
+=== AffiliateDtoJsonApiDocument
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**data** +
+__required__|<<_affiliatedto,AffiliateDto>>
+|===
+
+
+[[_affiliatedtolistjsonapidocument]]
+=== AffiliateDtoListJsonApiDocument
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**data** +
+__required__|< <<_affiliatedto,AffiliateDto>> > array
+|===
+
+
+[[_jsonapierror]]
+=== JsonApiError
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**message** +
+__optional__ +
+__read-only__|string
+|**messageDetails** +
+__optional__|string
+|===
+
+
+[[_organizationdto]]
+=== OrganizationDto
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**addressId** +
+__optional__|integer (int64)
+|**affiliates** +
+__optional__|< <<_affiliatedto,AffiliateDto>> > array
+|**id** +
+__optional__|integer (int64)
+|**name** +
+__optional__|string
+|===
+
+
+[[_organizationdtojsonapidocument]]
+=== OrganizationDtoJsonApiDocument
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**data** +
+__required__|<<_organizationdto,OrganizationDto>>
+|===
+
+
+[[_organizationdtolistjsonapidocument]]
+=== OrganizationDtoListJsonApiDocument
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**data** +
+__required__|< <<_organizationdto,OrganizationDto>> > array
+|===
+
+
+[[_roomdto]]
+=== RoomDto
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**affiliate** +
+__optional__|<<_affiliatedto,AffiliateDto>>
+|**affiliateId** +
+__optional__|integer (int64)
+|**floor** +
+__optional__|integer (int32)
+|**id** +
+__optional__|integer (int64)
+|**number** +
+__optional__|string
+|**uniqueRoomId** +
+__optional__|string (uuid)
+|===
+
+
+[[_roomdtojsonapidocument]]
+=== RoomDtoJsonApiDocument
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**data** +
+__required__|<<_roomdto,RoomDto>>
+|===
+
+
+
+
+

@@ -5,7 +5,7 @@ namespace DagAir.Facilities.Data
 {
     public static class DagAirSensorsAppContextFeature
     {
-        public static IServiceCollection AddDagAirAppDbContext(this IServiceCollection services)
+        public static IServiceCollection AddDagAirFacilitiesDbContext(this IServiceCollection services)
         {
             services.AddSingleton<DagAirFacilitiesAppContextProvider>();
             services.AddScoped<IDagAirFacilitiesAppContext, DagAirFacilitiesAppContext>(x =>

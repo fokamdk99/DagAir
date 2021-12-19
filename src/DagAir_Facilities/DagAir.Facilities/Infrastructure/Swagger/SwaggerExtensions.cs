@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using System.IO;
+using System.Reflection;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
@@ -11,7 +14,7 @@ namespace DagAir.Facilities.Infrastructure.Swagger
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint($"/swagger/{ApiVersions.FacilitiesV1}/swagger.json", "DagAir Facilities Api");
+                c.SwaggerEndpoint($"/swagger/{FacilitiesApiVersions.FacilitiesV1}/swagger.json", "DagAir Facilities Api");
             });
         }
 
@@ -19,7 +22,9 @@ namespace DagAir.Facilities.Infrastructure.Swagger
         {
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc(ApiVersions.FacilitiesV1, new OpenApiInfo(){Version = ApiVersions.V1, Title = $"DagAir Facilities API {ApiVersions.V1}"});
+                c.SwaggerDoc(FacilitiesApiVersions.FacilitiesV1, new OpenApiInfo(){Version = FacilitiesApiVersions.V1, Title = $"DagAir Facilities API {FacilitiesApiVersions.V1}"});
+                var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
             });
         }
     }

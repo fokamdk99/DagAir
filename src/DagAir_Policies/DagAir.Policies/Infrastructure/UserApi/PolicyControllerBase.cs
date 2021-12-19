@@ -6,7 +6,7 @@ namespace DagAir.Policies.Infrastructure.UserApi
 {
     [ApiController]
     [Route("policies-api")]
-    [ApiVersion(ApiVersions.V1)]
+    [ApiVersion(PoliciesApiVersions.V1)]
     public class PolicyControllerBase : ControllerBase
     {
         protected CreatedResult Created(object value) => Created(string.Empty, value);

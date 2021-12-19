@@ -59,10 +59,10 @@ namespace DagAir.Policies.Tests.Policies
             var policy = new RoomPolicy()
             {
                 Id = 1,
-                StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddHours(-1).Hour,
+                StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.AddHours(-3).Hour,
                     DateTime.Now.Minute, DateTime.Now.Second),
                 EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day,
-                    DateTime.Now.AddHours(1).Hour, DateTime.Now.Minute, DateTime.Now.Second),
+                    DateTime.Now.AddHours(3).Hour, DateTime.Now.Minute, DateTime.Now.Second),
                 RepeatOn = "",
                 ExpectedConditionsId = 1L,
                 CategoryId = 1,

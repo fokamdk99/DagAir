@@ -16,9 +16,21 @@ class EnvironmentProvider():
         configuration = self.get_configuration()
         return configuration["INFLUXDB"]
 
+    def get_influxdb_token(self):
+        configuration = self.get_configuration()
+        return configuration["INFLUXDB_TOKEN"]
+
+    def get_influxdb_bucket(self):
+        configuration = self.get_configuration()
+        return configuration["INFLUXDB_BUCKET"]
+
     def get_dagair_policies(self):
         configuration = self.get_configuration()
         return configuration["DAGAIR_POLICIES"]
+
+    def get_dagair_facilities(self):
+        configuration = self.get_configuration()
+        return configuration["DAGAIR_FACILITIES"]
 
     def get_dagair_sensors(self):
         configuration = self.get_configuration()

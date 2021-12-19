@@ -4,6 +4,7 @@ using DagAir.Components.MassTransit.RabbitMq.Publisher;
 using DagAir.IngestionNode.Contracts;
 using DagAir.PolicyNode.Consumers;
 using DagAir.PolicyNode.Contracts.Contracts;
+using DagAir.PolicyNode.Integrations.Facilities.DataServices;
 using DagAir.PolicyNode.Integrations.Policies.DataServices;
 using MassTransit.Testing;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,6 +35,7 @@ namespace DagAir.PolicyNode.Tests.Consumers
         {
             services.AddScoped<IEventPublisher, EventPublisher>();
             services.AddScoped<IPoliciesDataService, TestPoliciesDataService>();
+            services.AddScoped<IFacilitiesDataService, TestFacilitiesDataService>();
 
             services.AddMassTransitInMemoryTestHarness(cfg =>
             {

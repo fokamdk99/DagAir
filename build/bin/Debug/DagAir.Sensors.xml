@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DagAir.Sensors</name>
+    </assembly>
+    <members>
+        <member name="M:DagAir.Sensors.Sensors.SensorsController.GetAllSensorsWithRelatedEntitiesQuery">
+            <summary>
+            Returns information about all sensors
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DagAir.Sensors.Sensors.SensorsController.GetSensorWithRelatedEntitiesQuery(System.Int64)">
+            <summary>
+            Returns information about a sensor with a given sensorId
+            </summary>
+            <param name="sensorId"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

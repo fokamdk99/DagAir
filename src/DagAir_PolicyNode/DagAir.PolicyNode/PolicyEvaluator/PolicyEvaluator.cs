@@ -20,7 +20,7 @@ namespace DagAir.PolicyNode.PolicyEvaluator
         {
             PoliciesEvaluationResultEvent resultEvent = new PoliciesEvaluationResultEvent();
             resultEvent.Message = "";
-            
+
             var expectedConditions = policy.ExpectedConditions;
 
             if (measurementSentEvent.Temperature >= expectedConditions.Temperature + expectedConditions.TemperatureMargin)

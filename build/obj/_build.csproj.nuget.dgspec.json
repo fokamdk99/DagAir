@@ -32,8 +32,23 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
+              "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Addresses\\DagAir.Addresses\\DagAir.Addresses.csproj": {
+                "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Addresses\\DagAir.Addresses\\DagAir.Addresses.csproj"
+              },
+              "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_AdminNode\\DagAir.AdminNode\\DagAir.AdminNode.csproj": {
+                "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_AdminNode\\DagAir.AdminNode\\DagAir.AdminNode.csproj"
+              },
               "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.Nuke\\DagAir.Components.Nuke.csproj": {
                 "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.Nuke\\DagAir.Components.Nuke.csproj"
+              },
+              "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Facilities\\DagAir.Facilities\\DagAir.Facilities.csproj": {
+                "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Facilities\\DagAir.Facilities\\DagAir.Facilities.csproj"
+              },
+              "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Policies\\DagAir.Policies\\DagAir.Policies.csproj": {
+                "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Policies\\DagAir.Policies\\DagAir.Policies.csproj"
+              },
+              "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Sensors\\DagAir.Sensors\\DagAir.Sensors.csproj": {
+                "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Sensors\\DagAir.Sensors\\DagAir.Sensors.csproj"
               }
             }
           }
@@ -69,6 +84,750 @@
               "version": "[5.6.7, 5.6.7]"
             }
           ],
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Addresses\\DagAir.Addresses.Contracts\\DagAir.Addresses.Contracts.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Addresses\\DagAir.Addresses.Contracts\\DagAir.Addresses.Contracts.csproj",
+        "projectName": "DagAir.Addresses.Contracts",
+        "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Addresses\\DagAir.Addresses.Contracts\\DagAir.Addresses.Contracts.csproj",
+        "packagesPath": "C:\\Users\\01143844\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Addresses\\DagAir.Addresses.Contracts\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\01143844\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Addresses\\DagAir.Addresses.Data\\DagAir.Addresses.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Addresses\\DagAir.Addresses.Data\\DagAir.Addresses.Data.csproj",
+        "projectName": "DagAir.Addresses.Data",
+        "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Addresses\\DagAir.Addresses.Data\\DagAir.Addresses.Data.csproj",
+        "packagesPath": "C:\\Users\\01143844\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Addresses\\DagAir.Addresses.Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\01143844\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "EFCore.NamingConventions": {
+              "target": "Package",
+              "version": "[5.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.10, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "MySql.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.8, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Addresses\\DagAir.Addresses\\DagAir.Addresses.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Addresses\\DagAir.Addresses\\DagAir.Addresses.csproj",
+        "projectName": "DagAir.Addresses",
+        "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Addresses\\DagAir.Addresses\\DagAir.Addresses.csproj",
+        "packagesPath": "C:\\Users\\01143844\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Addresses\\DagAir.Addresses\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\01143844\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Addresses\\DagAir.Addresses.Contracts\\DagAir.Addresses.Contracts.csproj": {
+                "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Addresses\\DagAir.Addresses.Contracts\\DagAir.Addresses.Contracts.csproj"
+              },
+              "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Addresses\\DagAir.Addresses.Data\\DagAir.Addresses.Data.csproj": {
+                "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Addresses\\DagAir.Addresses.Data\\DagAir.Addresses.Data.csproj"
+              },
+              "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.ApiModels\\DagAir.Components.ApiModels.csproj": {
+                "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.ApiModels\\DagAir.Components.ApiModels.csproj"
+              },
+              "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.Healthchecks\\DagAir.Components.Healthchecks.csproj": {
+                "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.Healthchecks\\DagAir.Components.Healthchecks.csproj"
+              },
+              "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.Logging\\DagAir.Components.Logging.csproj": {
+                "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.Logging\\DagAir.Components.Logging.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[10.1.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.1.1, )"
+            },
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[5.0.11, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Versioning": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Swashbuckle.AspNetCore.Swagger": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerGen": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerUI": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_AdminNode\\DagAir.AdminNode\\DagAir.AdminNode.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_AdminNode\\DagAir.AdminNode\\DagAir.AdminNode.csproj",
+        "projectName": "DagAir.AdminNode",
+        "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_AdminNode\\DagAir.AdminNode\\DagAir.AdminNode.csproj",
+        "packagesPath": "C:\\Users\\01143844\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_AdminNode\\DagAir.AdminNode\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\01143844\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.ApiModels\\DagAir.Components.ApiModels.csproj": {
+                "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.ApiModels\\DagAir.Components.ApiModels.csproj"
+              },
+              "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.Healthchecks\\DagAir.Components.Healthchecks.csproj": {
+                "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.Healthchecks\\DagAir.Components.Healthchecks.csproj"
+              },
+              "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.HttpClients\\DagAir.Components.HttpClients.csproj": {
+                "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.HttpClients\\DagAir.Components.HttpClients.csproj"
+              },
+              "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.Logging\\DagAir.Components.Logging.csproj": {
+                "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.Logging\\DagAir.Components.Logging.csproj"
+              },
+              "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.MassTransit.RabbitMq\\DagAir.Components.MassTransit.RabbitMq.csproj": {
+                "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.MassTransit.RabbitMq\\DagAir.Components.MassTransit.RabbitMq.csproj"
+              },
+              "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Facilities\\DagAir.Facilities.Contracts\\DagAir.Facilities.Contracts.csproj": {
+                "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Facilities\\DagAir.Facilities.Contracts\\DagAir.Facilities.Contracts.csproj"
+              },
+              "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_PolicyNode\\DagAir.PolicyNode.Contracts\\DagAir.PolicyNode.Contracts.csproj": {
+                "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_PolicyNode\\DagAir.PolicyNode.Contracts\\DagAir.PolicyNode.Contracts.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "IdentityModel": {
+              "target": "Package",
+              "version": "[5.2.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.OpenIdConnect": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Versioning": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Swashbuckle.AspNetCore.Swagger": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerGen": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerUI": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.ApiModels\\DagAir.Components.ApiModels.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.ApiModels\\DagAir.Components.ApiModels.csproj",
+        "projectName": "DagAir.Components.ApiModels",
+        "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.ApiModels\\DagAir.Components.ApiModels.csproj",
+        "packagesPath": "C:\\Users\\01143844\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.ApiModels\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\01143844\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.WebUtilities": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.Healthchecks\\DagAir.Components.Healthchecks.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.Healthchecks\\DagAir.Components.Healthchecks.csproj",
+        "projectName": "DagAir.Components.Healthchecks",
+        "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.Healthchecks\\DagAir.Components.Healthchecks.csproj",
+        "packagesPath": "C:\\Users\\01143844\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.Healthchecks\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\01143844\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "MassTransit": {
+              "target": "Package",
+              "version": "[7.2.2, )"
+            },
+            "MassTransit.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[7.2.2, )"
+            },
+            "MassTransit.RabbitMQ": {
+              "target": "Package",
+              "version": "[7.2.2, )"
+            },
+            "Microsoft.Extensions.Diagnostics.HealthChecks": {
+              "target": "Package",
+              "version": "[5.0.11, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.HttpClients\\DagAir.Components.HttpClients.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.HttpClients\\DagAir.Components.HttpClients.csproj",
+        "projectName": "DagAir.Components.HttpClients",
+        "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.HttpClients\\DagAir.Components.HttpClients.csproj",
+        "packagesPath": "C:\\Users\\01143844\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.HttpClients\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\01143844\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.ApiModels\\DagAir.Components.ApiModels.csproj": {
+                "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.ApiModels\\DagAir.Components.ApiModels.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.Extensions.Http": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.Extensions.Logging.Abstractions": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.Logging\\DagAir.Components.Logging.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.Logging\\DagAir.Components.Logging.csproj",
+        "projectName": "DagAir.Components.Logging",
+        "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.Logging\\DagAir.Components.Logging.csproj",
+        "packagesPath": "C:\\Users\\01143844\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.Logging\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\01143844\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.Extensions.Hosting.Abstractions": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Serilog": {
+              "target": "Package",
+              "version": "[2.10.0, )"
+            },
+            "Serilog.Extensions.Hosting": {
+              "target": "Package",
+              "version": "[4.1.2, )"
+            },
+            "Serilog.Settings.Configuration": {
+              "target": "Package",
+              "version": "[3.3.0, )"
+            },
+            "Serilog.Sinks.Console": {
+              "target": "Package",
+              "version": "[4.0.0, )"
+            },
+            "Serilog.Sinks.File": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.MassTransit.RabbitMq\\DagAir.Components.MassTransit.RabbitMq.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.MassTransit.RabbitMq\\DagAir.Components.MassTransit.RabbitMq.csproj",
+        "projectName": "DagAir.Components.MassTransit.RabbitMq",
+        "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.MassTransit.RabbitMq\\DagAir.Components.MassTransit.RabbitMq.csproj",
+        "packagesPath": "C:\\Users\\01143844\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.MassTransit.RabbitMq\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\01143844\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "MassTransit.AspNetCore": {
+              "target": "Package",
+              "version": "[7.2.2, )"
+            },
+            "MassTransit.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[7.2.2, )"
+            },
+            "MassTransit.RabbitMQ": {
+              "target": "Package",
+              "version": "[7.2.2, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Binder": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
@@ -134,6 +893,869 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Facilities\\DagAir.Facilities.Contracts\\DagAir.Facilities.Contracts.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Facilities\\DagAir.Facilities.Contracts\\DagAir.Facilities.Contracts.csproj",
+        "projectName": "DagAir.Facilities.Contracts",
+        "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Facilities\\DagAir.Facilities.Contracts\\DagAir.Facilities.Contracts.csproj",
+        "packagesPath": "C:\\Users\\01143844\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Facilities\\DagAir.Facilities.Contracts\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\01143844\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Facilities\\DagAir.Facilities.Data\\DagAir.Facilities.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Facilities\\DagAir.Facilities.Data\\DagAir.Facilities.Data.csproj",
+        "projectName": "DagAir.Facilities.Data",
+        "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Facilities\\DagAir.Facilities.Data\\DagAir.Facilities.Data.csproj",
+        "packagesPath": "C:\\Users\\01143844\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Facilities\\DagAir.Facilities.Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\01143844\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "EFCore.NamingConventions": {
+              "target": "Package",
+              "version": "[5.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[5.0.10, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[5.0.2, )"
+            },
+            "MySql.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.5, )"
+            },
+            "NewId": {
+              "target": "Package",
+              "version": "[3.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Facilities\\DagAir.Facilities\\DagAir.Facilities.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Facilities\\DagAir.Facilities\\DagAir.Facilities.csproj",
+        "projectName": "DagAir.Facilities",
+        "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Facilities\\DagAir.Facilities\\DagAir.Facilities.csproj",
+        "packagesPath": "C:\\Users\\01143844\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Facilities\\DagAir.Facilities\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\01143844\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.ApiModels\\DagAir.Components.ApiModels.csproj": {
+                "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.ApiModels\\DagAir.Components.ApiModels.csproj"
+              },
+              "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.Healthchecks\\DagAir.Components.Healthchecks.csproj": {
+                "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.Healthchecks\\DagAir.Components.Healthchecks.csproj"
+              },
+              "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.Logging\\DagAir.Components.Logging.csproj": {
+                "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.Logging\\DagAir.Components.Logging.csproj"
+              },
+              "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Facilities\\DagAir.Facilities.Contracts\\DagAir.Facilities.Contracts.csproj": {
+                "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Facilities\\DagAir.Facilities.Contracts\\DagAir.Facilities.Contracts.csproj"
+              },
+              "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Facilities\\DagAir.Facilities.Data\\DagAir.Facilities.Data.csproj": {
+                "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Facilities\\DagAir.Facilities.Data\\DagAir.Facilities.Data.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[10.1.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.1.1, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[5.0.10, )"
+            },
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[5.0.11, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Versioning": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Swashbuckle.AspNetCore.Swagger": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerGen": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerUI": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_IngestionNode\\DagAir.IngestionNode.Contracts\\DagAir.IngestionNode.Contracts.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_IngestionNode\\DagAir.IngestionNode.Contracts\\DagAir.IngestionNode.Contracts.csproj",
+        "projectName": "DagAir.IngestionNode.Contracts",
+        "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_IngestionNode\\DagAir.IngestionNode.Contracts\\DagAir.IngestionNode.Contracts.csproj",
+        "packagesPath": "C:\\Users\\01143844\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_IngestionNode\\DagAir.IngestionNode.Contracts\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\01143844\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Policies\\DagAir.Policies.Contracts\\DagAir.Policies.Contracts.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Policies\\DagAir.Policies.Contracts\\DagAir.Policies.Contracts.csproj",
+        "projectName": "DagAir.Policies.Contracts",
+        "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Policies\\DagAir.Policies.Contracts\\DagAir.Policies.Contracts.csproj",
+        "packagesPath": "C:\\Users\\01143844\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Policies\\DagAir.Policies.Contracts\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\01143844\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Policies\\DagAir.Policies.Data\\DagAir.Policies.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Policies\\DagAir.Policies.Data\\DagAir.Policies.Data.csproj",
+        "projectName": "DagAir.Policies.Data",
+        "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Policies\\DagAir.Policies.Data\\DagAir.Policies.Data.csproj",
+        "packagesPath": "C:\\Users\\01143844\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Policies\\DagAir.Policies.Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\01143844\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_IngestionNode\\DagAir.IngestionNode.Contracts\\DagAir.IngestionNode.Contracts.csproj": {
+                "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_IngestionNode\\DagAir.IngestionNode.Contracts\\DagAir.IngestionNode.Contracts.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "EFCore.NamingConventions": {
+              "target": "Package",
+              "version": "[5.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.10, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "MySql.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.8, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Policies\\DagAir.Policies\\DagAir.Policies.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Policies\\DagAir.Policies\\DagAir.Policies.csproj",
+        "projectName": "DagAir.Policies",
+        "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Policies\\DagAir.Policies\\DagAir.Policies.csproj",
+        "packagesPath": "C:\\Users\\01143844\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Policies\\DagAir.Policies\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\01143844\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.ApiModels\\DagAir.Components.ApiModels.csproj": {
+                "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.ApiModels\\DagAir.Components.ApiModels.csproj"
+              },
+              "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.Healthchecks\\DagAir.Components.Healthchecks.csproj": {
+                "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.Healthchecks\\DagAir.Components.Healthchecks.csproj"
+              },
+              "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.Logging\\DagAir.Components.Logging.csproj": {
+                "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.Logging\\DagAir.Components.Logging.csproj"
+              },
+              "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Policies\\DagAir.Policies.Contracts\\DagAir.Policies.Contracts.csproj": {
+                "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Policies\\DagAir.Policies.Contracts\\DagAir.Policies.Contracts.csproj"
+              },
+              "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Policies\\DagAir.Policies.Data\\DagAir.Policies.Data.csproj": {
+                "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Policies\\DagAir.Policies.Data\\DagAir.Policies.Data.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[10.1.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.1.1, )"
+            },
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[5.0.11, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Versioning": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Swashbuckle.AspNetCore.Swagger": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerGen": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerUI": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_PolicyNode\\DagAir.PolicyNode.Contracts\\DagAir.PolicyNode.Contracts.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_PolicyNode\\DagAir.PolicyNode.Contracts\\DagAir.PolicyNode.Contracts.csproj",
+        "projectName": "DagAir.PolicyNode.Contracts",
+        "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_PolicyNode\\DagAir.PolicyNode.Contracts\\DagAir.PolicyNode.Contracts.csproj",
+        "packagesPath": "C:\\Users\\01143844\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_PolicyNode\\DagAir.PolicyNode.Contracts\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\01143844\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Sensors\\DagAir.Sensors.Contracts\\DagAir.Sensors.Contracts.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Sensors\\DagAir.Sensors.Contracts\\DagAir.Sensors.Contracts.csproj",
+        "projectName": "DagAir.Sensors.Contracts",
+        "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Sensors\\DagAir.Sensors.Contracts\\DagAir.Sensors.Contracts.csproj",
+        "packagesPath": "C:\\Users\\01143844\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Sensors\\DagAir.Sensors.Contracts\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\01143844\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Sensors\\DagAir.Sensors.Data\\DagAir.Sensors.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Sensors\\DagAir.Sensors.Data\\DagAir.Sensors.Data.csproj",
+        "projectName": "DagAir.Sensors.Data",
+        "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Sensors\\DagAir.Sensors.Data\\DagAir.Sensors.Data.csproj",
+        "packagesPath": "C:\\Users\\01143844\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Sensors\\DagAir.Sensors.Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\01143844\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "EFCore.NamingConventions": {
+              "target": "Package",
+              "version": "[5.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[5.0.10, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[5.0.2, )"
+            },
+            "MySql.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.5, )"
+            },
+            "NewId": {
+              "target": "Package",
+              "version": "[3.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Sensors\\DagAir.Sensors\\DagAir.Sensors.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Sensors\\DagAir.Sensors\\DagAir.Sensors.csproj",
+        "projectName": "DagAir.Sensors",
+        "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Sensors\\DagAir.Sensors\\DagAir.Sensors.csproj",
+        "packagesPath": "C:\\Users\\01143844\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Sensors\\DagAir.Sensors\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\01143844\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.ApiModels\\DagAir.Components.ApiModels.csproj": {
+                "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.ApiModels\\DagAir.Components.ApiModels.csproj"
+              },
+              "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.Healthchecks\\DagAir.Components.Healthchecks.csproj": {
+                "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.Healthchecks\\DagAir.Components.Healthchecks.csproj"
+              },
+              "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.Logging\\DagAir.Components.Logging.csproj": {
+                "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Components\\DagAir.Components.Logging\\DagAir.Components.Logging.csproj"
+              },
+              "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Sensors\\DagAir.Sensors.Contracts\\DagAir.Sensors.Contracts.csproj": {
+                "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Sensors\\DagAir.Sensors.Contracts\\DagAir.Sensors.Contracts.csproj"
+              },
+              "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Sensors\\DagAir.Sensors.Data\\DagAir.Sensors.Data.csproj": {
+                "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Sensors\\DagAir.Sensors.Data\\DagAir.Sensors.Data.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[10.1.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.1.1, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Versioning": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Swashbuckle.AspNetCore.Swagger": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerGen": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerUI": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

@@ -10,7 +10,8 @@ namespace DagAir.Facilities.Organizations
     {
         public static IServiceCollection AddOrganizationsEntitiesFeature(this IServiceCollection services)
         {
-            services.AddScoped<IGetOrganizationQuery, GetOrganizationQuery>();
+            services.AddScoped<IGetOrganizationQueryById, GetOrganizationQueryById>();
+            services.AddScoped<IGetOrganizationsQuery, GetOrganizationsQuery>();
             services.AddScoped<ICommandHandler<AddNewOrganizationCommand, Organization>, AddNewOrganizationCommandHandler>();
 
             return services;

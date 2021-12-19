@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
 using DagAir.Components.ApiModels.Json;
@@ -14,23 +15,55 @@ namespace DagAir.Facilities.Organizations
     public class OrganizationsController : FacilitiesControllerBase
     {
         private readonly IMapper _mapper;
-        private readonly IGetOrganizationQuery _getOrganizationQuery;
+        private readonly IGetOrganizationQueryById _getOrganizationQueryById;
+        private readonly IGetOrganizationsQuery _getOrganizationsQuery;
         private readonly ICommandHandler<AddNewOrganizationCommand, Organization> _commandHandler;
 
-        public OrganizationsController(IMapper mapper, IGetOrganizationQuery getOrganizationQuery, ICommandHandler<AddNewOrganizationCommand, Organization> commandHandler)
+        public OrganizationsController(IMapper mapper, 
+            IGetOrganizationQueryById getOrganizationQueryById, 
+            IGetOrganizationsQuery getOrganizationsQuery,
+            ICommandHandler<AddNewOrganizationCommand, Organization> commandHandler)
         {
             _mapper = mapper;
-            _getOrganizationQuery = getOrganizationQuery;
+            _getOrganizationQueryById = getOrganizationQueryById;
+            _getOrganizationsQuery = getOrganizationsQuery;
             _commandHandler = commandHandler;
+            
+        }
+        
+        /// <summary>
+        /// Returns information about all organizations
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("organizations")]
+        [ProducesResponseType(typeof(JsonApiDocument<List<OrganizationDto>>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(JsonApiError), (int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> GetOrganizations()
+        {
+            var organizations = await _getOrganizationsQuery.Execute();
+
+            var organizationDtos = new List<OrganizationDto>();
+            foreach (var organization in organizations)
+            {
+                organizationDtos.Add(_mapper.Map<OrganizationDto>(organization));
+            }
+
+            return Ok(new JsonApiDocument<List<OrganizationDto>>(organizationDtos));
         }
 
+        /// <summary>
+        /// Returns information about an organization with a given organizationId
+        /// </summary>
+        /// <param name="organizationId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("organizations/{organizationId}")]
         [ProducesResponseType(typeof(JsonApiDocument<OrganizationDto>), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(JsonApiError), (int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> GetOrganizationById(long organizationId)
         {
-            var organization = await _getOrganizationQuery.Execute(organizationId);
+            var organization = await _getOrganizationQueryById.Execute(organizationId);
             if (organization == null)
             {
                 return GetOrganizationNotFoundMessage(organizationId);
@@ -41,6 +74,11 @@ namespace DagAir.Facilities.Organizations
             return Ok(new JsonApiDocument<OrganizationDto>(organizationDto));
         }
         
+        /// <summary>
+        /// Create a new organization with parameters specified in addNewOrganizationCommand 
+        /// </summary>
+        /// <param name="addNewOrganizationCommand"></param>
+        /// <returns></returns>
         [HttpPost("organizations")]
         [ProducesResponseType(typeof(JsonApiDocument<AffiliateDto>), (int) HttpStatusCode.Created)]
         [ProducesResponseType(typeof(JsonApiError), (int) HttpStatusCode.BadRequest)]

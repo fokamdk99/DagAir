@@ -25,6 +25,10 @@ namespace DagAir.Sensors.Sensors
             _getAllSensorsWithRelatedEntitiesQuery = getAllSensorsWithRelatedEntitiesQuery;
         }
         
+        /// <summary>
+        /// Returns information about all sensors
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("sensors")]
         [ProducesResponseType(typeof(JsonApiDocument<List<SensorDto>>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetAllSensorsWithRelatedEntitiesQuery()
@@ -37,15 +41,20 @@ namespace DagAir.Sensors.Sensors
             return Ok(new JsonApiDocument<List<SensorDto>>(sensorDtos));
         }
         
-        [HttpGet("sensors/{id}")]
+        /// <summary>
+        /// Returns information about a sensor with a given sensorId
+        /// </summary>
+        /// <param name="sensorId"></param>
+        /// <returns></returns>
+        [HttpGet("sensors/{sensorId}")]
         [ProducesResponseType(typeof(JsonApiDocument<SensorDto>), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(JsonApiError), (int)HttpStatusCode.NotFound)]
-        public async Task<IActionResult> GetSensorWithRelatedEntitiesQuery(long id)
+        public async Task<IActionResult> GetSensorWithRelatedEntitiesQuery(long sensorId)
         {
-            var sensor = await _getSensorWithRelatedEntitiesQuery.Execute(id);
+            var sensor = await _getSensorWithRelatedEntitiesQuery.Execute(sensorId);
             if (sensor == null)
             {
-                return GetCurrentSensorNotFoundMessage(id);
+                return GetCurrentSensorNotFoundMessage(sensorId);
             }
 
             var sensorDto = _mapper.Map<SensorDto>(sensor);
@@ -54,7 +63,7 @@ namespace DagAir.Sensors.Sensors
         
         private NotFoundObjectResult GetCurrentSensorNotFoundMessage(long id)
         {
-            return NotFound($"No sensor with Id: {id} has not been found");
+            return NotFound($"No sensor with Id: {id} has been found");
         }
     }
 }

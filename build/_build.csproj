@@ -16,7 +16,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\src\DagAir_Addresses\DagAir.Addresses\DagAir.Addresses.csproj" />
+    <ProjectReference Include="..\src\DagAir_AdminNode\DagAir.AdminNode\DagAir.AdminNode.csproj" />
     <ProjectReference Include="..\src\DagAir_Components/DagAir.Components.Nuke\DagAir.Components.Nuke.csproj" />
+    <ProjectReference Include="..\src\DagAir_Facilities\DagAir.Facilities\DagAir.Facilities.csproj" />
+    <ProjectReference Include="..\src\DagAir_Policies\DagAir.Policies\DagAir.Policies.csproj" />
+    <ProjectReference Include="..\src\DagAir_Sensors\DagAir.Sensors\DagAir.Sensors.csproj" />
   </ItemGroup>
 
 </Project>

@@ -25,6 +25,11 @@ namespace DagAir.Policies.RoomConditions
             _addNewExpectedRoomConditionsCommandHandler = commandHandler;
         }
         
+        /// <summary>
+        /// Returns information about a set of expected room conditions with a given expectedRoomConditionsId
+        /// </summary>
+        /// <param name="expectedRoomConditionsId"></param>
+        /// <returns></returns>
         [HttpGet("expected-room-conditions/{expectedRoomConditionsId}")]
         [ProducesResponseType(typeof(JsonApiDocument<ExpectedRoomConditionsDto>), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(JsonApiError), (int)HttpStatusCode.NotFound)]
@@ -42,6 +47,11 @@ namespace DagAir.Policies.RoomConditions
             return Ok(new JsonApiDocument<ExpectedRoomConditionsDto>(expectedRoomConditionsDto));
         }
 
+        /// <summary>
+        /// Creates new set of expected conditions with parameters specified in addNewExpectedRoomConditionsCommand
+        /// </summary>
+        /// <param name="addNewExpectedRoomConditionsCommand"></param>
+        /// <returns></returns>
         [HttpPost("expected-room-conditions")]
         [ProducesResponseType(typeof(JsonApiDocument<ExpectedRoomConditionsDto>), (int) HttpStatusCode.Created)]
         [ProducesResponseType(typeof(JsonApiError), (int) HttpStatusCode.BadRequest)]
