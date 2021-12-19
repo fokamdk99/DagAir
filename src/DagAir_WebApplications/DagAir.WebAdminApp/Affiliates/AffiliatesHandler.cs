@@ -1,15 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using DagAir.Components.HttpClients;
 using DagAir.Facilities.Contracts.DTOs;
-using DagAir.WebAdminApp.Facilities;
-using DagAir.WebAdminApp.Identity;
 using DagAir.WebAdminApp.Infrastructure;
 using DagAir.WebAdminApp.Infrastructure.Facilities;
-using IdentityModel.Client;
 using Microsoft.Extensions.Logging;
 
 namespace DagAir.WebAdminApp.Affiliates

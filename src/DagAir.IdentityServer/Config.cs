@@ -11,6 +11,7 @@ namespace DagAir.IdentityServer
 {
     public static class Config
     {
+        private static string WebAdminAppUrl => "serviceUrls:DagAir.WebAdminApp";
         public static IEnumerable<IdentityResource> IdentityResources =>
             new IdentityResource[]
             { 
@@ -48,14 +49,8 @@ namespace DagAir.IdentityServer
                 {
                     ClientId = "TestMvcApp",
 
-                    //RedirectUris           = { $"{configuration.GetSection("serviceUrls:DagAir.WebAdminApp")}/signin-oidc" }, //https://localhost:5011
-                    //PostLogoutRedirectUris = { $"{configuration.GetSection("serviceUrls:DagAir.WebAdminApp")}/signout-callback-oidc" },
-                    
-                    //RedirectUris           = { "https://localhost:8085/signin-oidc" }, //https://localhost:5011
-                    //PostLogoutRedirectUris = { "https://localhost:8085/signout-callback-oidc" },
-                    
-                    RedirectUris           = { "https://localhost:5011/signin-oidc" }, //https://localhost:5011
-                    PostLogoutRedirectUris = { "https://localhost:5011/signout-callback-oidc" },
+                    RedirectUris           = { $"{configuration.GetSection(WebAdminAppUrl).Value.Substring(0, configuration.GetSection(WebAdminAppUrl).Value.Length-1)}/signin-oidc" },
+                    PostLogoutRedirectUris = { $"{configuration.GetSection(WebAdminAppUrl).Value.Substring(0, configuration.GetSection(WebAdminAppUrl).Value.Length-1)}/signout-callback-oidc" },
 
                     AllowedGrantTypes = GrantTypes.Code,
                     

@@ -162,7 +162,7 @@ services:
       - ASPNETCORE_Kestrel__Certificates__Default__Password=${WEB_ADMIN_APP_CERTIFICATE_PASSWORD}
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/${WEB_ADMIN_APP_CERTIFICATE_NAME}
     volumes:
-      - ${APPDATA}/microsoft/UserSecrets/:/root/.microsoft/usersecrets
+      - ${APPDATA}/Microsoft/UserSecrets/:/root/.microsoft/usersecrets:ro
       - ./src/DagAir_WebApplications/DagAir.WebAdminApp/certs:/https/
       - type: bind # Using a bind volume as only this single file from `certs` directory should end up in the container.
         source: ./certs/${ROOT_CERTIFICATE_NAME}
@@ -184,8 +184,8 @@ services:
       - ASPNETCORE_HTTPS_PORT=443
       - ASPNETCORE_Kestrel__Certificates__Default__Password=${IDENTITY_SERVER_CERTIFICATE_PASSWORD}
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/${IDENTITY_SERVER_CERTIFICATE_NAME}
+      - certificate__password=${IDENTITY_SERVER_CERTIFICATE_PASSWORD}
     volumes:
-      - ${APPDATA}/microsoft/UserSecrets/:/root/.microsoft/usersecrets
       - ./src/DagAir.IdentityServer/certs:/https/
       - type: bind # Using a bind volume as only this single file from `certs` directory should end up in the container.
         source: ./certs/${ROOT_CERTIFICATE_NAME}

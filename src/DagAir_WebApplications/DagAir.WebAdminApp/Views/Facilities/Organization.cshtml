@@ -21,7 +21,7 @@
                     @foreach (var affiliate in Model.OrganizationDto.Affiliates)
                     {
                         <li>
-                            @Html.ActionLink(affiliate.Name, "Affiliate", "Affiliates", new {organizationId = affiliate.Id}, null)
+                            @Html.ActionLink(affiliate.Name, "Affiliate", "Affiliates", new {affiliateId = affiliate.Id}, null)
                         </li>
                     }
                 </ul>
