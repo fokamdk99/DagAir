@@ -1,12 +1,14 @@
 using System;
 using System.Threading.Tasks;
 using DagAir.Facilities.Contracts.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace DagAir.WebAdminApp.Controllers
 {
+    [Authorize]
     public class RoomsController : Controller
     {
         private readonly ILogger<RoomsController> _logger;

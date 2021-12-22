@@ -3060,6 +3060,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
+          "DagAir.Addresses.Contracts": "1.0.0",
+          "DagAir.AdminNode.Contracts": "1.0.0",
           "DagAir.Components.ApiModels": "1.0.0",
           "DagAir.Components.Healthchecks": "1.0.0",
           "DagAir.Components.HttpClients": "1.0.0",
@@ -3083,6 +3085,20 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "DagAir.AdminNode.Contracts/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "DagAir.Addresses.Contracts": "1.0.0",
+          "DagAir.Facilities.Contracts": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DagAir.AdminNode.Contracts.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DagAir.AdminNode.Contracts.dll": {}
+        }
       },
       "DagAir.Components.ApiModels/1.0.0": {
         "type": "project",
@@ -3323,6 +3339,7 @@
           "DagAir.Components.Logging": "1.0.0",
           "DagAir.Sensors.Contracts": "1.0.0",
           "DagAir.Sensors.Data": "1.0.0",
+          "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "5.0.11",
           "Microsoft.AspNetCore.Mvc.Versioning": "5.0.0",
           "Swashbuckle.AspNetCore.Swagger": "6.2.3",
           "Swashbuckle.AspNetCore.SwaggerGen": "6.2.3",
@@ -10214,6 +10231,11 @@
       "type": "project",
       "path": "../src/DagAir_AdminNode/DagAir.AdminNode/DagAir.AdminNode.csproj",
       "msbuildProject": "../src/DagAir_AdminNode/DagAir.AdminNode/DagAir.AdminNode.csproj"
+    },
+    "DagAir.AdminNode.Contracts/1.0.0": {
+      "type": "project",
+      "path": "../src/DagAir.AdminNode.Contracts/DagAir.AdminNode.Contracts.csproj",
+      "msbuildProject": "../src/DagAir.AdminNode.Contracts/DagAir.AdminNode.Contracts.csproj"
     },
     "DagAir.Components.ApiModels/1.0.0": {
       "type": "project",

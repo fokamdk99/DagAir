@@ -1,28 +1,29 @@
 @model GetAffiliateModel
 @{
-    ViewData["Title"] = "See organizations";
+    ViewData["Title"] = "See affiliate";
     ViewData["ActivePage"] = ManageFacilitiesPages.DownloadAffiliates;
 }
 <h4>@ViewData["Title"]</h4>
 <div class="row">
     <div class="col-md-6">
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Organization Id</th>
-            </tr>
-            <tr>
-                <td>@Model.AffiliateDto.Name</td>
-                <td>@Model.AffiliateDto.OrganizationId</td>
-            </tr>
-        </table>
-        <h4>Affiliates</h4>
-        @if (Model.AffiliateDto.Rooms.Count > 0)
+        <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">@Model.AdminNodeAffiliateDto.AffiliateDto.Name</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Address</h6>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                      <li class="list-group-item">Country: @Model.AdminNodeAffiliateDto.AddressDto.Country.Name</li>
+                      <li class="list-group-item">City: @Model.AdminNodeAffiliateDto.AddressDto.City.Name</li>
+                      <li class="list-group-item">Post code: @Model.AdminNodeAffiliateDto.AddressDto.PostalCode.Number</li>
+                    </ul>
+                </div>
+        <h4>Rooms</h4>
+        @if (Model.AdminNodeAffiliateDto.AffiliateDto.Rooms.Count > 0)
         {
-            <ul class="nav nav-pills flex-column">
-                @foreach (var room in Model.AffiliateDto.Rooms)
+            <ul class="list-group">
+                @foreach (var room in Model.AdminNodeAffiliateDto.AffiliateDto.Rooms)
                 {
-                    <li>
+                    <li class="list-group-item">
                         @Html.ActionLink($"Room {room.Number}", "Room", "Rooms", new {uniqueRoomId = room.UniqueRoomId}, null)
                     </li>
                 }

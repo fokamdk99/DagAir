@@ -3,14 +3,16 @@ using System;
 using DagAir.Facilities.Data.AppContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DagAir.Facilities.Data.Migrations.Migrations
 {
     [DbContext(typeof(DagAirFacilitiesAppContext))]
-    partial class DagAirFacilitiesAppContextModelSnapshot : ModelSnapshot
+    [Migration("20211219212555_AddAddressIdToAffiliates")]
+    partial class AddAddressIdToAffiliates
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

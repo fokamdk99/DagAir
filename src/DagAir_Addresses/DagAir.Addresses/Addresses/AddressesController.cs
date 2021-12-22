@@ -2,7 +2,9 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using DagAir.Addresses.Addresses.Queries;
+using DagAir.Addresses.Contracts.Commands;
 using DagAir.Addresses.Contracts.DTOs;
+using DagAir.Addresses.Data.AppEntities;
 using DagAir.Addresses.Infrastructure.UserApi;
 using DagAir.Components.ApiModels.Json;
 using Microsoft.AspNetCore.Mvc;
@@ -13,12 +15,15 @@ namespace DagAir.Addresses.Addresses
     {
         private readonly IMapper _mapper;
         private readonly IGetAddressQuery _getAddressQuery;
+        private readonly ICommandHandler<AddNewAddressCommand, Address> _addNewAddressCommandHandler;
         
         public AddressesController(IMapper mapper, 
-            IGetAddressQuery getAddressQuery)
+            IGetAddressQuery getAddressQuery, 
+            ICommandHandler<AddNewAddressCommand, Address> addNewAddressCommandHandler)
         {
             _mapper = mapper;
             _getAddressQuery = getAddressQuery;
+            _addNewAddressCommandHandler = addNewAddressCommandHandler;
         }
         
         /// <summary>
@@ -41,6 +46,23 @@ namespace DagAir.Addresses.Addresses
             AddressDto addressDto = _mapper.Map<AddressDto>(address);
             
             return Ok(new JsonApiDocument<AddressDto>(addressDto));
+        }
+        
+        [HttpPost("addresses")]
+        [ProducesResponseType(typeof(JsonApiDocument<AddressDto>), (int)HttpStatusCode.Created)]
+        [ProducesResponseType(typeof(JsonApiError), (int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> GetAddress([FromBody] AddNewAddressCommand addNewAddressCommand)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            
+            var address = await _addNewAddressCommandHandler.Handle(addNewAddressCommand);
+
+            AddressDto addressDto = _mapper.Map<AddressDto>(address);
+            
+            return Created(new JsonApiDocument<AddressDto>(addressDto));
         }
         
         private NotFoundObjectResult GetAddressNotFoundMessage(long roomId)

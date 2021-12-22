@@ -1,18 +1,21 @@
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using DagAir.AdminNode.Contracts.DTOs;
 using DagAir.Facilities.Contracts.DTOs;
 using DagAir.WebAdminApp.Affiliates;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DagAir.WebAdminApp.Controllers
 {
+    [Authorize]
     public class AffiliatesController : Controller
     {
         private readonly IAffiliatesHandler _affiliatesHandler;
         
-        public List<AffiliateDto> AffiliateDtos;
-        public AffiliateDto AffiliateDto;
+        public List<AdminNodeAffiliateDto> AffiliateDtos;
+        public AdminNodeAffiliateDto AffiliateDto;
 
         public AffiliatesController(IAffiliatesHandler affiliatesHandler)
         {
@@ -23,7 +26,7 @@ namespace DagAir.WebAdminApp.Controllers
         {
             await LoadAsync(User);
             var affiliatesModel = new GetAffiliatesModel();
-            affiliatesModel.AffiliateDtos = AffiliateDtos;
+            affiliatesModel.AdminNodeAffiliateDtos = AffiliateDtos;
             
             return View(affiliatesModel);
         }
@@ -38,7 +41,7 @@ namespace DagAir.WebAdminApp.Controllers
         {
             await LoadAsyncAffiliate(User, affiliateId);
             var affiliateModel = new GetAffiliateModel();
-            affiliateModel.AffiliateDto = AffiliateDto;
+            affiliateModel.AdminNodeAffiliateDto = AffiliateDto;
             
             return View(affiliateModel);
         }
@@ -52,11 +55,11 @@ namespace DagAir.WebAdminApp.Controllers
 
     public class GetAffiliatesModel
     {
-        public List<AffiliateDto> AffiliateDtos { get; set; }
+        public List<AdminNodeAffiliateDto> AdminNodeAffiliateDtos { get; set; }
     }
     
     public class GetAffiliateModel
     {
-        public AffiliateDto AffiliateDto { get; set; }
+        public AdminNodeAffiliateDto AdminNodeAffiliateDto { get; set; }
     }
 }

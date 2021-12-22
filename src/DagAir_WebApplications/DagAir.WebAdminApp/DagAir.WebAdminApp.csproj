@@ -16,6 +16,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\..\DagAir.AdminNode.Contracts\DagAir.AdminNode.Contracts.csproj" />
     <ProjectReference Include="..\..\DagAir_Components\DagAir.Components.ApiModels\DagAir.Components.ApiModels.csproj" />
     <ProjectReference Include="..\..\DagAir_Components\DagAir.Components.HttpClients\DagAir.Components.HttpClients.csproj" />
     <ProjectReference Include="..\..\DagAir_Components\DagAir.Components.Logging\DagAir.Components.Logging.csproj" />

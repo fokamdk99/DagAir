@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
+using DagAir.AdminNode.Contracts.DTOs;
 using DagAir.Components.HttpClients;
-using DagAir.Facilities.Contracts.DTOs;
 using DagAir.WebAdminApp.Infrastructure;
 using DagAir.WebAdminApp.Infrastructure.Facilities;
 using Microsoft.Extensions.Logging;
@@ -23,10 +23,10 @@ namespace DagAir.WebAdminApp.Affiliates
             _logger = logger;
         }
         
-        public async Task<List<AffiliateDto>> GetAffiliates()
+        public async Task<List<AdminNodeAffiliateDto>> GetAffiliates()
         {
             var path = _externalServices.AdminNode + FacilitiesEndpoints.GetAffiliates;
-            var response = await _client.GetAsync<List<AffiliateDto>>(path);
+            var response = await _client.GetAsync<List<AdminNodeAffiliateDto>>(path);
 
             if (response.Item2 != HttpStatusCode.OK)
             {
@@ -39,10 +39,10 @@ namespace DagAir.WebAdminApp.Affiliates
             return response.Item1;
         }
         
-        public async Task<AffiliateDto> GetAffiliateById(long affiliateId)
+        public async Task<AdminNodeAffiliateDto> GetAffiliateById(long affiliateId)
         {
             var path = _externalServices.AdminNode + FacilitiesEndpoints.GetAffiliates + affiliateId;
-            var response = await _client.GetAsync<AffiliateDto>(path);
+            var response = await _client.GetAsync<AdminNodeAffiliateDto>(path);
 
             if (response.Item2 != HttpStatusCode.OK)
             {

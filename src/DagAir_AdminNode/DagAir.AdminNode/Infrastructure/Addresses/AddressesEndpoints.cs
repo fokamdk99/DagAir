@@ -2,6 +2,6 @@
 {
     public static class AddressesEndpoints
     {
-        
+        public const string GetAddresses = "addresses-api/addresses/";
     }
 }

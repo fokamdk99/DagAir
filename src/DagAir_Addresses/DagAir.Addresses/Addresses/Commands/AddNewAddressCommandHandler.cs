@@ -35,6 +35,11 @@ namespace DagAir.Addresses.Addresses.Commands
             var country = _mapper.Map<Country>(command.CountryDto);
             var postalCode = _mapper.Map<PostalCode>(command.PostalCodeDto);
 
+            if (address == null)
+            {
+                address = new Address();
+            }
+
             if (city.Id == 0)
             {
                 var addNewCityCommand = new AddNewCityCommand
@@ -89,6 +94,14 @@ namespace DagAir.Addresses.Addresses.Commands
                 postalCode = await _context.PostalCodes.SingleOrDefaultAsync(x => x.Id == postalCode.Id);
                 address.PostalCode = postalCode;
                 address.PostalCodeId = postalCode.Id;
+            }
+
+            var foundAddress = await _context.Addresses.SingleOrDefaultAsync(x =>
+                x.CityId == address.CityId && x.CountryId == address.CountryId && x.PostalCodeId == address.PostalCodeId);
+
+            if (foundAddress != null)
+            {
+                return foundAddress;
             }
 
             await _context.Addresses.AddAsync(address);

@@ -19,14 +19,10 @@ namespace DagAir.Policies.Tests.RoomConditions
             var path = $"policies-api/expected-room-conditions";
 
             var addNewRoomPolicyCommand = CreateAddNewExpectedRoomConditionsCommand();
-            var response = await _dagAirHttpClient.PostAsync(path, addNewRoomPolicyCommand);
+            (var response, var statusCode) = await _dagAirHttpClient.PostAsync<AddNewExpectedRoomConditionsCommand, ExpectedRoomConditionsDto>(path, addNewRoomPolicyCommand);
 
-            response.StatusCode.Should().Be(HttpStatusCode.Created);
-            
-            var data =
-                await _dagAirHttpClient.DeserializeModel<ExpectedRoomConditionsDto>(await response.Content.ReadAsStreamAsync());
-
-            data.Id.Should().BeGreaterThan(0);
+            statusCode.Should().Be(HttpStatusCode.Created);
+            response.Id.Should().BeGreaterThan(0);
         }
 
         public override async Task OneTimeSetup()

@@ -14,7 +14,10 @@ namespace DagAir.Sensors
         {
             services.AddMvcCore()
                 .AddApiExplorer();
-            services.AddControllers();
+            services.AddControllers()
+                .AddNewtonsoftJson(options =>
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                );
             services.AddConfiguredSwagger();
             var healthChecksToBeDisabled = new List<string>();
             healthChecksToBeDisabled.Add(HealthCheckFeature.RabbitMqHealthCheck);

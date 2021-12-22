@@ -125,6 +125,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.WebAdminApp", "DagAi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.WebAdminApp.Tests", "DagAir_WebApplications\DagAir.WebAdminApp.Tests\DagAir.WebAdminApp.Tests.csproj", "{9EE463F8-F930-4875-9FD2-B86DD6A77075}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.AdminNode.Contracts", "DagAir.AdminNode.Contracts\DagAir.AdminNode.Contracts.csproj", "{8EF09DC1-FE0E-4EAD-A1DB-B2B41790FA15}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -317,6 +319,10 @@ Global
 		{9EE463F8-F930-4875-9FD2-B86DD6A77075}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EE463F8-F930-4875-9FD2-B86DD6A77075}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EE463F8-F930-4875-9FD2-B86DD6A77075}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EF09DC1-FE0E-4EAD-A1DB-B2B41790FA15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EF09DC1-FE0E-4EAD-A1DB-B2B41790FA15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EF09DC1-FE0E-4EAD-A1DB-B2B41790FA15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EF09DC1-FE0E-4EAD-A1DB-B2B41790FA15}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -376,5 +382,6 @@ Global
 		{17A7DC0F-4387-4AE4-8118-7F4356F8C591} = {AFDE81A7-7F1E-459F-8AEE-EE5E538109A3}
 		{7F6F9E5C-5F52-4039-A784-4AEDBE31F860} = {C3AE4FC9-498B-4FC0-BBC6-252F47C25C5B}
 		{9EE463F8-F930-4875-9FD2-B86DD6A77075} = {0D788351-8AE5-45D3-98F5-50D401B662EC}
+		{8EF09DC1-FE0E-4EAD-A1DB-B2B41790FA15} = {AFDE81A7-7F1E-459F-8AEE-EE5E538109A3}
 	EndGlobalSection
 EndGlobal

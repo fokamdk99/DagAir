@@ -1,4 +1,5 @@
-﻿using DagAir.AdminNode.Affiliates;
+﻿using DagAir.AdminNode.Addresses;
+using DagAir.AdminNode.Affiliates;
 using DagAir.AdminNode.Facilities;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,6 +11,7 @@ namespace DagAir.AdminNode.Infrastructure
         {
             services.AddScoped<IFacilitiesHandler, FacilitiesHandler>();
             services.AddScoped<IAffiliatesHandler, AffiliatesHandler>();
+            services.AddScoped<IAddressesHandler, AddressesHandler>();
             services.AddSingleton<IExternalServices, ExternalServices>();
 
             return services;

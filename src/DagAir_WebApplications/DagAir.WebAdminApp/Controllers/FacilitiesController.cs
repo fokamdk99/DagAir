@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using DagAir.AdminNode.Contracts.DTOs;
+using DagAir.Facilities.Contracts.Commands;
 using DagAir.Facilities.Contracts.DTOs;
 using DagAir.WebAdminApp.Facilities;
 using Microsoft.AspNetCore.Authorization;
@@ -21,14 +23,14 @@ namespace DagAir.WebAdminApp.Controllers
             _facilitiesHandler = facilitiesHandler;
         }
         
-        public List<OrganizationDto> OrganizationDtos;
-        public OrganizationDto OrganizationDto;
+        public List<AdminNodeOrganizationDto> OrganizationDtos;
+        public AdminNodeOrganizationDto OrganizationDto;
         
         public async Task<IActionResult> Organizations()
         {
             await LoadAsync(User);
             var organizationsModel = new GetOrganizationsModel();
-            organizationsModel.OrganizationDtos = OrganizationDtos;
+            organizationsModel.AdminNodeOrganizationDtos = OrganizationDtos;
             
             return View(organizationsModel);
         }
@@ -43,7 +45,7 @@ namespace DagAir.WebAdminApp.Controllers
         {
             await LoadAsyncOrganization(User, organizationId);
             var organizationModel = new GetOrganizationModel();
-            organizationModel.OrganizationDto = OrganizationDto;
+            organizationModel.AdminNodeOrganizationDto = OrganizationDto;
             
             return View(organizationModel);
         }
@@ -53,14 +55,37 @@ namespace DagAir.WebAdminApp.Controllers
             var organizationDto = await _facilitiesHandler.GetOrganization(organizationId);
             OrganizationDto = organizationDto;
         }
+
+        [HttpGet]
+        public async Task<IActionResult> AddNewOrganization()
+        {
+            return View();
+        }
+        
+        [HttpPost]
+        public async Task<IActionResult> AddNewOrganization(GetOrganizationModel getOrganizationModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var newOrganization = await _facilitiesHandler.AddNewOrganization(getOrganizationModel);
+                
+                await LoadAsync(User);
+                var organizationsModel = new GetOrganizationsModel();
+                organizationsModel.AdminNodeOrganizationDtos = OrganizationDtos;
+                
+                return View("Organizations", organizationsModel);
+            }
+
+            return View();
+        }
     }
 
     public class GetOrganizationsModel
     {
-        public List<OrganizationDto> OrganizationDtos { get; set; }
+        public List<AdminNodeOrganizationDto> AdminNodeOrganizationDtos { get; set; }
     }
     public class GetOrganizationModel
     {
-        public OrganizationDto OrganizationDto { get; set; }
+        public AdminNodeOrganizationDto AdminNodeOrganizationDto { get; set; }
     }
 }
