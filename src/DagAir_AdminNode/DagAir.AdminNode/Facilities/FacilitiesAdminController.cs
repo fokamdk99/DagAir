@@ -71,15 +71,22 @@ namespace DagAir.AdminNode.Facilities
         [Route("organizations")]
         [ProducesResponseType(typeof(JsonApiDocument<OrganizationDto>), (int)HttpStatusCode.Created)]
         [ProducesResponseType(typeof(JsonApiError), (int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> AddNewAddress([FromBody] AddNewOrganizationCommand addNewAddressCommand)
+        public async Task<IActionResult> AddNewAddress([FromBody] AddNewOrganizationCommand addNewOrganizationCommand)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var newOrganization = await _facilitiesHandler.AddNewOrganization(addNewAddressCommand);
-                return Created(new JsonApiDocument<OrganizationDto>(newOrganization));
+                return BadRequest();
             }
-
-            return BadRequest();
+            
+            var newOrganization = await _facilitiesHandler.AddNewOrganization(addNewOrganizationCommand);
+            if (newOrganization == null)
+            {
+                string message =
+                    $"Organization with name {addNewOrganizationCommand.OrganizationDto.Name} already exists";
+                return Conflict(new JsonApiError(HttpStatusCode.Conflict, message));
+            }
+            
+            return Created(new JsonApiDocument<OrganizationDto>(newOrganization));
         }
     }
 }

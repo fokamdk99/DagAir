@@ -82,9 +82,17 @@ namespace DagAir.Facilities.Organizations
         [HttpPost("organizations")]
         [ProducesResponseType(typeof(JsonApiDocument<AffiliateDto>), (int) HttpStatusCode.Created)]
         [ProducesResponseType(typeof(JsonApiError), (int) HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(JsonApiError), (int) HttpStatusCode.Conflict)]
         public async Task<IActionResult> CreateNewOrganization(AddNewOrganizationCommand addNewOrganizationCommand)
         {
             var organization = await _commandHandler.Handle(addNewOrganizationCommand);
+
+            if (organization == null)
+            {
+                string message =
+                    $"Organization with name {addNewOrganizationCommand.OrganizationDto.Name} already exists";
+                return Conflict(new JsonApiError(HttpStatusCode.Conflict, message));
+            }
             
             OrganizationDto organizationDto = _mapper.Map<OrganizationDto>(organization);
 

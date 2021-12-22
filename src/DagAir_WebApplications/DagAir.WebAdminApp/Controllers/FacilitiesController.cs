@@ -68,6 +68,14 @@ namespace DagAir.WebAdminApp.Controllers
             if (ModelState.IsValid)
             {
                 var newOrganization = await _facilitiesHandler.AddNewOrganization(getOrganizationModel);
+
+                if (newOrganization == null)
+                {
+                    string message =
+                        $"Organization with name {getOrganizationModel.AdminNodeOrganizationDto.OrganizationDto.Name} already exists. Please choose other name";
+                    ModelState.AddModelError(string.Empty, message);
+                    return View();
+                }
                 
                 await LoadAsync(User);
                 var organizationsModel = new GetOrganizationsModel();

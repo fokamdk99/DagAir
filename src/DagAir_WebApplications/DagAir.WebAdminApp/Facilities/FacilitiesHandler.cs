@@ -94,6 +94,11 @@ namespace DagAir.WebAdminApp.Facilities
             
             (var newOrganization, var organizationStatusCode) = await _client.PostAsync<AddNewOrganizationCommand, OrganizationDto>(organizationPath, addNewOrganizationCommand);
 
+            if (organizationStatusCode == HttpStatusCode.Conflict)
+            {
+                return null;
+            }
+            
             if (organizationStatusCode != HttpStatusCode.Created)
             {
                 var message =

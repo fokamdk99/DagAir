@@ -63,6 +63,11 @@ namespace DagAir.AdminNode.Facilities
             var path = _externalServices.FacilitiesApi + FacilitiesEndpoints.GetOrganizations;
             (var newOrganization, var statusCode) = await _client.PostAsync<AddNewOrganizationCommand, OrganizationDto>(path, addNewAddressCommand);
 
+            if (statusCode == HttpStatusCode.Conflict)
+            {
+                return null;
+            }
+            
             if (statusCode != HttpStatusCode.Created)
             {
                 var message =

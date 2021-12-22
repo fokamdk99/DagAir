@@ -27,24 +27,19 @@ namespace DagAir.Facilities.Organizations.Commands
         public async Task<Organization> Handle(AddNewOrganizationCommand command)
         {
             var organization = _mapper.Map<Organization>(command.OrganizationDto);
+            
             var foundOrganization =
                 await _context.Organizations.SingleOrDefaultAsync(x => x.Name == command.OrganizationDto.Name);
 
-            /*
+            
             if (foundOrganization != null)
             {
                 string message =
                     $"Error while creating new organization. Organization with name ${command.OrganizationDto.Name} already exists";
                 _logger.LogError(message);
-                throw new Exception(message);
+                return null;
             }
-            */
 
-            if (foundOrganization != null)
-            {
-                return foundOrganization;
-            }
-            
             await _context.Organizations.AddAsync(organization);
             await _context.SaveChangesAsync();
             return organization;
