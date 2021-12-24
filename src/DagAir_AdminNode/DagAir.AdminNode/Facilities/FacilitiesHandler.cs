@@ -58,10 +58,10 @@ namespace DagAir.AdminNode.Facilities
             return response.Item1;
         }
         
-        public async Task<OrganizationDto> AddNewOrganization(AddNewOrganizationCommand addNewAddressCommand)
+        public async Task<OrganizationDto> AddNewOrganization(AddNewOrganizationCommand addNewOrganizationCommand)
         {
             var path = _externalServices.FacilitiesApi + FacilitiesEndpoints.GetOrganizations;
-            (var newOrganization, var statusCode) = await _client.PostAsync<AddNewOrganizationCommand, OrganizationDto>(path, addNewAddressCommand);
+            (var newOrganization, var statusCode) = await _client.PostAsync<AddNewOrganizationCommand, OrganizationDto>(path, addNewOrganizationCommand);
 
             if (statusCode == HttpStatusCode.Conflict)
             {
@@ -71,7 +71,7 @@ namespace DagAir.AdminNode.Facilities
             if (statusCode != HttpStatusCode.Created)
             {
                 var message =
-                    $"Error while trying to add new address. Status code: ${statusCode}. AddNewAddressCommand: {addNewAddressCommand}";
+                    $"Error while trying to add new organization. Status code: ${statusCode}. AddNewOrganizationCommand: {addNewOrganizationCommand}";
                 _logger.LogError(message);
                 throw new Exception(message);
             }

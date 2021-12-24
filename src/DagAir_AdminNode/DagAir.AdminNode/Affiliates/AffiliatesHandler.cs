@@ -6,6 +6,7 @@ using DagAir.AdminNode.Facilities;
 using DagAir.AdminNode.Infrastructure;
 using DagAir.AdminNode.Infrastructure.Facilities;
 using DagAir.Components.HttpClients;
+using DagAir.Facilities.Contracts.Commands;
 using DagAir.Facilities.Contracts.DTOs;
 using Microsoft.Extensions.Logging;
 
@@ -56,6 +57,27 @@ namespace DagAir.AdminNode.Affiliates
             }
 
             return response.Item1;
+        }
+
+        public async Task<AffiliateDto> AddNewAffiliate(AddNewAffiliateCommand addNewAffiliateCommand)
+        {
+            var path = _externalServices.FacilitiesApi + FacilitiesEndpoints.GetAffiliates;
+            (var newAffiliate, var statusCode) = await _client.PostAsync<AddNewAffiliateCommand, AffiliateDto>(path, addNewAffiliateCommand);
+
+            if (statusCode == HttpStatusCode.Conflict)
+            {
+                return null;
+            }
+            
+            if (statusCode != HttpStatusCode.Created)
+            {
+                var message =
+                    $"Error while trying to add new affiliate. Status code: ${statusCode}. AddNewAffiliateCommand: {addNewAffiliateCommand}";
+                _logger.LogError(message);
+                throw new Exception(message);
+            }
+            
+            return newAffiliate;
         }
     }
 }

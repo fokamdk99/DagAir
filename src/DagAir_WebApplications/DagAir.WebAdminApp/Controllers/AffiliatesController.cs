@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using DagAir.Addresses.Contracts.DTOs;
 using DagAir.AdminNode.Contracts.DTOs;
 using DagAir.Facilities.Contracts.DTOs;
 using DagAir.WebAdminApp.Affiliates;
@@ -50,6 +51,47 @@ namespace DagAir.WebAdminApp.Controllers
         {
             var affiliateDto = await _affiliatesHandler.GetAffiliateById(affiliateId);
             AffiliateDto = affiliateDto;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AddNewAffiliate(long organizationId)
+        {
+            var getAffiliateModel = new GetAffiliateModel
+            {
+                AdminNodeAffiliateDto = new AdminNodeAffiliateDto
+                {
+                    AffiliateDto = new AffiliateDto(),
+                    AddressDto = new AddressDto()
+                }
+            };
+            getAffiliateModel.AdminNodeAffiliateDto.AffiliateDto.OrganizationId = organizationId;
+            return View(getAffiliateModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddNewAffiliate(GetAffiliateModel getAffiliateModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            
+            var newAffiliate = await _affiliatesHandler.AddNewAffiliate(getAffiliateModel);
+
+            if (newAffiliate == null)
+            {
+                string message =
+                    $"Organization with name {getAffiliateModel.AdminNodeAffiliateDto.AffiliateDto.Name} already exists. Please choose other name";
+                ModelState.AddModelError(string.Empty, message);
+
+                return View(getAffiliateModel);
+            }
+                
+            await LoadAsync(User);
+            var organizationsModel = new GetAffiliatesModel();
+            organizationsModel.AdminNodeAffiliateDtos = AffiliateDtos;
+                
+            return View("Affiliates", organizationsModel);
         }
     }
 

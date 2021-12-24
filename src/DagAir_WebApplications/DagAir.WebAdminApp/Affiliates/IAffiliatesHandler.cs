@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using DagAir.AdminNode.Contracts.DTOs;
 using DagAir.Facilities.Contracts.DTOs;
+using DagAir.WebAdminApp.Controllers;
 
 namespace DagAir.WebAdminApp.Affiliates
 {
@@ -9,5 +10,6 @@ namespace DagAir.WebAdminApp.Affiliates
     {
         Task<List<AdminNodeAffiliateDto>> GetAffiliates();
         Task<AdminNodeAffiliateDto> GetAffiliateById(long affiliateId);
+        Task<AffiliateDto> AddNewAffiliate(GetAffiliateModel getAffiliateModel);
     }
 }

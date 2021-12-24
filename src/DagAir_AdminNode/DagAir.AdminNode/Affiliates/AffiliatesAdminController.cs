@@ -6,6 +6,7 @@ using DagAir.AdminNode.Addresses;
 using DagAir.AdminNode.Contracts.DTOs;
 using DagAir.AdminNode.Infrastructure.UserApi;
 using DagAir.Components.ApiModels.Json;
+using DagAir.Facilities.Contracts.Commands;
 using DagAir.Facilities.Contracts.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
@@ -65,6 +66,28 @@ namespace DagAir.AdminNode.Affiliates
             };
 
             return Ok(new JsonApiDocument<AdminNodeAffiliateDto>(adminNodeOrganizationDto));
+        }
+        
+        [HttpPost]
+        [Route("affiliates")]
+        [ProducesResponseType(typeof(JsonApiDocument<AffiliateDto>), (int)HttpStatusCode.Created)]
+        [ProducesResponseType(typeof(JsonApiError), (int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> AddNewAffiliate([FromBody] AddNewAffiliateCommand addNewAffiliateCommand)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            
+            var newAffiliate = await _affiliatesHandler.AddNewAffiliate(addNewAffiliateCommand);
+            if (newAffiliate == null)
+            {
+                string message =
+                    $"Affiliate with name {addNewAffiliateCommand.AffiliateDto.Name} already exists";
+                return Conflict(new JsonApiError(HttpStatusCode.Conflict, message));
+            }
+            
+            return Created(new JsonApiDocument<AffiliateDto>(newAffiliate));
         }
     }
 }

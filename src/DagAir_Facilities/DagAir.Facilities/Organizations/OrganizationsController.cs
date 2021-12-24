@@ -80,7 +80,7 @@ namespace DagAir.Facilities.Organizations
         /// <param name="addNewOrganizationCommand"></param>
         /// <returns></returns>
         [HttpPost("organizations")]
-        [ProducesResponseType(typeof(JsonApiDocument<AffiliateDto>), (int) HttpStatusCode.Created)]
+        [ProducesResponseType(typeof(JsonApiDocument<OrganizationDto>), (int) HttpStatusCode.Created)]
         [ProducesResponseType(typeof(JsonApiError), (int) HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(JsonApiError), (int) HttpStatusCode.Conflict)]
         public async Task<IActionResult> CreateNewOrganization(AddNewOrganizationCommand addNewOrganizationCommand)

@@ -71,7 +71,7 @@ namespace DagAir.AdminNode.Facilities
         [Route("organizations")]
         [ProducesResponseType(typeof(JsonApiDocument<OrganizationDto>), (int)HttpStatusCode.Created)]
         [ProducesResponseType(typeof(JsonApiError), (int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> AddNewAddress([FromBody] AddNewOrganizationCommand addNewOrganizationCommand)
+        public async Task<IActionResult> AddNewOrganization([FromBody] AddNewOrganizationCommand addNewOrganizationCommand)
         {
             if (!ModelState.IsValid)
             {
