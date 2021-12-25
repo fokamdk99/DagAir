@@ -72,6 +72,7 @@ namespace DagAir.AdminNode.Affiliates
         [Route("affiliates")]
         [ProducesResponseType(typeof(JsonApiDocument<AffiliateDto>), (int)HttpStatusCode.Created)]
         [ProducesResponseType(typeof(JsonApiError), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(JsonApiError), (int)HttpStatusCode.Conflict)]
         public async Task<IActionResult> AddNewAffiliate([FromBody] AddNewAffiliateCommand addNewAffiliateCommand)
         {
             if (!ModelState.IsValid)

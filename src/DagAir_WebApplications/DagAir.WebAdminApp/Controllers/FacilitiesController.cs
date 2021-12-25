@@ -1,14 +1,9 @@
 using System.Collections.Generic;
-using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using DagAir.AdminNode.Contracts.DTOs;
-using DagAir.Facilities.Contracts.Commands;
-using DagAir.Facilities.Contracts.DTOs;
 using DagAir.WebAdminApp.Facilities;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DagAir.WebAdminApp.Controllers

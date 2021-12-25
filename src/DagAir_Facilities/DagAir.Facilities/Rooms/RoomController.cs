@@ -2,7 +2,9 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using DagAir.Components.ApiModels.Json;
+using DagAir.Facilities.Contracts.Commands;
 using DagAir.Facilities.Contracts.DTOs;
+using DagAir.Facilities.Data.AppEntitities;
 using DagAir.Facilities.Infrastructure;
 using DagAir.Facilities.Rooms.Queries;
 using Microsoft.AspNetCore.Mvc;
@@ -13,11 +15,15 @@ namespace DagAir.Facilities.Rooms
     {
         private readonly IGetCurrentRoomQuery _getCurrentRoom;
         private readonly IMapper _mapper;
-
-        public RoomController(IGetCurrentRoomQuery getCurrentRoomQuery, IMapper mapper)
+        private readonly ICommandHandler<AddNewRoomCommand, Room> _commandHandler;
+        
+        public RoomController(IGetCurrentRoomQuery getCurrentRoomQuery, 
+            IMapper mapper, 
+            ICommandHandler<AddNewRoomCommand, Room> commandHandler)
         {
             _getCurrentRoom = getCurrentRoomQuery;
             _mapper = mapper;
+            _commandHandler = commandHandler;
         }
 
         /// <summary>
@@ -40,6 +46,31 @@ namespace DagAir.Facilities.Rooms
             var currentRoomDto = _mapper.Map<RoomDto>(currentRoom);
 
             return Ok(new JsonApiDocument<RoomDto>(currentRoomDto));
+        }
+        
+        /// <summary>
+        /// Create a new room with parameters specified in addNewRoomCommand 
+        /// </summary>
+        /// <param name="addNewRoomCommand"></param>
+        /// <returns></returns>
+        [HttpPost("rooms")]
+        [ProducesResponseType(typeof(JsonApiDocument<RoomDto>), (int) HttpStatusCode.Created)]
+        [ProducesResponseType(typeof(JsonApiError), (int) HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(JsonApiError), (int) HttpStatusCode.Conflict)]
+        public async Task<IActionResult> CreateNewRoom(AddNewRoomCommand addNewRoomCommand)
+        {
+            var room = await _commandHandler.Handle(addNewRoomCommand);
+
+            if (room == null)
+            {
+                string message =
+                    $"Room with name {addNewRoomCommand.RoomDto.Number} already exists in affiliate with id {addNewRoomCommand.RoomDto.AffiliateId}";
+                return Conflict(new JsonApiError(HttpStatusCode.Conflict, message));
+            }
+            
+            RoomDto roomDto = _mapper.Map<RoomDto>(room);
+
+            return Created(new JsonApiDocument<RoomDto>(roomDto));
         }
 
         private NotFoundObjectResult GetCurrentRoomNotFoundMessage(long id)

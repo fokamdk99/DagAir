@@ -4,5 +4,6 @@
     {
         public const string GetOrganizations = "facilities-api/organizations/";
         public const string GetAffiliates = "facilities-api/affiliates/";
+        public const string GetRooms = "facilities-api/rooms/";
     }
 }
