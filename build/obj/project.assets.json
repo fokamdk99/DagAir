@@ -10234,8 +10234,8 @@
     },
     "DagAir.AdminNode.Contracts/1.0.0": {
       "type": "project",
-      "path": "../src/DagAir.AdminNode.Contracts/DagAir.AdminNode.Contracts.csproj",
-      "msbuildProject": "../src/DagAir.AdminNode.Contracts/DagAir.AdminNode.Contracts.csproj"
+      "path": "../src/DagAir_AdminNode/DagAir.AdminNode.Contracts/DagAir.AdminNode.Contracts.csproj",
+      "msbuildProject": "../src/DagAir_AdminNode/DagAir.AdminNode.Contracts/DagAir.AdminNode.Contracts.csproj"
     },
     "DagAir.Components.ApiModels/1.0.0": {
       "type": "project",

@@ -7,7 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\DagAir.AdminNode.Contracts\DagAir.AdminNode.Contracts.csproj" />
       <ProjectReference Include="..\..\DagAir_Addresses\DagAir.Addresses.Contracts\DagAir.Addresses.Contracts.csproj" />
       <ProjectReference Include="..\..\DagAir_Components\DagAir.Components.ApiModels\DagAir.Components.ApiModels.csproj" />
       <ProjectReference Include="..\..\DagAir_Components\DagAir.Components.Healthchecks\DagAir.Components.Healthchecks.csproj" />
@@ -16,6 +15,7 @@
       <ProjectReference Include="..\..\DagAir_Components\DagAir.Components.MassTransit.RabbitMq\DagAir.Components.MassTransit.RabbitMq.csproj" />
       <ProjectReference Include="..\..\DagAir_Facilities\DagAir.Facilities.Contracts\DagAir.Facilities.Contracts.csproj" />
       <ProjectReference Include="..\..\DagAir_PolicyNode\DagAir.PolicyNode.Contracts\DagAir.PolicyNode.Contracts.csproj" />
+      <ProjectReference Include="..\DagAir.AdminNode.Contracts\DagAir.AdminNode.Contracts.csproj" />
     </ItemGroup>
     
     <ItemGroup>
