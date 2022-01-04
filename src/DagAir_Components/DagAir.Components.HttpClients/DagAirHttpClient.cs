@@ -29,11 +29,12 @@ namespace DagAir.Components.HttpClients
             return (await DeserializeModel<T>(content), response.StatusCode);
         }
 
-        public async Task<HttpResponseMessage> PostAsync<T>(string url, T request)
+        public async Task<(TResponse, HttpStatusCode)> PostAsync<T, TResponse>(string url, T request)
         {
             var serializedRequest = SerializeRequest(request);
             var response = await _client.PostAsync(url, serializedRequest);
-            return response;
+            var content = await response.Content.ReadAsStreamAsync();
+            return (await DeserializeModel<TResponse>(content), response.StatusCode);
         }
 
         public async Task<HttpStatusCode> PutAsync<T>(string url, T request)

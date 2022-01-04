@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\DagAir_Addresses\DagAir.Addresses.Contracts\DagAir.Addresses.Contracts.csproj" />
+      <ProjectReference Include="..\..\DagAir_Facilities\DagAir.Facilities.Contracts\DagAir.Facilities.Contracts.csproj" />
+    </ItemGroup>
+
+</Project>

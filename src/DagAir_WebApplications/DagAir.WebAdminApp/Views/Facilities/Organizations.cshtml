@@ -3,14 +3,19 @@
     ViewData["Title"] = "See organizations";
     ViewData["ActivePage"] = ManageFacilitiesPages.DownloadOrganizations;
 }
-<h4>@ViewData["Title"]</h4>
+<div class="col-md-6">
+<div class="btn-group" role="group" aria-label="Basic example">
+    <a class="btn btn-success" role="button" asp-area="" asp-controller="Facilities" asp-action="AddNewOrganization">Add new organization</a>
+    <a href="#" class="btn btn-danger" role="button">Delete all organizations</a>
+</div>    
+</div>
 <div class="row">
     <div class="col-md-6">
-        <ul class="nav nav-pills flex-column">
-            @foreach (var organization in Model.OrganizationDtos)
+        <ul class="list-group">
+            @foreach (var organization in Model.AdminNodeOrganizationDtos)
             {
-                <li>
-                    @Html.ActionLink(organization.Name, "Organization", "Facilities", new {organizationId = organization.Id}, null)
+                <li class="list-group-item">
+                    @Html.ActionLink(organization.OrganizationDto.Name, "Organization", "Facilities", new {organizationId = organization.OrganizationDto.Id}, null)
                 </li>
             }
         </ul>

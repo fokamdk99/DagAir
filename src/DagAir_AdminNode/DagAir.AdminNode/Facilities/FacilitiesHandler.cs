@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using DagAir.AdminNode.Infrastructure;
 using DagAir.AdminNode.Infrastructure.Facilities;
 using DagAir.Components.HttpClients;
+using DagAir.Facilities.Contracts.Commands;
 using DagAir.Facilities.Contracts.DTOs;
 using Microsoft.Extensions.Logging;
 
@@ -55,6 +56,27 @@ namespace DagAir.AdminNode.Facilities
             }
 
             return response.Item1;
+        }
+        
+        public async Task<OrganizationDto> AddNewOrganization(AddNewOrganizationCommand addNewOrganizationCommand)
+        {
+            var path = _externalServices.FacilitiesApi + FacilitiesEndpoints.GetOrganizations;
+            (var newOrganization, var statusCode) = await _client.PostAsync<AddNewOrganizationCommand, OrganizationDto>(path, addNewOrganizationCommand);
+
+            if (statusCode == HttpStatusCode.Conflict)
+            {
+                return null;
+            }
+            
+            if (statusCode != HttpStatusCode.Created)
+            {
+                var message =
+                    $"Error while trying to add new organization. Status code: ${statusCode}. AddNewOrganizationCommand: {addNewOrganizationCommand}";
+                _logger.LogError(message);
+                throw new Exception(message);
+            }
+            
+            return newOrganization;
         }
     }
 }

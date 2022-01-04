@@ -18,7 +18,7 @@ namespace DagAir.Facilities.Affiliates
         private readonly IMapper _mapper;
         private readonly IGetAffiliateQuery _getAffiliateQuery;
         private readonly IGetAffiliatesQuery _getAffiliatesQuery;
-        private readonly ICommandHandler<AddNewAffiliateCommand, Affiliate> _addNewRoomPolicyCommandHandler;
+        private readonly ICommandHandler<AddNewAffiliateCommand, Affiliate> _commandHandler;
 
         public AffiliatesController(IMapper mapper,
             ICommandHandler<AddNewAffiliateCommand, Affiliate> addNewRoomPolicyCommandHandler, 
@@ -26,7 +26,7 @@ namespace DagAir.Facilities.Affiliates
             IGetAffiliatesQuery getAffiliatesQuery)
         {
             _mapper = mapper;
-            _addNewRoomPolicyCommandHandler = addNewRoomPolicyCommandHandler;
+            _commandHandler = addNewRoomPolicyCommandHandler;
             _getAffiliateQuery = getAffiliateQuery;
             _getAffiliatesQuery = getAffiliatesQuery;
         }
@@ -69,16 +69,24 @@ namespace DagAir.Facilities.Affiliates
         }
 
         /// <summary>
-        /// Creates a new affiliate with parameters specified in addNewAffiliateCommand 
+        /// Create a new affiliate with parameters specified in addNewAffiliateCommand 
         /// </summary>
         /// <param name="addNewAffiliateCommand"></param>
         /// <returns></returns>
         [HttpPost("affiliates")]
         [ProducesResponseType(typeof(JsonApiDocument<AffiliateDto>), (int) HttpStatusCode.Created)]
         [ProducesResponseType(typeof(JsonApiError), (int) HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(JsonApiError), (int) HttpStatusCode.Conflict)]
         public async Task<IActionResult> CreateNewAffiliate(AddNewAffiliateCommand addNewAffiliateCommand)
         {
-            var affiliate = await _addNewRoomPolicyCommandHandler.Handle(addNewAffiliateCommand);
+            var affiliate = await _commandHandler.Handle(addNewAffiliateCommand);
+
+            if (affiliate == null)
+            {
+                string message =
+                    $"Affiliate with name {addNewAffiliateCommand.AffiliateDto.Name} already exists";
+                return Conflict(new JsonApiError(HttpStatusCode.Conflict, message));
+            }
             
             AffiliateDto affiliateDto = _mapper.Map<AffiliateDto>(affiliate);
 

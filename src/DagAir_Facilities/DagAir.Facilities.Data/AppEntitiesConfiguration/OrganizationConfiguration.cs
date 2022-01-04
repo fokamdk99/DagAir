@@ -10,6 +10,9 @@ namespace DagAir.Facilities.Data.AppEntitiesConfiguration
         {
             builder.ConfigureBase();
             builder.HasKey(e => e.Id);
+            builder
+                .HasIndex(e => e.Name)
+                .IsUnique();
 
             builder.Property(e => e.Name)
                 .HasMaxLength(128)

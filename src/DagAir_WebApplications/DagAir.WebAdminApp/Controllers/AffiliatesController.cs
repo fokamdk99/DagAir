@@ -1,18 +1,22 @@
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using DagAir.Addresses.Contracts.DTOs;
+using DagAir.AdminNode.Contracts.DTOs;
 using DagAir.Facilities.Contracts.DTOs;
 using DagAir.WebAdminApp.Affiliates;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DagAir.WebAdminApp.Controllers
 {
+    [Authorize]
     public class AffiliatesController : Controller
     {
         private readonly IAffiliatesHandler _affiliatesHandler;
         
-        public List<AffiliateDto> AffiliateDtos;
-        public AffiliateDto AffiliateDto;
+        public List<AdminNodeAffiliateDto> AffiliateDtos;
+        public AdminNodeAffiliateDto AffiliateDto;
 
         public AffiliatesController(IAffiliatesHandler affiliatesHandler)
         {
@@ -23,7 +27,7 @@ namespace DagAir.WebAdminApp.Controllers
         {
             await LoadAsync(User);
             var affiliatesModel = new GetAffiliatesModel();
-            affiliatesModel.AffiliateDtos = AffiliateDtos;
+            affiliatesModel.AdminNodeAffiliateDtos = AffiliateDtos;
             
             return View(affiliatesModel);
         }
@@ -38,7 +42,7 @@ namespace DagAir.WebAdminApp.Controllers
         {
             await LoadAsyncAffiliate(User, affiliateId);
             var affiliateModel = new GetAffiliateModel();
-            affiliateModel.AffiliateDto = AffiliateDto;
+            affiliateModel.AdminNodeAffiliateDto = AffiliateDto;
             
             return View(affiliateModel);
         }
@@ -48,15 +52,56 @@ namespace DagAir.WebAdminApp.Controllers
             var affiliateDto = await _affiliatesHandler.GetAffiliateById(affiliateId);
             AffiliateDto = affiliateDto;
         }
+
+        [HttpGet]
+        public async Task<IActionResult> AddNewAffiliate(long organizationId)
+        {
+            var getAffiliateModel = new GetAffiliateModel
+            {
+                AdminNodeAffiliateDto = new AdminNodeAffiliateDto
+                {
+                    AffiliateDto = new AffiliateDto(),
+                    AddressDto = new AddressDto()
+                }
+            };
+            getAffiliateModel.AdminNodeAffiliateDto.AffiliateDto.OrganizationId = organizationId;
+            return View(getAffiliateModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddNewAffiliate(GetAffiliateModel getAffiliateModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            
+            var newAffiliate = await _affiliatesHandler.AddNewAffiliate(getAffiliateModel);
+
+            if (newAffiliate == null)
+            {
+                string message =
+                    $"Organization with name {getAffiliateModel.AdminNodeAffiliateDto.AffiliateDto.Name} already exists. Please choose other name";
+                ModelState.AddModelError(string.Empty, message);
+
+                return View(getAffiliateModel);
+            }
+                
+            await LoadAsync(User);
+            var organizationsModel = new GetAffiliatesModel();
+            organizationsModel.AdminNodeAffiliateDtos = AffiliateDtos;
+                
+            return View("Affiliates", organizationsModel);
+        }
     }
 
     public class GetAffiliatesModel
     {
-        public List<AffiliateDto> AffiliateDtos { get; set; }
+        public List<AdminNodeAffiliateDto> AdminNodeAffiliateDtos { get; set; }
     }
     
     public class GetAffiliateModel
     {
-        public AffiliateDto AffiliateDto { get; set; }
+        public AdminNodeAffiliateDto AdminNodeAffiliateDto { get; set; }
     }
 }

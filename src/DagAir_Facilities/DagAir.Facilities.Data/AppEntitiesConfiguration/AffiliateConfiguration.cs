@@ -15,6 +15,9 @@ namespace DagAir.Facilities.Data.AppEntitiesConfiguration
                 .HasMaxLength(128)
                 .IsRequired();
 
+            builder.Property(e => e.AddressId)
+                .IsRequired();
+
             builder.HasOne(e => e.Organization)
                 .WithMany(x => x.Affiliates)
                 .HasForeignKey(e => e.OrganizationId)

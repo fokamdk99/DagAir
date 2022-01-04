@@ -3,6 +3,7 @@ using AutoMapper;
 using DagAir.Addresses.Contracts.Commands;
 using DagAir.Addresses.Data.AppContext;
 using DagAir.Addresses.Data.AppEntities;
+using Microsoft.EntityFrameworkCore;
 
 namespace DagAir.Addresses.Addresses.Commands
 {
@@ -20,6 +21,12 @@ namespace DagAir.Addresses.Addresses.Commands
         public async Task<City> Handle(AddNewCityCommand command)
         {
             var city = _mapper.Map<City>(command.CityDto);
+            var foundCity = await _context.Cities.SingleOrDefaultAsync(x => x.Name == city.Name);
+            if (foundCity != null)
+            {
+                return foundCity;
+            }
+            
             await _context.Cities.AddAsync(city);
             await _context.SaveChangesAsync();
             return city;

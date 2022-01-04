@@ -1,5 +1,6 @@
 ﻿using DagAir.WebAdminApp.Affiliates;
 using DagAir.WebAdminApp.Facilities;
+using DagAir.WebAdminApp.Rooms;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DagAir.WebAdminApp.Infrastructure
@@ -10,6 +11,7 @@ namespace DagAir.WebAdminApp.Infrastructure
         {
             services.AddScoped<IFacilitiesHandler, FacilitiesHandler>();
             services.AddScoped<IAffiliatesHandler, AffiliatesHandler>();
+            services.AddScoped<IRoomsHandler, RoomsHandler>();
             services.AddSingleton<IExternalServices, ExternalServices>();
 
             return services;

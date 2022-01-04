@@ -25,6 +25,10 @@ namespace DagAir.Facilities.Data.Migrations.Migrations
                         .HasColumnType("bigint")
                         .HasColumnName("id");
 
+                    b.Property<long>("AddressId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("address_id");
+
                     b.Property<DateTime>("Created")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
@@ -57,6 +61,7 @@ namespace DagAir.Facilities.Data.Migrations.Migrations
                         new
                         {
                             Id = 1L,
+                            AddressId = 1L,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Faculty of Electronics and Information Technology",
                             OrganizationId = 1L
@@ -64,6 +69,7 @@ namespace DagAir.Facilities.Data.Migrations.Migrations
                         new
                         {
                             Id = 2L,
+                            AddressId = 2L,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Faculty of Mathematics and Information Science",
                             OrganizationId = 1L
@@ -71,6 +77,7 @@ namespace DagAir.Facilities.Data.Migrations.Migrations
                         new
                         {
                             Id = 3L,
+                            AddressId = 2L,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Collegium Of Economic Analysis",
                             OrganizationId = 2L
@@ -106,6 +113,10 @@ namespace DagAir.Facilities.Data.Migrations.Migrations
 
                     b.HasKey("Id")
                         .HasName("pk_organizations");
+
+                    b.HasIndex("Name")
+                        .IsUnique()
+                        .HasDatabaseName("ix_organizations_name");
 
                     b.ToTable("organizations");
 

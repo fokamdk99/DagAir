@@ -13,18 +13,21 @@ namespace DagAir.Facilities.Data.DataSeed
                     {
                         Id = 1,
                         Name = "Faculty of Electronics and Information Technology",
+                        AddressId = 1,
                         OrganizationId = 1L
                     },
                     new Affiliate()
                     {
                         Id = 2,
                         Name = "Faculty of Mathematics and Information Science",
+                        AddressId = 2,
                         OrganizationId = 1L
                     },
                     new Affiliate()
                     {
                         Id = 3,
                         Name = "Collegium Of Economic Analysis",
+                        AddressId = 2,
                         OrganizationId = 2L
                     }
                     );

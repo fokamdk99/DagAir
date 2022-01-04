@@ -74,6 +74,20 @@ services:
       - dagair_network
     restart: always
 
+  addresses_api:
+    build:
+      target: final
+      context: ./src
+      dockerfile: ./DagAir_Addresses/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+      - ConnectionKeys__DagAir.Addresses=${ADDRESSES_CONNECTIONKEYS}
+    ports:
+      - "8094:80"
+    networks:
+      - dagair_network
+    restart: always
+
   ingestion_node:
     build:
       target: final

@@ -24,14 +24,10 @@ namespace DagAir.Policies.Tests.Policies
             var path = $"policies-api/policies";
 
             var addNewRoomPolicyCommand = CreateAddNewRoomPolicyCommand();
-            var response = await _dagAirHttpClient.PostAsync(path, addNewRoomPolicyCommand);
+            (var response, var statusCode) = await _dagAirHttpClient.PostAsync<AddNewRoomPolicyCommand, RoomPolicyDto>(path, addNewRoomPolicyCommand);
 
-            response.StatusCode.Should().Be(HttpStatusCode.Created);
-            
-            var data =
-                await _dagAirHttpClient.DeserializeModel<RoomPolicyDto>(await response.Content.ReadAsStreamAsync());
-
-            data.Id.Should().BeGreaterThan(0);
+            statusCode.Should().Be(HttpStatusCode.Created);
+            response.Id.Should().BeGreaterThan(0);
         }
 
         public override async Task OneTimeSetup()
