@@ -2,7 +2,7 @@ name: CD-Ingestion-node
 
 env:
   SERVICE_NAME: dagair-ingestion-node
-  CONTAINER_REGISTRY: dagairacr.azurecr.io
+  CONTAINER_REGISTRY: dagair.azurecr.io
 
 on:
   push:
@@ -12,7 +12,7 @@ on:
     paths:
       - src/DagAir_IngestionNode/**
 
-    workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
   docker-build-and-push:

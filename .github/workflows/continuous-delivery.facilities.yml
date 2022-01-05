@@ -3,7 +3,7 @@ name: CD-Facilities
 env:
   SERVICE_NAME: dagair-facilities
   MIGRATIONS_APPLIER_NAME: dagair-facilities-database-migration-applier
-  CONTAINER_REGISTRY: dagairacr.azurecr.io
+  CONTAINER_REGISTRY: dagair.azurecr.io
 
 on:
   push:
@@ -13,7 +13,7 @@ on:
     paths:
       - src/DagAir_Facilities/**
 
-    workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
   docker-build-and-push:

@@ -2,7 +2,7 @@ name: CD-WebAdminApp
 
 env:
   SERVICE_NAME: dagair-web-admin-app
-  CONTAINER_REGISTRY: dagairacr.azurecr.io
+  CONTAINER_REGISTRY: dagair.azurecr.io
 
 on:
   push:
@@ -12,7 +12,7 @@ on:
     paths:
       - src/DagAir_WebApplications/**
 
-    workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
   docker-build-and-push:
