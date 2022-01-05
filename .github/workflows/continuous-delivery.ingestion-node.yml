@@ -2,7 +2,7 @@ name: CD-Ingestion-node
 
 env:
   SERVICE_NAME: dagair-ingestion-node
-  CONTAINER_REGISTRY: dagair.azurecr.io
+  CONTAINER_REGISTRY: dagairACR.azurecr.io
 
 on:
   workflow_dispatch: # allows to trigger workflow on demand
