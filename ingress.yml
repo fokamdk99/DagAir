@@ -1,0 +1,42 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-ingress
+spec:
+  tls:
+    - hosts:
+        - hello-world.info
+      secretName: ingress-cert
+  rules:
+    - host: hello-world.info
+      http:
+        paths:
+          - path: /v2
+            pathType: Prefix
+            backend:
+              service:
+                name: web2
+                port:
+                  number: 8080
+          - path: /v1
+            pathType: Prefix
+            backend:
+              service:
+                name: web
+                port:
+                  number: 8080
+          - path: /webadminapp
+            pathType: Prefix
+            backend:
+              service:
+                name: web-admin-app
+                port:
+                  number: 8085
+
+          - path: /addresses
+            pathType: Prefix
+            backend:
+              service:
+                name: addresses-api
+                port:
+                  number: 8094

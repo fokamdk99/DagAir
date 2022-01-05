@@ -1,0 +1,37 @@
+@model GetAffiliateModel
+@{
+    ViewData["Title"] = "Add new affiliate";
+    ViewData["ActivePage"] = ManageFacilitiesPages.DownloadAffiliates;
+}
+<h4>@ViewData["Title"]</h4>
+<div class="row">
+    <div class="col-md-6">
+        <form class="needs-validation" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="AdminNodeAffiliateDto.AffiliateDto.Name">Affiliate name</label>
+                <input class="form-control" placeholder="Affiliate name" asp-for="AdminNodeAffiliateDto.AffiliateDto.Name"/>
+                <div>
+                    <span class="text-danger" asp-validation-for="AdminNodeAffiliateDto.AffiliateDto.Name"></span>
+                </div>
+                <label asp-for="AdminNodeAffiliateDto.AddressDto.Country.Name">Country</label>
+                <input class="form-control" placeholder="Country" asp-for="AdminNodeAffiliateDto.AddressDto.Country.Name"/>
+                <div>
+                    <span class="text-danger" asp-validation-for="AdminNodeAffiliateDto.AddressDto.Country.Name"></span>
+                </div>
+                <label asp-for="AdminNodeAffiliateDto.AddressDto.City.Name">City</label>
+                <input class="form-control" placeholder="City" asp-for="AdminNodeAffiliateDto.AddressDto.City.Name"/>
+                <div>
+                    <span class="text-danger" asp-validation-for="AdminNodeAffiliateDto.AddressDto.City.Name"></span>
+                </div>
+                <label asp-for="AdminNodeAffiliateDto.AddressDto.PostalCode.Number">Postal code</label>
+                <input class="form-control" placeholder="Postal code" asp-for="AdminNodeAffiliateDto.AddressDto.PostalCode.Number"/>
+                <div>
+                    <span class="text-danger" asp-validation-for="AdminNodeAffiliateDto.AddressDto.PostalCode.Number"></span>
+                </div>
+                <input type="hidden" asp-for="AdminNodeAffiliateDto.AffiliateDto.OrganizationId" value="@Model.AdminNodeAffiliateDto.AffiliateDto.OrganizationId"/>
+                <input type="submit" class="btn btn-success"/>
+            </div>
+        </form>
+    </div>
+</div>

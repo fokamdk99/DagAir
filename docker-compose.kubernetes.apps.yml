@@ -1,0 +1,65 @@
+version: "3.9"
+
+services:
+  web_admin_app:
+      build:
+        target: final
+        context: ./src
+        dockerfile: ./DagAir_WebApplications/Dockerfile.WebAdminApp1
+      image: web-admin-app:1.3
+      ports:
+        - "8085:80"
+      environment:
+        - ASPNETCORE_ENVIRONMENT=Kubernetes
+      networks:
+        - dagair_development_network
+      restart: always
+
+  admin_node:
+    build:
+      target: final
+      context: ./src
+      dockerfile: ./DagAir_AdminNode/Dockerfile
+    image: admin-node:1.3
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Kubernetes
+    ports:
+      - "8088:80"
+    depends_on:
+      - rabbitmq
+    networks:
+      - dagair_development_network
+    restart: always
+
+  addresses_api:
+    build:
+      target: final
+      context: ./src
+      dockerfile: ./DagAir_Addresses/Dockerfile
+    image: addresses-api:1.3
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Kubernetes
+      - ConnectionKeys__DagAir.Addresses=${ADDRESSES_CONNECTIONKEYS}
+    ports:
+      - "8094:80"
+    networks:
+      - dagair_development_network
+    restart: always
+
+  facilities_api:
+    build:
+      target: final
+      context: ./src
+      dockerfile: ./DagAir_Facilities/Dockerfile
+    image: facilities_api:1.3
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Kubernetes
+      - ConnectionKeys__DagAir.Facilities=${FACILITIES_CONNECTIONKEYS}
+    ports:
+      - "8087:80"
+    networks:
+      - dagair_development_network
+    restart: always
+
+networks:
+  dagair_development_network:

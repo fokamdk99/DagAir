@@ -2,6 +2,7 @@
 using System.IO;
 using System.Reflection;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
@@ -9,11 +10,18 @@ namespace DagAir.Addresses.Infrastructure.Swagger
 {
     public static class SwaggerExtensions
     {
-        public static void UseConfiguredSwagger(this IApplicationBuilder app)
+        private const string BasePathSection = "basePath";
+        public static void UseConfiguredSwagger(this IApplicationBuilder app, IConfiguration configuration)
         {
+            var basePath = configuration.GetSection(BasePathSection).Value;
+            
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
+                if (basePath != null)
+                {
+                    c.SwaggerEndpoint($"/{basePath.Substring(1)}/swagger/{AddressesApiVersions.AddressesV1}/swagger.json", "DagAir Addresses Api");
+                }
                 c.SwaggerEndpoint($"/swagger/{AddressesApiVersions.AddressesV1}/swagger.json", "DagAir Addresses Api");
             });
         }

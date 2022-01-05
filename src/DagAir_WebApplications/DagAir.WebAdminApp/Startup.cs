@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +17,8 @@ namespace DagAir.WebAdminApp
 {
     public class Startup
     {
+        private const string BasePathSection = "basePath";
+        private const string ConfigurationSection = "environment";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -26,7 +30,7 @@ namespace DagAir.WebAdminApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            
+
             JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
 
             services.AddAuthentication(options =>
@@ -44,6 +48,11 @@ namespace DagAir.WebAdminApp
                     options.ResponseType = "code";
                     options.Scope.Add("profile");
                     options.GetClaimsFromUserInfoEndpoint = true;
+                    var environment = Configuration.GetSection($"{ConfigurationSection}").Value;
+                    if (environment == "kubernetes")
+                    {
+                        options.RequireHttpsMetadata = false;
+                    }
 
                     options.SaveTokens = true;
                     
@@ -55,9 +64,15 @@ namespace DagAir.WebAdminApp
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IConfiguration configuration)
         {
-            if (env.IsDevelopment())
+            var basePath = configuration.GetSection(BasePathSection).Value; 
+            if (basePath != null)
+            {
+                app.UsePathBase(basePath);
+            }
+            
+            if (env.IsDevelopment() || env.EnvironmentName == "Kubernetes")
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -67,7 +82,12 @@ namespace DagAir.WebAdminApp
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            app.UseHttpsRedirection();
+
+            if (env.EnvironmentName != "Kubernetes")
+            {
+                app.UseHttpsRedirection();
+            }
+
             app.UseStaticFiles();
 
             app.UseRouting();

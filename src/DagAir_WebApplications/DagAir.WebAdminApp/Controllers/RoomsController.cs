@@ -47,6 +47,13 @@ namespace DagAir.WebAdminApp.Controllers
                 return View(roomModel);
             }
             
+            if (environment == "kubernetes")
+            {
+                roomModel.Environment = "appsettings.Kubernetes.json";
+                
+                return View(roomModel);
+            }
+            
             roomModel.Environment = "appsettings.json";
 
             return View(roomModel);

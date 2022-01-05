@@ -17,6 +17,15 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Docker"
       }
+    },
+    "Kubernetes": {
+      "commandName": "Project",
+      "dotnetRunMessages": "true",
+      "launchBrowser": true,
+      "applicationUrl": "http://localhost:8091",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Kubernetes"
+      }
     }
   }
 }
