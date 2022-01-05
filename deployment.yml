@@ -26,6 +26,8 @@ spec:
           value: "http://+"
         - name: serviceUrls__DagAir.AdminNode
           value: "http://admin-node:8088/"
+        - name: ConnectionStrings__DefaultConnection
+          value: "server=dagair-server.mysql.database.azure.com;database=DagAir.Identity;user=dagair;password=OgVvf0g8lA9GZ1wXG6dQiLO7gg3=d64g;SslMode=Required;SslCa=DigiCertGlobalRootCA.crt.pem"
         - name: environment
           value: "kubernetes"
         - name: basePath
@@ -79,6 +81,8 @@ spec:
           value: "http://+"
         - name: ConnectionKeys__DagAir.Addresses
           value: "Rolka7Sushi"
+        - name: ConnectionStrings__DagAir.Addresses
+          value: "server=dagair-server.mysql.database.azure.com;database=DagAir.Addresses;user=dagair;password=OgVvf0g8lA9GZ1wXG6dQiLO7gg3=d64g;SslMode=Required;SslCa=DigiCertGlobalRootCA.crt.pem"
         - name: basePath
           value: "/addresses"
         imagePullPolicy: Never
@@ -128,6 +132,8 @@ spec:
           value: "Kubernetes"
         - name: ConnectionKeys__DagAir.Facilities
           value: "Rolka7Sushi"
+        - name: ConnectionStrings__DagAir.Facilities
+          value: "server=dagair-server.mysql.database.azure.com;database=DagAir.Facilities;user=dagair;password=OgVvf0g8lA9GZ1wXG6dQiLO7gg3=d64g;SslMode=Required;SslCa=DigiCertGlobalRootCA.crt.pem"
         - name: basePath
           value: "/addresses"
         imagePullPolicy: Never
@@ -278,16 +284,3 @@ spec:
   selector:
     app: redis
     role: master
----
-kind: Service
-apiVersion: v1
-metadata:
-  name: mysql-service
-  namespace: default
-spec:
-  type: ExternalName
-  # https://docs.docker.com/docker-for-mac/networking/#use-cases-and-workarounds
-  externalName: host.docker.internal
-  ports:
-    - name: port
-      port: 3306
