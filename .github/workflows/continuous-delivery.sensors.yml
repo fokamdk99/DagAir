@@ -3,17 +3,16 @@ name: CD-Sensors
 env:
   SERVICE_NAME: dagair-sensors
   MIGRATIONS_APPLIER_NAME: dagair-sensors-database-migration-applier
-  CONTAINER_REGISTRY: dagairacr.azurecr.io
+  CONTAINER_REGISTRY: dagairACR.azurecr.io
 
 on:
+  workflow_dispatch: # allows to trigger workflow on demand
   push:
     branches: 
       - main
       - develop
     paths:
       - src/DagAir_Sensors/**
-
-    workflow_dispatch:
 
 jobs:
   docker-build-and-push:

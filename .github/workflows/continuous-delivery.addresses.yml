@@ -3,17 +3,16 @@ name: CD-Addresses
 env:
   SERVICE_NAME: dagair-addresses
   MIGRATIONS_APPLIER_NAME: dagair-addresses-database-migration-applier
-  CONTAINER_REGISTRY: dagairacr.azurecr.io
+  CONTAINER_REGISTRY: dagairACR.azurecr.io
 
 on:
+  workflow_dispatch: # allows to trigger workflow on demand
   push:
     branches: 
       - main
       - develop
     paths:
       - src/DagAir_Addresses/**
-
-    workflow_dispatch:
 
 jobs:
   docker-build-and-push:

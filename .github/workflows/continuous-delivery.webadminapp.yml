@@ -1,8 +1,7 @@
-name: CD-Facilities
+name: CD-WebAdminApp
 
 env:
-  SERVICE_NAME: dagair-facilities
-  MIGRATIONS_APPLIER_NAME: dagair-facilities-database-migration-applier
+  SERVICE_NAME: dagair-web-admin-app
   CONTAINER_REGISTRY: dagairACR.azurecr.io
 
 on:
@@ -12,7 +11,7 @@ on:
       - main
       - develop
     paths:
-      - src/DagAir_Facilities/**
+      - src/DagAir_WebApplications/**
 
 jobs:
   docker-build-and-push:
@@ -39,18 +38,16 @@ jobs:
 
     - name: Build & Test
       shell: bash
-      run: ./build.sh TestProject --ProjectName facilities --verbosity verbose
+      run: ./build.sh TestProject --ProjectName webAdminApp --verbosity verbose
 
     - name: Pack
       shell: bash
-      run: ./build.sh PackProject --ProjectName facilities --verbosity verbose
+      run: ./build.sh PackProject --ProjectName webAdminApp --verbosity verbose
 
     - name: Set image names & main tags
       run: |
         appImageName="${{ env.CONTAINER_REGISTRY }}/${{ env.SERVICE_NAME }}"
-        migrationsApplierImageName="${{ env.CONTAINER_REGISTRY }}/${{ env.MIGRATIONS_APPLIER_NAME }}"
         echo "APP_IMAGE_NAME=$appImageName" >> $GITHUB_ENV
-        echo "MIGRATIONS_APPLIER_IMAGE_NAME=$migrationsApplierImageName" >> $GITHUB_ENV
 
         version="${{ steps.gitversion.outputs.nugetVersionV2 }}-${{ steps.gitversion.outputs.shortSha }}"
 
@@ -59,20 +56,12 @@ jobs:
         fi
 
         echo "APP_IMAGE_TAG=${appImageName}:$version" >> $GITHUB_ENV
-        echo "MIGRATIONS_APPLIER_IMAGE_TAG=${migrationsApplierImageName}:$version" >> $GITHUB_ENV
 
-    - name: Docker application build - facilities
+    - name: Check application docker build - webAdminApp
       run: |
         docker build \
-        -f ./src/DagAir_Facilities/Dockerfile \
+        -f ./src/DagAir_WebApplications/Dockerfile.WebAdminApp1 \
         --tag ${{ env.APP_IMAGE_TAG }} \
-        ./src
-
-    - name: Docker migrations applier build - facilities
-      run: |
-        docker build \
-        -f ./src/DagAir_Facilities/Dockerfile.Migrations \
-        --tag ${{ env.MIGRATIONS_APPLIER_IMAGE_TAG }} \
         ./src
 
     - name: Docker tag images
@@ -80,7 +69,6 @@ jobs:
         endsWith(github.ref, '/develop')
       run: |
         docker tag ${{ env.APP_IMAGE_TAG }} "${{ env.APP_IMAGE_NAME }}:develop-latest"
-        docker tag ${{ env.MIGRATIONS_APPLIER_IMAGE_TAG }} "${{ env.MIGRATIONS_APPLIER_IMAGE_NAME }}:develop-latest"
 
     - name: Docker login
       uses: docker/login-action@v1
@@ -92,4 +80,3 @@ jobs:
     - name: Docker push images
       run: |
         docker push ${{ env.APP_IMAGE_NAME }} --all-tags
-        docker push ${{ env.MIGRATIONS_APPLIER_IMAGE_NAME }} --all-tags
