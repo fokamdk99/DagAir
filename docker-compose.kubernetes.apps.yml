@@ -6,7 +6,7 @@ services:
         target: final
         context: ./src
         dockerfile: ./DagAir_WebApplications/Dockerfile.WebAdminApp1
-      image: web-admin-app:1.3
+      image: web-admin-app:1.5
       ports:
         - "8085:80"
       environment:
@@ -20,7 +20,7 @@ services:
       target: final
       context: ./src
       dockerfile: ./DagAir_AdminNode/Dockerfile
-    image: admin-node:1.3
+    image: admin-node:1.5
     environment:
       - ASPNETCORE_ENVIRONMENT=Kubernetes
     ports:
@@ -36,7 +36,7 @@ services:
       target: final
       context: ./src
       dockerfile: ./DagAir_Addresses/Dockerfile
-    image: addresses-api:1.3
+    image: addresses-api:1.5
     environment:
       - ASPNETCORE_ENVIRONMENT=Kubernetes
       - ConnectionKeys__DagAir.Addresses=${ADDRESSES_CONNECTIONKEYS}
@@ -51,7 +51,7 @@ services:
       target: final
       context: ./src
       dockerfile: ./DagAir_Facilities/Dockerfile
-    image: facilities_api:1.3
+    image: facilities-api:1.5
     environment:
       - ASPNETCORE_ENVIRONMENT=Kubernetes
       - ConnectionKeys__DagAir.Facilities=${FACILITIES_CONNECTIONKEYS}
@@ -60,6 +60,20 @@ services:
     networks:
       - dagair_development_network
     restart: always
+
+  redis:
+    image: redis:1.5
+    ports:
+      - 6379:6379
+    networks:
+      - dagair_development_network
+
+  notification-producer:
+    image: realtime/notification-producer:1.5
+    depends_on:
+      - redis
+    networks:
+      - dagair_development_network
 
 networks:
   dagair_development_network:

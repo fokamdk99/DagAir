@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: web-admin-app
-        image: web-admin-app:1.3
+        image: web-admin-app:1.5
         env:
         - name: ASPNETCORE_ENVIRONMENT
           value: "Kubernetes"
@@ -71,7 +71,7 @@ spec:
     spec:
       containers:
       - name: addresses-api
-        image: addresses-api:1.3
+        image: addresses-api:1.5
         env:
         - name: ASPNETCORE_ENVIRONMENT
           value: "Kubernetes"
@@ -122,7 +122,7 @@ spec:
     spec:
       containers:
       - name: facilities-api
-        image: facilities_api:1.3
+        image: facilities-api:1.5
         env:
         - name: ASPNETCORE_ENVIRONMENT
           value: "Kubernetes"
@@ -171,7 +171,7 @@ spec:
     spec:
       containers:
       - name: admin-node
-        image: admin-node:1.3
+        image: admin-node:1.5
         env:
         - name: ASPNETCORE_ENVIRONMENT
           value: "Kubernetes"
@@ -213,6 +213,71 @@ spec:
     targetPort: 80
     protocol: TCP
     name: http
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notification-producer
+  labels:
+    app: notification-producer
+spec:
+  selector:
+    matchLabels:
+      app: notification-producer
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: notification-producer
+    spec:
+      containers:
+      - name: notification-producer-container
+        imagePullPolicy: Never
+        image: realtime/notification-producer:1.5
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-master
+  labels:
+    app: redis
+spec:
+  selector:
+    matchLabels:
+      app: redis
+      role: master
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: redis
+        role: master
+    spec:
+      containers:
+      - name: master
+        image: redis:1.5
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort: 6379
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+spec:
+  ports:
+    # the port that this service should serve on
+  - port: 6379
+  selector:
+    app: redis
+    role: master
 ---
 kind: Service
 apiVersion: v1
