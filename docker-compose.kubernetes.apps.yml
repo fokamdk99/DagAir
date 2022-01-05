@@ -1,0 +1,79 @@
+version: "3.9"
+
+services:
+  web_admin_app:
+      build:
+        target: final
+        context: ./src
+        dockerfile: ./DagAir_WebApplications/Dockerfile.WebAdminApp1
+      image: web-admin-app:1.5
+      ports:
+        - "8085:80"
+      environment:
+        - ASPNETCORE_ENVIRONMENT=Kubernetes
+      networks:
+        - dagair_development_network
+      restart: always
+
+  admin_node:
+    build:
+      target: final
+      context: ./src
+      dockerfile: ./DagAir_AdminNode/Dockerfile
+    image: admin-node:1.5
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Kubernetes
+    ports:
+      - "8088:80"
+    depends_on:
+      - rabbitmq
+    networks:
+      - dagair_development_network
+    restart: always
+
+  addresses_api:
+    build:
+      target: final
+      context: ./src
+      dockerfile: ./DagAir_Addresses/Dockerfile
+    image: addresses-api:1.5
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Kubernetes
+      - ConnectionKeys__DagAir.Addresses=${ADDRESSES_CONNECTIONKEYS}
+    ports:
+      - "8094:80"
+    networks:
+      - dagair_development_network
+    restart: always
+
+  facilities_api:
+    build:
+      target: final
+      context: ./src
+      dockerfile: ./DagAir_Facilities/Dockerfile
+    image: facilities-api:1.5
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Kubernetes
+      - ConnectionKeys__DagAir.Facilities=${FACILITIES_CONNECTIONKEYS}
+    ports:
+      - "8087:80"
+    networks:
+      - dagair_development_network
+    restart: always
+
+  redis:
+    image: redis:1.5
+    ports:
+      - 6379:6379
+    networks:
+      - dagair_development_network
+
+  notification-producer:
+    image: realtime/notification-producer:1.5
+    depends_on:
+      - redis
+    networks:
+      - dagair_development_network
+
+networks:
+  dagair_development_network:

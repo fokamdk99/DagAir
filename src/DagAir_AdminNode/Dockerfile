@@ -8,6 +8,8 @@ WORKDIR /app
 COPY ["./DagAir_AdminNode/DagAir.AdminNode/", "./DagAir_AdminNode/DagAir.AdminNode/"]
 COPY ["./DagAir_PolicyNode/DagAir.PolicyNode.Contracts/", "./DagAir_PolicyNode/DagAir.PolicyNode.Contracts/"]
 COPY ["./DagAir_Facilities/DagAir.Facilities.Contracts/", "./DagAir_Facilities/DagAir.Facilities.Contracts/"]
+COPY ["./DagAir_Addresses/DagAir.Addresses.Contracts/", "./DagAir_Addresses/DagAir.Addresses.Contracts/"]
+COPY ["./DagAir_AdminNode/DagAir.AdminNode.Contracts/", "./DagAir_AdminNode/DagAir.AdminNode.Contracts/"]
 COPY ["./DagAir_Components/DagAir.Components.MassTransit.RabbitMq/", "./DagAir_Components/DagAir.Components.MassTransit.RabbitMq/"]
 COPY ["./DagAir_Components/DagAir.Components.Healthchecks/", "./DagAir_Components/DagAir.Components.Healthchecks/"]
 COPY ["./DagAir_Components/DagAir.Components.Logging/", "./DagAir_Components/DagAir.Components.Logging/"]

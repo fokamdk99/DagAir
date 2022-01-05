@@ -35,7 +35,7 @@ namespace DagAir.ClientNode
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapHub<ChatHub>("/chatHub");
+                endpoints.MapHub<ChatHub>("/hubs/chatHub");
                 endpoints.MapHealthCheckEndpoints();
             });
         }

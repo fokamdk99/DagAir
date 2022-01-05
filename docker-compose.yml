@@ -1,6 +1,15 @@
 version: "3.9"
 
 services:
+  redis:
+    image: redis
+    ports:
+    - 6379:6379
+
+  notification-producer:
+    image: realtime/notification-producer
+    depends_on: ["redis"]
+
   influxdb:
     image: influxdb:2.0.8
     container_name: influxdb1
@@ -65,6 +74,7 @@ services:
       target: final
       context: ./src
       dockerfile: ./DagAir_Facilities/Dockerfile
+    image: facilities-api:1.0
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
       - ConnectionKeys__DagAir.Facilities=${FACILITIES_CONNECTIONKEYS}
@@ -129,6 +139,7 @@ services:
       - "8084:80"
     depends_on:
       - rabbitmq
+      - redis
     networks:
       - dagair_network
     restart: always
@@ -144,6 +155,7 @@ services:
       - "8088:80"
     depends_on:
       - rabbitmq
+      - redis
     networks:
       - dagair_network
     restart: always
@@ -165,45 +177,12 @@ services:
     build:
       target: final
       context: ./src
-      dockerfile: ./DagAir_WebApplications/Dockerfile.WebAdminApp
+      dockerfile: ./DagAir_WebApplications/Dockerfile.WebAdminApp1
+    image: web-admin-app:1.4
     ports:
-      - "8085:443"
-      - "8091:80"
+      - "8085:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
-      - ASPNETCORE_URLS=https://+;http://+
-      - ASPNETCORE_HTTPS_PORT=8085
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=${WEB_ADMIN_APP_CERTIFICATE_PASSWORD}
-      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/${WEB_ADMIN_APP_CERTIFICATE_NAME}
-    volumes:
-      - ${APPDATA}/Microsoft/UserSecrets/:/root/.microsoft/usersecrets:ro
-      - ./src/DagAir_WebApplications/DagAir.WebAdminApp/certs:/https/
-      - type: bind # Using a bind volume as only this single file from `certs` directory should end up in the container.
-        source: ./certs/${ROOT_CERTIFICATE_NAME}
-        target: /https-root/${ROOT_CERTIFICATE_NAME}
-    networks:
-      - dagair_network
-    restart: always
-
-  identity_server:
-    build:
-      target: final
-      context: ./src
-      dockerfile: ./DagAir.IdentityServer/Dockerfile
-    ports:
-      - 5001:443
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Docker
-      - ASPNETCORE_URLS=https://+;
-      - ASPNETCORE_HTTPS_PORT=443
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=${IDENTITY_SERVER_CERTIFICATE_PASSWORD}
-      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/${IDENTITY_SERVER_CERTIFICATE_NAME}
-      - certificate__password=${IDENTITY_SERVER_CERTIFICATE_PASSWORD}
-    volumes:
-      - ./src/DagAir.IdentityServer/certs:/https/
-      - type: bind # Using a bind volume as only this single file from `certs` directory should end up in the container.
-        source: ./certs/${ROOT_CERTIFICATE_NAME}
-        target: /https-root/${ROOT_CERTIFICATE_NAME}
     networks:
       - dagair_network
     restart: always

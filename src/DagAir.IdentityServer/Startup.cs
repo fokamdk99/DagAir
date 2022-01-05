@@ -9,6 +9,7 @@ using DagAir.IdentityServer.Data;
 using DagAir.IdentityServer.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -21,6 +22,7 @@ namespace DagAir.IdentityServer
     {
         public IWebHostEnvironment Environment { get; }
         public IConfiguration Configuration { get; }
+        private const string BasePathSection = "basePath";
 
         public Startup(IWebHostEnvironment environment, IConfiguration configuration)
         {
@@ -56,7 +58,7 @@ namespace DagAir.IdentityServer
                 .AddAspNetIdentity<ApplicationUser>();
 
             // TODO: not recommended for production - you need to store your key material somewhere secure
-            if (Environment.IsDevelopment())
+            if (Environment.IsDevelopment() || Environment.EnvironmentName == "Kubernetes")
             {
                 builder.AddDeveloperSigningCredential();
             }
@@ -66,19 +68,52 @@ namespace DagAir.IdentityServer
                 builder.AddSigningCredential(certificate);
             }
             
+            services.Configure<ForwardedHeadersOptions>(options =>
+            {
+                options.ForwardedHeaders =
+                    ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+                options.RequireHeaderSymmetry = false;
+                options.KnownNetworks.Clear();
+                options.KnownProxies.Clear();
+            });
         }
 
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IConfiguration configuration)
         {
+            var basePath = configuration.GetSection(BasePathSection).Value; 
+            if (basePath != null)
+            {
+                app.UsePathBase(basePath);
+            }
+            
+            if (env.EnvironmentName == "Kubernetes")
+            {
+                app.UseForwardedHeaders();
+            }
+            
+            
             if (Environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            if (env.EnvironmentName != "Kubernetes")
+            {
+                app.UseHttpsRedirection();
+            }
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            if (env.EnvironmentName == "Kubernetes")
+            {
+                app.Use((context, next) =>
+                {
+                    context.Request.Scheme = "https";
+                    return next();
+                });
+            }
+            
             app.UseIdentityServer();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
