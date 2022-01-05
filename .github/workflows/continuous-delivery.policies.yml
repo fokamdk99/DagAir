@@ -6,14 +6,13 @@ env:
   CONTAINER_REGISTRY: dagair.azurecr.io
 
 on:
+  workflow_dispatch: # allows to trigger workflow on demand
   push:
     branches: 
       - main
       - develop
     paths:
       - src/DagAir_Policies/**
-
-  workflow_dispatch:
 
 jobs:
   docker-build-and-push:
