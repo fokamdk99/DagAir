@@ -1,0 +1,40 @@
+host: hello-world.info
+environment: Kubernetes
+
+database:
+  server: dagair-server.mysql.database.azure.com
+  password: Mh7FC0g8lMVHt1wXAwq2SLO9HB3=d97g
+  user: dagair
+
+webAdminApp:
+  name: web-admin-app
+  environment: kubernetes
+  port: 8085
+  database:
+    schema: DagAir.Identity
+
+
+addresses:
+  name: addresses-api
+  port: 8094
+  database:
+    schema: DagAir.Addresses
+
+facilities:
+  name: facilities-api
+  port: 8087
+  database:
+    schema: DagAir.Facilities
+
+adminNode:
+  name: admin-node
+  port: 8088
+  rabbitMq:
+    connectionName: admin-node
+
+rabbitMq:
+  hostName: hello-world
+  virtualHost: /
+  userName: default_user_z1L5p85AN0xB0_64y61
+  password: wjJR8DDXEb-FGqSOD_5pS1XBAAoWv4Yy
+  protocol: rabbitmq://

@@ -1,0 +1,57 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/affinity: cookie
+    nginx.ingress.kubernetes.io/session-cookie-hash: sha1
+    nginx.ingress.kubernetes.io/session-cookie-name: REALTIMESERVERID
+    nginx.org/websocket-services: "admin-node"
+spec:
+  tls:
+    - hosts:
+        - {{ .Values.host }}
+      secretName: ingress-cert
+  rules:
+    - host: {{ .Values.host }}
+      http:
+        paths:
+          - path: /v2
+            pathType: Prefix
+            backend:
+              service:
+                name: web2
+                port:
+                  number: 8080
+          - path: /v1
+            pathType: Prefix
+            backend:
+              service:
+                name: web
+                port:
+                  number: 8080
+          - path: /webadminapp
+            pathType: Prefix
+            backend:
+              service:
+                name: web-admin-app
+                port:
+                  number: 8085
+
+          - path: /addresses
+            pathType: Prefix
+            backend:
+              service:
+                name: addresses-api
+                port:
+                  number: 8094
+
+          - path: /hubs
+            pathType: Prefix
+            backend:
+              service: 
+                name: admin-node
+                port: 
+                  number: 8088

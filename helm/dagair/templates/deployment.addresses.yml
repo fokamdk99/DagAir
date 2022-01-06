@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.addresses.name }}
+  labels:
+    app: {{ .Values.addresses.name }}
+    tier: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.addresses.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.addresses.name }}
+        tier: backend
+    spec:
+      containers:
+      - name: {{ .Values.addresses.name }}
+        image: {{ .Values.addresses.name }}:1.5
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: {{ .Values.environment }}
+        - name: ASPNETCORE_URLS
+          value: "http://+"
+        - name: ConnectionStrings__DagAir.Addresses
+          value: "server={{ .Values.database.server }};database={{ .Values.addresses.database.schema }};user={{ .Values.database.user }};password={{ .Values.database.password }};SslMode=Required;SslCa=DigiCertGlobalRootCA.crt.pem"
+        - name: basePath
+          value: "/addresses"
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.addresses.name }}
+  labels:
+    app: {{ .Values.addresses.name }}
+    tier: backend
+spec:
+  selector:
+    app: {{ .Values.addresses.name }}
+  type: LoadBalancer
+  ports:
+  - port: {{ .Values.addresses.port }}
+    targetPort: 80
+    protocol: TCP
+    name: http
