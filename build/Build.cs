@@ -51,6 +51,7 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository
         {"webClientApp", "DagAir.WebClientApp.Tests"},
         {"webAdminApp", "DagAir.WebAdminApp.Tests"},
         {"clientNode", "DagAir.ClientNode.Tests"},
+        {"adminNode", "DagAir.AdminNode.Tests"},
         {"facilities", "DagAir.Facilities.Tests"},
         {"addresses", "DagAir.Addresses.Tests"}
     };
@@ -64,6 +65,7 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository
         {"webClientApp", "DagAir.WebClientApp"},
         {"webAdminApp", "WebAdminApp1"},
         {"clientNode", "DagAir.ClientNode"},
+        {"adminNode", "DagAir.AdminNode"},
         {"facilities", "DagAir.Facilities"},
         {"addresses", "DagAir.Addresses"}
     };
