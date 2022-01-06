@@ -19,7 +19,7 @@
         </member>
         <member name="M:DagAir.Facilities.Affiliates.AffiliatesController.CreateNewAffiliate(DagAir.Facilities.Contracts.Commands.AddNewAffiliateCommand)">
             <summary>
-            Creates a new affiliate with parameters specified in addNewAffiliateCommand 
+            Create a new affiliate with parameters specified in addNewAffiliateCommand 
             </summary>
             <param name="addNewAffiliateCommand"></param>
             <returns></returns>
@@ -49,6 +49,13 @@
             Returns information about a room with a given roomId
             </summary>
             <param name="roomId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DagAir.Facilities.Rooms.RoomController.CreateNewRoom(DagAir.Facilities.Contracts.Commands.AddNewRoomCommand)">
+            <summary>
+            Create a new room with parameters specified in addNewRoomCommand 
+            </summary>
+            <param name="addNewRoomCommand"></param>
             <returns></returns>
         </member>
     </members>

@@ -19,6 +19,7 @@ using Nuke.Common.Tools.Docker;
 using Nuke.Common.Tools.DotNet;
 using Nuke.Common.Tools.GitVersion;
 using Nuke.Common.Utilities.Collections;
+using Serilog;
 using static Nuke.Common.IO.FileSystemTasks;
 using static Nuke.Common.Tools.DotNet.DotNetTasks;
 
@@ -32,7 +33,7 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository
     ///   - Microsoft VisualStudio     https://nuke.build/visualstudio
     ///   - Microsoft VSCode           https://nuke.build/vscode
 
-    public static int Main () => Execute<Build>(x => x.GenerateSwaggerDocumentation);
+    public static int Main () => Execute<Build>(x => x.TestProject);
 
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     readonly Configuration Configuration = Configuration.Release;
@@ -99,6 +100,10 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository
         .Executes(() =>
         {
             var solution = (this as IHaveSolution).Solution;
+            foreach (var proj in solution.AllProjects)
+            {
+                Logger.Info(proj.Name);
+            }
             var project = solution.AllProjects.Single(x => x.Name == TestProjectNames[ProjectName]);
             DotNetRestore(s => s.EnsureNotNull(this as IHaveSolution, (_, o) => s.SetProjectFile(project)));
         });
