@@ -18,8 +18,13 @@ spec:
     spec:
       containers:
       - name: {{ .Values.webAdminApp.name }}
-        image: {{ .Values.webAdminApp.name }}:1.5
+        image: {{ .Values.registry }}/{{ .Values.webAdminApp.image.name }}:{{ .Values.webAdminApp.image.tag }}
         env:
+        - name: DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: basic-auth
+              key: databasePassword
         - name: ASPNETCORE_ENVIRONMENT
           value: {{ .Values.environment }}
         - name: ASPNETCORE_URLS
@@ -27,12 +32,12 @@ spec:
         - name: serviceUrls__DagAir.AdminNode
           value: "http://admin-node:8088/"
         - name: ConnectionStrings__DefaultConnection
-          value: "server={{ .Values.database.server }};database={{ .Values.webAdminApp.database.schema }};user={{ .Values.database.user }};password={{ .Values.database.password }};SslMode=Required;SslCa=DigiCertGlobalRootCA.crt.pem"
+          value: "server={{ .Values.database.server }};database={{ .Values.webAdminApp.database.schema }};user={{ .Values.database.user }};password=$(DATABASE_PASSWORD);SslMode=Required;SslCa=DigiCertGlobalRootCA.crt.pem"
         - name: environment
           value: {{ .Values.webAdminApp.environment }}
         - name: basePath
           value: "/webadminapp"
-        imagePullPolicy: Never
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
 ---

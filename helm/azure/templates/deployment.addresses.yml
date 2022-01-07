@@ -18,17 +18,22 @@ spec:
     spec:
       containers:
       - name: {{ .Values.addresses.name }}
-        image: {{ .Values.addresses.name }}:1.5
+        image: {{ .Values.registry }}/{{ .Values.addresses.image.name }}:{{ .Values.addresses.image.tag }}
         env:
+        - name: DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: basic-auth
+              key: databasePassword
         - name: ASPNETCORE_ENVIRONMENT
           value: {{ .Values.environment }}
         - name: ASPNETCORE_URLS
           value: "http://+"
         - name: ConnectionStrings__DagAir.Addresses
-          value: "server={{ .Values.database.server }};database={{ .Values.addresses.database.schema }};user={{ .Values.database.user }};password={{ .Values.database.password }};SslMode=Required;SslCa=DigiCertGlobalRootCA.crt.pem"
+          value: "server={{ .Values.database.server }};database={{ .Values.addresses.database.schema }};user={{ .Values.database.user }};password=$(DATABASE_PASSWORD);SslMode=Required;SslCa=DigiCertGlobalRootCA.crt.pem"
         - name: basePath
           value: "/addresses"
-        imagePullPolicy: Never
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
 ---

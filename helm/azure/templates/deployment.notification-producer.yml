@@ -16,8 +16,8 @@ spec:
     spec:
       containers:
       - name: notification-producer-container
-        imagePullPolicy: Never
-        image: realtime/notification-producer:1.5
+        imagePullPolicy: Always
+        image: {{ .Values.registry }}/realtime/notification-producer:develop-latest
         resources:
           requests:
             cpu: 100m

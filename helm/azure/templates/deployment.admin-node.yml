@@ -18,8 +18,13 @@ spec:
     spec:
       containers:
       - name: {{ .Values.adminNode.name }}
-        image: {{ .Values.adminNode.name }}:1.5
+        image: {{ .Values.registry }}/{{ .Values.adminNode.image.name }}:{{ .Values.adminNode.image.tag }}
         env:
+        - name: RABBITMQ_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: basic-auth
+              key: rabbitMqPassword
         - name: ASPNETCORE_ENVIRONMENT
           value: {{ .Values.environment }}
         - name: serviceUrls__webAdminApp
@@ -35,12 +40,12 @@ spec:
         - name: rabbitMq__userName
           value: {{ .Values.rabbitMq.userName }}
         - name: rabbitMq__password
-          value: {{ .Values.rabbitMq.password }}
+          value: $(RABBITMQ_PASSWORD)
         - name: rabbitMq__protocol
           value: {{ .Values.rabbitMq.protocol }}
         - name: rabbitMq__connectionName
           value: {{ .Values.adminNode.rabbitMq.connectionName }}
-        imagePullPolicy: Never
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
         startupProbe:

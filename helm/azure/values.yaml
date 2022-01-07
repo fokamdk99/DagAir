@@ -1,0 +1,54 @@
+host: dagairsystem-ingress.westeurope.cloudapp.azure.com
+environment: Kubernetes
+registry: dagairacr.azurecr.io
+
+database:
+  server: dagair-server.mysql.database.azure.com
+  password: <SOME_PASSWORD>
+  user: dagair
+
+webAdminApp:
+  name: web-admin-app
+  environment: kubernetes
+  port: 8085
+  image:
+    name: dagair-web-admin-app
+    tag: develop-latest
+  database:
+    schema: DagAir.Identity
+
+
+addresses:
+  name: addresses-api
+  port: 8094
+  image:
+    name: dagair-addresses
+    tag: develop-latest
+  database:
+    schema: DagAir.Addresses
+
+facilities:
+  name: facilities-api
+  port: 8087
+  image:
+    name: dagair-facilities
+    tag: develop-latest
+  database:
+    schema: DagAir.Facilities
+
+adminNode:
+  name: admin-node
+  port: 8088
+  image:
+    name: dagair-admin-node
+    tag: develop-latest
+  rabbitMq:
+    connectionName: admin-node
+
+rabbitMq:
+  hostName: rabbitmq-release-rabbitmq
+  virtualHost: /
+  userName: dagairUser
+  password: <SOME_PASSWORD>
+  protocol: rabbitmq://
+  erlangCookie: <SOME_ERLANG_COOKIE>

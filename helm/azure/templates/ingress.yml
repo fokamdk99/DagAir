@@ -9,29 +9,17 @@ metadata:
     nginx.ingress.kubernetes.io/session-cookie-hash: sha1
     nginx.ingress.kubernetes.io/session-cookie-name: REALTIMESERVERID
     nginx.org/websocket-services: "admin-node"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    cert-manager.io/cluster-issuer: letsencrypt
 spec:
   tls:
     - hosts:
         - {{ .Values.host }}
-      secretName: ingress-cert
+      secretName: tls-secret
   rules:
     - host: {{ .Values.host }}
       http:
         paths:
-          - path: /v2
-            pathType: Prefix
-            backend:
-              service:
-                name: web2
-                port:
-                  number: 8080
-          - path: /v1
-            pathType: Prefix
-            backend:
-              service:
-                name: web
-                port:
-                  number: 8080
           - path: /webadminapp
             pathType: Prefix
             backend:
