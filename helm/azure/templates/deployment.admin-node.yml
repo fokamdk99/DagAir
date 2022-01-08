@@ -23,8 +23,8 @@ spec:
         - name: RABBITMQ_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: basic-auth
-              key: rabbitMqPassword
+              name: rabbitmq-release-rabbitmq
+              key: rabbitmq-password
         - name: ASPNETCORE_ENVIRONMENT
           value: {{ .Values.environment }}
         - name: serviceUrls__webAdminApp
