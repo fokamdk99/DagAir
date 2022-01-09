@@ -28,6 +28,33 @@ paths:
           description: Not Found
           schema:
             $ref: '#/definitions/JsonApiError'
+  /addresses-api/addresses:
+    post:
+      tags:
+        - Addresses
+      consumes:
+        - application/json-patch+json
+        - application/json
+        - text/json
+        - application/*+json
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/AddNewAddressCommand'
+      responses:
+        '201':
+          description: Success
+          schema:
+            $ref: '#/definitions/AddressDtoJsonApiDocument'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/JsonApiError'
   '/addresses-api/cities/{cityId}':
     get:
       tags:
@@ -104,6 +131,17 @@ paths:
           schema:
             $ref: '#/definitions/JsonApiError'
 definitions:
+  AddNewAddressCommand:
+    type: object
+    properties:
+      addressDto:
+        $ref: '#/definitions/AddressDto'
+      cityDto:
+        $ref: '#/definitions/CityDto'
+      countryDto:
+        $ref: '#/definitions/CountryDto'
+      postalCodeDto:
+        $ref: '#/definitions/PostalCodeDto'
   AddressDto:
     type: object
     properties:
@@ -133,6 +171,8 @@ definitions:
       data:
         $ref: '#/definitions/AddressDto'
   CityDto:
+    required:
+      - name
     type: object
     properties:
       id:
@@ -152,6 +192,8 @@ definitions:
       data:
         $ref: '#/definitions/CityDto'
   CountryDto:
+    required:
+      - name
     type: object
     properties:
       id:
@@ -179,6 +221,8 @@ definitions:
       messageDetails:
         type: string
   PostalCodeDto:
+    required:
+      - number
     type: object
     properties:
       id:

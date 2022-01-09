@@ -14,6 +14,91 @@ __Version__ : v1
 [[_paths]]
 == Paths
 
+[[_admin-node_addresses_post]]
+=== POST /admin-node/addresses
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^4a"]
+|===
+|Type|Name|Schema
+|**Body**|**body** +
+__optional__|<<_addnewaddresscommand,AddNewAddressCommand>>
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**201**|Success|<<_addressdtojsonapidocument,AddressDtoJsonApiDocument>>
+|**400**|Bad Request|<<_jsonapierror,JsonApiError>>
+|===
+
+
+==== Consumes
+
+* `application/json`
+* `text/json`
+* `application/*+json`
+
+
+==== Produces
+
+* `text/plain`
+* `application/json`
+* `text/json`
+
+
+==== Tags
+
+* AddressesAdmin
+
+
+[[_admin-node_affiliates_post]]
+=== POST /admin-node/affiliates
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^4a"]
+|===
+|Type|Name|Schema
+|**Body**|**body** +
+__optional__|<<_addnewaffiliatecommand,AddNewAffiliateCommand>>
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**201**|Success|<<_affiliatedtojsonapidocument,AffiliateDtoJsonApiDocument>>
+|**400**|Bad Request|<<_jsonapierror,JsonApiError>>
+|**409**|Conflict|<<_jsonapierror,JsonApiError>>
+|===
+
+
+==== Consumes
+
+* `application/json`
+* `text/json`
+* `application/*+json`
+
+
+==== Produces
+
+* `text/plain`
+* `application/json`
+* `text/json`
+
+
+==== Tags
+
+* AffiliatesAdmin
+
+
 [[_admin-node_affiliates_get]]
 === Returns information about all affiliates
 ....
@@ -26,7 +111,7 @@ GET /admin-node/affiliates
 [options="header", cols=".^2a,.^14a,.^4a"]
 |===
 |HTTP Code|Description|Schema
-|**200**|Success|<<_affiliatedtolistjsonapidocument,AffiliateDtoListJsonApiDocument>>
+|**200**|Success|<<_adminnodeaffiliatedtolistjsonapidocument,AdminNodeAffiliateDtoListJsonApiDocument>>
 |**404**|Not Found|<<_jsonapierror,JsonApiError>>
 |===
 
@@ -65,7 +150,7 @@ __required__|integer (int64)
 [options="header", cols=".^2a,.^14a,.^4a"]
 |===
 |HTTP Code|Description|Schema
-|**200**|Success|<<_affiliatedtojsonapidocument,AffiliateDtoJsonApiDocument>>
+|**200**|Success|<<_adminnodeaffiliatedtojsonapidocument,AdminNodeAffiliateDtoJsonApiDocument>>
 |**404**|Not Found|<<_jsonapierror,JsonApiError>>
 |===
 
@@ -82,6 +167,48 @@ __required__|integer (int64)
 * AffiliatesAdmin
 
 
+[[_admin-node_organizations_post]]
+=== POST /admin-node/organizations
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^4a"]
+|===
+|Type|Name|Schema
+|**Body**|**body** +
+__optional__|<<_addneworganizationcommand,AddNewOrganizationCommand>>
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**201**|Success|<<_organizationdtojsonapidocument,OrganizationDtoJsonApiDocument>>
+|**400**|Bad Request|<<_jsonapierror,JsonApiError>>
+|===
+
+
+==== Consumes
+
+* `application/json`
+* `text/json`
+* `application/*+json`
+
+
+==== Produces
+
+* `text/plain`
+* `application/json`
+* `text/json`
+
+
+==== Tags
+
+* FacilitiesAdmin
+
+
 [[_admin-node_organizations_get]]
 === Returns information about all organizations
 ....
@@ -94,7 +221,7 @@ GET /admin-node/organizations
 [options="header", cols=".^2a,.^14a,.^4a"]
 |===
 |HTTP Code|Description|Schema
-|**200**|Success|<<_organizationdtolistjsonapidocument,OrganizationDtoListJsonApiDocument>>
+|**200**|Success|<<_adminnodeorganizationdtolistjsonapidocument,AdminNodeOrganizationDtoListJsonApiDocument>>
 |**404**|Not Found|<<_jsonapierror,JsonApiError>>
 |===
 
@@ -133,7 +260,7 @@ __required__|integer (int64)
 [options="header", cols=".^2a,.^14a,.^4a"]
 |===
 |HTTP Code|Description|Schema
-|**200**|Success|<<_organizationdtojsonapidocument,OrganizationDtoJsonApiDocument>>
+|**200**|Success|<<_adminnodeorganizationdtojsonapidocument,AdminNodeOrganizationDtoJsonApiDocument>>
 |**404**|Not Found|<<_jsonapierror,JsonApiError>>
 |===
 
@@ -150,10 +277,207 @@ __required__|integer (int64)
 * FacilitiesAdmin
 
 
+[[_admin-node_rooms_post]]
+=== POST /admin-node/rooms
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^4a"]
+|===
+|Type|Name|Schema
+|**Body**|**body** +
+__optional__|<<_addnewroomcommand,AddNewRoomCommand>>
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**201**|Success|<<_roomdtojsonapidocument,RoomDtoJsonApiDocument>>
+|**400**|Bad Request|<<_jsonapierror,JsonApiError>>
+|**409**|Conflict|<<_jsonapierror,JsonApiError>>
+|===
+
+
+==== Consumes
+
+* `application/json`
+* `text/json`
+* `application/*+json`
+
+
+==== Produces
+
+* `text/plain`
+* `application/json`
+* `text/json`
+
+
+==== Tags
+
+* RoomsAdmin
+
+
 
 
 [[_definitions]]
 == Definitions
+
+[[_addnewaddresscommand]]
+=== AddNewAddressCommand
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**addressDto** +
+__optional__|<<_addressdto,AddressDto>>
+|**cityDto** +
+__optional__|<<_citydto,CityDto>>
+|**countryDto** +
+__optional__|<<_countrydto,CountryDto>>
+|**postalCodeDto** +
+__optional__|<<_postalcodedto,PostalCodeDto>>
+|===
+
+
+[[_addnewaffiliatecommand]]
+=== AddNewAffiliateCommand
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**affiliateDto** +
+__optional__|<<_affiliatedto,AffiliateDto>>
+|===
+
+
+[[_addneworganizationcommand]]
+=== AddNewOrganizationCommand
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**organizationDto** +
+__optional__|<<_organizationdto,OrganizationDto>>
+|===
+
+
+[[_addnewroomcommand]]
+=== AddNewRoomCommand
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**roomDto** +
+__optional__|<<_roomdto,RoomDto>>
+|===
+
+
+[[_addressdto]]
+=== AddressDto
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**city** +
+__optional__|<<_citydto,CityDto>>
+|**cityId** +
+__optional__|integer (int64)
+|**country** +
+__optional__|<<_countrydto,CountryDto>>
+|**countryId** +
+__optional__|integer (int64)
+|**id** +
+__optional__|integer (int64)
+|**postalCode** +
+__optional__|<<_postalcodedto,PostalCodeDto>>
+|**postalCodeId** +
+__optional__|integer (int64)
+|===
+
+
+[[_addressdtojsonapidocument]]
+=== AddressDtoJsonApiDocument
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**data** +
+__required__|<<_addressdto,AddressDto>>
+|===
+
+
+[[_adminnodeaffiliatedto]]
+=== AdminNodeAffiliateDto
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**addressDto** +
+__optional__|<<_addressdto,AddressDto>>
+|**affiliateDto** +
+__optional__|<<_affiliatedto,AffiliateDto>>
+|===
+
+
+[[_adminnodeaffiliatedtojsonapidocument]]
+=== AdminNodeAffiliateDtoJsonApiDocument
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**data** +
+__required__|<<_adminnodeaffiliatedto,AdminNodeAffiliateDto>>
+|===
+
+
+[[_adminnodeaffiliatedtolistjsonapidocument]]
+=== AdminNodeAffiliateDtoListJsonApiDocument
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**data** +
+__required__|< <<_adminnodeaffiliatedto,AdminNodeAffiliateDto>> > array
+|===
+
+
+[[_adminnodeorganizationdto]]
+=== AdminNodeOrganizationDto
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**addressDto** +
+__optional__|<<_addressdto,AddressDto>>
+|**organizationDto** +
+__optional__|<<_organizationdto,OrganizationDto>>
+|===
+
+
+[[_adminnodeorganizationdtojsonapidocument]]
+=== AdminNodeOrganizationDtoJsonApiDocument
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**data** +
+__required__|<<_adminnodeorganizationdto,AdminNodeOrganizationDto>>
+|===
+
+
+[[_adminnodeorganizationdtolistjsonapidocument]]
+=== AdminNodeOrganizationDtoListJsonApiDocument
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**data** +
+__required__|< <<_adminnodeorganizationdto,AdminNodeOrganizationDto>> > array
+|===
+
 
 [[_affiliatedto]]
 === AffiliateDto
@@ -161,10 +485,12 @@ __required__|integer (int64)
 [options="header", cols=".^3a,.^4a"]
 |===
 |Name|Schema
+|**addressId** +
+__optional__|integer (int64)
 |**id** +
 __optional__|integer (int64)
 |**name** +
-__optional__|string
+__required__|string
 |**organization** +
 __optional__|<<_organizationdto,OrganizationDto>>
 |**organizationId** +
@@ -185,14 +511,33 @@ __required__|<<_affiliatedto,AffiliateDto>>
 |===
 
 
-[[_affiliatedtolistjsonapidocument]]
-=== AffiliateDtoListJsonApiDocument
+[[_citydto]]
+=== CityDto
 
 [options="header", cols=".^3a,.^4a"]
 |===
 |Name|Schema
-|**data** +
-__required__|< <<_affiliatedto,AffiliateDto>> > array
+|**addresses** +
+__optional__|< <<_addressdto,AddressDto>> > array
+|**id** +
+__optional__|integer (int64)
+|**name** +
+__required__|string
+|===
+
+
+[[_countrydto]]
+=== CountryDto
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**addresses** +
+__optional__|< <<_addressdto,AddressDto>> > array
+|**id** +
+__optional__|integer (int64)
+|**name** +
+__required__|string
 |===
 
 
@@ -223,7 +568,7 @@ __optional__|< <<_affiliatedto,AffiliateDto>> > array
 |**id** +
 __optional__|integer (int64)
 |**name** +
-__optional__|string
+__required__|string
 |===
 
 
@@ -238,14 +583,18 @@ __required__|<<_organizationdto,OrganizationDto>>
 |===
 
 
-[[_organizationdtolistjsonapidocument]]
-=== OrganizationDtoListJsonApiDocument
+[[_postalcodedto]]
+=== PostalCodeDto
 
 [options="header", cols=".^3a,.^4a"]
 |===
 |Name|Schema
-|**data** +
-__required__|< <<_organizationdto,OrganizationDto>> > array
+|**addresses** +
+__optional__|< <<_addressdto,AddressDto>> > array
+|**id** +
+__optional__|integer (int64)
+|**number** +
+__required__|string
 |===
 
 
@@ -267,6 +616,17 @@ __optional__|integer (int64)
 __optional__|string
 |**uniqueRoomId** +
 __optional__|string (uuid)
+|===
+
+
+[[_roomdtojsonapidocument]]
+=== RoomDtoJsonApiDocument
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**data** +
+__required__|<<_roomdto,RoomDto>>
 |===
 
 

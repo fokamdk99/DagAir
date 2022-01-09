@@ -3,6 +3,32 @@ info:
   title: DagAir Admin Node v1
   version: v1
 paths:
+  /admin-node/addresses:
+    post:
+      tags:
+        - AddressesAdmin
+      consumes:
+        - application/json
+        - text/json
+        - application/*+json
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/AddNewAddressCommand'
+      responses:
+        '201':
+          description: Success
+          schema:
+            $ref: '#/definitions/AddressDtoJsonApiDocument'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/JsonApiError'
   /admin-node/affiliates:
     get:
       tags:
@@ -16,9 +42,38 @@ paths:
         '200':
           description: Success
           schema:
-            $ref: '#/definitions/AffiliateDtoListJsonApiDocument'
+            $ref: '#/definitions/AdminNodeAffiliateDtoListJsonApiDocument'
         '404':
           description: Not Found
+          schema:
+            $ref: '#/definitions/JsonApiError'
+    post:
+      tags:
+        - AffiliatesAdmin
+      consumes:
+        - application/json
+        - text/json
+        - application/*+json
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/AddNewAffiliateCommand'
+      responses:
+        '201':
+          description: Success
+          schema:
+            $ref: '#/definitions/AffiliateDtoJsonApiDocument'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/JsonApiError'
+        '409':
+          description: Conflict
           schema:
             $ref: '#/definitions/JsonApiError'
   '/admin-node/affiliates/{affiliateId}':
@@ -41,7 +96,7 @@ paths:
         '200':
           description: Success
           schema:
-            $ref: '#/definitions/AffiliateDtoJsonApiDocument'
+            $ref: '#/definitions/AdminNodeAffiliateDtoJsonApiDocument'
         '404':
           description: Not Found
           schema:
@@ -59,9 +114,34 @@ paths:
         '200':
           description: Success
           schema:
-            $ref: '#/definitions/OrganizationDtoListJsonApiDocument'
+            $ref: '#/definitions/AdminNodeOrganizationDtoListJsonApiDocument'
         '404':
           description: Not Found
+          schema:
+            $ref: '#/definitions/JsonApiError'
+    post:
+      tags:
+        - FacilitiesAdmin
+      consumes:
+        - application/json
+        - text/json
+        - application/*+json
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/AddNewOrganizationCommand'
+      responses:
+        '201':
+          description: Success
+          schema:
+            $ref: '#/definitions/OrganizationDtoJsonApiDocument'
+        '400':
+          description: Bad Request
           schema:
             $ref: '#/definitions/JsonApiError'
   '/admin-node/organizations/{organizationId}':
@@ -84,13 +164,145 @@ paths:
         '200':
           description: Success
           schema:
-            $ref: '#/definitions/OrganizationDtoJsonApiDocument'
+            $ref: '#/definitions/AdminNodeOrganizationDtoJsonApiDocument'
         '404':
           description: Not Found
           schema:
             $ref: '#/definitions/JsonApiError'
+  /admin-node/rooms:
+    post:
+      tags:
+        - RoomsAdmin
+      consumes:
+        - application/json
+        - text/json
+        - application/*+json
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/AddNewRoomCommand'
+      responses:
+        '201':
+          description: Success
+          schema:
+            $ref: '#/definitions/RoomDtoJsonApiDocument'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/JsonApiError'
+        '409':
+          description: Conflict
+          schema:
+            $ref: '#/definitions/JsonApiError'
 definitions:
+  AddNewAddressCommand:
+    type: object
+    properties:
+      addressDto:
+        $ref: '#/definitions/AddressDto'
+      cityDto:
+        $ref: '#/definitions/CityDto'
+      countryDto:
+        $ref: '#/definitions/CountryDto'
+      postalCodeDto:
+        $ref: '#/definitions/PostalCodeDto'
+  AddNewAffiliateCommand:
+    type: object
+    properties:
+      affiliateDto:
+        $ref: '#/definitions/AffiliateDto'
+  AddNewOrganizationCommand:
+    type: object
+    properties:
+      organizationDto:
+        $ref: '#/definitions/OrganizationDto'
+  AddNewRoomCommand:
+    type: object
+    properties:
+      roomDto:
+        $ref: '#/definitions/RoomDto'
+  AddressDto:
+    type: object
+    properties:
+      id:
+        format: int64
+        type: integer
+      countryId:
+        format: int64
+        type: integer
+      cityId:
+        format: int64
+        type: integer
+      postalCodeId:
+        format: int64
+        type: integer
+      country:
+        $ref: '#/definitions/CountryDto'
+      city:
+        $ref: '#/definitions/CityDto'
+      postalCode:
+        $ref: '#/definitions/PostalCodeDto'
+  AddressDtoJsonApiDocument:
+    required:
+      - data
+    type: object
+    properties:
+      data:
+        $ref: '#/definitions/AddressDto'
+  AdminNodeAffiliateDto:
+    type: object
+    properties:
+      affiliateDto:
+        $ref: '#/definitions/AffiliateDto'
+      addressDto:
+        $ref: '#/definitions/AddressDto'
+  AdminNodeAffiliateDtoJsonApiDocument:
+    required:
+      - data
+    type: object
+    properties:
+      data:
+        $ref: '#/definitions/AdminNodeAffiliateDto'
+  AdminNodeAffiliateDtoListJsonApiDocument:
+    required:
+      - data
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/AdminNodeAffiliateDto'
+  AdminNodeOrganizationDto:
+    type: object
+    properties:
+      organizationDto:
+        $ref: '#/definitions/OrganizationDto'
+      addressDto:
+        $ref: '#/definitions/AddressDto'
+  AdminNodeOrganizationDtoJsonApiDocument:
+    required:
+      - data
+    type: object
+    properties:
+      data:
+        $ref: '#/definitions/AdminNodeOrganizationDto'
+  AdminNodeOrganizationDtoListJsonApiDocument:
+    required:
+      - data
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/AdminNodeOrganizationDto'
   AffiliateDto:
+    required:
+      - name
     type: object
     properties:
       id:
@@ -98,6 +310,9 @@ definitions:
         type: integer
       name:
         type: string
+      addressId:
+        format: int64
+        type: integer
       organizationId:
         format: int64
         type: integer
@@ -114,15 +329,34 @@ definitions:
     properties:
       data:
         $ref: '#/definitions/AffiliateDto'
-  AffiliateDtoListJsonApiDocument:
+  CityDto:
     required:
-      - data
+      - name
     type: object
     properties:
-      data:
+      id:
+        format: int64
+        type: integer
+      name:
+        type: string
+      addresses:
         type: array
         items:
-          $ref: '#/definitions/AffiliateDto'
+          $ref: '#/definitions/AddressDto'
+  CountryDto:
+    required:
+      - name
+    type: object
+    properties:
+      id:
+        format: int64
+        type: integer
+      name:
+        type: string
+      addresses:
+        type: array
+        items:
+          $ref: '#/definitions/AddressDto'
   JsonApiError:
     type: object
     properties:
@@ -132,6 +366,8 @@ definitions:
       messageDetails:
         type: string
   OrganizationDto:
+    required:
+      - name
     type: object
     properties:
       id:
@@ -153,15 +389,20 @@ definitions:
     properties:
       data:
         $ref: '#/definitions/OrganizationDto'
-  OrganizationDtoListJsonApiDocument:
+  PostalCodeDto:
     required:
-      - data
+      - number
     type: object
     properties:
-      data:
+      id:
+        format: int64
+        type: integer
+      number:
+        type: string
+      addresses:
         type: array
         items:
-          $ref: '#/definitions/OrganizationDto'
+          $ref: '#/definitions/AddressDto'
   RoomDto:
     type: object
     properties:
@@ -181,3 +422,10 @@ definitions:
         type: integer
       affiliate:
         $ref: '#/definitions/AffiliateDto'
+  RoomDtoJsonApiDocument:
+    required:
+      - data
+    type: object
+    properties:
+      data:
+        $ref: '#/definitions/RoomDto'

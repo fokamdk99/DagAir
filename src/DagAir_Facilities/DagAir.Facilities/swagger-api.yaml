@@ -20,7 +20,7 @@ paths:
     post:
       tags:
         - Affiliates
-      summary: Creates a new affiliate with parameters specified in addNewAffiliateCommand
+      summary: Create a new affiliate with parameters specified in addNewAffiliateCommand
       consumes:
         - application/json-patch+json
         - application/json
@@ -43,6 +43,10 @@ paths:
             $ref: '#/definitions/AffiliateDtoJsonApiDocument'
         '400':
           description: Bad Request
+          schema:
+            $ref: '#/definitions/JsonApiError'
+        '409':
+          description: Conflict
           schema:
             $ref: '#/definitions/JsonApiError'
   '/facilities-api/affiliates/{affiliateId}':
@@ -118,9 +122,13 @@ paths:
         '201':
           description: Success
           schema:
-            $ref: '#/definitions/AffiliateDtoJsonApiDocument'
+            $ref: '#/definitions/OrganizationDtoJsonApiDocument'
         '400':
           description: Bad Request
+          schema:
+            $ref: '#/definitions/JsonApiError'
+        '409':
+          description: Conflict
           schema:
             $ref: '#/definitions/JsonApiError'
   '/facilities-api/organizations/{organizationId}':
@@ -173,6 +181,39 @@ paths:
           description: Not Found
           schema:
             $ref: '#/definitions/JsonApiError'
+  /facilities-api/rooms:
+    post:
+      tags:
+        - Room
+      summary: Create a new room with parameters specified in addNewRoomCommand
+      consumes:
+        - application/json-patch+json
+        - application/json
+        - text/json
+        - application/*+json
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - in: body
+          name: body
+          description: ''
+          schema:
+            $ref: '#/definitions/AddNewRoomCommand'
+      responses:
+        '201':
+          description: Success
+          schema:
+            $ref: '#/definitions/RoomDtoJsonApiDocument'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/JsonApiError'
+        '409':
+          description: Conflict
+          schema:
+            $ref: '#/definitions/JsonApiError'
 definitions:
   AddNewAffiliateCommand:
     type: object
@@ -184,7 +225,14 @@ definitions:
     properties:
       organizationDto:
         $ref: '#/definitions/OrganizationDto'
+  AddNewRoomCommand:
+    type: object
+    properties:
+      roomDto:
+        $ref: '#/definitions/RoomDto'
   AffiliateDto:
+    required:
+      - name
     type: object
     properties:
       id:
@@ -192,6 +240,9 @@ definitions:
         type: integer
       name:
         type: string
+      addressId:
+        format: int64
+        type: integer
       organizationId:
         format: int64
         type: integer
@@ -226,6 +277,8 @@ definitions:
       messageDetails:
         type: string
   OrganizationDto:
+    required:
+      - name
     type: object
     properties:
       id:
