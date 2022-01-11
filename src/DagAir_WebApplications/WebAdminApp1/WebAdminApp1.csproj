@@ -26,5 +26,9 @@
     <ProjectReference Include="..\..\DagAir_Components\DagAir.Components.HttpClients\DagAir.Components.HttpClients.csproj" />
     <ProjectReference Include="..\..\DagAir_Components\DagAir.Components.Logging\DagAir.Components.Logging.csproj" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="wwwroot\css\rooms" />
+  </ItemGroup>
 
 </Project>

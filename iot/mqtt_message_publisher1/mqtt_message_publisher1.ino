@@ -2,7 +2,7 @@
 #include <WiFiEsp.h>
 #include <PubSubClient.h>
 
-SoftwareSerial esp8266(4,5); // make RX Arduino line is pin 2, make TX Arduino line is pin 3.
+SoftwareSerial esp8266(5,4); // make RX Arduino line is pin 2, make TX Arduino line is pin 3.
                              // This means that you need to connect the TX line from the esp to the Arduino's pin 2
                              // and the RX line from the esp to the Arduino's pin 3
 

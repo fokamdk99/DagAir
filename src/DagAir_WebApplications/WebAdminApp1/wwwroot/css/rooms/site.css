@@ -1,0 +1,7 @@
+ul{
+  list-style-type:none;
+}
+
+.scrollable {
+  overflow-y: scroll;
+}

@@ -23,7 +23,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\DagAir_Components\DagAir.Components.Logging\DagAir.Components.Logging.csproj" />
-      <ProjectReference Include="..\..\DagAir_WebApplications\DagAir.WebAdminApp\DagAir.WebAdminApp.csproj" />
+      <ProjectReference Include="..\..\DagAir_WebApplications\WebAdminApp1\WebAdminApp1.csproj" />
     </ItemGroup>
 
 </Project>

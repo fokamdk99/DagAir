@@ -28,8 +28,11 @@ namespace WebAdminApp1
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var connectionKeys = Configuration.GetSection("ConnectionKeys:DagAir.Identity").Value;
+            var connectionString = Configuration.GetConnectionString("DefaultConnection") + connectionKeys; 
+            
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseMySQL(connectionString));
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();

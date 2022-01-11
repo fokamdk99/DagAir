@@ -20,7 +20,7 @@ namespace DagAir.Policies.Tests.RoomConditions
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
         }
-        
+
         [Test]
         public async Task GetExpectedRoomConditions_WhenNoExpectedRoomConditionsFound_ShouldReturnNotFound()
         {
