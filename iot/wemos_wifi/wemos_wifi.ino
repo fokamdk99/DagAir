@@ -1,14 +1,14 @@
-#include "sensor_data.h"
+//#include "sensor_data.h"
 #include "rabbitmq_handler.h"
 
-#define DHTPIN 4
-#define DHTTYPE DHT11
+//#define DHTPIN 4
+//#define DHTTYPE DHT11
 
-DHT dht(DHTPIN, DHTTYPE);
+//DHT dht(DHTPIN, DHTTYPE);
 #define WIFI_SSID "Tech_D0054234"
 #define WIFI_PASS "XWFKMBRX"
 
-int ILLUMINANCEPIN = A0;
+//int ILLUMINANCEPIN = A0;
  
 void setup() {
   Serial.begin(115200);
@@ -33,7 +33,6 @@ void setup() {
   
   client.setServer(RABBITMQ_BROKER, RABBITMQ_PORT);
   client.setCallback(callback);
- 
 }
  
 void loop() {
@@ -44,7 +43,7 @@ void loop() {
   float temperature = readTemperature(&dht);
   float humidity = readHumidity(&dht);
   int illuminance = analogRead(ILLUMINANCEPIN);
-  publish_measurements(temperature, humidity, illuminance);
+  publish_measurements(temperature, humidity, illuminance, false);
   
   delay(1000);
 

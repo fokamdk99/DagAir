@@ -12,12 +12,13 @@ namespace Publisher
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
             {
-                channel.ExchangeDeclare("logs", ExchangeType.Fanout);
+                channel.ExchangeDeclare("amq.topic", ExchangeType.Topic, durable: true);
 
-                var message = GetMessage(args);
+                string message = "968376";
+                //var message = GetMessage(args);
                 var body = Encoding.UTF8.GetBytes(message);
-                channel.BasicPublish(exchange: "logs",
-                    routingKey: "",
+                channel.BasicPublish(exchange: "amq.topic",
+                    routingKey: "request_measurement",
                     basicProperties: null,
                     body: body);
 

@@ -1,5 +1,12 @@
 #include "DHT.h"
 
+#define DHTPIN 4
+#define DHTTYPE DHT11
+
+int ILLUMINANCEPIN = A0;
+
+DHT dht(DHTPIN, DHTTYPE);
+
 float readTemperature(DHT *dht){
   float t = dht->readTemperature();
  
