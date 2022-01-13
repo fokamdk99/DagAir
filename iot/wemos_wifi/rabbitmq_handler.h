@@ -10,73 +10,92 @@ int        RABBITMQ_PORT     = 1883;
 const char* RABBITMQ_TOPIC  = "room_measurements";
 const char* RABBITMQ_USER = "guest";
 const char* RABBITMQ_PASSWORD = "guest";
+int         RABBITMQ_SENSOR_ID = 968376;
 
-const long interval = 4000;
+const long interval = 5000;
 unsigned long previousMillis = 0;
 unsigned long lastSend;
 
 void reconnect() {
-// Loop until we're reconnected
-while (!client.connected()) {
+  while (!client.connected()) {
   
-Serial.print("reconnect...");
-// Attempt to connect
-if (client.connect("com.gonzalo789.esp32", RABBITMQ_USER, RABBITMQ_PASSWORD)) {
-Serial.println("connected");
-// Once connected, publish an announcement...
-client.publish(RABBITMQ_TOPIC, "halo world");
-} else {
-  Serial.print("failed, rc=");
-  Serial.print(client.state());
-  Serial.println(" try again in 5 seconds");
-  // Wait 5 seconds before retrying
-  delay(5000);
+  Serial.print("reconnect...");
+  if (client.connect("com.gonzalo789.esp32", RABBITMQ_USER, RABBITMQ_PASSWORD)) {
+    Serial.println("connected");
+  } 
+  else {
+    Serial.print("failed, rc=");
+    Serial.print(client.state());
+    Serial.println(" try again in 5 seconds");
+    delay(5000);
     }
   }
 }
 
 void publish_measurements(float temperature, float humidity, int illuminance){
-    if ( millis() - lastSend > interval ){
+  if ( millis() - lastSend > interval ){
+    
+  char temperatureChar[64];
+  int ret = snprintf(temperatureChar, sizeof temperatureChar, "%f", temperature);
+  if (ret < 0) {
+      Serial.println("Error while convertin float to char array");
+      return;
+  }
+  if (ret >= sizeof temperatureChar) {
+       Serial.println("Value too large");
+       return;
+  }
+  char illuminanceChar[64];
+  ret = snprintf(illuminanceChar, sizeof illuminanceChar, "%d", illuminance);
+  if (ret < 0) {
+      Serial.println("Error while convertin int to char array");
+      return;
+  }
+  if (ret >= sizeof illuminanceChar) {
+       Serial.println("Value too large");
+       return;
+  }
+  char humidityChar[64];
+  ret = snprintf(humidityChar, sizeof humidityChar, "%f", humidity);
+  if (ret < 0) {
+      Serial.println("Error while convertin float to char array");
+      return;
+  }
+  if (ret >= sizeof humidityChar) {
+       Serial.println("Value too large");
+       return;
+  }
+  char sensorIdChar[64];
+  ret = snprintf(sensorIdChar, sizeof sensorIdChar, "%f", RABBITMQ_SENSOR_ID);
+  if (ret < 0) {
+      Serial.println("Error while convertin int to char array");
+      return;
+  }
+  if (ret >= sizeof sensorIdChar) {
+       Serial.println("Value too large");
+       return;
+  }
 
-        String Rvalue = "temperature: 17C";
-        
-        Serial.print("Sending message to topic: ");
-        //Serial.println(topic);
-        Serial.println(Rvalue);
+  char* measurement = (char*)malloc(256+1+3); //4*64 + 3 semicolons + EOF
+  strcpy(measurement, temperatureChar);
+  strcat(measurement, ";");
+  strcat(measurement, illuminanceChar);
+  strcat(measurement, ";");
+  strcat(measurement, humidityChar);
+  strcat(measurement, ";");
+  strcat(measurement, sensorIdChar);
 
-        //client.publish(topic, attributes);
+  Serial.print("measurement: ");
+  Serial.println(measurement);
 
-        lastSend = millis();
-    }
+  client.publish(RABBITMQ_TOPIC, measurement);
+
+  lastSend = millis();
+
+  free(measurement);
+  }
 }
 
 void callback(char* topic, byte* payload, unsigned int length) {
 Serial.print("Message arrived [");
-}
-
-void myPrintf(float fVal)
-{
-    char result[100];
-    int dVal, dec, i;
-
-    fVal += 0.005;   // added after a comment from Matt McNabb, see below.
-
-    dVal = fVal;
-    dec = (int)(fVal * 100) % 100;
-
-    memset(result, 0, 100);
-    result[0] = (dec % 10) + '0';
-    result[1] = (dec / 10) + '0';
-    result[2] = '.';
-
-    i = 3;
-    while (dVal > 0)
-    {
-        result[i] = (dVal % 10) + '0';
-        dVal /= 10;
-        i++;
-    }
-
-    for (i=strlen(result)-1; i>=0; i--)
-        putc(result[i], stdout);
 }
