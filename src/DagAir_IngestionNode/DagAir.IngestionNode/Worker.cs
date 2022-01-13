@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,8 +18,6 @@ namespace DagAir.IngestionNode
 {
     public class Worker : BackgroundService
     {
-        private const int NumberOfParameters = 4; 
-        
         private IConnection _connection;
         private IModel _channel;
         private readonly ILogger<Worker> _logger;
@@ -65,21 +64,39 @@ namespace DagAir.IngestionNode
             ReceiveMessages();
         }
 
+        struct SensorMeasurement
+        {
+            public SensorMeasurement(float temperature, int illuminance, float humidity)
+            {
+                Temperature = temperature;
+                Illuminance = illuminance;
+                Humidity = humidity;
+            }
+            
+            public float Temperature;
+            public int Illuminance;
+            public float Humidity;
+        }
+
         private void ReceiveMessages()
         {
             using (IServiceScope scope = _serviceProvider.CreateScope())
             {
                 INewMeasurementReceivedHandler newMeasurementReceivedHandler =
                     scope.ServiceProvider.GetRequiredService<INewMeasurementReceivedHandler>();
+
+                IMeasurementDeserializer measurementDeserializer =
+                    scope.ServiceProvider.GetRequiredService<IMeasurementDeserializer>();
                 
                 var consumer = new EventingBasicConsumer(_channel);
                 consumer.Received += (model, ea) =>
                 {
                     var body = ea.Body.ToArray();
                     var message = Encoding.UTF8.GetString(body);
+                    
                     _logger.LogInformation("[x][{0}] {1}", DateTime.Now, message);
 
-                    var newMeasurementReceived = DeserializeMeasurement(message);
+                    var newMeasurementReceived = measurementDeserializer.DeserializeMeasurement(message);
                     newMeasurementReceivedHandler.Handle(newMeasurementReceived);
                 };
                 _channel.BasicConsume(queue: "",
@@ -88,28 +105,6 @@ namespace DagAir.IngestionNode
             }
         }
 
-        private NewMeasurementReceivedCommand DeserializeMeasurement(string message)
-        {
-            try
-            {
-                string[] parameters = message.Split(";");
-                if (parameters.Length != NumberOfParameters)
-                {
-                    throw new Exception(
-                        $"Measurement sent by a sensor is invalid. Excepted number of parameters: {NumberOfParameters}, given: {parameters.Length}");
-                }
-
-                var measurement = new RoomMeasurement(
-                    float.Parse(parameters.ElementAt(0)), 
-                    float.Parse(parameters.ElementAt(1)), 
-                    float.Parse(parameters.ElementAt(2)));
-                return new NewMeasurementReceivedCommand(measurement, parameters.ElementAt(3));
-            }
-            catch (Exception e)
-            {
-                _logger.LogError(e.Message);
-                throw new Exception();
-            }
-        }
+        
     }
 }

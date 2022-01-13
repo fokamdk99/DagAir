@@ -2,8 +2,8 @@
 {
     public interface IMeasurement
     {
-        float Temperature { get; }
-        float Illuminance { get; } //light intensity
-        float Humidity { get; }
+        decimal Temperature { get; }
+        int Illuminance { get; } //light intensity
+        decimal Humidity { get; }
     }
 }

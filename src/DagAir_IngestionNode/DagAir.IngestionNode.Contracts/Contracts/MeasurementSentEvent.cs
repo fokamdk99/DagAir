@@ -2,12 +2,12 @@
 {
     public class MeasurementSentEvent : IMeasurement
     {
-        public float Temperature { get; set; }
-        public float Illuminance { get; set; } //light intensity
-        public float Humidity { get; set; }
+        public decimal Temperature { get; set; }
+        public int Illuminance { get; set; } //light intensity
+        public decimal Humidity { get; set; }
         public long RoomId { get; set; }
 
-        public MeasurementSentEvent(float temperature, float illuminance, float humidity, long roomId)
+        public MeasurementSentEvent(decimal temperature, int illuminance, decimal humidity, long roomId)
         {
             Temperature = temperature;
             Illuminance = illuminance;

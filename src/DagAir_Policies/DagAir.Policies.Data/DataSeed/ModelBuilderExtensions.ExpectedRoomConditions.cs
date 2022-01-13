@@ -14,20 +14,20 @@ namespace DagAir.Policies.Data.DataSeed
                         Id = 1,
                         Temperature = 20,
                         Illuminance = 100,
-                        Humidity = 0.4f,
+                        Humidity = (decimal) 0.4,
                         TemperatureMargin = 2,
                         IlluminanceMargin = 20,
-                        HumidityMargin = 0.1f
+                        HumidityMargin = (decimal) 0.1
                     },
                     new ExpectedRoomConditions()
                     {
                         Id = 2,
                         Temperature = 22,
                         Illuminance = 130,
-                        Humidity = 0.5f,
+                        Humidity = (decimal) 0.5,
                         TemperatureMargin = 3,
                         IlluminanceMargin = 30,
-                        HumidityMargin = 0.1f
+                        HumidityMargin = (decimal) 0.1
                     }
                 );
         }

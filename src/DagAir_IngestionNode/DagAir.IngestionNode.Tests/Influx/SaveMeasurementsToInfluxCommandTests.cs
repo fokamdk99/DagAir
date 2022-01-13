@@ -57,7 +57,7 @@ namespace DagAir.IngestionNode.Tests.Influx
         
         private NewMeasurementReceivedCommand CreateMockMeasurementsInsertedEvent()
         {
-            var measurement = new RoomMeasurement((float) 18, (float) 0.8, (float) 55.5);
+            var measurement = new RoomMeasurement((decimal) 18, (int) 0.8, (decimal) 55.5);
             return new NewMeasurementReceivedCommand(measurement, "id_1");
         }
 

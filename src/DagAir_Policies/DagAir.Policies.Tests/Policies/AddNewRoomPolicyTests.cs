@@ -78,10 +78,10 @@ namespace DagAir.Policies.Tests.Policies
                 {
                     Temperature = 24,
                     Illuminance = 160,
-                    Humidity = 0.4f,
+                    Humidity = (decimal)0.4,
                     TemperatureMargin = 3,
                     IlluminanceMargin = 10,
-                    HumidityMargin = 0.1f
+                    HumidityMargin = (decimal)0.1
                 },
                 RoomPolicyCategoryDto = new RoomPolicyCategoryDto
                 {

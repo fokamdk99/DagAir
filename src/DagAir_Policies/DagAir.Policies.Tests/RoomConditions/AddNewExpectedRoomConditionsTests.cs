@@ -53,10 +53,10 @@ namespace DagAir.Policies.Tests.RoomConditions
                 {
                     Temperature = 20,
                     Illuminance = 100,
-                    Humidity = 0.4f,
+                    Humidity = (decimal)0.4,
                     TemperatureMargin = 2,
                     IlluminanceMargin = 20,
-                    HumidityMargin = 0.1f
+                    HumidityMargin = (decimal)0.1
                 }
             };
         }

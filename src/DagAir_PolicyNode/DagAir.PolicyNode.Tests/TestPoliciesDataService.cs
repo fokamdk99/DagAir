@@ -9,15 +9,15 @@ namespace DagAir.PolicyNode.Tests
     {
         public async Task<RoomPolicyDto> GetRoomPolicyByRoomId(long roomId)
         {
-            return CreateNewRoomPolicyDto(20, 100, 0.45f, 2, 20, 0.1f);
+            return CreateNewRoomPolicyDto(20, 100, (decimal) 0.45, 2, 20, (decimal) 0.1);
         }
 
-        internal static RoomPolicyDto CreateNewRoomPolicyDto(float temperature, 
-            float illuminance, 
-            float humidity,
-            float temperatureMargin,
-            float illuminanceMargin,
-            float HumidityMargin)
+        internal static RoomPolicyDto CreateNewRoomPolicyDto(decimal temperature, 
+            int illuminance, 
+            decimal humidity,
+            decimal temperatureMargin,
+            decimal illuminanceMargin,
+            decimal HumidityMargin)
         {
             return new RoomPolicyDto()
             {

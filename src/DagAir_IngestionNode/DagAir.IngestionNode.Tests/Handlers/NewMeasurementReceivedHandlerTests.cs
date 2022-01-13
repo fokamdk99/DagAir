@@ -33,7 +33,7 @@ namespace DagAir.IngestionNode.Tests.Handlers
             {
                 Temperature = 21, 
                 Illuminance = 120, 
-                Humidity = 0.4f
+                Humidity = (decimal) 0.4
             };
             return new NewMeasurementReceivedCommand(testMeasurement, "sensor_nr1");
         }
@@ -65,9 +65,9 @@ namespace DagAir.IngestionNode.Tests.Handlers
 
         class TestMeasurement : IMeasurement
         {
-            public float Temperature { get; set; }
-            public float Illuminance { get; set; }
-            public float Humidity { get; set; }
+            public decimal Temperature { get; set; }
+            public int Illuminance { get; set; }
+            public decimal Humidity { get; set; }
         }
     }
 }

@@ -28,7 +28,7 @@ namespace DagAir.PolicyNode.Tests.Consumers
 
         private MeasurementSentEvent CreateMeasurementSentEvent()
         {
-            return new MeasurementSentEvent(21, 2000, 0.5F, 1);
+            return new MeasurementSentEvent(21, 2000, (decimal) 0.5, 1);
         }
 
         protected override void AddOverrides(IServiceCollection services)

@@ -2,11 +2,11 @@
 {
     public class RoomMeasurement : IMeasurement
     {
-        public float Temperature { get; set; }
-        public float Illuminance { get; set; } //light intensity
-        public float Humidity { get; set; }
+        public decimal Temperature { get; set; }
+        public int Illuminance { get; set; } //light intensity
+        public decimal Humidity { get; set; }
 
-        public RoomMeasurement(float temperature, float illuminance, float humidity)
+        public RoomMeasurement(decimal temperature, int illuminance, decimal humidity)
         {
             Temperature = temperature;
             Illuminance = illuminance;

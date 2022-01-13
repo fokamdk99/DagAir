@@ -21,7 +21,7 @@ namespace DagAir.PolicyNode.Tests.PolicyEvaluator
         public void WhenMeasurementsAreTooHigh_ShouldReturnTooHighIndicators()
         {
             var currentMeasurement = CreateMeasurementSentEvent();
-            var policy = TestPoliciesDataService.CreateNewRoomPolicyDto(15, 80, 0.3f, 2, 20, 0.1f);
+            var policy = TestPoliciesDataService.CreateNewRoomPolicyDto(15, 80, (decimal) 0.3, 2, 20, (decimal) 0.1);
 
             var result = _policyEvaluator!.Evaluate(currentMeasurement, policy);
             
@@ -34,7 +34,7 @@ namespace DagAir.PolicyNode.Tests.PolicyEvaluator
         public void WhenMeasurementsAreTooLow_ShouldReturnTooLowIndicators()
         {
             var currentMeasurement = CreateMeasurementSentEvent();
-            var policy = TestPoliciesDataService.CreateNewRoomPolicyDto(25, 160, 0.7f, 2, 20, 0.1f);
+            var policy = TestPoliciesDataService.CreateNewRoomPolicyDto(25, 160, (decimal) 0.7, 2, 20, (decimal) 0.1);
 
             var result = _policyEvaluator!.Evaluate(currentMeasurement, policy);
             
@@ -47,7 +47,7 @@ namespace DagAir.PolicyNode.Tests.PolicyEvaluator
         public void WhenMeasurementsAreInOrder_ShouldReturnInOrderMessage()
         {
             var currentMeasurement = CreateMeasurementSentEvent();
-            var policy = TestPoliciesDataService.CreateNewRoomPolicyDto(21, 120, 0.5f, 2, 20, 0.1f);
+            var policy = TestPoliciesDataService.CreateNewRoomPolicyDto(21, 120, (decimal) 0.5, 2, 20, (decimal) 0.1);
 
             var result = _policyEvaluator!.Evaluate(currentMeasurement, policy);
             
@@ -59,7 +59,7 @@ namespace DagAir.PolicyNode.Tests.PolicyEvaluator
         
         internal static MeasurementSentEvent CreateMeasurementSentEvent()
         {
-            return new MeasurementSentEvent(21, 120, 0.5F, 1);
+            return new MeasurementSentEvent(21, 120, (decimal)0.5, 1);
         }
     }
 }
