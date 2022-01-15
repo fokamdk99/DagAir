@@ -1,4 +1,4 @@
-@model WebAdminApp1.Controllers.UniqueRoomModel
+@model RoomModel
 @{
     ViewData["Title"] = "Add new Room";
     ViewData["ActivePage"] = ManageFacilitiesPages.DownloadAffiliates;
@@ -9,17 +9,17 @@
         <form class="needs-validation" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="RoomDto.Number">Room number</label>
-                <input class="form-control" placeholder="Room number" asp-for="RoomDto.Number"/>
+                <label asp-for="AdminNodeRoomDto.RoomDto.Number">Room number</label>
+                <input class="form-control" placeholder="Room number" asp-for="AdminNodeRoomDto.RoomDto.Number"/>
                 <div>
-                    <span class="text-danger" asp-validation-for="RoomDto.Number"></span>
+                    <span class="text-danger" asp-validation-for="AdminNodeRoomDto.RoomDto.Number"></span>
                 </div>
-                <label asp-for="RoomDto.Floor">Floor</label>
-                <input class="form-control" placeholder="Floor number" asp-for="RoomDto.Floor"/>
+                <label asp-for="AdminNodeRoomDto.RoomDto.Floor">Floor</label>
+                <input class="form-control" placeholder="Floor number" asp-for="AdminNodeRoomDto.RoomDto.Floor"/>
                 <div>
-                    <span class="text-danger" asp-validation-for="RoomDto.Floor"></span>
+                    <span class="text-danger" asp-validation-for="AdminNodeRoomDto.RoomDto.Floor"></span>
                 </div>
-                <input type="hidden" asp-for="RoomDto.AffiliateId" value="@Model.RoomDto.AffiliateId"/>
+                <input type="hidden" asp-for="AdminNodeRoomDto.RoomDto.AffiliateId" value="@Model.AdminNodeRoomDto.RoomDto.AffiliateId"/>
                 <input type="submit" class="btn btn-success"/>
             </div>
         </form>

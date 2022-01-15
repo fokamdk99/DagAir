@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "QzrIzTC2QaezRa/vhJ6bijFM9ByXl2iWDynQSZMfjwApmFIzD1G8qW9s9yoogxQRBZV18tX5Umz1mwRZdDdE/A==",
+  "dgSpecHash": "UFdA07SPG+DieqKYRholjf4c49TImzHHdYaaTWdx4pBXGRwjFEUSpBHLZQLpUVoGpFdyVVFopDaE2XaKOwI36A==",
   "success": true,
   "projectFilePath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\build\\_build.csproj",
   "expectedPackageFiles": [
@@ -79,6 +79,7 @@
     "C:\\Users\\01143844\\.nuget\\packages\\newid\\3.0.3\\newid.3.0.3.nupkg.sha512",
     "C:\\Users\\01143844\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\01143844\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
+    "C:\\Users\\01143844\\.nuget\\packages\\nodatime\\3.0.5\\nodatime.3.0.5.nupkg.sha512",
     "C:\\Users\\01143844\\.nuget\\packages\\nuget.common\\5.3.1\\nuget.common.5.3.1.nupkg.sha512",
     "C:\\Users\\01143844\\.nuget\\packages\\nuget.configuration\\5.3.1\\nuget.configuration.5.3.1.nupkg.sha512",
     "C:\\Users\\01143844\\.nuget\\packages\\nuget.frameworks\\5.3.1\\nuget.frameworks.5.3.1.nupkg.sha512",

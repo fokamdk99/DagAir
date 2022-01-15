@@ -4,6 +4,7 @@ using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
 using DagAir.Components.ApiModels.Json;
+using DagAir.Sensors.Contracts.Commands;
 using DagAir.Sensors.Contracts.DTOs;
 using DagAir.Sensors.Infrastructure.UserApi;
 using DagAir.Sensors.Sensors.Queries;
@@ -16,13 +17,20 @@ namespace DagAir.Sensors.Sensors
         private readonly IMapper _mapper;
         private readonly IGetSensorWithRelatedEntitiesQuery _getSensorWithRelatedEntitiesQuery;
         private readonly IGetAllSensorsWithRelatedEntitiesQuery _getAllSensorsWithRelatedEntitiesQuery;
+        private readonly IGetSensorBySensorName _getSensorBySensorName;
+        private readonly IGetSensorByRoomId _getSensorByRoomId;
 
-        public SensorsController(IMapper mapper, IGetSensorWithRelatedEntitiesQuery getCurrentSensorsWithRelatedEntitiesQuery,
-            IGetAllSensorsWithRelatedEntitiesQuery getAllSensorsWithRelatedEntitiesQuery)
+        public SensorsController(IMapper mapper, 
+            IGetSensorWithRelatedEntitiesQuery getCurrentSensorsWithRelatedEntitiesQuery,
+            IGetAllSensorsWithRelatedEntitiesQuery getAllSensorsWithRelatedEntitiesQuery,
+            IGetSensorBySensorName getSensorBySensorName, 
+            IGetSensorByRoomId getSensorByRoomId)
         {
             _mapper = mapper;
             _getSensorWithRelatedEntitiesQuery = getCurrentSensorsWithRelatedEntitiesQuery;
             _getAllSensorsWithRelatedEntitiesQuery = getAllSensorsWithRelatedEntitiesQuery;
+            _getSensorBySensorName = getSensorBySensorName;
+            _getSensorByRoomId = getSensorByRoomId;
         }
         
         /// <summary>
@@ -61,9 +69,49 @@ namespace DagAir.Sensors.Sensors
             return Ok(new JsonApiDocument<SensorDto>(sensorDto));
         }
         
+        [HttpGet("sensors/room-id/{roomId}")]
+        [ProducesResponseType(typeof(JsonApiDocument<SensorDto>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(JsonApiError), (int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> GetSensorByRoomId(long roomId)
+        {
+            var sensor = await _getSensorByRoomId.Execute(roomId);
+            if (sensor == null)
+            {
+                return GetCurrentSensorByRoomIdNotFoundMessage(roomId);
+            }
+
+            var sensorDto = _mapper.Map<SensorDto>(sensor);
+            return Ok(new JsonApiDocument<SensorDto>(sensorDto));
+        }
+
+        [HttpPost("sensors/sensor-name")]
+        [ProducesResponseType(typeof(JsonApiDocument<SensorDto>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(JsonApiError), (int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> GetSensorBySensorName([FromBody] GetSensorBySensorNameCommand getSensorBySensorNameCommand)
+        {
+            var sensor = await _getSensorBySensorName.Execute(getSensorBySensorNameCommand.SensorName);
+            if (sensor == null)
+            {
+                return GetCurrentSensorBySensorNameNotFoundMessage(getSensorBySensorNameCommand.SensorName);
+            }
+
+            var sensorDto = _mapper.Map<SensorDto>(sensor);
+            return Ok(new JsonApiDocument<SensorDto>(sensorDto));
+        }
+        
         private NotFoundObjectResult GetCurrentSensorNotFoundMessage(long id)
         {
             return NotFound($"No sensor with Id: {id} has been found");
+        }
+
+        private NotFoundObjectResult GetCurrentSensorBySensorNameNotFoundMessage(string sensorName)
+        {
+            return NotFound($"No sensor with name: {sensorName} has been found");
+        }
+        
+        private NotFoundObjectResult GetCurrentSensorByRoomIdNotFoundMessage(long roomId)
+        {
+            return NotFound($"No sensor with roomId: {roomId} has been found");
         }
     }
 }

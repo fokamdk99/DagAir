@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
+using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using DagAir.Sensors.Data.AppEntities;
 using FluentAssertions;
@@ -31,7 +33,7 @@ namespace DagAir.Sensors.Tests.Sensors
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
         }
-        
+
         [Test]
         public async Task GetSensorWithRelatedEntitesQuery_WhenInvalidIdGiven_ShouldReturnNotFound()
         {
@@ -40,6 +42,21 @@ namespace DagAir.Sensors.Tests.Sensors
             var response = await _client.GetAsync(path);
 
             response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+        }
+        
+        [Test]
+        public async Task GetSensorByUniqueRoomIdQuery_ShouldBeAvailableUnderDefinedPath()
+        {
+            var path = $"sensors-api/sensors/sensor-name";
+
+            string sensorName = "wemos_stas1";
+            
+            var request = 
+                new StringContent(JsonSerializer.Serialize(sensorName), Encoding.UTF8, "application/json");
+
+            var response = await _client.PostAsync(path, request);
+
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
         }
 
         public override async Task Setup()
@@ -66,6 +83,7 @@ namespace DagAir.Sensors.Tests.Sensors
             var sensor = new Sensor()
             {
                 Id = 1,
+                SensorName = "wemos_stas1",
                 LastDataSentDate = DateTime.Now.AddHours(-5),
                 RoomId = 1,
                 AffiliateId = 1,

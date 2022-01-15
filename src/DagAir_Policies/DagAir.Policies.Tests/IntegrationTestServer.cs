@@ -17,6 +17,7 @@ namespace DagAir.Policies.Tests
     {
         protected IConfiguration Configuration;
         protected IHost TestServer;
+        protected IServiceProvider Services => TestServer!.Services;
 
         protected IDagAirPoliciesAppContext AppContext;
         private IServiceScope _scope;
@@ -33,7 +34,7 @@ namespace DagAir.Policies.Tests
             await Setup();
         }
 
-        public virtual async Task Setup()
+        protected virtual async Task Setup()
         {
             await Task.CompletedTask;
         }

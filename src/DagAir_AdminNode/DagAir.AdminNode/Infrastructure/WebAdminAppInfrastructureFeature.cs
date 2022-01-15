@@ -2,6 +2,8 @@
 using DagAir.AdminNode.Affiliates;
 using DagAir.AdminNode.Facilities;
 using DagAir.AdminNode.Rooms;
+using DagAir.AdminNode.Sensors;
+using DagAir.AdminNode.SensorStateHistory;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DagAir.AdminNode.Infrastructure
@@ -14,6 +16,8 @@ namespace DagAir.AdminNode.Infrastructure
             services.AddScoped<IAffiliatesHandler, AffiliatesHandler>();
             services.AddScoped<IAddressesHandler, AddressesHandler>();
             services.AddScoped<IRoomsHandler, RoomsHandler>();
+            services.AddScoped<ISensorsHandler, SensorsHandler>();
+            services.AddScoped<ISensorStateHistoryHandler, SensorStateHistoryHandler>();
             services.AddSingleton<IExternalServices, ExternalServices>();
 
             return services;

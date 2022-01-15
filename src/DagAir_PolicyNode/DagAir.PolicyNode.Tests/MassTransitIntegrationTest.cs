@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace DagAir.PolicyNode.Tests
 {
     [Category("Integration")]
-    public abstract class MassTransitIntegrationTest
+    public abstract class IntegrationTest
     {
         protected IServiceProvider Services => CurrentHost!.Services;
 

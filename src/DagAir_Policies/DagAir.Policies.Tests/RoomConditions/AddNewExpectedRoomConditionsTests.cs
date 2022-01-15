@@ -33,7 +33,7 @@ namespace DagAir.Policies.Tests.RoomConditions
             _dagAirHttpClient = new DagAirHttpClient(client, new Logger<DagAirHttpClient>(new LoggerFactory()));
         }
         
-        public override async Task Setup()
+        protected override async Task Setup()
         {
             await AddDataToTheDatabase();
         }

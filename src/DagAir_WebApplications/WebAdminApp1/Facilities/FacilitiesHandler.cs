@@ -10,6 +10,7 @@ using DagAir.Facilities.Contracts.Commands;
 using DagAir.Facilities.Contracts.DTOs;
 using Microsoft.Extensions.Logging;
 using WebAdminApp1.Controllers;
+using WebAdminApp1.Facilities.Models;
 using WebAdminApp1.Infrastructure;
 using WebAdminApp1.Infrastructure.Addresses;
 using WebAdminApp1.Infrastructure.Facilities;
@@ -61,7 +62,7 @@ namespace WebAdminApp1.Facilities
             return response.Item1;
         }
 
-        public async Task<OrganizationDto> AddNewOrganization(GetOrganizationModel getOrganizationModel)
+        public async Task<OrganizationDto> AddNewOrganization(OrganizationModel getOrganizationModel)
         {
             var cityDto = new CityDto {Name = getOrganizationModel.AdminNodeOrganizationDto.AddressDto.City.Name};
             var countryDto = new CountryDto {Name = getOrganizationModel.AdminNodeOrganizationDto.AddressDto.Country.Name};

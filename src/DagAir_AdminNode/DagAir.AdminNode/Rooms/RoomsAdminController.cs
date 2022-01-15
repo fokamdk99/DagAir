@@ -1,5 +1,7 @@
 using System.Net;
 using System.Threading.Tasks;
+using DagAir.AdminNode.Contracts.Commands;
+using DagAir.AdminNode.Contracts.DTOs;
 using DagAir.AdminNode.Infrastructure.UserApi;
 using DagAir.Components.ApiModels.Json;
 using DagAir.Facilities.Contracts.Commands;
@@ -15,6 +17,24 @@ namespace DagAir.AdminNode.Rooms
         public RoomsAdminController(IRoomsHandler roomsHandler)
         {
             _roomsHandler = roomsHandler;
+        }
+        
+        [HttpPost]
+        [Route("rooms/get-room")]
+        [ProducesResponseType(typeof(JsonApiDocument<AdminNodeRoomDto>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(JsonApiError), (int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> GetRoomByRoomId(
+            [FromBody] GetRoomCommand getRoomCommand)
+        {
+            var room = await _roomsHandler.GetRoomByRoomId(getRoomCommand);
+            if (room == null)
+            {
+                string message =
+                    $"No room with id {getRoomCommand.RoomId} has been found.";
+                return NotFound(new JsonApiError(HttpStatusCode.Conflict, message));
+            }
+            
+            return Ok(new JsonApiDocument<AdminNodeRoomDto>(room));
         }
 
         [HttpPost]

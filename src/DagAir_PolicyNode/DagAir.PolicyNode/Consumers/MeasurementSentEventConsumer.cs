@@ -26,7 +26,7 @@ namespace DagAir.PolicyNode.Consumers
             _logger.LogInformation($"Received MeasurementSentEvent. Temperature: {context.Message.Temperature}," +
                                    $"Illuminance: {context.Message.Illuminance}" +
                                    $"Humidity: {context.Message.Humidity}" +
-                                   $"room id: {context.Message.RoomId}");
+                                   $"sensor name: {context.Message.SensorName}");
             var policiesEvaluationResultEvent = await _evaluatePoliciesCommand.Handle(context.Message);
 
             await _eventPublisher.Publish(policiesEvaluationResultEvent);

@@ -1,4 +1,5 @@
 ﻿using DagAir.Components.HttpClients;
+using DagAir.Components.Influx;
 using DagAir.IngestionNode.Data;
 using DagAir.IngestionNode.Influx;
 using DagAir.IngestionNode.Infrastructure;
@@ -22,6 +23,7 @@ namespace DagAir.IngestionNode
             services.AddIngestionNodeMeasurementsFeature();
             services.AddDagAirHttpClientsFeature();
             services.AddIngestionNodeIntegrationsFeature(configuration);
+            services.AddDagInfluxFeature();
 
             return services;
         }

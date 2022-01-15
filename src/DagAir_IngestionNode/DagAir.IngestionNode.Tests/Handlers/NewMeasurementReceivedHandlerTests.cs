@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using DagAir.Components.MassTransit.RabbitMq.Publisher;
 using DagAir.IngestionNode.Contracts;
 using DagAir.IngestionNode.Influx.Handlers;
-using DagAir.IngestionNode.Integrations.Sensors.DataServices;
 using DagAir.IngestionNode.Measurements.Commands;
 using DagAir.IngestionNode.Measurements.Handlers;
 using MassTransit.Testing;
@@ -42,7 +41,6 @@ namespace DagAir.IngestionNode.Tests.Handlers
         {
             services.AddScoped<IEventPublisher, EventPublisher>();
             services.AddScoped<ISaveMeasurementsToInfluxHandler, TestSaveMeasurementsToInfluxHandler>();
-            services.AddScoped<ISensorsDataService, TestSensorsDataService>();
 
             services.AddMassTransitInMemoryTestHarness();
         }

@@ -15,7 +15,7 @@ namespace Publisher
                 channel.ExchangeDeclare("amq.topic", ExchangeType.Topic, durable: true);
 
                 //string message = "968376";
-                string message = "23.950000;438;45.480000;968376";
+                string message = "23.950000;438;45.480000;wemos_stas1";
                 var body = Encoding.UTF8.GetBytes(message);
                 channel.BasicPublish(exchange: "amq.topic",
                     //routingKey: "request_measurement",

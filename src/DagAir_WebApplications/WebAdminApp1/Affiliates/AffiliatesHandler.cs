@@ -9,6 +9,7 @@ using DagAir.Components.HttpClients;
 using DagAir.Facilities.Contracts.Commands;
 using DagAir.Facilities.Contracts.DTOs;
 using Microsoft.Extensions.Logging;
+using WebAdminApp1.Affiliates.Models;
 using WebAdminApp1.Controllers;
 using WebAdminApp1.Infrastructure;
 using WebAdminApp1.Infrastructure.Addresses;
@@ -61,7 +62,7 @@ namespace WebAdminApp1.Affiliates
             return response.Item1;
         }
         
-        public async Task<AffiliateDto> AddNewAffiliate(GetAffiliateModel getAffiliateModel)
+        public async Task<AffiliateDto> AddNewAffiliate(AffiliateModel getAffiliateModel)
         {
             var cityDto = new CityDto {Name = getAffiliateModel.AdminNodeAffiliateDto.AddressDto.City.Name};
             var countryDto = new CountryDto {Name = getAffiliateModel.AdminNodeAffiliateDto.AddressDto.Country.Name};

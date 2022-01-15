@@ -1,4 +1,5 @@
 ﻿#nullable enable
+using System;
 using DagAir.IngestionNode.Contracts;
 using DagAir.PolicyNode.Contracts.Contracts;
 using DagAir.PolicyNode.PolicyEvaluator;
@@ -59,7 +60,7 @@ namespace DagAir.PolicyNode.Tests.PolicyEvaluator
         
         internal static MeasurementSentEvent CreateMeasurementSentEvent()
         {
-            return new MeasurementSentEvent(21, 120, (decimal)0.5, 1);
+            return new MeasurementSentEvent(21, 120, (decimal)0.5, "sensorName1");
         }
     }
 }

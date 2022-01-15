@@ -31,7 +31,7 @@ namespace DagAir.Policies.Tests.RoomConditions
             response.StatusCode.Should().Be(HttpStatusCode.NotFound);
         }
 
-        public override async Task Setup()
+        protected override async Task Setup()
         {
             await AddDataToTheDatabase();
         }

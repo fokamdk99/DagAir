@@ -10,8 +10,10 @@ namespace DagAir.Policies.Policies
     {
         public static IServiceCollection AddPolicyEntitiesFeature(this IServiceCollection services)
         {
-            services.AddScoped<IGetCurrentRoomPolicyQuery, GetCurrentRoomPolicyQuery>();
+            services.AddScoped<IGetRoomPolicyQuery, GetRoomPolicyQuery>();
             services.AddScoped<ICommandHandler<AddNewRoomPolicyCommand, RoomPolicy>, AddNewRoomPolicyCommandHandler>();
+            services.AddScoped<ICommandHandler<GetPastPoliciesCommand, PastMeasurements>, GetPastPoliciesCommandHandler>();
+            services.AddScoped<IGetPolicyHandler, GetPolicyHandler>();
 
             return services;
         }

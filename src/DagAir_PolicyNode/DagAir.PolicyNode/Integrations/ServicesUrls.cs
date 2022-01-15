@@ -6,6 +6,7 @@ namespace DagAir.PolicyNode.Integrations
     {
         public string PoliciesApi { get; set; }
         public string FacilitiesApi { get; set; }
+        public string SensorsApi { get; set; }
         
         private const string ConfigurationSection = "serviceUrls"; 
         
@@ -13,6 +14,7 @@ namespace DagAir.PolicyNode.Integrations
         {
             PoliciesApi = configuration.GetSection($"{ConfigurationSection}:DagAir.Policies").Value;
             FacilitiesApi = configuration.GetSection($"{ConfigurationSection}:DagAir.Facilities").Value;
+            SensorsApi = configuration.GetSection($"{ConfigurationSection}:DagAir.Sensors").Value;
         }
     }
 }

@@ -1,4 +1,4 @@
-@model GetAffiliateModel
+@model AffiliateModel
 @{
     ViewData["Title"] = "See affiliate";
     ViewData["ActivePage"] = ManageFacilitiesPages.DownloadAffiliates;
@@ -37,7 +37,7 @@
                     @foreach (var room in Model.AdminNodeAffiliateDto.AffiliateDto.Rooms)
                     {
                         <li class="list-group-item">
-                            @Html.ActionLink($"Room {room.Number}", "Room", "Rooms", new {uniqueRoomId = room.UniqueRoomId}, null)
+                            @Html.ActionLink($"Room {room.Number}", "Room", "Rooms", new {roomId = room.Id}, null)
                         </li>
                     }
                 </ul>

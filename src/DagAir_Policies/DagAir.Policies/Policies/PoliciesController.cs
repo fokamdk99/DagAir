@@ -1,12 +1,15 @@
-﻿using System.Net;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
 using DagAir.Components.ApiModels.Json;
+using DagAir.DataServices.SensorStateHistory.Contracts.Contracts;
 using DagAir.Policies.Contracts.Commands;
 using DagAir.Policies.Contracts.DTOs;
 using DagAir.Policies.Data.AppEntities;
 using DagAir.Policies.Infrastructure.UserApi;
-using DagAir.Policies.Policies.Commands;
 using DagAir.Policies.Policies.Queries;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,16 +18,19 @@ namespace DagAir.Policies.Policies
     public class PoliciesController : PolicyControllerBase
     {
         private readonly IMapper _mapper;
-        private readonly IGetCurrentRoomPolicyQuery _getCurrentRoomPolicyQuery;
+        private readonly IGetRoomPolicyQuery _getRoomPolicyQuery;
         private readonly ICommandHandler<AddNewRoomPolicyCommand, RoomPolicy> _addNewRoomPolicyCommandHandler;
+        private readonly ICommandHandler<GetPastPoliciesCommand, PastMeasurements> _pastPoliciesCommandHandler;
 
         public PoliciesController(IMapper mapper,
-            IGetCurrentRoomPolicyQuery getCurrentRoomPolicyQuery, 
-            ICommandHandler<AddNewRoomPolicyCommand, RoomPolicy> addNewRoomPolicyCommandHandler)
+            IGetRoomPolicyQuery getCurrentRoomPolicyQuery, 
+            ICommandHandler<AddNewRoomPolicyCommand, RoomPolicy> addNewRoomPolicyCommandHandler, 
+            ICommandHandler<GetPastPoliciesCommand, PastMeasurements> pastPoliciesCommandHandler)
         {
             _mapper = mapper;
-            _getCurrentRoomPolicyQuery = getCurrentRoomPolicyQuery;
+            _getRoomPolicyQuery = getCurrentRoomPolicyQuery;
             _addNewRoomPolicyCommandHandler = addNewRoomPolicyCommandHandler;
+            _pastPoliciesCommandHandler = pastPoliciesCommandHandler;
         }
 
         /// <summary>
@@ -37,7 +43,7 @@ namespace DagAir.Policies.Policies
         [ProducesResponseType(typeof(JsonApiError), (int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> GetCurrentRoomPolicy(long roomId)
         {
-            var roomPolicy = await _getCurrentRoomPolicyQuery.Handle(roomId);
+            var roomPolicy = await _getRoomPolicyQuery.Handle(roomId, DateTime.Now);
             
             if (roomPolicy == null)
             {
@@ -64,6 +70,27 @@ namespace DagAir.Policies.Policies
             RoomPolicyDto roomPolicyDto = _mapper.Map<RoomPolicyDto>(policy);
 
             return Created(new JsonApiDocument<RoomPolicyDto>(roomPolicyDto));
+        }
+        
+        [HttpPost("policies/past-policies")]
+        [ProducesResponseType(typeof(JsonApiDocument<PastMeasurementsDto>), (int) HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(JsonApiError), (int) HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> GetPastPolicies([FromBody] GetPastPoliciesCommand getPastPoliciesCommand)
+        {
+            var pastMeasurements = await _pastPoliciesCommandHandler.Handle(getPastPoliciesCommand);
+
+            PastMeasurementsDto pastMeasurementsDto = new PastMeasurementsDto();
+            pastMeasurementsDto.Measurements = new List<Tuple<HistoricMeasurement, RoomPolicyDto>>();
+            pastMeasurementsDto.Measurements.AddRange(
+                pastMeasurements.Measurements.Select(x =>
+                {
+                    var roomPolicyDto = _mapper.Map<RoomPolicyDto>(x.Item2);
+                    var tuple = new Tuple<HistoricMeasurement, RoomPolicyDto>(x.Item1, roomPolicyDto);
+                    return tuple;
+                })
+            );
+
+            return Ok(new JsonApiDocument<PastMeasurementsDto>(pastMeasurementsDto));
         }
         
         private NotFoundObjectResult GetCurrentRoomPolicyNotFoundMessage(long roomId)

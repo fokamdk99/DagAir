@@ -7,6 +7,8 @@ namespace DagAir.Policies.Contracts.DTOs
         public long Id { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+        public int StartHour { get; set; }
+        public int EndHour { get; set; }
         public string RepeatOn { get; set; }
         public long ExpectedConditionsId { get; set; } 
         public long CategoryId { get; set; }

@@ -31,20 +31,20 @@ namespace DagAir.Policies.Data.Migrations.Migrations
                         .HasColumnName("created")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
-                    b.Property<float>("Humidity")
-                        .HasColumnType("float")
+                    b.Property<decimal>("Humidity")
+                        .HasColumnType("decimal(18, 2)")
                         .HasColumnName("humidity");
 
-                    b.Property<float>("HumidityMargin")
-                        .HasColumnType("float")
+                    b.Property<decimal>("HumidityMargin")
+                        .HasColumnType("decimal(18, 2)")
                         .HasColumnName("humidity_margin");
 
-                    b.Property<float>("Illuminance")
-                        .HasColumnType("float")
+                    b.Property<int>("Illuminance")
+                        .HasColumnType("int")
                         .HasColumnName("illuminance");
 
-                    b.Property<float>("IlluminanceMargin")
-                        .HasColumnType("float")
+                    b.Property<decimal>("IlluminanceMargin")
+                        .HasColumnType("decimal(18, 2)")
                         .HasColumnName("illuminance_margin");
 
                     b.Property<DateTime?>("Modified")
@@ -55,12 +55,12 @@ namespace DagAir.Policies.Data.Migrations.Migrations
                         .HasColumnType("bigint")
                         .HasColumnName("room_policy_id");
 
-                    b.Property<float>("Temperature")
-                        .HasColumnType("float")
+                    b.Property<decimal>("Temperature")
+                        .HasColumnType("decimal(18, 2)")
                         .HasColumnName("temperature");
 
-                    b.Property<float>("TemperatureMargin")
-                        .HasColumnType("float")
+                    b.Property<decimal>("TemperatureMargin")
+                        .HasColumnType("decimal(18, 2)")
                         .HasColumnName("temperature_margin");
 
                     b.HasKey("Id")
@@ -73,23 +73,23 @@ namespace DagAir.Policies.Data.Migrations.Migrations
                         {
                             Id = 1L,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Humidity = 0.4f,
-                            HumidityMargin = 0.1f,
-                            Illuminance = 100f,
-                            IlluminanceMargin = 20f,
-                            Temperature = 20f,
-                            TemperatureMargin = 2f
+                            Humidity = 0.4m,
+                            HumidityMargin = 0.1m,
+                            Illuminance = 100,
+                            IlluminanceMargin = 20m,
+                            Temperature = 20m,
+                            TemperatureMargin = 2m
                         },
                         new
                         {
                             Id = 2L,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Humidity = 0.5f,
-                            HumidityMargin = 0.1f,
-                            Illuminance = 130f,
-                            IlluminanceMargin = 30f,
-                            Temperature = 22f,
-                            TemperatureMargin = 3f
+                            Humidity = 0.5m,
+                            HumidityMargin = 0.1m,
+                            Illuminance = 130,
+                            IlluminanceMargin = 30m,
+                            Temperature = 22m,
+                            TemperatureMargin = 3m
                         });
                 });
 
@@ -110,9 +110,18 @@ namespace DagAir.Policies.Data.Migrations.Migrations
                         .HasColumnName("created")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("created_by");
+
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime")
                         .HasColumnName("end_date");
+
+                    b.Property<int>("EndHour")
+                        .HasColumnType("int")
+                        .HasColumnName("end_hour");
 
                     b.Property<long>("ExpectedConditionsId")
                         .HasColumnType("bigint")
@@ -132,9 +141,17 @@ namespace DagAir.Policies.Data.Migrations.Migrations
                         .HasColumnType("bigint")
                         .HasColumnName("room_id");
 
+                    b.Property<bool>("SpansTwoDays")
+                        .HasColumnType("tinyint(1)")
+                        .HasColumnName("spans_two_days");
+
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime")
                         .HasColumnName("start_date");
+
+                    b.Property<int>("StartHour")
+                        .HasColumnType("int")
+                        .HasColumnName("start_hour");
 
                     b.HasKey("Id")
                         .HasName("pk_room_policies");
@@ -153,33 +170,60 @@ namespace DagAir.Policies.Data.Migrations.Migrations
                             Id = 1L,
                             CategoryId = 1L,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EndDate = new DateTime(2021, 11, 21, 1, 26, 22, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "dd8db40b-c091-4d12-a185-b2f71f369917",
+                            EndDate = new DateTime(2023, 1, 15, 14, 28, 40, 0, DateTimeKind.Unspecified),
+                            EndHour = 12,
                             ExpectedConditionsId = 1L,
                             RepeatOn = "Monday, Thursday",
                             RoomId = 1L,
-                            StartDate = new DateTime(2021, 11, 21, 23, 26, 22, 0, DateTimeKind.Unspecified)
+                            SpansTwoDays = false,
+                            StartDate = new DateTime(2022, 1, 15, 12, 28, 40, 0, DateTimeKind.Unspecified),
+                            StartHour = 10
                         },
                         new
                         {
                             Id = 2L,
                             CategoryId = 2L,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EndDate = new DateTime(2021, 11, 21, 0, 26, 22, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "dd8db40b-c091-4d12-a185-b2f71f369917",
+                            EndDate = new DateTime(2023, 1, 15, 13, 28, 40, 0, DateTimeKind.Unspecified),
+                            EndHour = 14,
                             ExpectedConditionsId = 2L,
                             RepeatOn = "Wednesday",
                             RoomId = 1L,
-                            StartDate = new DateTime(2021, 11, 21, 20, 26, 22, 0, DateTimeKind.Unspecified)
+                            SpansTwoDays = false,
+                            StartDate = new DateTime(2022, 1, 15, 9, 28, 40, 0, DateTimeKind.Unspecified),
+                            StartHour = 12
                         },
                         new
                         {
                             Id = 3L,
                             CategoryId = 2L,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EndDate = new DateTime(2021, 10, 5, 23, 59, 59, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "dd8db40b-c091-4d12-a185-b2f71f369917",
+                            EndDate = new DateTime(2022, 10, 5, 23, 59, 59, 0, DateTimeKind.Unspecified),
+                            EndHour = 6,
                             ExpectedConditionsId = 2L,
                             RepeatOn = "",
                             RoomId = 1L,
-                            StartDate = new DateTime(2021, 11, 5, 1, 1, 1, 0, DateTimeKind.Unspecified)
+                            SpansTwoDays = true,
+                            StartDate = new DateTime(2021, 11, 5, 1, 1, 1, 0, DateTimeKind.Unspecified),
+                            StartHour = 22
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            CategoryId = 1L,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "dd8db40b-c091-4d12-a185-b2f71f369917",
+                            EndDate = new DateTime(9999, 12, 30, 23, 59, 59, 0, DateTimeKind.Unspecified),
+                            EndHour = 23,
+                            ExpectedConditionsId = 2L,
+                            RepeatOn = "",
+                            RoomId = 0L,
+                            SpansTwoDays = false,
+                            StartDate = new DateTime(1980, 11, 5, 1, 1, 1, 0, DateTimeKind.Unspecified),
+                            StartHour = 0
                         });
                 });
 

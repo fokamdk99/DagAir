@@ -18,8 +18,8 @@ namespace DagAir.PolicyNode.Tests
             return new RoomDto
             {
                 Id = roomId,
-                UniqueRoomId = Guid.NewGuid(),
                 Number = "133",
+                Floor = 1,
                 AffiliateId = 1
             };
         }

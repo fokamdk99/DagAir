@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using DagAir.IngestionNode.Data.Influx;
+using DagAir.Components.Influx;
 using DagAir.IngestionNode.Data.Measurements;
 using DagAir.IngestionNode.Measurements.Commands;
 using InfluxDB.Client;
@@ -24,11 +24,10 @@ namespace DagAir.IngestionNode.Influx.Handlers
         {
             var measurement = new InfluxRoomMeasurement()
                 {
-                    SensorId = measurementsInsertedEvent.SensorId,
+                    SensorName = measurementsInsertedEvent.SensorName,
                     Temperature = measurementsInsertedEvent.Measurement.Temperature, 
                     Humidity = measurementsInsertedEvent.Measurement.Humidity, 
-                    Illuminance = measurementsInsertedEvent.Measurement.Illuminance, 
-                    Time = DateTime.UtcNow
+                    Illuminance = measurementsInsertedEvent.Measurement.Illuminance,
                 };
 
             await _client.GetWriteApiAsync().WriteMeasurementAsync(_influxConfiguration.BucketName, _influxConfiguration.Org, WritePrecision.Ms, measurement);

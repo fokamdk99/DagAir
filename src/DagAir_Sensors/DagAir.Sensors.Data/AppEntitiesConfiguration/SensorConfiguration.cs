@@ -11,6 +11,9 @@ namespace DagAir.Sensors.Data.AppEntitiesConfiguration
             builder.ConfigureBase();
             builder.HasKey(e => e.Id);
 
+            builder.HasIndex(e => e.SensorName)
+                .IsUnique();
+            
             builder.Property(e => e.LastDataSentDate);
 
             builder.Property(e => e.RoomId)

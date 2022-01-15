@@ -1036,6 +1036,18 @@
           "lib/netstandard2.0/Newtonsoft.Json.Bson.dll": {}
         }
       },
+      "NodaTime/3.0.5": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime.CompilerServices.Unsafe": "4.7.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/NodaTime.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/NodaTime.dll": {}
+        }
+      },
       "NuGet.Common/5.3.1": {
         "type": "package",
         "dependencies": {
@@ -3124,7 +3136,9 @@
           "DagAir.Components.Logging": "1.0.0",
           "DagAir.Components.MassTransit.RabbitMq": "1.0.0",
           "DagAir.Facilities.Contracts": "1.0.0",
+          "DagAir.Policies.Contracts": "1.0.0",
           "DagAir.PolicyNode.Contracts": "1.0.0",
+          "DagAir.Sensors.Contracts": "1.0.0",
           "IdentityModel": "5.2.0",
           "Microsoft.AspNetCore.Authentication.OpenIdConnect": "5.0.0",
           "Microsoft.AspNetCore.Mvc.Versioning": "5.0.0",
@@ -3148,7 +3162,9 @@
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
           "DagAir.Addresses.Contracts": "1.0.0",
-          "DagAir.Facilities.Contracts": "1.0.0"
+          "DagAir.DataServices.SensorStateHistory.Contracts": "1.0.0",
+          "DagAir.Facilities.Contracts": "1.0.0",
+          "DagAir.Policies.Contracts": "1.0.0"
         },
         "compile": {
           "bin/placeholder/DagAir.AdminNode.Contracts.dll": {}
@@ -3254,6 +3270,19 @@
           "bin/placeholder/DagAir.Components.Nuke.dll": {}
         }
       },
+      "DagAir.DataServices.SensorStateHistory.Contracts/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "NodaTime": "3.0.5"
+        },
+        "compile": {
+          "bin/placeholder/DagAir.DataServices.SensorStateHistory.Contracts.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DagAir.DataServices.SensorStateHistory.Contracts.dll": {}
+        }
+      },
       "DagAir.Facilities/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -3350,6 +3379,9 @@
       "DagAir.Policies.Contracts/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "DagAir.DataServices.SensorStateHistory.Contracts": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/DagAir.Policies.Contracts.dll": {}
         },
@@ -4909,6 +4941,20 @@
         "lib/netstandard2.0/Newtonsoft.Json.Bson.xml",
         "newtonsoft.json.bson.1.0.2.nupkg.sha512",
         "newtonsoft.json.bson.nuspec"
+      ]
+    },
+    "NodaTime/3.0.5": {
+      "sha512": "ctgx76GTZ3hcE0lV/XepXskkZ2m3F/XSftwb/a3vK+vSorbT3QhGgWp/ZNb13oyKQhBdFIPiISilvx49LQggtw==",
+      "type": "package",
+      "path": "nodatime/3.0.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/NodaTime.dll",
+        "lib/netstandard2.0/NodaTime.pdb",
+        "lib/netstandard2.0/NodaTime.xml",
+        "nodatime.3.0.5.nupkg.sha512",
+        "nodatime.nuspec"
       ]
     },
     "NuGet.Common/5.3.1": {
@@ -10425,6 +10471,11 @@
       "type": "project",
       "path": "../src/DagAir_Components/DagAir.Components.Nuke/DagAir.Components.Nuke.csproj",
       "msbuildProject": "../src/DagAir_Components/DagAir.Components.Nuke/DagAir.Components.Nuke.csproj"
+    },
+    "DagAir.DataServices.SensorStateHistory.Contracts/1.0.0": {
+      "type": "project",
+      "path": "../src/DagAir.DataServices.SensorStateHistory.Contracts/DagAir.DataServices.SensorStateHistory.Contracts.csproj",
+      "msbuildProject": "../src/DagAir.DataServices.SensorStateHistory.Contracts/DagAir.DataServices.SensorStateHistory.Contracts.csproj"
     },
     "DagAir.Facilities/1.0.0": {
       "type": "project",

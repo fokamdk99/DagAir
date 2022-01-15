@@ -1,4 +1,5 @@
 ﻿#nullable enable
+using System;
 using System.Threading.Tasks;
 using DagAir.Components.MassTransit.RabbitMq.Publisher;
 using DagAir.IngestionNode.Contracts;
@@ -12,7 +13,7 @@ using NUnit.Framework;
 
 namespace DagAir.PolicyNode.Tests.Consumers
 {
-    public class MeasurementSentEventConsumerTests : MassTransitIntegrationTest
+    public class MeasurementSentEventConsumerTests : IntegrationTest
     {
         private InMemoryTestHarness? _testHarness;
         
@@ -28,7 +29,7 @@ namespace DagAir.PolicyNode.Tests.Consumers
 
         private MeasurementSentEvent CreateMeasurementSentEvent()
         {
-            return new MeasurementSentEvent(21, 2000, (decimal) 0.5, 1);
+            return new MeasurementSentEvent(21, 2000, (decimal) 0.5, "sensorName1");
         }
 
         protected override void AddOverrides(IServiceCollection services)

@@ -1,5 +1,6 @@
 ﻿using DagAir.PolicyNode.Integrations.Facilities.DataServices;
 using DagAir.PolicyNode.Integrations.Policies.DataServices;
+using DagAir.PolicyNode.Integrations.Sensors.DataServices;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DagAir.PolicyNode.Integrations
@@ -10,6 +11,7 @@ namespace DagAir.PolicyNode.Integrations
         {
             services.AddScoped<IPoliciesDataService, PoliciesDataService>();
             services.AddScoped<IFacilitiesDataService, FacilitiesDataService>();
+            services.AddScoped<ISensorsDataService, SensorsDataService>();
             services.AddSingleton<IServicesUrls, ServicesUrls>();
 
             return services;

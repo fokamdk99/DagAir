@@ -33,7 +33,9 @@ namespace DagAir.Policies
                 .ForMember(x => x.Created, opts => opts.Ignore())
                 .ForMember(x => x.Modified, opts => opts.Ignore())
                 .ForMember(x => x.ExpectedConditions, opts => opts.Ignore())
-                .ForMember(x => x.Category, opts => opts.Ignore());
+                .ForMember(x => x.Category, opts => opts.Ignore())
+                .ForMember(x => x.CreatedBy, opts => opts.Ignore())
+                .ForMember(x => x.SpansTwoDays, opts => opts.Ignore());
             CreateMap<ExpectedRoomConditionsDto, ExpectedRoomConditions>()
                 .ForMember(x => x.Created, opts => opts.Ignore())
                 .ForMember(x => x.Modified, opts => opts.Ignore())
@@ -42,6 +44,7 @@ namespace DagAir.Policies
                 .ForMember(x => x.Created, opts => opts.Ignore())
                 .ForMember(x => x.Modified, opts => opts.Ignore())
                 .ForMember(x => x.RoomPolicies, opts => opts.Ignore());
+            CreateMap<PastMeasurements, PastMeasurementsDto>();
         }
     }
 }

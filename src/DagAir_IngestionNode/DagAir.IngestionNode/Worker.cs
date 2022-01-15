@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using DagAir.IngestionNode.Contracts;
 using DagAir.IngestionNode.Infrastructure.Configuration;
-using DagAir.IngestionNode.Measurements.Commands;
 using DagAir.IngestionNode.Measurements.Handlers;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;

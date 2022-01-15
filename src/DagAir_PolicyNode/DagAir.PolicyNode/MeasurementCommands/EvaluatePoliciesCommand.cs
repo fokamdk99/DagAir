@@ -3,6 +3,7 @@ using DagAir.IngestionNode.Contracts;
 using DagAir.PolicyNode.Contracts.Contracts;
 using DagAir.PolicyNode.Integrations.Facilities.DataServices;
 using DagAir.PolicyNode.Integrations.Policies.DataServices;
+using DagAir.PolicyNode.Integrations.Sensors.DataServices;
 using DagAir.PolicyNode.PolicyEvaluator;
 
 namespace DagAir.PolicyNode.MeasurementCommands
@@ -12,21 +13,27 @@ namespace DagAir.PolicyNode.MeasurementCommands
         private readonly IPolicyEvaluator _policyEvaluator;
         private readonly IPoliciesDataService _policiesDataService;
         private readonly IFacilitiesDataService _facilitiesDataService;
+        private readonly ISensorsDataService _sensorsDataService;
 
         public EvaluatePoliciesCommand(IPolicyEvaluator policyEvaluator,
-            IPoliciesDataService policiesDataService, IFacilitiesDataService facilitiesDataService)
+            IPoliciesDataService policiesDataService, 
+            IFacilitiesDataService facilitiesDataService, 
+            ISensorsDataService sensorsDataService)
         {
             _policyEvaluator = policyEvaluator;
             _policiesDataService = policiesDataService;
             _facilitiesDataService = facilitiesDataService;
+            _sensorsDataService = sensorsDataService;
         }
         public async Task<PoliciesEvaluationResultEvent> Handle(MeasurementSentEvent measurementSentEvent)
         {
-            var policy = await _policiesDataService.GetRoomPolicyByRoomId(measurementSentEvent.RoomId);
-            var result = _policyEvaluator.Evaluate(measurementSentEvent, policy);
-
-            var room = await _facilitiesDataService.GetRoomByRoomId(measurementSentEvent.RoomId);
-            result.UniqueRoomId = room.UniqueRoomId;
+            var sensorDto = await _sensorsDataService.GetSensorBySensorName(measurementSentEvent.SensorName);
+            var roomDto = await _facilitiesDataService.GetRoomByRoomId(sensorDto.RoomId);
+            var policyDto = await _policiesDataService.GetRoomPolicyByRoomId(roomDto.Id);
+            
+            var result = _policyEvaluator.Evaluate(measurementSentEvent, policyDto);
+            
+            result.RoomId = roomDto.Id;
 
             return result;
         }

@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using DagAir.IngestionNode.Data.Influx;
+﻿using DagAir.Components.Influx;
 using InfluxDB.Client;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

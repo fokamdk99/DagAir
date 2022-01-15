@@ -9,6 +9,8 @@ namespace DagAir.Sensors.Sensors
         {
             services.AddScoped<IGetSensorWithRelatedEntitiesQuery, GetSensorWithRelatedEntitiesQuery>();
             services.AddScoped<IGetAllSensorsWithRelatedEntitiesQuery, GetAllSensorsWithRelatedEntitiesQuery>();
+            services.AddScoped<IGetSensorBySensorName, GetSensorBySensorName>();
+            services.AddScoped<IGetSensorByRoomId, GetSensorByRoomId>();
 
             return services;
         }

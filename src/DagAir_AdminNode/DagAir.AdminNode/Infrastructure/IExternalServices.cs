@@ -4,5 +4,8 @@
     {
         string FacilitiesApi { get; set; }
         string AddressesApi { get; set; }
+        string SensorStateHistory { get; set; }
+        string SensorsDataService { get; set; }
+        public string PoliciesDataService { get; set; }
     }
 }

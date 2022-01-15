@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using DagAir.IngestionNode.Data.Influx;
+using DagAir.Components.Influx;
 using InfluxDB.Client;
 using InfluxDB.Client.Api.Domain;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,7 +12,11 @@ namespace DagAir.IngestionNode.Tests.Influx
     {
         private static int _createOnce;
 
-        public static async Task<(InfluxDBClient, Bucket, IInfluxConfiguration)> CreateBucketOnce(IServiceProvider serviceProvider, InfluxDBClient client, Bucket testBucket, IInfluxConfiguration influxConfiguration)
+        public static async Task<(InfluxDBClient, Bucket, IInfluxConfiguration)> CreateBucketOnce(IServiceProvider serviceProvider, 
+            InfluxDBClient client, 
+            Bucket testBucket, 
+            IInfluxConfiguration influxConfiguration,
+            IInfluxHelper influxHelper)
         {
             if (Interlocked.Increment(ref _createOnce) > 1)
             {
@@ -29,7 +33,7 @@ namespace DagAir.IngestionNode.Tests.Influx
                 await client.GetBucketsApi().DeleteBucketAsync(existingBucket.Id);
             }
 
-            var organizationId = await InfluxHelper.GetOrganizationIdByOrganizationName(client, influxConfiguration);
+            var organizationId = await influxHelper.GetOrganizationIdByOrganizationName(client, influxConfiguration);
             testBucket = await client.GetBucketsApi().CreateBucketAsync(influxConfiguration.BucketName, retention, organizationId);
             return (client, testBucket, influxConfiguration);
         }

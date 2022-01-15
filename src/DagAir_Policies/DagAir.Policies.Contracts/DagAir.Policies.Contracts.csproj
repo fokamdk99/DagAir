@@ -4,4 +4,8 @@
         <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\DagAir.DataServices.SensorStateHistory.Contracts\DagAir.DataServices.SensorStateHistory.Contracts.csproj" />
+    </ItemGroup>
+
 </Project>

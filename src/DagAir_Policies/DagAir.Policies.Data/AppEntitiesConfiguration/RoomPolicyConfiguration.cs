@@ -16,7 +16,12 @@ namespace DagAir.Policies.Data.AppEntitiesConfiguration
             
             builder.Property(e => e.EndDate)
                 .IsRequired();
+
+            builder.Property(e => e.StartHour)
+                .IsRequired();
             
+            builder.Property(e => e.EndHour)
+                .IsRequired();
             
             builder.Property(e => e.RepeatOn)
                 .HasMaxLength(256)
@@ -27,7 +32,13 @@ namespace DagAir.Policies.Data.AppEntitiesConfiguration
             
             builder.Property(e => e.RoomId)
                 .IsRequired();
+            
+            builder.Property(e => e.CreatedBy)
+                .IsRequired();
 
+            builder.Property(e => e.SpansTwoDays)
+                .IsRequired();
+            
             builder.HasOne(e => e.ExpectedConditions)
                 .WithMany(x => x.RoomPolicies)
                 .HasForeignKey(e => e.ExpectedConditionsId)

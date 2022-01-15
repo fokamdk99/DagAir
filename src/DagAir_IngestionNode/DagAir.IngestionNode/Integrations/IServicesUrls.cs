@@ -2,6 +2,6 @@
 {
     public interface IServicesUrls
     {
-        string SensorsApi { get; set; }
+        string SensorStateHistory { get; set; }
     }
 }

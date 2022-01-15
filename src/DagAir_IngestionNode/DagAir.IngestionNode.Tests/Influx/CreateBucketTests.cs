@@ -1,7 +1,5 @@
-using System;
-using System.Linq;
 using System.Threading.Tasks;
-using DagAir.IngestionNode.Data.Influx;
+using DagAir.Components.Influx;
 using InfluxDB.Client;
 using InfluxDB.Client.Api.Domain;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +13,7 @@ namespace DagAir.IngestionNode.Tests.Influx
         private string CreatedBucketId { get; set; }
         private InfluxDBClient Client { get; set; }
         private IInfluxConfiguration InfluxConfiguration { get; set; }
+        private IInfluxHelper InfluxHelper { get; set; }
         private IHost TestHost { get; set; } 
 
         [SetUp]
@@ -23,6 +22,7 @@ namespace DagAir.IngestionNode.Tests.Influx
             TestHost = HostProvider.Create();
             Client = TestHost.Services.GetRequiredService<InfluxDBClient>();
             InfluxConfiguration = TestHost.Services.GetRequiredService<IInfluxConfiguration>();
+            InfluxHelper = TestHost.Services.GetRequiredService<IInfluxHelper>();
         }
         [Ignore("Influx dependent")]
         [Test]

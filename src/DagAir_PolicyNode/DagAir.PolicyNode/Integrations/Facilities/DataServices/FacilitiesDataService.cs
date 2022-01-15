@@ -3,6 +3,7 @@ using System.Net;
 using System.Threading.Tasks;
 using DagAir.Components.HttpClients;
 using DagAir.Facilities.Contracts.DTOs;
+using DagAir.PolicyNode.Integrations.Sensors;
 
 namespace DagAir.PolicyNode.Integrations.Facilities.DataServices
 {

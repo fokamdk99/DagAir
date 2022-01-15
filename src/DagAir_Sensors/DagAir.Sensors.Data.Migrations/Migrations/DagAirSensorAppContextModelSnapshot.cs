@@ -59,7 +59,7 @@ namespace DagAir.Sensors.Data.Migrations.Migrations
                             Id = 1L,
                             AddressId = 1L,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfEstablishment = new DateTime(2021, 11, 19, 23, 33, 43, 842, DateTimeKind.Local).AddTicks(5997),
+                            DateOfEstablishment = new DateTime(2022, 1, 12, 16, 36, 3, 299, DateTimeKind.Local).AddTicks(4687),
                             Name = "Saturn"
                         },
                         new
@@ -67,7 +67,7 @@ namespace DagAir.Sensors.Data.Migrations.Migrations
                             Id = 2L,
                             AddressId = 2L,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfEstablishment = new DateTime(2021, 11, 14, 23, 33, 43, 844, DateTimeKind.Local).AddTicks(8028),
+                            DateOfEstablishment = new DateTime(2022, 1, 7, 16, 36, 3, 302, DateTimeKind.Local).AddTicks(9479),
                             Name = "Euro agd"
                         });
                 });
@@ -105,11 +105,19 @@ namespace DagAir.Sensors.Data.Migrations.Migrations
                         .HasColumnType("bigint")
                         .HasColumnName("sensor_model_id");
 
+                    b.Property<string>("SensorName")
+                        .HasColumnType("varchar(767)")
+                        .HasColumnName("sensor_name");
+
                     b.HasKey("Id")
                         .HasName("pk_sensors");
 
                     b.HasIndex("SensorModelId")
                         .HasDatabaseName("ix_sensors_sensor_model_id");
+
+                    b.HasIndex("SensorName")
+                        .IsUnique()
+                        .HasDatabaseName("ix_sensors_sensor_name");
 
                     b.ToTable("sensors");
 
@@ -119,27 +127,30 @@ namespace DagAir.Sensors.Data.Migrations.Migrations
                             Id = 1L,
                             AffiliateId = 1L,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastDataSentDate = new DateTime(2021, 11, 21, 18, 33, 43, 846, DateTimeKind.Local).AddTicks(2687),
+                            LastDataSentDate = new DateTime(2022, 1, 14, 11, 36, 3, 304, DateTimeKind.Local).AddTicks(6060),
                             RoomId = 1L,
-                            SensorModelId = 1L
+                            SensorModelId = 1L,
+                            SensorName = "com.gonzalo789.esp32"
                         },
                         new
                         {
                             Id = 2L,
                             AffiliateId = 1L,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastDataSentDate = new DateTime(2021, 11, 21, 20, 33, 43, 846, DateTimeKind.Local).AddTicks(3388),
+                            LastDataSentDate = new DateTime(2022, 1, 14, 13, 36, 3, 304, DateTimeKind.Local).AddTicks(6737),
                             RoomId = 1L,
-                            SensorModelId = 2L
+                            SensorModelId = 2L,
+                            SensorName = "wemos_stas1"
                         },
                         new
                         {
                             Id = 3L,
                             AffiliateId = 1L,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastDataSentDate = new DateTime(2021, 11, 21, 22, 33, 43, 846, DateTimeKind.Local).AddTicks(3397),
-                            RoomId = 1L,
-                            SensorModelId = 3L
+                            LastDataSentDate = new DateTime(2022, 1, 14, 15, 36, 3, 304, DateTimeKind.Local).AddTicks(6746),
+                            RoomId = 2L,
+                            SensorModelId = 3L,
+                            SensorName = "wemos_stas2"
                         });
                 });
 

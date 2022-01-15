@@ -16,6 +16,7 @@ namespace DagAir.Sensors.Sensors.Queries
         
         public async Task<Sensor> Execute(long id)
         {
+            //TODO: moze sie zdarzyc, ze do jednego pokoju bedzie przypisanych wiele sensorow. Trzeba to obsluzyc
             return await _context.Sensors.SingleOrDefaultAsync(x => x.Id == id);
         }
     }

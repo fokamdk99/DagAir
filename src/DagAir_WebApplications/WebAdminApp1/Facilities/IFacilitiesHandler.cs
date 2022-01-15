@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using DagAir.AdminNode.Contracts.DTOs;
 using DagAir.Facilities.Contracts.DTOs;
 using WebAdminApp1.Controllers;
+using WebAdminApp1.Facilities.Models;
 
 namespace WebAdminApp1.Facilities
 {
@@ -10,6 +11,6 @@ namespace WebAdminApp1.Facilities
     {
         Task<List<AdminNodeOrganizationDto>> GetOrganizations();
         Task<AdminNodeOrganizationDto> GetOrganization(long organizationId);
-        Task<OrganizationDto> AddNewOrganization(GetOrganizationModel addNewOrganizationCommand);
+        Task<OrganizationDto> AddNewOrganization(OrganizationModel addNewOrganizationCommand);
     }
 }

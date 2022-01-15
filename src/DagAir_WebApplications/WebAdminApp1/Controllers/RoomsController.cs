@@ -1,13 +1,13 @@
-using System;
 using System.Threading.Tasks;
 using DagAir.AdminNode.Contracts.DTOs;
-using DagAir.Facilities.Contracts.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using WebAdminApp1.Affiliates;
+using WebAdminApp1.Affiliates.Models;
 using WebAdminApp1.Rooms;
+using WebAdminApp1.Rooms.Models;
 
 namespace WebAdminApp1.Controllers
 {
@@ -32,13 +32,15 @@ namespace WebAdminApp1.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Room(Guid uniqueRoomId)
+        public async Task<IActionResult> Room(long roomId)
         {
             var environment = _configuration.GetSection($"{ConfigurationSection}").Value;
             _logger.LogInformation($"Current environment: {environment}");
 
-            var roomModel = new UniqueRoomModel();
-            roomModel.UniqueRoomId = uniqueRoomId;
+            var roomModel = new RoomModel();
+            var adminNodeRoomDto = await _roomsHandler.GetRoom(roomId);
+            roomModel.AdminNodeRoomDto = adminNodeRoomDto;
+            
             if (environment == "docker")
             {
                 roomModel.Environment = "appsettings.Docker.json";
@@ -61,56 +63,43 @@ namespace WebAdminApp1.Controllers
         [HttpGet]
         public async Task<IActionResult> AddNewRoom(long affiliateId)
         {
-            var uniqueRoomModel = new UniqueRoomModel()
+            var roomModel = new RoomModel()
             {
-                RoomDto = new RoomDto()
+                AdminNodeRoomDto = new AdminNodeRoomDto()
             };
-            uniqueRoomModel.RoomDto.AffiliateId = affiliateId;
+            roomModel.AdminNodeRoomDto.RoomDto.AffiliateId = affiliateId;
 
-            return View(uniqueRoomModel);
+            return View(roomModel);
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddNewRoom(UniqueRoomModel uniqueRoomModel)
+        public async Task<IActionResult> AddNewRoom(RoomModel roomModel)
         {
             if (!ModelState.IsValid)
             {
                 return View();
             }
             
-            var newRoom = await _roomsHandler.AddNewRoom(uniqueRoomModel);
+            var newRoom = await _roomsHandler.AddNewRoom(roomModel);
 
             if (newRoom == null)
             {
                 string message =
-                    $"Room with number {uniqueRoomModel.RoomDto.Number} was already added to the affiliate. "+
+                    $"Room with number {roomModel.AdminNodeRoomDto.RoomDto.Number} was already added to the affiliate. "+
                 "Please choose other number";
                 ModelState.AddModelError(string.Empty, message);
 
-                return View(uniqueRoomModel);
+                return View(roomModel);
             }
 
             
-            var adminNodeAffiliateDto = await _affiliatesHandler.GetAffiliateById(uniqueRoomModel.RoomDto.AffiliateId);
+            var adminNodeAffiliateDto = await _affiliatesHandler.GetAffiliateById(roomModel.AdminNodeRoomDto.RoomDto.AffiliateId);
 
-            var getAffiliateModel = new GetAffiliateModel();
+            var getAffiliateModel = new AffiliateModel();
             getAffiliateModel.AdminNodeAffiliateDto = adminNodeAffiliateDto;
 
             return View("~/Views/Affiliates/Affiliate.cshtml", getAffiliateModel);
         }
 
-    }
-    
-    public class RoomModel
-    {
-        public string Environment { get; set; }
-    }
-    
-    public class UniqueRoomModel
-    {
-        public string Environment { get; set; }
-        public Guid UniqueRoomId { get; set; }
-        public RoomDto RoomDto { get; set; }
-        public AdminNodeAffiliateDto AdminNodeAffiliateDto { get; set; }
     }
 }

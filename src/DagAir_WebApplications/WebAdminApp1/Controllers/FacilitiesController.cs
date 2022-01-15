@@ -5,6 +5,7 @@ using DagAir.AdminNode.Contracts.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebAdminApp1.Facilities;
+using WebAdminApp1.Facilities.Models;
 
 namespace WebAdminApp1.Controllers
 {
@@ -24,7 +25,7 @@ namespace WebAdminApp1.Controllers
         public async Task<IActionResult> Organizations()
         {
             await LoadAsync(User);
-            var organizationsModel = new GetOrganizationsModel();
+            var organizationsModel = new OrganizationsModel();
             organizationsModel.AdminNodeOrganizationDtos = OrganizationDtos;
             
             return View(organizationsModel);
@@ -39,7 +40,7 @@ namespace WebAdminApp1.Controllers
         public async Task<IActionResult> Organization(long organizationId)
         {
             await LoadAsyncOrganization(User, organizationId);
-            var organizationModel = new GetOrganizationModel();
+            var organizationModel = new OrganizationModel();
             organizationModel.AdminNodeOrganizationDto = OrganizationDto;
             
             return View(organizationModel);
@@ -58,7 +59,7 @@ namespace WebAdminApp1.Controllers
         }
         
         [HttpPost]
-        public async Task<IActionResult> AddNewOrganization(GetOrganizationModel getOrganizationModel)
+        public async Task<IActionResult> AddNewOrganization(OrganizationModel getOrganizationModel)
         {
             if (ModelState.IsValid)
             {
@@ -73,7 +74,7 @@ namespace WebAdminApp1.Controllers
                 }
                 
                 await LoadAsync(User);
-                var organizationsModel = new GetOrganizationsModel();
+                var organizationsModel = new OrganizationsModel();
                 organizationsModel.AdminNodeOrganizationDtos = OrganizationDtos;
                 
                 return View("Organizations", organizationsModel);
@@ -81,14 +82,5 @@ namespace WebAdminApp1.Controllers
 
             return View();
         }
-    }
-
-    public class GetOrganizationsModel
-    {
-        public List<AdminNodeOrganizationDto> AdminNodeOrganizationDtos { get; set; }
-    }
-    public class GetOrganizationModel
-    {
-        public AdminNodeOrganizationDto AdminNodeOrganizationDto { get; set; }
     }
 }

@@ -7,6 +7,7 @@ using DagAir.Facilities.Contracts.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebAdminApp1.Affiliates;
+using WebAdminApp1.Affiliates.Models;
 
 namespace WebAdminApp1.Controllers
 {
@@ -26,7 +27,7 @@ namespace WebAdminApp1.Controllers
         public async Task<IActionResult> Affiliates()
         {
             await LoadAsync(User);
-            var affiliatesModel = new GetAffiliatesModel();
+            var affiliatesModel = new AffiliatesModel();
             affiliatesModel.AdminNodeAffiliateDtos = AffiliateDtos;
             
             return View(affiliatesModel);
@@ -41,7 +42,7 @@ namespace WebAdminApp1.Controllers
         public async Task<IActionResult> Affiliate(long affiliateId)
         {
             await LoadAsyncAffiliate(User, affiliateId);
-            var affiliateModel = new GetAffiliateModel();
+            var affiliateModel = new AffiliateModel();
             affiliateModel.AdminNodeAffiliateDto = AffiliateDto;
             
             return View(affiliateModel);
@@ -56,7 +57,7 @@ namespace WebAdminApp1.Controllers
         [HttpGet]
         public async Task<IActionResult> AddNewAffiliate(long organizationId)
         {
-            var getAffiliateModel = new GetAffiliateModel
+            var getAffiliateModel = new AffiliateModel
             {
                 AdminNodeAffiliateDto = new AdminNodeAffiliateDto
                 {
@@ -69,7 +70,7 @@ namespace WebAdminApp1.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddNewAffiliate(GetAffiliateModel getAffiliateModel)
+        public async Task<IActionResult> AddNewAffiliate(AffiliateModel getAffiliateModel)
         {
             if (!ModelState.IsValid)
             {
@@ -88,20 +89,10 @@ namespace WebAdminApp1.Controllers
             }
                 
             await LoadAsync(User);
-            var organizationsModel = new GetAffiliatesModel();
+            var organizationsModel = new AffiliatesModel();
             organizationsModel.AdminNodeAffiliateDtos = AffiliateDtos;
                 
             return View("Affiliates", organizationsModel);
         }
-    }
-
-    public class GetAffiliatesModel
-    {
-        public List<AdminNodeAffiliateDto> AdminNodeAffiliateDtos { get; set; }
-    }
-    
-    public class GetAffiliateModel
-    {
-        public AdminNodeAffiliateDto AdminNodeAffiliateDto { get; set; }
     }
 }

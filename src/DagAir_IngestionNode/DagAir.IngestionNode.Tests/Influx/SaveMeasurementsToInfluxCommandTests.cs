@@ -1,7 +1,7 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using DagAir.Components.Influx;
 using DagAir.IngestionNode.Contracts;
 using DagAir.IngestionNode.Influx.Handlers;
 using DagAir.IngestionNode.Measurements.Commands;
@@ -12,6 +12,8 @@ namespace DagAir.IngestionNode.Tests.Influx
 {
     public class SaveMeasurementsToInfluxCommandTests : InfluxIntegrationTest
     {
+        private IInfluxHelper _influxHelper;
+        
         [Ignore("Influx dependent")]
         [Test]
         public async Task WhenSaveMeasurementsToInfluxCommandHandled_ShouldCreateNewRecord()
@@ -20,7 +22,7 @@ namespace DagAir.IngestionNode.Tests.Influx
             var temperatureQuery = CreateInfluxQuery("temperature");
             var illuminanceQuery = CreateInfluxQuery("illuminance");
             var humidityQuery = CreateInfluxQuery("humidity");
-            var organizationId = await InfluxHelper.GetOrganizationIdByOrganizationName(Client, InfluxConfiguration);
+            var organizationId = await _influxHelper.GetOrganizationIdByOrganizationName(Client, InfluxConfiguration);
             var queryResultsBeforeWrite = await Client.GetQueryApi().QueryAsync(query, organizationId);
             int numberOfRowsBeforeWrite = queryResultsBeforeWrite.Count;
             
@@ -47,6 +49,12 @@ namespace DagAir.IngestionNode.Tests.Influx
             
             Assert.AreEqual(humidityResults.ElementAt(0).Records.ElementAt(0).Values["_value"],
                 insertedEvent.Measurement.Humidity);
+        }
+
+        protected override Task SetupTest()
+        {
+            _influxHelper = Services.GetRequiredService<IInfluxHelper>();
+            return base.SetupTest();
         }
 
         private string CreateInfluxQuery(string field)

@@ -8,6 +8,6 @@ namespace DagAir.PolicyNode.Contracts.Contracts
         public EvaluatorResult HumidityStatus { get; set; }
         public EvaluatorResult IlluminanceStatus { get; set; }
         public string Message { get; set; }
-        public Guid UniqueRoomId { get; set; }
+        public long RoomId { get; set; }
     }
 }

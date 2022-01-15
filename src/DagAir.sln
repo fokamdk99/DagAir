@@ -131,6 +131,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.WebAdminApp.Data.Mig
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.AdminNode.Tests", "DagAir_AdminNode\DagAir.AdminNode.Tests\DagAir.AdminNode.Tests.csproj", "{9A5352A2-1635-40A7-AA79-7BC2CF0C5540}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DagAir.DataServices.SensorStateHistory", "DagAir.DataServices.SensorStateHistory", "{E550AA1E-D954-4DC6-8C8B-F0251215FAC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.DataServices.SensorStateHistory", "DagAir.DataServices.SensorStateHistory\DagAir.DataServices.SensorStateHistory.csproj", "{2957DD61-ED36-4333-858D-19D51C1F47DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.Components.Influx", "DagAir.Components.Influx\DagAir.Components.Influx.csproj", "{BB4D8B6C-2B48-44F4-9438-FAE805CFABAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.DataServices.SensorStateHistory.Contracts", "DagAir.DataServices.SensorStateHistory.Contracts\DagAir.DataServices.SensorStateHistory.Contracts.csproj", "{2C4EE01B-1D65-40A8-900F-70628C898917}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.DataServices.SensorStateHistory.Tests", "DagAir.DataServices.SensorStateHistory.Tests\DagAir.DataServices.SensorStateHistory.Tests.csproj", "{AC596306-9669-4DB9-A600-A3DBA6093BCE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -335,6 +345,22 @@ Global
 		{9A5352A2-1635-40A7-AA79-7BC2CF0C5540}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A5352A2-1635-40A7-AA79-7BC2CF0C5540}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A5352A2-1635-40A7-AA79-7BC2CF0C5540}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2957DD61-ED36-4333-858D-19D51C1F47DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2957DD61-ED36-4333-858D-19D51C1F47DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2957DD61-ED36-4333-858D-19D51C1F47DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2957DD61-ED36-4333-858D-19D51C1F47DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB4D8B6C-2B48-44F4-9438-FAE805CFABAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB4D8B6C-2B48-44F4-9438-FAE805CFABAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB4D8B6C-2B48-44F4-9438-FAE805CFABAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB4D8B6C-2B48-44F4-9438-FAE805CFABAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C4EE01B-1D65-40A8-900F-70628C898917}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C4EE01B-1D65-40A8-900F-70628C898917}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C4EE01B-1D65-40A8-900F-70628C898917}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C4EE01B-1D65-40A8-900F-70628C898917}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC596306-9669-4DB9-A600-A3DBA6093BCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC596306-9669-4DB9-A600-A3DBA6093BCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC596306-9669-4DB9-A600-A3DBA6093BCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC596306-9669-4DB9-A600-A3DBA6093BCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -397,5 +423,10 @@ Global
 		{B964C154-137E-4161-9275-B47B353978A9} = {77C0CFDC-76B4-47F5-A0E5-7FD9E1C5D814}
 		{E54138EF-4581-48A1-A42B-C921C67665A0} = {77C0CFDC-76B4-47F5-A0E5-7FD9E1C5D814}
 		{9A5352A2-1635-40A7-AA79-7BC2CF0C5540} = {0D788351-8AE5-45D3-98F5-50D401B662EC}
+		{E550AA1E-D954-4DC6-8C8B-F0251215FAC6} = {C0147ACB-106D-4F4B-B423-3217EB4F7C08}
+		{2957DD61-ED36-4333-858D-19D51C1F47DD} = {E550AA1E-D954-4DC6-8C8B-F0251215FAC6}
+		{BB4D8B6C-2B48-44F4-9438-FAE805CFABAD} = {1B55C6DF-DCD8-4A51-93DE-DC3409C03028}
+		{2C4EE01B-1D65-40A8-900F-70628C898917} = {E550AA1E-D954-4DC6-8C8B-F0251215FAC6}
+		{AC596306-9669-4DB9-A600-A3DBA6093BCE} = {0D788351-8AE5-45D3-98F5-50D401B662EC}
 	EndGlobalSection
 EndGlobal
