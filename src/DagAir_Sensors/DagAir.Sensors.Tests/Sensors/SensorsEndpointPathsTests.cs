@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using DagAir.Sensors.Contracts.Commands;
 using DagAir.Sensors.Data.AppEntities;
 using FluentAssertions;
 using NUnit.Framework;
@@ -49,10 +50,13 @@ namespace DagAir.Sensors.Tests.Sensors
         {
             var path = $"sensors-api/sensors/sensor-name";
 
-            string sensorName = "wemos_stas1";
-            
+            var getSensorBySensorNameCommand = new GetSensorBySensorNameCommand
+            {
+                SensorName = "wemos_stas1"
+            };
+
             var request = 
-                new StringContent(JsonSerializer.Serialize(sensorName), Encoding.UTF8, "application/json");
+                new StringContent(JsonSerializer.Serialize(getSensorBySensorNameCommand), Encoding.UTF8, "application/json");
 
             var response = await _client.PostAsync(path, request);
 

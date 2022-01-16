@@ -28,6 +28,8 @@ namespace DagAir.Policies.Policies.Queries
         {
             var roomPolicies = await _context.RoomPolicies
                 .Where(x => x.RoomId == roomId)
+                .Include(x => x.Category)
+                .Include(x => x.ExpectedConditions)
                 .ToListAsync();
 
             var roomPolicy = await _getPolicyHandler.GetRoomPolicy(roomPolicies, time);
@@ -35,13 +37,11 @@ namespace DagAir.Policies.Policies.Queries
             string message;
             if (roomPolicy == null)
             {
-                var defaultPolicy = await _context.RoomPolicies.SingleAsync(x => x.CategoryId == 1);
-                defaultPolicy.ExpectedConditions =
-                    await _context.ExpectedRoomConditions.SingleOrDefaultAsync(x =>
-                        x.Id == defaultPolicy.ExpectedConditionsId);
-                defaultPolicy.Category =
-                    await _context.RoomPolicyCategories.SingleOrDefaultAsync(x =>
-                        x.Id == defaultPolicy.CategoryId);
+                var defaultPolicy = await _context.RoomPolicies.Where(x => x.CategoryId == 1)
+                    .Include(x => x.Category)
+                    .Include(x => x.ExpectedConditions)
+                    .SingleAsync();
+                
                 message = $"No current room policy found, applying default policy: {defaultPolicy}";
                 _logger.LogInformation(message);
                 return defaultPolicy;
@@ -49,12 +49,6 @@ namespace DagAir.Policies.Policies.Queries
 
             message = $"Current room policy found: {roomPolicy}";
             _logger.LogInformation(message);
-            
-            roomPolicy.ExpectedConditions = await _context.ExpectedRoomConditions.SingleOrDefaultAsync(x =>
-                x.Id == roomPolicy.ExpectedConditionsId);
-            roomPolicy.Category =
-                await _context.RoomPolicyCategories.SingleOrDefaultAsync(x =>
-                    x.Id == roomPolicy.CategoryId);
             
             return roomPolicy;
         }

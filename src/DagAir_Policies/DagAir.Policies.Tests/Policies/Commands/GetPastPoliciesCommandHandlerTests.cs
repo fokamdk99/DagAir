@@ -27,7 +27,7 @@ namespace DagAir.Policies.Tests.Policies.Commands
         
         protected override async Task Setup()
         {
-            _getPastPoliciesCommandHandler = Services.GetRequiredService<ICommandHandler<GetPastPoliciesCommand, PastMeasurements>>();
+            _getPastPoliciesCommandHandler = _scope.ServiceProvider.GetRequiredService<ICommandHandler<GetPastPoliciesCommand, PastMeasurements>>();
         }
         
         private async Task AddDataToTheDatabase(Func<Task> addRoomPolicies)

@@ -46,7 +46,7 @@ namespace DagAir.Policies.Tests.Policies.Queries
 
         protected override async Task Setup()
         {
-            _getRoomPolicyQuery = Services.GetRequiredService<IGetRoomPolicyQuery>();
+            _getRoomPolicyQuery = _scope.ServiceProvider.GetRequiredService<IGetRoomPolicyQuery>();
         }
         
         private async Task AddDataToTheDatabase(Func<Task> addRoomPolicies)

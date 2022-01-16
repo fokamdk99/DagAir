@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
+using DagAir.Components.ApiModels.Json;
+using DagAir.Policies.Contracts.DTOs;
 using DagAir.Policies.Data.AppEntities;
 using FluentAssertions;
 using NUnit.Framework;
@@ -23,13 +26,16 @@ namespace DagAir.Policies.Tests.Policies
         }
         
         [Test]
-        public async Task GetCurrentRoomPolicy_WhenNoPolicyFound_ShouldReturnNotFound()
+        public async Task WhenNoCurrentRoomPolicyFoundForRoom_ShouldReturnDefaultRoomPolicy()
         {
-            var path = $"policies-api/policies/2";
+            var path = $"policies-api/policies/9898989898989";
 
             var response = await _client.GetAsync(path);
 
-            response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+            var contentStream = await response.Content.ReadAsStreamAsync();
+            var content = await JsonSerializer.DeserializeAsync<JsonApiDocument<RoomPolicyDto>>(contentStream,new JsonSerializerOptions { IgnoreNullValues = true, PropertyNameCaseInsensitive = true });
+            
+            content!.Data.Category.Name.Should().Be("Default");
         }
 
         protected override async Task Setup()
@@ -63,6 +69,8 @@ namespace DagAir.Policies.Tests.Policies
                     DateTime.Now.Minute, DateTime.Now.Second),
                 EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day,
                     DateTime.Now.AddHours(3).Hour, DateTime.Now.Minute, DateTime.Now.Second),
+                StartHour = 2,
+                EndHour = 20,
                 RepeatOn = "",
                 ExpectedConditionsId = 1L,
                 CategoryId = 1,
