@@ -10,6 +10,9 @@ COPY ["./DagAir_Components/DagAir.Components.Logging/", "./DagAir_Components/Dag
 COPY ["./DagAir_Components/DagAir.Components.HttpClients/", "./DagAir_Components/DagAir.Components.HttpClients/"]
 COPY ["./DagAir_Components/DagAir.Components.ApiModels/", "./DagAir_Components/DagAir.Components.ApiModels/"]
 COPY ["./DagAir_Facilities/DagAir.Facilities.Contracts/", "./DagAir_Facilities/DagAir.Facilities.Contracts/"]
+COPY ["./DagAir_Policies/DagAir.Policies.Contracts/", "./DagAir_Policies/DagAir.Policies.Contracts/"]
+COPY ["./DagAir_Sensors/DagAir.Sensors.Contracts/", "./DagAir_Sensors/DagAir.Sensors.Contracts/"]
+COPY ["./DagAir.DataServices.SensorStateHistory.Contracts/", "./DagAir.DataServices.SensorStateHistory.Contracts/"]
 COPY ["./DagAir_AdminNode/DagAir.AdminNode.Contracts/", "./DagAir_AdminNode/DagAir.AdminNode.Contracts/"]
 COPY ["./DagAir_Addresses/DagAir.Addresses.Contracts/", "./DagAir_Addresses/DagAir.Addresses.Contracts/"]
 

@@ -7,6 +7,7 @@ FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /app
 COPY ["./DagAir_Policies/DagAir.Policies/", "./DagAir_Policies/DagAir.Policies/"]
 COPY ["./DagAir_Policies/DagAir.Policies.Contracts/", "./DagAir_Policies/DagAir.Policies.Contracts/"]
+COPY ["./DagAir.DataServices.SensorStateHistory.Contracts/", "./DagAir.DataServices.SensorStateHistory.Contracts/"]
 COPY ["./DagAir_Policies/DagAir.Policies.Data/", "./DagAir_Policies/DagAir.Policies.Data/"]
 COPY ["./DagAir_Components/DagAir.Components.ApiModels/", "./DagAir_Components/DagAir.Components.ApiModels/"]
 COPY ["./DagAir_Components/DagAir.Components.Healthchecks/", "./DagAir_Components/DagAir.Components.Healthchecks/"]
