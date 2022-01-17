@@ -8,10 +8,26 @@
 <div class="row">
     <div class="col-6 vh-100 overflow-auto">
         <ul id="messagesList">
-            @foreach (var room in Model.AdminNodeRoomDto.PastMeasurements.Measurements)
+            @foreach (var item in Model.AdminNodeRoomDto.PastMeasurements.Measurements.Select((value, i) => new {i, value}))
             {
-                <li class="list-group-item">
-                    Measurement from @room.Item1.Date . Temperature: @room.Item1.Temperature
+                string uniqueId = "collapseExample" + item.i;
+                string href = "#" + uniqueId;
+                <li>
+                    <p>
+                        <a class="btn btn-primary" data-toggle="collapse" href="@href" role="button" aria-expanded="false" aria-controls="@uniqueId">
+                            @item.value.Item1.Date
+                        </a>
+                    </p>
+                    <div class="collapse" id="@uniqueId">
+                        <div class="card card-body">
+                            <p class="card-text">Temperature: @item.value.Item1.Temperature</p>
+                            <p class="card-text">Illuminance: @item.value.Item1.Illuminance</p>
+                            <p class="card-text">Humidity: @item.value.Item1.Humidity</p>
+                            <p class="card-text">Expected temperature level: @item.value.Item2.ExpectedConditions.Temperature</p>
+                            <p class="card-text">Expected illuminance level: @item.value.Item2.ExpectedConditions.Illuminance</p>
+                            <p class="card-text">Expected humidity level: @item.value.Item2.ExpectedConditions.Humidity</p>
+                        </div>
+                    </div>
                 </li>
             }
         </ul>
@@ -39,8 +55,11 @@
 </div>
 <script src="~/js/signalr/dist/browser/signalr.js"></script>
 <script type="text/javascript" src="~/js/@Model.Environment"></script>
-<script src="~/js/rooms/chat.js"></script>
+<script src="~/js/rooms/chat.js" type="module"></script>
 <link rel="stylesheet" type="text/css" href="~/css/rooms/site.css">
-<script>
-SetUniqueRoomId('@Model.AdminNodeRoomDto.RoomDto.Id');
-</script>
+<script type="text/javascript"> let roomId = '@Model.AdminNodeRoomDto.RoomDto.Id'</script>
+
+@{
+    int counter = 0;
+
+}

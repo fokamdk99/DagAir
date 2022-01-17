@@ -1,4 +1,4 @@
-function addNewPolicyEvaluationResult(message, listCounter){
+export function addNewPolicyEvaluationResult(message, listCounter){
     var li = document.createElement("li");
     
     var p1 = document.createElement("p");
@@ -20,22 +20,15 @@ function addNewPolicyEvaluationResult(message, listCounter){
     var div2 = document.createElement("div");
     div2.classList.add("card");
     div2.classList.add("card-body");
-    div2.textContent = "div2 content 234";
+    div2.textContent = `${message}`;
 
     p1.appendChild(a1);
     div1.appendChild(div2);
     li.appendChild(p1);
     li.appendChild(div1);
-    
     return li;
 }
 
-var uniqueRoomId;
-
-function setUniqueRoomId(roomId){
-    uniqueRoomId = roomId;
-}
-
-function getUniqueRoomId(){
-    return uniqueRoomId;
+export function sayHello(number){
+    console.log(`Saying Hello! {number}`);
 }
