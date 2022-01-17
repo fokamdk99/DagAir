@@ -16,6 +16,26 @@
             }
         </ul>
     </div>
+    <div class="col-6">
+        <div class="card text-white bg-info mb-6" style="max-width: 18rem;">
+            <div class="card-header">Measurements</div>
+            <div class="card-body">
+                <h5 class="card-title">Current measurement</h5>
+                <p class="card-text">Temperature: @Model.AdminNodeRoomDto.PastMeasurements.Measurements.ElementAt(0).Item1.Temperature</p>
+                <p class="card-text">Illuminance: @Model.AdminNodeRoomDto.PastMeasurements.Measurements.ElementAt(0).Item1.Illuminance</p>
+                <p class="card-text">Humidity: @Model.AdminNodeRoomDto.PastMeasurements.Measurements.ElementAt(0).Item1.Humidity</p>
+            </div>
+        </div>
+        <div class="card text-white bg-info mb-6" style="max-width: 18rem;">
+            <div class="card-header">Policies</div>
+            <div class="card-body">
+                <h5 class="card-title">Current policy</h5>
+                <p class="card-text">Expected temperature level: @Model.AdminNodeRoomDto.PastMeasurements.Measurements.ElementAt(0).Item2.ExpectedConditions.Temperature</p>
+                <p class="card-text">Expected illuminance level: @Model.AdminNodeRoomDto.PastMeasurements.Measurements.ElementAt(0).Item2.ExpectedConditions.Illuminance</p>
+                <p class="card-text">Expected humidity level: @Model.AdminNodeRoomDto.PastMeasurements.Measurements.ElementAt(0).Item2.ExpectedConditions.Humidity</p>
+            </div>
+        </div>
+    </div>
 </div>
 <script src="~/js/signalr/dist/browser/signalr.js"></script>
 <script type="text/javascript" src="~/js/@Model.Environment"></script>
