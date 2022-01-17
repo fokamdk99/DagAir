@@ -3135,6 +3135,7 @@
           "DagAir.Components.HttpClients": "1.0.0",
           "DagAir.Components.Logging": "1.0.0",
           "DagAir.Components.MassTransit.RabbitMq": "1.0.0",
+          "DagAir.DataServices.SensorStateHistory.Contracts": "1.0.0",
           "DagAir.Facilities.Contracts": "1.0.0",
           "DagAir.Policies.Contracts": "1.0.0",
           "DagAir.PolicyNode.Contracts": "1.0.0",
@@ -10474,8 +10475,8 @@
     },
     "DagAir.DataServices.SensorStateHistory.Contracts/1.0.0": {
       "type": "project",
-      "path": "../src/DagAir.DataServices.SensorStateHistory.Contracts/DagAir.DataServices.SensorStateHistory.Contracts.csproj",
-      "msbuildProject": "../src/DagAir.DataServices.SensorStateHistory.Contracts/DagAir.DataServices.SensorStateHistory.Contracts.csproj"
+      "path": "../src/DagAir_SensorStateHistory/DagAir.DataServices.SensorStateHistory.Contracts/DagAir.DataServices.SensorStateHistory.Contracts.csproj",
+      "msbuildProject": "../src/DagAir_SensorStateHistory/DagAir.DataServices.SensorStateHistory.Contracts/DagAir.DataServices.SensorStateHistory.Contracts.csproj"
     },
     "DagAir.Facilities/1.0.0": {
       "type": "project",

@@ -16,6 +16,7 @@
       <ProjectReference Include="..\..\DagAir_Facilities\DagAir.Facilities.Contracts\DagAir.Facilities.Contracts.csproj" />
       <ProjectReference Include="..\..\DagAir_Policies\DagAir.Policies.Contracts\DagAir.Policies.Contracts.csproj" />
       <ProjectReference Include="..\..\DagAir_PolicyNode\DagAir.PolicyNode.Contracts\DagAir.PolicyNode.Contracts.csproj" />
+      <ProjectReference Include="..\..\DagAir_SensorStateHistory\DagAir.DataServices.SensorStateHistory.Contracts\DagAir.DataServices.SensorStateHistory.Contracts.csproj" />
       <ProjectReference Include="..\..\DagAir_Sensors\DagAir.Sensors.Contracts\DagAir.Sensors.Contracts.csproj" />
       <ProjectReference Include="..\DagAir.AdminNode.Contracts\DagAir.AdminNode.Contracts.csproj" />
     </ItemGroup>

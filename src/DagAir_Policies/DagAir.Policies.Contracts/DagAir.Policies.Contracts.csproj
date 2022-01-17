@@ -5,7 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\DagAir.DataServices.SensorStateHistory.Contracts\DagAir.DataServices.SensorStateHistory.Contracts.csproj" />
+      <ProjectReference Include="..\..\DagAir_SensorStateHistory\DagAir.DataServices.SensorStateHistory.Contracts\DagAir.DataServices.SensorStateHistory.Contracts.csproj" />
     </ItemGroup>
 
 </Project>

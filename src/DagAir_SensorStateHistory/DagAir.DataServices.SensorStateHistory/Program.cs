@@ -4,11 +4,11 @@ using DagAir.Components.Logging;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace DagAir.WebClientApp
+namespace DagAir.DataServices.SensorStateHistory
 {
     public class Program
     {
-        private static string[]? _urls; 
+        private static string[]? _urls;
         
         public static void Main(string[] args)
         {
@@ -25,7 +25,7 @@ namespace DagAir.WebClientApp
                 .UseDagAirLogger()
                 .ConfigureServices((hostBuilderContext, services) =>
                 {
-                    
+                    services.AddSensorStateHistoryFeature(hostBuilderContext.Configuration);
                 })
                 .ConfigureWebHostDefaults(ConfigureWebHost);
 
