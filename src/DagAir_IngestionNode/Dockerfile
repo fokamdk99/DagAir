@@ -15,6 +15,8 @@ COPY ["./DagAir_Components/DagAir.Components.Healthchecks/", "./DagAir_Component
 COPY ["./DagAir_Components/DagAir.Components.HttpClients/", "./DagAir_Components/DagAir.Components.HttpClients/"]
 COPY ["./DagAir_Components/DagAir.Components.ApiModels/", "./DagAir_Components/DagAir.Components.ApiModels/"]
 COPY ["./DagAir_Components/DagAir.Components.Logging/", "./DagAir_Components/DagAir.Components.Logging/"]
+COPY ["./DagAir_Components/DagAir.Components.Influx/", "./DagAir_Components/DagAir.Components.Influx/"]
+
 
 RUN dotnet restore ./DagAir_IngestionNode/DagAir.IngestionNode/DagAir.IngestionNode.csproj
 RUN dotnet build ./DagAir_IngestionNode/DagAir.IngestionNode/DagAir.IngestionNode.csproj --no-restore
