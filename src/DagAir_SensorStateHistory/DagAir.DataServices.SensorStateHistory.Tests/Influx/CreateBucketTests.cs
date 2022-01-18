@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NUnit.Framework;
 
-namespace DagAir.IngestionNode.Tests.Influx
+namespace DagAir.DataServices.SensorStateHistory.Tests.Influx
 {
     public class Tests
     {

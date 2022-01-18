@@ -43,10 +43,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.IngestionNode", "Dag
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.IngestionNode.Contracts", "DagAir_IngestionNode\DagAir.IngestionNode.Contracts\DagAir.IngestionNode.Contracts.csproj", "{040D0277-61ED-424A-A651-4BD505100E03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.IngestionNode.Data", "DagAir_IngestionNode\DagAir.IngestionNode.Data\DagAir.IngestionNode.Data.csproj", "{693439DC-26BB-4A02-9B88-F03C86A09D50}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.IngestionNode.Migrations", "DagAir_IngestionNode\DagAir.IngestionNode.Migrations\DagAir.IngestionNode.Migrations.csproj", "{08485C96-0FDD-4058-A182-3215AE292ED0}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.IngestionNode.Infrastructure", "DagAir_IngestionNode\DagAir.IngestionNode.Infrastructure\DagAir.IngestionNode.Infrastructure.csproj", "{74FF161C-C7D5-4793-932A-215DF77BE7CB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.PolicyNode", "DagAir_PolicyNode\DagAir.PolicyNode\DagAir.PolicyNode.csproj", "{1AD4684E-143B-45DE-9EDA-FF551B7D923C}"
@@ -139,6 +135,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.DataServices.SensorS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.DataServices.SensorStateHistory.Tests", "DagAir_SensorStateHistory\DagAir.DataServices.SensorStateHistory.Tests\DagAir.DataServices.SensorStateHistory.Tests.csproj", "{D2ED2FAC-718B-4C58-BA76-548313CA9983}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.DataServices.SensorStateHistory.Data", "DagAir.DataServices.SensorStateHistory.Data\DagAir.DataServices.SensorStateHistory.Data.csproj", "{21E51535-1D2A-49B2-8B6C-4D8A137BC999}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.DataServices.SensorStateHistory.Data.Migrations", "DagAir.DataServices.SensorStateHistory.Data.Migrations\DagAir.DataServices.SensorStateHistory.Data.Migrations.csproj", "{30C641B4-C508-4586-B0B7-0B8630BB4A32}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DagAir.DataServices.SensorStateHistory.Infrastructure", "DagAir.DataServices.SensorStateHistory.Infrastructure\DagAir.DataServices.SensorStateHistory.Infrastructure.csproj", "{585BE4F8-BD81-4C5B-9DEE-4637235B8F29}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -199,14 +201,6 @@ Global
 		{040D0277-61ED-424A-A651-4BD505100E03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{040D0277-61ED-424A-A651-4BD505100E03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{040D0277-61ED-424A-A651-4BD505100E03}.Release|Any CPU.Build.0 = Release|Any CPU
-		{693439DC-26BB-4A02-9B88-F03C86A09D50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{693439DC-26BB-4A02-9B88-F03C86A09D50}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{693439DC-26BB-4A02-9B88-F03C86A09D50}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{693439DC-26BB-4A02-9B88-F03C86A09D50}.Release|Any CPU.Build.0 = Release|Any CPU
-		{08485C96-0FDD-4058-A182-3215AE292ED0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{08485C96-0FDD-4058-A182-3215AE292ED0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{08485C96-0FDD-4058-A182-3215AE292ED0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{08485C96-0FDD-4058-A182-3215AE292ED0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{74FF161C-C7D5-4793-932A-215DF77BE7CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{74FF161C-C7D5-4793-932A-215DF77BE7CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74FF161C-C7D5-4793-932A-215DF77BE7CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -355,6 +349,18 @@ Global
 		{D2ED2FAC-718B-4C58-BA76-548313CA9983}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2ED2FAC-718B-4C58-BA76-548313CA9983}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2ED2FAC-718B-4C58-BA76-548313CA9983}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21E51535-1D2A-49B2-8B6C-4D8A137BC999}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21E51535-1D2A-49B2-8B6C-4D8A137BC999}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21E51535-1D2A-49B2-8B6C-4D8A137BC999}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21E51535-1D2A-49B2-8B6C-4D8A137BC999}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30C641B4-C508-4586-B0B7-0B8630BB4A32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30C641B4-C508-4586-B0B7-0B8630BB4A32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30C641B4-C508-4586-B0B7-0B8630BB4A32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30C641B4-C508-4586-B0B7-0B8630BB4A32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{585BE4F8-BD81-4C5B-9DEE-4637235B8F29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{585BE4F8-BD81-4C5B-9DEE-4637235B8F29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{585BE4F8-BD81-4C5B-9DEE-4637235B8F29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{585BE4F8-BD81-4C5B-9DEE-4637235B8F29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -378,8 +384,6 @@ Global
 		{B5EC19D1-CE37-4102-B5E0-94C081CC3D10} = {E3BE4CF0-C01E-4B38-902B-02EA40F0EBAD}
 		{A8B0DF5A-A3AD-4376-B579-9AEDAB6AE997} = {5597FF47-0154-489D-8C49-C09E0B6CDC25}
 		{040D0277-61ED-424A-A651-4BD505100E03} = {5597FF47-0154-489D-8C49-C09E0B6CDC25}
-		{693439DC-26BB-4A02-9B88-F03C86A09D50} = {5597FF47-0154-489D-8C49-C09E0B6CDC25}
-		{08485C96-0FDD-4058-A182-3215AE292ED0} = {5597FF47-0154-489D-8C49-C09E0B6CDC25}
 		{74FF161C-C7D5-4793-932A-215DF77BE7CB} = {5597FF47-0154-489D-8C49-C09E0B6CDC25}
 		{1AD4684E-143B-45DE-9EDA-FF551B7D923C} = {13B9CA0C-12C1-4BA0-A4D2-6B98BFC3C8F5}
 		{5719B905-6801-4B6E-850C-3D2A77981031} = {13B9CA0C-12C1-4BA0-A4D2-6B98BFC3C8F5}
@@ -422,5 +426,8 @@ Global
 		{E9A3DB7F-AF5D-459E-8E73-E14031868115} = {E550AA1E-D954-4DC6-8C8B-F0251215FAC6}
 		{BE7A8186-253F-4A66-84A0-07107F054D0A} = {E550AA1E-D954-4DC6-8C8B-F0251215FAC6}
 		{D2ED2FAC-718B-4C58-BA76-548313CA9983} = {0D788351-8AE5-45D3-98F5-50D401B662EC}
+		{21E51535-1D2A-49B2-8B6C-4D8A137BC999} = {E550AA1E-D954-4DC6-8C8B-F0251215FAC6}
+		{30C641B4-C508-4586-B0B7-0B8630BB4A32} = {E550AA1E-D954-4DC6-8C8B-F0251215FAC6}
+		{585BE4F8-BD81-4C5B-9DEE-4637235B8F29} = {E550AA1E-D954-4DC6-8C8B-F0251215FAC6}
 	EndGlobalSection
 EndGlobal

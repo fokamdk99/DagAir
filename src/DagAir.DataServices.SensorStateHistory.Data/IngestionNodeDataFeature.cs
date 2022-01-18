@@ -3,7 +3,7 @@ using InfluxDB.Client;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace DagAir.IngestionNode.Data
+namespace DagAir.DataServices.SensorStateHistory.Data
 {
     public static class IngestionNodeDataFeature
     {

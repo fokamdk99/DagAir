@@ -1,6 +1,6 @@
 ﻿using InfluxDB.Client.Core;
 
-namespace DagAir.IngestionNode.Data.Measurements
+namespace DagAir.DataServices.SensorStateHistory.Data.Measurements
 {
     [Measurement("influxroommeasurement")]
     public class InfluxRoomMeasurement

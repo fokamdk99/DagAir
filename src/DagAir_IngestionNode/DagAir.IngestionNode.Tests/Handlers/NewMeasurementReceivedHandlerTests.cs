@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using DagAir.Components.MassTransit.RabbitMq.Publisher;
 using DagAir.IngestionNode.Contracts;
-using DagAir.IngestionNode.Influx.Handlers;
 using DagAir.IngestionNode.Measurements.Commands;
 using DagAir.IngestionNode.Measurements.Handlers;
 using MassTransit.Testing;
@@ -40,7 +39,6 @@ namespace DagAir.IngestionNode.Tests.Handlers
         protected override void AddOverrides(IServiceCollection services)
         {
             services.AddScoped<IEventPublisher, EventPublisher>();
-            services.AddScoped<ISaveMeasurementsToInfluxHandler, TestSaveMeasurementsToInfluxHandler>();
 
             services.AddMassTransitInMemoryTestHarness();
         }

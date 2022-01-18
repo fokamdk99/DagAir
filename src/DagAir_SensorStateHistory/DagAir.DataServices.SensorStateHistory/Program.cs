@@ -1,6 +1,7 @@
 #nullable enable
 using System;
 using DagAir.Components.Logging;
+using DagAir.DataServices.SensorStateHistory.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
@@ -25,7 +26,8 @@ namespace DagAir.DataServices.SensorStateHistory
                 .UseDagAirLogger()
                 .ConfigureServices((hostBuilderContext, services) =>
                 {
-                    services.AddSensorStateHistoryFeature(hostBuilderContext.Configuration);
+                    services.AddSensorStateHistoryFeature(hostBuilderContext.Configuration)
+                        .AddSensorStateHistoryMassTransitFeature(hostBuilderContext.Configuration, typeof(Program).Assembly);
                 })
                 .ConfigureWebHostDefaults(ConfigureWebHost);
 

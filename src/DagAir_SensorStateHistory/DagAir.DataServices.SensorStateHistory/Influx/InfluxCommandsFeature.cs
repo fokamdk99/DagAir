@@ -1,7 +1,7 @@
-﻿using DagAir.IngestionNode.Influx.Handlers;
+﻿using DagAir.DataServices.SensorStateHistory.Influx.Handlers;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace DagAir.IngestionNode.Influx
+namespace DagAir.DataServices.SensorStateHistory.Influx
 {
     public static class InfluxCommandsFeature
     {

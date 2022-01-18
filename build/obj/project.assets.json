@@ -3275,6 +3275,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
+          "DagAir.IngestionNode.Contracts": "1.0.0",
           "NodaTime": "3.0.5"
         },
         "compile": {

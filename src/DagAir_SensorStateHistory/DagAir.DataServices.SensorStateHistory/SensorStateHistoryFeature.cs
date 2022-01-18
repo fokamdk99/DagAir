@@ -1,4 +1,5 @@
 using DagAir.Components.Influx;
+using DagAir.DataServices.SensorStateHistory.Influx;
 using DagAir.DataServices.SensorStateHistory.Measurements;
 using InfluxDB.Client;
 using Microsoft.Extensions.Configuration;
@@ -20,6 +21,7 @@ namespace DagAir.DataServices.SensorStateHistory
             });
 
             services.AddDagInfluxFeature();
+            services.AddInfluxCommandsFeature();
             services.AddAffiliatesEntitiesFeature();
 
             return services;

@@ -1,16 +1,22 @@
-using System;
+﻿using System;
 using System.Threading.Tasks;
+using DagAir.Components.Influx;
+using InfluxDB.Client;
+using InfluxDB.Client.Api.Domain;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NUnit.Framework;
 
-namespace DagAir.DataServices.SensorStateHistory.Tests.Measurements
+namespace DagAir.DataServices.SensorStateHistory.Tests.Influx
 {
     [Category("Integration")]
-    public abstract class IntegrationTest
+    public abstract class InfluxIntegrationTest
     {
+        protected InfluxDBClient Client;
+        protected Bucket TestBucket;
         protected IServiceProvider Services => CurrentHost!.Services;
-
+        protected IInfluxConfiguration InfluxConfiguration { get; private set; }
+        protected IInfluxHelper InfluxHelper => CurrentHost!.Services.GetRequiredService<IInfluxHelper>();
         protected IHost CurrentHost { get; private set; }
 
         [SetUp]
@@ -19,12 +25,16 @@ namespace DagAir.DataServices.SensorStateHistory.Tests.Measurements
             await SetupPreHost();
 
             CurrentHost = HostProvider.Create(AddOverrides);
+
+            (Client, TestBucket, InfluxConfiguration) = await InfluxBucket.CreateBucketOnce(Services, Client, TestBucket, InfluxConfiguration, InfluxHelper);
+            await InfluxBucket.Reset(Client, InfluxConfiguration);
             await SetupTest();
         }
 
         [TearDown]
-        protected virtual void CleanUp()
+        protected virtual async Task CleanUp()
         {
+            Client.Dispose();
             CurrentHost?.Dispose();
         }
 

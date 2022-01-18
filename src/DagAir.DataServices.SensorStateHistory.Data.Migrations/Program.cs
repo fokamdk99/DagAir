@@ -1,11 +1,10 @@
 ﻿using System.Threading.Tasks;
 using DagAir.Components.Influx;
-using DagAir.IngestionNode.Data;
-using DagAir.IngestionNode.Migrations.Buckets;
+using DagAir.DataServices.SensorStateHistory.Data.Migrations.Buckets;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace DagAir.IngestionNode.Migrations
+namespace DagAir.DataServices.SensorStateHistory.Data.Migrations
 {
     class Program
     {

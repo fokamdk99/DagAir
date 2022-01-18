@@ -1,12 +1,12 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using DagAir.Components.Influx;
-using DagAir.IngestionNode.Data.Measurements;
-using DagAir.IngestionNode.Measurements.Commands;
+using DagAir.DataServices.SensorStateHistory.Data.Measurements;
+using DagAir.DataServices.SensorStateHistory.Influx.Commands;
+using DagAir.IngestionNode.Contracts;
 using InfluxDB.Client;
 using InfluxDB.Client.Api.Domain;
 
-namespace DagAir.IngestionNode.Influx.Handlers
+namespace DagAir.DataServices.SensorStateHistory.Influx.Handlers
 {
     public class SaveMeasurementsToInfluxHandler : ISaveMeasurementsToInfluxHandler
     {
@@ -20,14 +20,14 @@ namespace DagAir.IngestionNode.Influx.Handlers
             _influxConfiguration = influxConfiguration;
         }
         
-        public async Task Handle(NewMeasurementReceivedCommand measurementsInsertedEvent)
+        public async Task Handle(SaveMeasurementToInfluxDBEvent measurementsInsertedEvent)
         {
             var measurement = new InfluxRoomMeasurement()
                 {
                     SensorName = measurementsInsertedEvent.SensorName,
-                    Temperature = measurementsInsertedEvent.Measurement.Temperature, 
-                    Humidity = measurementsInsertedEvent.Measurement.Humidity, 
-                    Illuminance = measurementsInsertedEvent.Measurement.Illuminance,
+                    Temperature = measurementsInsertedEvent.Temperature, 
+                    Humidity = measurementsInsertedEvent.Humidity, 
+                    Illuminance = measurementsInsertedEvent.Illuminance,
                 };
 
             await _client.GetWriteApiAsync().WriteMeasurementAsync(_influxConfiguration.BucketName, _influxConfiguration.Org, WritePrecision.Ms, measurement);

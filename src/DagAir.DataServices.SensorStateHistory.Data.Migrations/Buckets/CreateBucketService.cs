@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using InfluxDB.Client;
 using InfluxDB.Client.Api.Domain;
 
-namespace DagAir.IngestionNode.Migrations.Buckets
+namespace DagAir.DataServices.SensorStateHistory.Data.Migrations.Buckets
 {
     
     public static class CreateBucketService

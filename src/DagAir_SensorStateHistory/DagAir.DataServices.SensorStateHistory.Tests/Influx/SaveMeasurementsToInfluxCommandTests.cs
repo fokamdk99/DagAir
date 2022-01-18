@@ -2,13 +2,12 @@
 using System.Threading;
 using System.Threading.Tasks;
 using DagAir.Components.Influx;
+using DagAir.DataServices.SensorStateHistory.Influx.Handlers;
 using DagAir.IngestionNode.Contracts;
-using DagAir.IngestionNode.Influx.Handlers;
-using DagAir.IngestionNode.Measurements.Commands;
 using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 
-namespace DagAir.IngestionNode.Tests.Influx
+namespace DagAir.DataServices.SensorStateHistory.Tests.Influx
 {
     public class SaveMeasurementsToInfluxCommandTests : InfluxIntegrationTest
     {
@@ -38,17 +37,17 @@ namespace DagAir.IngestionNode.Tests.Influx
             var temperatureResults = await Client.GetQueryApi().QueryAsync(temperatureQuery, organizationId);
 
             Assert.AreEqual(temperatureResults.ElementAt(0).Records.ElementAt(0).Values["_value"],
-                insertedEvent.Measurement.Temperature);
+                insertedEvent.Temperature);
 
             var illuminanceResults = await Client.GetQueryApi().QueryAsync(illuminanceQuery, organizationId);
             
             Assert.AreEqual(illuminanceResults.ElementAt(0).Records.ElementAt(0).Values["_value"],
-                insertedEvent.Measurement.Illuminance);
+                insertedEvent.Illuminance);
 
             var humidityResults = await Client.GetQueryApi().QueryAsync(humidityQuery, organizationId);
             
             Assert.AreEqual(humidityResults.ElementAt(0).Records.ElementAt(0).Values["_value"],
-                insertedEvent.Measurement.Humidity);
+                insertedEvent.Humidity);
         }
 
         protected override Task SetupTest()
@@ -63,10 +62,9 @@ namespace DagAir.IngestionNode.Tests.Influx
                    + $" |> filter(fn: (r) => (r[\"_measurement\"] == \"influxroommeasurement\" and r[\"_field\"] == \"{field}\"))";
         }
         
-        private NewMeasurementReceivedCommand CreateMockMeasurementsInsertedEvent()
+        private SaveMeasurementToInfluxDBEvent CreateMockMeasurementsInsertedEvent()
         {
-            var measurement = new RoomMeasurement((decimal) 18, (int) 0.8, (decimal) 55.5);
-            return new NewMeasurementReceivedCommand(measurement, "id_1");
+            return new SaveMeasurementToInfluxDBEvent((decimal)18, (int)0.8, (decimal)55.5, "id_1");
         }
 
         protected override async Task SetupPreHost()

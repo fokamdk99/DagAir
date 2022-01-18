@@ -6,7 +6,7 @@ using InfluxDB.Client;
 using InfluxDB.Client.Api.Domain;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace DagAir.IngestionNode.Tests.Influx
+namespace DagAir.DataServices.SensorStateHistory.Tests.Influx
 {
     public static class InfluxBucket
     {

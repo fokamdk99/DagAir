@@ -1,4 +1,4 @@
-﻿namespace DagAir.IngestionNode.Data.Sharding
+﻿namespace DagAir.DataServices.SensorStateHistory.Data.Sharding
 {
     public readonly struct ConnectionString
     {

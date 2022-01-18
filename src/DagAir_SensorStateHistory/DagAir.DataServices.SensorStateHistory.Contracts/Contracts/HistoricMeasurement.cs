@@ -1,4 +1,5 @@
 using System;
+using DagAir.IngestionNode.Contracts;
 using NodaTime;
 
 namespace DagAir.DataServices.SensorStateHistory.Contracts.Contracts
