@@ -59,5 +59,22 @@ namespace DagAir.AdminNode.Rooms
             
             return Created(new JsonApiDocument<RoomDto>(newRoom));
         }
+        
+        [HttpDelete]
+        [Route("rooms/{roomId}")]
+        [ProducesResponseType((int)HttpStatusCode.NoContent)]
+        [ProducesResponseType(typeof(JsonApiError), (int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> DeleteOrganization(long roomId)
+        {
+            var affectedRows = await _roomsHandler.DeleteRoom(roomId);
+            if (affectedRows == 0)
+            {
+                string message =
+                    $"Room with id {roomId} has not been found";
+                return NotFound(new JsonApiError(HttpStatusCode.NotFound, message));
+            }
+            
+            return NoContent();
+        }
     }
 }

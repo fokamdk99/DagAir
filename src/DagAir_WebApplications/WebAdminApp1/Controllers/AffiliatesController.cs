@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebAdminApp1.Affiliates;
 using WebAdminApp1.Affiliates.Models;
+using WebAdminApp1.Facilities;
+using WebAdminApp1.Facilities.Models;
 
 namespace WebAdminApp1.Controllers
 {
@@ -15,13 +17,16 @@ namespace WebAdminApp1.Controllers
     public class AffiliatesController : Controller
     {
         private readonly IAffiliatesHandler _affiliatesHandler;
-        
+        private readonly IFacilitiesHandler _facilitiesHandler;
+
         public List<AdminNodeAffiliateDto> AffiliateDtos;
         public AdminNodeAffiliateDto AffiliateDto;
 
-        public AffiliatesController(IAffiliatesHandler affiliatesHandler)
+        public AffiliatesController(IAffiliatesHandler affiliatesHandler, 
+            IFacilitiesHandler facilitiesHandler)
         {
             _affiliatesHandler = affiliatesHandler;
+            _facilitiesHandler = facilitiesHandler;
         }
 
         public async Task<IActionResult> Affiliates()
@@ -29,25 +34,25 @@ namespace WebAdminApp1.Controllers
             await LoadAsync(User);
             var affiliatesModel = new AffiliatesModel();
             affiliatesModel.AdminNodeAffiliateDtos = AffiliateDtos;
-            
+
             return View(affiliatesModel);
         }
-        
+
         private async Task LoadAsync(ClaimsPrincipal user)
         {
             var affiliateDtos = await _affiliatesHandler.GetAffiliates();
             AffiliateDtos = affiliateDtos;
         }
-        
+
         public async Task<IActionResult> Affiliate(long affiliateId)
         {
             await LoadAsyncAffiliate(User, affiliateId);
             var affiliateModel = new AffiliateModel();
             affiliateModel.AdminNodeAffiliateDto = AffiliateDto;
-            
+
             return View(affiliateModel);
         }
-        
+
         private async Task LoadAsyncAffiliate(ClaimsPrincipal user, long affiliateId)
         {
             var affiliateDto = await _affiliatesHandler.GetAffiliateById(affiliateId);
@@ -76,7 +81,7 @@ namespace WebAdminApp1.Controllers
             {
                 return View();
             }
-            
+
             var newAffiliate = await _affiliatesHandler.AddNewAffiliate(getAffiliateModel);
 
             if (newAffiliate == null)
@@ -87,12 +92,24 @@ namespace WebAdminApp1.Controllers
 
                 return View(getAffiliateModel);
             }
-                
+
             await LoadAsync(User);
             var organizationsModel = new AffiliatesModel();
             organizationsModel.AdminNodeAffiliateDtos = AffiliateDtos;
-                
+
             return View("Affiliates", organizationsModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteAffiliate(long organizationId, long affiliateId)
+        {
+            var result = await _affiliatesHandler.DeleteAffiliate(affiliateId);
+
+            var organizationDto = await _facilitiesHandler.GetOrganization(organizationId);
+            var organizationModel = new OrganizationModel();
+            organizationModel.AdminNodeOrganizationDto = organizationDto;
+
+            return View("~/Views/Facilities/Organization.cshtml", organizationModel);
         }
     }
 }

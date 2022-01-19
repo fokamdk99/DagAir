@@ -78,5 +78,18 @@ namespace DagAir.AdminNode.Facilities
             
             return newOrganization;
         }
+
+        public async Task<int> DeleteOrganization(long organizationId)
+        {
+            var path = _externalServices.FacilitiesApi + FacilitiesEndpoints.GetOrganizations + organizationId;
+            var statusCode = await _client.DeleteAsync(path);
+
+            if (statusCode == HttpStatusCode.NotFound)
+            {
+                return 0;
+            }
+
+            return 1;
+        }
     }
 }

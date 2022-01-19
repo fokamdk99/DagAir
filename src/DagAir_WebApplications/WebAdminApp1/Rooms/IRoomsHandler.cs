@@ -9,5 +9,6 @@ namespace WebAdminApp1.Rooms
     {
         Task<RoomDto> AddNewRoom(RoomModel uniqueRoomModel);
         Task<AdminNodeRoomDto> GetRoom(long roomId);
+        Task<int> DeleteRoom(long roomId);
     }
 }

@@ -88,5 +88,22 @@ namespace DagAir.AdminNode.Facilities
             
             return Created(new JsonApiDocument<OrganizationDto>(newOrganization));
         }
+        
+        [HttpDelete]
+        [Route("organizations/{organizationId}")]
+        [ProducesResponseType((int)HttpStatusCode.NoContent)]
+        [ProducesResponseType(typeof(JsonApiError), (int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> DeleteOrganization(long organizationId)
+        {
+            var affectedRows = await _facilitiesHandler.DeleteOrganization(organizationId);
+            if (affectedRows == 0)
+            {
+                string message =
+                    $"Organization with id {organizationId} has not been found";
+                return NotFound(new JsonApiError(HttpStatusCode.NotFound, message));
+            }
+            
+            return NoContent();
+        }
     }
 }

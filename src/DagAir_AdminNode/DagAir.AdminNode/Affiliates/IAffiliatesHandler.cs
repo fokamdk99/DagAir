@@ -10,5 +10,6 @@ namespace DagAir.AdminNode.Affiliates
         Task<List<AffiliateDto>> GetAffiliates();
         Task<AffiliateDto> GetAffiliateById(long affiliateId);
         Task<AffiliateDto> AddNewAffiliate(AddNewAffiliateCommand addNewAffiliateCommand);
+        Task<int> DeleteAffiliate(long organizationId);
     }
 }

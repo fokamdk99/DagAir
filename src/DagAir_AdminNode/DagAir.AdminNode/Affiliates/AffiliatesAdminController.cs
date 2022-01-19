@@ -90,5 +90,22 @@ namespace DagAir.AdminNode.Affiliates
             
             return Created(new JsonApiDocument<AffiliateDto>(newAffiliate));
         }
+        
+        [HttpDelete]
+        [Route("affiliates/{affiliateId}")]
+        [ProducesResponseType((int)HttpStatusCode.NoContent)]
+        [ProducesResponseType(typeof(JsonApiError), (int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> DeleteOrganization(long affiliateId)
+        {
+            var affectedRows = await _affiliatesHandler.DeleteAffiliate(affiliateId);
+            if (affectedRows == 0)
+            {
+                string message =
+                    $"Affiliate with id {affiliateId} has not been found";
+                return NotFound(new JsonApiError(HttpStatusCode.NotFound, message));
+            }
+            
+            return NoContent();
+        }
     }
 }

@@ -79,5 +79,18 @@ namespace DagAir.AdminNode.Affiliates
             
             return newAffiliate;
         }
+
+        public async Task<int> DeleteAffiliate(long affiliateId)
+        {
+            var path = _externalServices.FacilitiesApi + FacilitiesEndpoints.GetAffiliates + affiliateId;
+            var statusCode = await _client.DeleteAsync(path);
+
+            if (statusCode == HttpStatusCode.NotFound)
+            {
+                return 0;
+            }
+
+            return 1;
+        }
     }
 }

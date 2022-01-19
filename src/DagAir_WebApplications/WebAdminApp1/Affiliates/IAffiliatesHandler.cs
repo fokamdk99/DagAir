@@ -11,5 +11,6 @@ namespace WebAdminApp1.Affiliates
         Task<List<AdminNodeAffiliateDto>> GetAffiliates();
         Task<AdminNodeAffiliateDto> GetAffiliateById(long affiliateId);
         Task<AffiliateDto> AddNewAffiliate(AffiliateModel getAffiliateModel);
+        Task<int> DeleteAffiliate(long affiliateId);
     }
 }

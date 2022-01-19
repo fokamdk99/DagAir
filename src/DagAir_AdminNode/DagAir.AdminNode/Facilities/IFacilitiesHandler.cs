@@ -10,5 +10,6 @@ namespace DagAir.AdminNode.Facilities
         Task<List<OrganizationDto>> GetOrganizations();
         Task<OrganizationDto> GetOrganizationById(long organizationId);
         Task<OrganizationDto> AddNewOrganization(AddNewOrganizationCommand addNewAddressCommand);
+        Task<int> DeleteOrganization(long organizationId);
     }
 }

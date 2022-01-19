@@ -4,20 +4,24 @@
     ViewData["ActivePage"] = ManageFacilitiesPages.DownloadOrganizations;
 }
 <div class="col-md-6">
-<div class="btn-group" role="group" aria-label="Basic example">
-    <a class="btn btn-success" role="button" asp-area="" asp-controller="Facilities" asp-action="AddNewOrganization">Add new organization</a>
-    <a href="#" class="btn btn-danger" role="button">Delete all organizations</a>
-</div>    
-</div>
-<div class="row">
-    <div class="col-md-6">
-        <ul class="list-group">
-            @foreach (var organization in Model.AdminNodeOrganizationDtos)
-            {
-                <li class="list-group-item">
-                    @Html.ActionLink(organization.OrganizationDto.Name, "Organization", "Facilities", new {organizationId = organization.OrganizationDto.Id}, null)
-                </li>
-            }
-        </ul>
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <a class="btn btn-success" role="button" asp-area="" asp-controller="Facilities" asp-action="AddNewOrganization">Add new organization</a>
+        <a href="#" class="btn btn-danger" role="button">Delete all organizations</a>
     </div>
 </div>
+<ul class="list-group">
+    @foreach (var organization in Model.AdminNodeOrganizationDtos)
+    {
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.ActionLink(organization.OrganizationDto.Name, "Organization", "Facilities", new {organizationId = organization.OrganizationDto.Id}, null)
+                </div>
+                <div class="col-md-6">
+                    @Html.ActionLink($"Delete organization", "DeleteOrganization", "Facilities", new {organizationId = organization.OrganizationDto.Id}, new {@class = "btn btn-danger"})
+                </div>
+            </div>
+
+        </li>
+    }
+</ul>

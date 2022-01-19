@@ -16,11 +16,6 @@ namespace DagAir.Facilities.Data.AppEntitiesConfiguration
 
             builder.Property(e => e.Floor)
                 .IsRequired();
-
-            builder.HasOne(e => e.Affiliate)
-                .WithMany(x => x.Rooms)
-                .HasForeignKey(e => e.AffiliateId)
-                .IsRequired();
         }
     }
 }

@@ -82,5 +82,17 @@ namespace WebAdminApp1.Controllers
 
             return View();
         }
+        
+        [HttpGet]
+        public async Task<IActionResult> DeleteOrganization(long organizationId)
+        {
+            var result = await _facilitiesHandler.DeleteOrganization(organizationId);
+            
+            await LoadAsync(User);
+            var organizationsModel = new OrganizationsModel();
+            organizationsModel.AdminNodeOrganizationDtos = OrganizationDtos;
+            
+            return View("~/Views/Facilities/Organizations.cshtml", organizationsModel);
+        }
     }
 }

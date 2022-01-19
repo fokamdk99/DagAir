@@ -14,6 +14,7 @@ namespace DagAir.Facilities.Affiliates
             services.AddScoped<IGetAffiliatesQuery, GetAffiliatesQuery>();
             services.AddScoped<IGetAffiliatesByOrganizationQuery, GetAffiliatesByOrganizationQuery>();
             services.AddScoped<ICommandHandler<AddNewAffiliateCommand, Affiliate>, AddNewAffiliateCommandHandler>();
+            services.AddScoped<IDeleteAffiliateHandler, DeleteAffiliateHandler>();
 
             return services;
         }

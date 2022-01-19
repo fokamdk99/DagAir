@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Net;
 using System.Threading.Tasks;
 using DagAir.AdminNode.Contracts.Commands;
@@ -76,6 +77,20 @@ namespace WebAdminApp1.Rooms
             }
 
             return adminNodeRoomDto;
+        }
+
+        public async Task<int> DeleteRoom(long roomId)
+        {
+            var path = _externalServices.AdminNode + RoomEndpoints.DeleteRoom + roomId;
+
+            var statusCode = await _client.DeleteAsync(path);
+
+            if (statusCode == HttpStatusCode.NotFound)
+            {
+                return 0;
+            }
+
+            return 1;
         }
     }
 }

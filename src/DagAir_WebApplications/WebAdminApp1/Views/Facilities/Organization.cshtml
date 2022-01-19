@@ -23,23 +23,25 @@
 <div class="row">
     <div class="col-md-6">
         <div class="btn-group" role="group" aria-label="Basic example">
-            @Html.ActionLink("Add new affiliate", "AddNewAffiliate", "Affiliates", 
+            @Html.ActionLink("Add new affiliate", "AddNewAffiliate", "Affiliates",
                 new {organizationId = Model.AdminNodeOrganizationDto.OrganizationDto.Id}, new {@class = "btn btn-success"})
             <a href="#" class="btn btn-danger" role="button">Delete all affiliates</a>
-        </div>    
+        </div>
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-6 ">
-        <ul class="list-group">
-                @foreach (var affiliate in Model.AdminNodeOrganizationDto.OrganizationDto.Affiliates)
-                {
-                    <li class="list-group-item">
-                        @Html.ActionLink(affiliate.Name, "Affiliate", "Affiliates", new {affiliateId = affiliate.Id}, null)
-                    </li>
-                }
-            </ul>
-    </div>
-    
-</div>
+<ul class="list-group">
+    @foreach (var affiliate in Model.AdminNodeOrganizationDto.OrganizationDto.Affiliates)
+    {
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.ActionLink(affiliate.Name, "Affiliate", "Affiliates", new {affiliateId = affiliate.Id}, null)
+                </div>
+                <div class="col-md-6">
+                    @Html.ActionLink($"Delete affiliate {affiliate.Id}", "DeleteAffiliate", "Affiliates", new {organizationId = affiliate.OrganizationId, affiliateId = affiliate.Id}, new {@class = "btn btn-danger"})
+                </div>
+            </div>
+        </li>
+    }
+</ul>

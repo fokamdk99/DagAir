@@ -1,5 +1,7 @@
 using System.Threading.Tasks;
 using DagAir.AdminNode.Contracts.DTOs;
+using DagAir.Facilities.Contracts.DTOs;
+using DagAir.Policies.Contracts.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -67,6 +69,9 @@ namespace WebAdminApp1.Controllers
             {
                 AdminNodeRoomDto = new AdminNodeRoomDto()
             };
+
+            roomModel.AdminNodeRoomDto.RoomDto = new RoomDto();
+            roomModel.AdminNodeRoomDto.PastMeasurements = new PastMeasurementsDto();
             roomModel.AdminNodeRoomDto.RoomDto.AffiliateId = affiliateId;
 
             return View(roomModel);
@@ -94,6 +99,19 @@ namespace WebAdminApp1.Controllers
 
             
             var adminNodeAffiliateDto = await _affiliatesHandler.GetAffiliateById(roomModel.AdminNodeRoomDto.RoomDto.AffiliateId);
+
+            var getAffiliateModel = new AffiliateModel();
+            getAffiliateModel.AdminNodeAffiliateDto = adminNodeAffiliateDto;
+
+            return View("~/Views/Affiliates/Affiliate.cshtml", getAffiliateModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteRoom(long roomId, long affiliateId)
+        {
+            var result = await _roomsHandler.DeleteRoom(roomId);
+            
+            var adminNodeAffiliateDto = await _affiliatesHandler.GetAffiliateById(affiliateId);
 
             var getAffiliateModel = new AffiliateModel();
             getAffiliateModel.AdminNodeAffiliateDto = adminNodeAffiliateDto;

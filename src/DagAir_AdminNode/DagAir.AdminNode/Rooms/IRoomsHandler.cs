@@ -10,6 +10,7 @@ namespace DagAir.AdminNode.Rooms
     {
         Task<AdminNodeRoomDto> GetRoomByRoomId(GetRoomCommand getRoomCommand);
         Task<RoomDto> AddNewRoom(AddNewRoomCommand addNewRoomCommand);
-        
+        Task<int> DeleteRoom(long roomId);
+
     }
 }

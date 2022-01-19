@@ -13,6 +13,7 @@ namespace DagAir.Facilities.Organizations
             services.AddScoped<IGetOrganizationQueryById, GetOrganizationQueryById>();
             services.AddScoped<IGetOrganizationsQuery, GetOrganizationsQuery>();
             services.AddScoped<ICommandHandler<AddNewOrganizationCommand, Organization>, AddNewOrganizationCommandHandler>();
+            services.AddScoped<IDeleteOrganizationHandler, DeleteOrganizationHandler>();
 
             return services;
         }

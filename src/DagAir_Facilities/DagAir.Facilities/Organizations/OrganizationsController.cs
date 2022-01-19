@@ -7,6 +7,7 @@ using DagAir.Facilities.Contracts.Commands;
 using DagAir.Facilities.Contracts.DTOs;
 using DagAir.Facilities.Data.AppEntitities;
 using DagAir.Facilities.Infrastructure.UserApi;
+using DagAir.Facilities.Organizations.Commands;
 using DagAir.Facilities.Organizations.Queries;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,17 +19,19 @@ namespace DagAir.Facilities.Organizations
         private readonly IGetOrganizationQueryById _getOrganizationQueryById;
         private readonly IGetOrganizationsQuery _getOrganizationsQuery;
         private readonly ICommandHandler<AddNewOrganizationCommand, Organization> _commandHandler;
+        private readonly IDeleteOrganizationHandler _deleteOrganizationHandler;
 
         public OrganizationsController(IMapper mapper, 
             IGetOrganizationQueryById getOrganizationQueryById, 
             IGetOrganizationsQuery getOrganizationsQuery,
-            ICommandHandler<AddNewOrganizationCommand, Organization> commandHandler)
+            ICommandHandler<AddNewOrganizationCommand, Organization> commandHandler, 
+            IDeleteOrganizationHandler deleteOrganizationHandler)
         {
             _mapper = mapper;
             _getOrganizationQueryById = getOrganizationQueryById;
             _getOrganizationsQuery = getOrganizationsQuery;
             _commandHandler = commandHandler;
-            
+            _deleteOrganizationHandler = deleteOrganizationHandler;
         }
         
         /// <summary>
@@ -97,6 +100,21 @@ namespace DagAir.Facilities.Organizations
             OrganizationDto organizationDto = _mapper.Map<OrganizationDto>(organization);
 
             return Created(new JsonApiDocument<OrganizationDto>(organizationDto));
+        }
+        
+        [HttpDelete("organizations/{organizationId}")]
+        [ProducesResponseType((int) HttpStatusCode.NoContent)]
+        [ProducesResponseType(typeof(JsonApiError), (int) HttpStatusCode.NotFound)]
+        public async Task<IActionResult> DeleteOrganization(long organizationId)
+        {
+            var organization = await _deleteOrganizationHandler.Handle(organizationId);
+
+            if (organization == 0)
+            {
+                return GetOrganizationNotFoundMessage(organizationId);
+            }
+
+            return NoContent();
         }
 
         private NotFoundObjectResult GetOrganizationNotFoundMessage(long organizationId)

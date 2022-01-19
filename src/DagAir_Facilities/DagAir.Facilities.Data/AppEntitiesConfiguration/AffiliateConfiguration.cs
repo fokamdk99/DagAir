@@ -18,13 +18,9 @@ namespace DagAir.Facilities.Data.AppEntitiesConfiguration
             builder.Property(e => e.AddressId)
                 .IsRequired();
 
-            builder.HasOne(e => e.Organization)
-                .WithMany(x => x.Affiliates)
-                .HasForeignKey(e => e.OrganizationId)
-                .IsRequired();
-
             builder.HasMany(e => e.Rooms)
-                .WithOne(x => x.Affiliate);
+                .WithOne(x => x.Affiliate)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

@@ -73,5 +73,18 @@ namespace DagAir.AdminNode.Rooms
             
             return newRoom;
         }
+
+        public async Task<int> DeleteRoom(long roomId)
+        {
+            var path = _externalServices.FacilitiesApi + FacilitiesEndpoints.GetRooms + roomId;
+            var statusCode = await _client.DeleteAsync(path);
+
+            if (statusCode == HttpStatusCode.NotFound)
+            {
+                return 0;
+            }
+
+            return 1;
+        }
     }
 }

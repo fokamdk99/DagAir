@@ -4,6 +4,7 @@ using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
 using DagAir.Components.ApiModels.Json;
+using DagAir.Facilities.Affiliates.Commands;
 using DagAir.Facilities.Affiliates.Queries;
 using DagAir.Facilities.Contracts.Commands;
 using DagAir.Facilities.Contracts.DTOs;
@@ -19,16 +20,19 @@ namespace DagAir.Facilities.Affiliates
         private readonly IGetAffiliateQuery _getAffiliateQuery;
         private readonly IGetAffiliatesQuery _getAffiliatesQuery;
         private readonly ICommandHandler<AddNewAffiliateCommand, Affiliate> _commandHandler;
+        private readonly IDeleteAffiliateHandler _deleteAffiliateHandler;
 
         public AffiliatesController(IMapper mapper,
             ICommandHandler<AddNewAffiliateCommand, Affiliate> addNewRoomPolicyCommandHandler, 
             IGetAffiliateQuery getAffiliateQuery, 
-            IGetAffiliatesQuery getAffiliatesQuery)
+            IGetAffiliatesQuery getAffiliatesQuery, 
+            IDeleteAffiliateHandler deleteAffiliateHandler)
         {
             _mapper = mapper;
             _commandHandler = addNewRoomPolicyCommandHandler;
             _getAffiliateQuery = getAffiliateQuery;
             _getAffiliatesQuery = getAffiliatesQuery;
+            _deleteAffiliateHandler = deleteAffiliateHandler;
         }
         
         /// <summary>
@@ -91,6 +95,21 @@ namespace DagAir.Facilities.Affiliates
             AffiliateDto affiliateDto = _mapper.Map<AffiliateDto>(affiliate);
 
             return Created(new JsonApiDocument<AffiliateDto>(affiliateDto));
+        }
+        
+        [HttpDelete("affiliates/{affiliateId}")]
+        [ProducesResponseType((int) HttpStatusCode.NoContent)]
+        [ProducesResponseType(typeof(JsonApiError), (int) HttpStatusCode.NotFound)]
+        public async Task<IActionResult> DeleteOrganization(long affiliateId)
+        {
+            var affectedRows = await _deleteAffiliateHandler.Handle(affiliateId);
+
+            if (affectedRows == 0)
+            {
+                return GetAffiliateNotFoundMessage(affiliateId);
+            }
+
+            return NoContent();
         }
         
         private NotFoundObjectResult GetAffiliateNotFoundMessage(long affiliateId)

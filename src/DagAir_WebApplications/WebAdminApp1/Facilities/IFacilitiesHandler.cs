@@ -12,5 +12,6 @@ namespace WebAdminApp1.Facilities
         Task<List<AdminNodeOrganizationDto>> GetOrganizations();
         Task<AdminNodeOrganizationDto> GetOrganization(long organizationId);
         Task<OrganizationDto> AddNewOrganization(OrganizationModel addNewOrganizationCommand);
+        Task<int> DeleteOrganization(long organizationId);
     }
 }

@@ -6,6 +6,7 @@ using DagAir.Facilities.Contracts.Commands;
 using DagAir.Facilities.Contracts.DTOs;
 using DagAir.Facilities.Data.AppEntitities;
 using DagAir.Facilities.Infrastructure;
+using DagAir.Facilities.Rooms.Commands;
 using DagAir.Facilities.Rooms.Queries;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,14 +17,17 @@ namespace DagAir.Facilities.Rooms
         private readonly IGetCurrentRoomQuery _getCurrentRoom;
         private readonly IMapper _mapper;
         private readonly ICommandHandler<AddNewRoomCommand, Room> _commandHandler;
+        private readonly IDeleteRoomHandler _deleteRoomHandler;
         
         public RoomController(IGetCurrentRoomQuery getCurrentRoomQuery, 
             IMapper mapper, 
-            ICommandHandler<AddNewRoomCommand, Room> commandHandler)
+            ICommandHandler<AddNewRoomCommand, Room> commandHandler, 
+            IDeleteRoomHandler deleteRoomHandler)
         {
             _getCurrentRoom = getCurrentRoomQuery;
             _mapper = mapper;
             _commandHandler = commandHandler;
+            _deleteRoomHandler = deleteRoomHandler;
         }
 
         /// <summary>
@@ -71,6 +75,21 @@ namespace DagAir.Facilities.Rooms
             RoomDto roomDto = _mapper.Map<RoomDto>(room);
 
             return Created(new JsonApiDocument<RoomDto>(roomDto));
+        }
+        
+        [HttpDelete("rooms/{roomId}")]
+        [ProducesResponseType((int) HttpStatusCode.NoContent)]
+        [ProducesResponseType(typeof(JsonApiError), (int) HttpStatusCode.NotFound)]
+        public async Task<IActionResult> DeleteOrganization(long roomId)
+        {
+            var organization = await _deleteRoomHandler.Handle(roomId);
+
+            if (organization == 0)
+            {
+                return GetCurrentRoomNotFoundMessage(roomId);
+            }
+
+            return NoContent();
         }
 
         private NotFoundObjectResult GetCurrentRoomNotFoundMessage(long id)
