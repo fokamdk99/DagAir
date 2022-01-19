@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Threading;
 using DagAir.Addresses.Infrastructure;
 using DagAir.AdminNode.Infrastructure;
@@ -13,13 +12,10 @@ using Nuke.Common;
 using Nuke.Common.CI;
 using Nuke.Common.Execution;
 using Nuke.Common.IO;
-using Nuke.Common.ProjectModel;
 using Nuke.Common.Tooling;
-using Nuke.Common.Tools.Docker;
 using Nuke.Common.Tools.DotNet;
 using Nuke.Common.Tools.GitVersion;
 using Nuke.Common.Utilities.Collections;
-using Serilog;
 using static Nuke.Common.IO.FileSystemTasks;
 using static Nuke.Common.Tools.DotNet.DotNetTasks;
 
@@ -54,7 +50,8 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository
         {"clientNode", "DagAir.ClientNode.Tests"},
         {"adminNode", "DagAir.AdminNode.Tests"},
         {"facilities", "DagAir.Facilities.Tests"},
-        {"addresses", "DagAir.Addresses.Tests"}
+        {"addresses", "DagAir.Addresses.Tests"},
+        {"sensorStateHistory", "DagAir.DataServices.SensorStateHistory.Tests"}
     };
     
     readonly Dictionary<string, string> ProjectNames = new Dictionary<string, string>
@@ -68,7 +65,8 @@ class Build : NukeBuild, IHaveSolution, IHaveGitRepository
         {"clientNode", "DagAir.ClientNode"},
         {"adminNode", "DagAir.AdminNode"},
         {"facilities", "DagAir.Facilities"},
-        {"addresses", "DagAir.Addresses"}
+        {"addresses", "DagAir.Addresses"},
+        {"sensorStateHistory", "DagAir.DataServices.SensorStateHistory"}
     };
 
     AbsolutePath SourceDirectory => RootDirectory / "src";
