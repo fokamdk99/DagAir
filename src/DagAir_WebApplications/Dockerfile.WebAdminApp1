@@ -15,6 +15,7 @@ COPY ["./DagAir_Sensors/DagAir.Sensors.Contracts/", "./DagAir_Sensors/DagAir.Sen
 COPY ["./DagAir_SensorStateHistory/DagAir.DataServices.SensorStateHistory.Contracts/", "./DagAir_SensorStateHistory/DagAir.DataServices.SensorStateHistory.Contracts/"]
 COPY ["./DagAir_AdminNode/DagAir.AdminNode.Contracts/", "./DagAir_AdminNode/DagAir.AdminNode.Contracts/"]
 COPY ["./DagAir_Addresses/DagAir.Addresses.Contracts/", "./DagAir_Addresses/DagAir.Addresses.Contracts/"]
+COPY ["./DagAir_IngestionNode/DagAir.IngestionNode.Contracts/", "./DagAir_IngestionNode/DagAir.IngestionNode.Contracts/"]
 
 RUN dotnet restore ./DagAir_WebApplications/WebAdminApp1/WebAdminApp1.csproj
 RUN dotnet build ./DagAir_WebApplications/WebAdminApp1/WebAdminApp1.csproj --no-restore
