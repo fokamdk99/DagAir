@@ -12,6 +12,7 @@ using WebAdminApp1.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace WebAdminApp1
 {
@@ -29,8 +30,8 @@ namespace WebAdminApp1
         public void ConfigureServices(IServiceCollection services)
         {
             var connectionKeys = Configuration.GetSection("ConnectionKeys:DagAir.Identity").Value;
-            var connectionString = Configuration.GetConnectionString("DefaultConnection") + connectionKeys; 
-            
+            var connectionString = Configuration.GetConnectionString("DefaultConnection") + connectionKeys;
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseMySQL(connectionString));
             services.AddDatabaseDeveloperPageExceptionFilter();

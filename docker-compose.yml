@@ -98,6 +98,19 @@ services:
       - dagair_network
     restart: always
 
+  sensor_state_history_api:
+    build:
+      target: final
+      context: ./src
+      dockerfile: ./DagAir_SensorStateHistory/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+    ports:
+      - "8095:80"
+    networks:
+      - dagair_network
+    restart: always
+
   ingestion_node:
     build:
       target: final
@@ -178,11 +191,11 @@ services:
       target: final
       context: ./src
       dockerfile: ./DagAir_WebApplications/Dockerfile.WebAdminApp1
-    image: web-admin-app:1.4
     ports:
       - "8085:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
+      - ConnectionKeys__DagAir.Identity=${WEB_ADMIN_APP_CONNECTION_KEYS}
     networks:
       - dagair_network
     restart: always
