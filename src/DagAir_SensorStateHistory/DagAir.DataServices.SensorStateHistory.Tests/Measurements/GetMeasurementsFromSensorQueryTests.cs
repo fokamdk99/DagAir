@@ -10,6 +10,7 @@ namespace DagAir.DataServices.SensorStateHistory.Tests.Measurements
     {
         private IGetMeasurementsFromSensorQuery _getMeasurementsFromSensorQuery;
         
+        [Ignore("Influx dependent")]
         [Test]
         public async Task WhenValidGetMeasurementsFromSensorCommandGiven_ShouldReturnRecordsFromInfluxDB()
         {
@@ -20,6 +21,7 @@ namespace DagAir.DataServices.SensorStateHistory.Tests.Measurements
             Assert.GreaterOrEqual(historicResults.Count, 1);
         }
         
+        [Ignore("Influx dependent")]
         [Test]
         public async Task WhenNoRecordsFulfillCriteria_ShouldReturnRecordsFromInfluxDB_ShouldReturnEmptyList()
         {

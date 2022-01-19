@@ -170,3 +170,6 @@ C:\Users\01143844\source\repos\inzynierka\Dagair\build\bin\Debug\System.Diagnost
 C:\Users\01143844\source\repos\inzynierka\Dagair\build\bin\Debug\runtimes\win\lib\netcoreapp2.0\System.Diagnostics.PerformanceCounter.dll
 C:\Users\01143844\source\repos\inzynierka\Dagair\build\bin\Debug\DagAir.AdminNode.Contracts.dll
 C:\Users\01143844\source\repos\inzynierka\Dagair\build\bin\Debug\DagAir.AdminNode.Contracts.pdb
+C:\Users\01143844\source\repos\inzynierka\Dagair\build\bin\Debug\NodaTime.dll
+C:\Users\01143844\source\repos\inzynierka\Dagair\build\bin\Debug\DagAir.DataServices.SensorStateHistory.Contracts.dll
+C:\Users\01143844\source\repos\inzynierka\Dagair\build\bin\Debug\DagAir.DataServices.SensorStateHistory.Contracts.pdb
