@@ -13,7 +13,7 @@ COPY ["./DagAir_Addresses/DagAir.Addresses.Contracts/", "./DagAir_Addresses/DagA
 COPY ["./DagAir_AdminNode/DagAir.AdminNode.Contracts/", "./DagAir_AdminNode/DagAir.AdminNode.Contracts/"]
 COPY ["./DagAir_SensorStateHistory/DagAir.DataServices.SensorStateHistory.Contracts/", "./DagAir_SensorStateHistory/DagAir.DataServices.SensorStateHistory.Contracts/"]
 COPY ["./DagAir_Sensors/DagAir.Sensors.Contracts/", "./DagAir_Sensors/DagAir.Sensors.Contracts/"]
-
+COPY ["./DagAir_IngestionNode/DagAir.IngestionNode.Contracts/", "./DagAir_IngestionNode/DagAir.IngestionNode.Contracts/"]
 COPY ["./DagAir_Components/DagAir.Components.MassTransit.RabbitMq/", "./DagAir_Components/DagAir.Components.MassTransit.RabbitMq/"]
 COPY ["./DagAir_Components/DagAir.Components.Healthchecks/", "./DagAir_Components/DagAir.Components.Healthchecks/"]
 COPY ["./DagAir_Components/DagAir.Components.Logging/", "./DagAir_Components/DagAir.Components.Logging/"]
