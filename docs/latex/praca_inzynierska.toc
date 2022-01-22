@@ -1,0 +1,96 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\babel@toc {polish}{}\relax 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{Streszczenie}{1}{}%
+\babel@toc {english}{}\relax 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{Summary}{1}{}%
+\babel@toc {polish}{}\relax 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1}Temat pracy}{4}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2}Istniejące rozwiązania}{5}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3}Założenia}{5}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4}Metodologia}{6}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1}Architektura systemu}{6}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {4.1.1}Serwisy zorientowane usługowo}{6}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {4.1.2}Sprzężenie serwisów}{6}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {4.1.3}Architektura systemu do zarządzania energią w pomieszczeniach biurowych}{6}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5}Przechowywanie danych}{6}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.1}MySQL}{6}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {5.1.1}Schemat adresów}{6}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {5.1.2}Schemat organizacji}{6}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {5.1.3}Schemat reguł}{6}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {5.1.4}Schemat sensorów}{6}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {5.1.5}Schemat użytkowników}{6}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.2}InfluxDB}{6}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6}Komunikacja między serwisami}{6}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.1}Broker wiadomości}{6}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {6.1.1}MassTransit}{6}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.2}Styki}{7}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {6.2.1}Styk mikrousługi danych adresów}{7}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {6.2.2}Styk mikrousługi danych organizacji}{7}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {6.2.3}Styk mikrousługi danych reguł}{7}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {6.2.4}Styk mikrousługi danych sensorów}{7}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {6.2.5}Styk mikrousługi mikrousługi aplikacyjnej administratorów}{7}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7}Testy}{7}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.1}Testy jednostkowe}{7}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.2}Testy integracyjne}{7}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.3}Testy end-2-end}{7}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.4}Automatyzacja testów}{7}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {8}Automatyzacja}{7}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {8.1}Automatyzacja wdrożenia}{7}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {8.2}Ciągła integracja}{7}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {8.3}Ciągłe dostarczanie}{7}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {8.4}Kubernetes}{7}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {8.4.1}Komponenty płaszczyzny sterowania}{7}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {8.4.2}Komponenty węzła}{7}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {9}Podsumowanie}{8}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.1}Możliwości rozszerzenia projektu}{8}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {10}Bibliografia}{8}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {11}Wykaz symboli i skrótów}{8}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {12}Spis rysunków}{8}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {13}Spis tabel}{8}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {14}Spis załączników}{8}{}%
