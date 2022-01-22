@@ -1,0 +1,85 @@
+host: hello-world.info
+environment: Kubernetes
+
+database:
+  server: mysql-service
+  password: Rolka7Sushi
+  user: root
+
+sensors:
+  name: sensors-api
+  port: 8080
+  database:
+    schema: DagAir.Sensors
+
+policies:
+  name: policies-api
+  port: 8081
+  database:
+    schema: DagAir.Policies
+
+addresses:
+  name: addresses-api
+  port: 8094
+  database:
+    schema: DagAir.Addresses
+
+facilities:
+  name: facilities-api
+  port: 8087
+  database:
+    schema: DagAir.Facilities
+
+sensorStateHistory:
+  name: sensor-state-history-api
+  port: 8095
+  rabbitMq:
+    connectionName: sensor-state-history-api
+
+ingestionNode:
+  name: ingestion-node
+  port: 8082
+  rabbitMq:
+    connectionName: ingestion-node
+  sensorRabbitMq:
+    connectionName: ingestion-node
+
+policyNode:
+  name: policy-node
+  port: 8083
+  rabbitMq:
+    connectionName: policy-node
+
+adminNode:
+  name: admin-node
+  port: 8088
+  rabbitMq:
+    connectionName: admin-node
+
+webAdminApp:
+  name: web-admin-app
+  environment: kubernetes
+  port: 8085
+  database:
+    schema: DagAir.Identity
+
+rabbitMq:
+  hostName: rabbitmq-release-rabbitmq
+  virtualHost: /
+  userName: dagairUser
+  password: DagAir123$
+  protocol: rabbitmq://
+
+sensorRabbitMq:
+  hostName: rabbitmq-release-rabbitmq
+  virtualHost: /
+  userName: dagairUser
+  password: DagAir123$
+  protocol: rabbitmq://
+
+influxDb:
+  token: local_token1
+  org: local_org1
+  bucketName: local_bucket1
+  url: http://influxdb-service:8086
+  retention: 3600

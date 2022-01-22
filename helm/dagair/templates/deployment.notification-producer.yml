@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notification-producer
+  labels:
+    app: notification-producer
+spec:
+  selector:
+    matchLabels:
+      app: notification-producer
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: notification-producer
+    spec:
+      containers:
+      - name: notification-producer-container
+        imagePullPolicy: Never
+        image: realtime/notification-producer:1.6
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
