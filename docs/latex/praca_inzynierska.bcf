@@ -2343,12 +2343,32 @@
   <!-- CITATION DATA -->
   <!-- SECTION 0 -->
   <bcf:bibdata section="0">
-    <bcf:datasource type="file" datatype="bibtex" glob="false">sample.bib</bcf:datasource>
+    <bcf:datasource type="file" datatype="bibtex" glob="false">sources.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1">Smith:2012qr</bcf:citekey>
-    <bcf:citekey order="2">Smith:2013jd</bcf:citekey>
-    <bcf:citekey order="3">Other:2014ab</bcf:citekey>
+    <bcf:citekey order="1">oseland:2012ak</bcf:citekey>
+    <bcf:citekey order="2">Imt.org:2015ag</bcf:citekey>
+    <bcf:citekey order="3">sharp:2022am</bcf:citekey>
+    <bcf:citekey order="4">Lan:2012ah</bcf:citekey>
+    <bcf:citekey order="5">dai:2014ad</bcf:citekey>
+    <bcf:citekey order="6">hedge:2005af</bcf:citekey>
+    <bcf:citekey order="7">chinchiuan:2014ac</bcf:citekey>
+    <bcf:citekey order="8">liu:2017aj</bcf:citekey>
+    <bcf:citekey order="9">vickers:2021an</bcf:citekey>
+    <bcf:citekey order="10">newman:2015ap</bcf:citekey>
+    <bcf:citekey order="11">fielding:1999ae</bcf:citekey>
+    <bcf:citekey order="12">chinchiuan:2014ac</bcf:citekey>
+    <bcf:citekey order="13">dai:2014ad</bcf:citekey>
+    <bcf:citekey order="14">fielding:1999ae</bcf:citekey>
+    <bcf:citekey order="15">hedge:2005af</bcf:citekey>
+    <bcf:citekey order="16">Imt.org:2015ag</bcf:citekey>
+    <bcf:citekey order="17">Lan:2012ah</bcf:citekey>
+    <bcf:citekey order="18">liu:2017aj</bcf:citekey>
+    <bcf:citekey order="19">oseland:2012ak</bcf:citekey>
+    <bcf:citekey order="20">richardson:2021al</bcf:citekey>
+    <bcf:citekey order="21">sharp:2022am</bcf:citekey>
+    <bcf:citekey order="22">vickers:2021an</bcf:citekey>
+    <bcf:citekey order="23">newman:2015ap</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nyt">

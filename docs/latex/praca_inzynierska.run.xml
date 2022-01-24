@@ -82,7 +82,7 @@
       <file>praca_inzynierska.bcf</file>
     </requires>
     <requires type="editable">
-      <file>sample.bib</file>
+      <file>sources.bib</file>
     </requires>
   </external>
 </requests>

@@ -19,106 +19,474 @@
 
 \refsection{0}
   \datalist[entry]{nyt/global//global/global}
-    \entry{Smith:2013jd}{article}{}
+    \entry{chinchiuan:2014ac}{article}{}
       \name{author}{2}{}{%
-        {{un=0,uniquepart=base,hash=be76b5bf7fa911e76b7029cf81189081}{%
-           family={Jones},
-           familyi={J\bibinitperiod},
-           given={A.\bibnamedelimi B.},
-           giveni={A\bibinitperiod\bibinitdelim B\bibinitperiod},
+        {{un=0,uniquepart=base,hash=a6f1c3aba8b19da700cf7a6da96f840c}{%
+           family={Chin-Chiuan},
+           familyi={C\bibinithyphendelim C\bibinitperiod},
+           given={L.},
+           giveni={L\bibinitperiod},
            givenun=0}}%
-        {{un=0,uniquepart=base,hash=6126f91a89611279e86182106bf09d1a}{%
-           family={Smith},
-           familyi={S\bibinitperiod},
-           given={J.\bibnamedelimi M.},
-           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
+        {{un=0,uniquepart=base,hash=98ede627e15c8984f26b2d428f8f60c4}{%
+           family={Kuo-Chen},
+           familyi={K\bibinithyphendelim C\bibinitperiod},
+           given={H.},
+           giveni={H\bibinitperiod},
            givenun=0}}%
       }
-      \list{publisher}{1}{%
-        {Publisher}%
-      }
-      \strng{namehash}{348932ff0b7038ddd516ab40e4a45308}
-      \strng{fullhash}{348932ff0b7038ddd516ab40e4a45308}
-      \strng{bibnamehash}{348932ff0b7038ddd516ab40e4a45308}
-      \strng{authorbibnamehash}{348932ff0b7038ddd516ab40e4a45308}
-      \strng{authornamehash}{348932ff0b7038ddd516ab40e4a45308}
-      \strng{authorfullhash}{348932ff0b7038ddd516ab40e4a45308}
-      \field{sortinit}{J}
-      \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
+      \strng{namehash}{de72e93506c4303eb3a5db6be0afdd21}
+      \strng{fullhash}{de72e93506c4303eb3a5db6be0afdd21}
+      \strng{bibnamehash}{de72e93506c4303eb3a5db6be0afdd21}
+      \strng{authorbibnamehash}{de72e93506c4303eb3a5db6be0afdd21}
+      \strng{authornamehash}{de72e93506c4303eb3a5db6be0afdd21}
+      \strng{authorfullhash}{de72e93506c4303eb3a5db6be0afdd21}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
       \field{extradatescope}{labelyear}
       \field{labeldatesource}{year}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{Journal title}
-      \field{month}{3}
-      \field{number}{52}
-      \field{title}{{A}rticle {T}itle}
-      \field{volume}{13}
-      \field{year}{2013}
-      \field{pages}{123\bibrangedash 456}
-      \range{pages}{334}
+      \field{journaltitle}{International Journal of Applied Science and Engineering}
+      \field{number}{3}
+      \field{title}{Effects of Lighting Color, Illumination Intensity, and Text Color on Visual Performance}
+      \field{volume}{12}
+      \field{year}{2014}
+      \field{pages}{193\bibrangedash 202}
+      \range{pages}{10}
     \endentry
-    \entry{Other:2014ab}{book}{}
+    \entry{dai:2014ad}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=63721e9a49a7b68a3553c68870dea764}{%
+           family={Dai},
+           familyi={D\bibinitperiod},
+           given={C.},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=806c136ffedecc2bbd5fc4db7e5bb27e}{%
+           family={Lan},
+           familyi={L\bibinitperiod},
+           given={L.},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4904f89d04a4c7922a4c7b7b53dcae14}{%
+           family={Lian},
+           familyi={L\bibinitperiod},
+           given={Z},
+           giveni={Z\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{a238a0d26b0f4927a188c54f72b44533}
+      \strng{fullhash}{a238a0d26b0f4927a188c54f72b44533}
+      \strng{bibnamehash}{a238a0d26b0f4927a188c54f72b44533}
+      \strng{authorbibnamehash}{a238a0d26b0f4927a188c54f72b44533}
+      \strng{authornamehash}{a238a0d26b0f4927a188c54f72b44533}
+      \strng{authorfullhash}{a238a0d26b0f4927a188c54f72b44533}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Energy and Buildings}
+      \field{title}{Method for the determination of optimal work environment in office buildings considering energy consumption and human performance}
+      \field{volume}{76}
+      \field{year}{2014}
+      \field{pages}{278\bibrangedash 283}
+      \range{pages}{6}
+    \endentry
+    \entry{fielding:1999ae}{online}{}
+      \name{author}{7}{}{%
+        {{un=0,uniquepart=base,hash=a6155135a306bddfc30cc4f52d1924e6}{%
+           family={Fielding},
+           familyi={F\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=678f2bf9948e77716864ffb3316b8959}{%
+           family={Mogul},
+           familyi={M\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4991b9e5bfacbd86d4f778b16c57f9fa}{%
+           family={Gettys},
+           familyi={G\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b5c17667af68a58038b624101ab91e1f}{%
+           family={Frystyk},
+           familyi={F\bibinitperiod},
+           given={H.},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=64651b49ed3f9d12c6e1df46fc042e74}{%
+           family={Masinter},
+           familyi={M\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=89ce6361749d05e9c8f47cae979594e9}{%
+           family={Berners-Lee},
+           familyi={B\bibinithyphendelim L\bibinitperiod},
+           given={T.},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b02d4916a516d9ce8550642ddd60faaa}{%
+           family={Leach},
+           familyi={L\bibinitperiod},
+           given={P},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{55d7afa00010e0ea88cf7be388134e11}
+      \strng{fullhash}{84ef2f76a4b723ccbf250028040c3fa6}
+      \strng{bibnamehash}{55d7afa00010e0ea88cf7be388134e11}
+      \strng{authorbibnamehash}{55d7afa00010e0ea88cf7be388134e11}
+      \strng{authornamehash}{55d7afa00010e0ea88cf7be388134e11}
+      \strng{authorfullhash}{84ef2f76a4b723ccbf250028040c3fa6}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{rfc2616}
+      \field{urlday}{8}
+      \field{urlmonth}{1}
+      \field{urlyear}{2022}
+      \field{year}{1999}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://datatracker.ietf.org/doc/html/rfc2616#section-10
+      \endverb
+      \verb{url}
+      \verb https://datatracker.ietf.org/doc/html/rfc2616#section-10
+      \endverb
+    \endentry
+    \entry{hedge:2005af}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=82dd723962c36a13d8e94c8533ed06e9}{%
+           family={Hedge},
+           familyi={H\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=639c8af44547e2097cda004cbc40acfc}{%
+           family={Sakr},
+           familyi={S\bibinitperiod},
+           given={W.},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1cc9a6fef261c6c620d53b6fe154022a}{%
+           family={Agarwal},
+           familyi={A\bibinitperiod},
+           given={A},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{026e067b83df7b762706d8f5a816fbfe}
+      \strng{fullhash}{026e067b83df7b762706d8f5a816fbfe}
+      \strng{bibnamehash}{026e067b83df7b762706d8f5a816fbfe}
+      \strng{authorbibnamehash}{026e067b83df7b762706d8f5a816fbfe}
+      \strng{authornamehash}{026e067b83df7b762706d8f5a816fbfe}
+      \strng{authorfullhash}{026e067b83df7b762706d8f5a816fbfe}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Proceedings of the Human Factors and Ergonomics Society Annual Meeting}
+      \field{number}{8}
+      \field{title}{Thermal Effects on Office Productivity}
+      \field{volume}{49}
+      \field{year}{2005}
+      \field{pages}{8}
+      \range{pages}{1}
+    \endentry
+    \entry{Lan:2012ah}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=806c136ffedecc2bbd5fc4db7e5bb27e}{%
+           family={Lan},
+           familyi={L\bibinitperiod},
+           given={L.},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e18eecc1b19c9d75049fe2638da63571}{%
+           family={Wargocki},
+           familyi={W\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4904f89d04a4c7922a4c7b7b53dcae14}{%
+           family={Lian},
+           familyi={L\bibinitperiod},
+           given={Z},
+           giveni={Z\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{3c090e322a28f91c21487f5951052cac}
+      \strng{fullhash}{3c090e322a28f91c21487f5951052cac}
+      \strng{bibnamehash}{3c090e322a28f91c21487f5951052cac}
+      \strng{authorbibnamehash}{3c090e322a28f91c21487f5951052cac}
+      \strng{authornamehash}{3c090e322a28f91c21487f5951052cac}
+      \strng{authorfullhash}{3c090e322a28f91c21487f5951052cac}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Rehva}
+      \field{title}{Optimal thermal environment improves performance of office work}
+      \field{year}{2012}
+      \field{pages}{12\bibrangedash 17}
+      \range{pages}{6}
+    \endentry
+    \entry{liu:2017aj}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=0c12ae96450bf90f74282991aa068345}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={T.},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4ba20cab839f1fa37eda3adfc1b61b0c}{%
+           family={Lin},
+           familyi={L\bibinitperiod},
+           given={C.},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=96f740e19666bbfccd8e0e7f82b2fdd6}{%
+           family={Huang},
+           familyi={H\bibinitperiod},
+           given={K.},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ff38b98d2dc65002f66d028a85b9d58d}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Y},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{826e24c781879eb1bc2b587aa8839b98}
+      \strng{fullhash}{92f9485d89db316b30ff6da83d88e7bb}
+      \strng{bibnamehash}{826e24c781879eb1bc2b587aa8839b98}
+      \strng{authorbibnamehash}{826e24c781879eb1bc2b587aa8839b98}
+      \strng{authornamehash}{826e24c781879eb1bc2b587aa8839b98}
+      \strng{authorfullhash}{92f9485d89db316b30ff6da83d88e7bb}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Applied Acoustics}
+      \field{title}{Effects of noise type, noise intensity, and illumination intensity on reading performance}
+      \field{volume}{120}
+      \field{year}{2017}
+      \field{pages}{70\bibrangedash 74}
+      \range{pages}{5}
+    \endentry
+    \entry{Imt.org:2015ag}{online}{}
       \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=7c3a70c2ccd6e4afa26f0178ccb6408e}{%
-           family={Other},
-           familyi={O\bibinitperiod},
-           given={A.\bibnamedelimi N.},
-           giveni={A\bibinitperiod\bibinitdelim N\bibinitperiod},
+        {{un=0,uniquepart=base,hash=d47b0983bfd8c84eca0f2fcc69c90e4c}{%
+           family={Market\bibnamedelima Transformation},
+           familyi={M\bibinitperiod\bibinitdelim T\bibinitperiod},
+           given={Institute},
+           giveni={I\bibinitperiod},
+           givenun=0,
+           prefix={for},
+           prefixi={f\bibinitperiod},
+           prefixun=0}}%
+      }
+      \strng{namehash}{d47b0983bfd8c84eca0f2fcc69c90e4c}
+      \strng{fullhash}{d47b0983bfd8c84eca0f2fcc69c90e4c}
+      \strng{bibnamehash}{d47b0983bfd8c84eca0f2fcc69c90e4c}
+      \strng{authorbibnamehash}{d47b0983bfd8c84eca0f2fcc69c90e4c}
+      \strng{authornamehash}{d47b0983bfd8c84eca0f2fcc69c90e4c}
+      \strng{authorfullhash}{d47b0983bfd8c84eca0f2fcc69c90e4c}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{ENERGY BENCHMARKING AND TRANSPARENCY}
+      \field{urlday}{8}
+      \field{urlmonth}{1}
+      \field{urlyear}{2022}
+      \field{year}{2015}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.imt.org/wp-content/uploads/2018/02/IMTBenefitsofBenchmarking_Online_June2015.pdf
+      \endverb
+      \verb{url}
+      \verb https://www.imt.org/wp-content/uploads/2018/02/IMTBenefitsofBenchmarking_Online_June2015.pdf
+      \endverb
+    \endentry
+    \entry{newman:2015ap}{book}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=b6be43602c2787d279f8522a7d9713db}{%
+           family={Newman},
+           familyi={N\bibinitperiod},
+           given={Sam},
+           giveni={S\bibinitperiod},
            givenun=0}}%
       }
       \list{publisher}{1}{%
-        {Publisher}%
+        {O'Reilly}%
       }
-      \strng{namehash}{7c3a70c2ccd6e4afa26f0178ccb6408e}
-      \strng{fullhash}{7c3a70c2ccd6e4afa26f0178ccb6408e}
-      \strng{bibnamehash}{7c3a70c2ccd6e4afa26f0178ccb6408e}
-      \strng{authorbibnamehash}{7c3a70c2ccd6e4afa26f0178ccb6408e}
-      \strng{authornamehash}{7c3a70c2ccd6e4afa26f0178ccb6408e}
-      \strng{authorfullhash}{7c3a70c2ccd6e4afa26f0178ccb6408e}
+      \strng{namehash}{b6be43602c2787d279f8522a7d9713db}
+      \strng{fullhash}{b6be43602c2787d279f8522a7d9713db}
+      \strng{bibnamehash}{b6be43602c2787d279f8522a7d9713db}
+      \strng{authorbibnamehash}{b6be43602c2787d279f8522a7d9713db}
+      \strng{authornamehash}{b6be43602c2787d279f8522a7d9713db}
+      \strng{authorfullhash}{b6be43602c2787d279f8522a7d9713db}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Building microservices}
+      \field{year}{2015}
+    \endentry
+    \entry{oseland:2012ak}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=e7b02432bfe6ecabd74f2007ede00382}{%
+           family={Oseland},
+           familyi={O\bibinitperiod},
+           given={N.},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5f0a69b0d34308cee30aac2f2b1e6800}{%
+           family={Burton},
+           familyi={B\bibinitperiod},
+           given={A},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{e803a6aa329eda01260dc269ed05723e}
+      \strng{fullhash}{e803a6aa329eda01260dc269ed05723e}
+      \strng{bibnamehash}{e803a6aa329eda01260dc269ed05723e}
+      \strng{authorbibnamehash}{e803a6aa329eda01260dc269ed05723e}
+      \strng{authornamehash}{e803a6aa329eda01260dc269ed05723e}
+      \strng{authorfullhash}{e803a6aa329eda01260dc269ed05723e}
       \field{sortinit}{O}
       \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
       \field{extradatescope}{labelyear}
       \field{labeldatesource}{year}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{edition}{10th}
-      \field{title}{{B}ook {T}itle}
-      \field{year}{2014}
+      \field{journaltitle}{Journal of Building Survey}
+      \field{number}{2}
+      \field{title}{Quantifying the impact of environmental conditions on worker performance for inputting to a business case to justify enhanced workplace design features}
+      \field{volume}{1}
+      \field{year}{2012}
+      \field{pages}{151\bibrangedash 164}
+      \range{pages}{14}
     \endentry
-    \entry{Smith:2012qr}{book}{}
-      \name{author}{2}{}{%
-        {{un=0,uniquepart=base,hash=6126f91a89611279e86182106bf09d1a}{%
-           family={Smith},
-           familyi={S\bibinitperiod},
-           given={J.\bibnamedelimi M.},
-           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=be76b5bf7fa911e76b7029cf81189081}{%
-           family={Jones},
-           familyi={J\bibinitperiod},
-           given={A.\bibnamedelimi B.},
-           giveni={A\bibinitperiod\bibinitdelim B\bibinitperiod},
+    \entry{richardson:2021al}{online}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=b577204a7c61f6bf5df3f6c8f34fa05a}{%
+           family={Richardson},
+           familyi={R\bibinitperiod},
+           given={C},
+           giveni={C\bibinitperiod},
            givenun=0}}%
       }
-      \list{publisher}{1}{%
-        {Publisher}%
+      \strng{namehash}{b577204a7c61f6bf5df3f6c8f34fa05a}
+      \strng{fullhash}{b577204a7c61f6bf5df3f6c8f34fa05a}
+      \strng{bibnamehash}{b577204a7c61f6bf5df3f6c8f34fa05a}
+      \strng{authorbibnamehash}{b577204a7c61f6bf5df3f6c8f34fa05a}
+      \strng{authornamehash}{b577204a7c61f6bf5df3f6c8f34fa05a}
+      \strng{authorfullhash}{b577204a7c61f6bf5df3f6c8f34fa05a}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Microservices Pattern: Database per service}
+      \field{urlday}{8}
+      \field{urlmonth}{1}
+      \field{urlyear}{2022}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://microservices.io/patterns/data/database-per-service.html
+      \endverb
+      \verb{url}
+      \verb https://microservices.io/patterns/data/database-per-service.html
+      \endverb
+    \endentry
+    \entry{sharp:2022am}{online}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=60c17eb98355db0fe5ce016db6c6f444}{%
+           family={Sharp},
+           familyi={S\bibinitperiod}}}%
       }
-      \strng{namehash}{6cda7f34da4828c776e9f66658f50983}
-      \strng{fullhash}{6cda7f34da4828c776e9f66658f50983}
-      \strng{bibnamehash}{6cda7f34da4828c776e9f66658f50983}
-      \strng{authorbibnamehash}{6cda7f34da4828c776e9f66658f50983}
-      \strng{authornamehash}{6cda7f34da4828c776e9f66658f50983}
-      \strng{authorfullhash}{6cda7f34da4828c776e9f66658f50983}
+      \strng{namehash}{60c17eb98355db0fe5ce016db6c6f444}
+      \strng{fullhash}{60c17eb98355db0fe5ce016db6c6f444}
+      \strng{bibnamehash}{60c17eb98355db0fe5ce016db6c6f444}
+      \strng{authorbibnamehash}{60c17eb98355db0fe5ce016db6c6f444}
+      \strng{authornamehash}{60c17eb98355db0fe5ce016db6c6f444}
+      \strng{authorfullhash}{60c17eb98355db0fe5ce016db6c6f444}
       \field{sortinit}{S}
       \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
       \field{extradatescope}{labelyear}
       \field{labeldatesource}{year}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{edition}{7th}
-      \field{title}{{B}ook {T}itle}
-      \field{year}{2012}
+      \field{title}{Monitor do współpracy w systemie Windows}
+      \field{urlday}{8}
+      \field{urlmonth}{1}
+      \field{urlyear}{2022}
+      \field{year}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.sharp.pl/cps/rde/xchg/pl/hs.xsl/-/html/windows-collaboration-display.htm
+      \endverb
+      \verb{url}
+      \verb https://www.sharp.pl/cps/rde/xchg/pl/hs.xsl/-/html/windows-collaboration-display.htm
+      \endverb
+    \endentry
+    \entry{vickers:2021an}{online}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=c09e8d9cd93d7dfd0b1e032993ccdae0}{%
+           family={Vickers},
+           familyi={V\bibinitperiod},
+           given={A},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{c09e8d9cd93d7dfd0b1e032993ccdae0}
+      \strng{fullhash}{c09e8d9cd93d7dfd0b1e032993ccdae0}
+      \strng{bibnamehash}{c09e8d9cd93d7dfd0b1e032993ccdae0}
+      \strng{authorbibnamehash}{c09e8d9cd93d7dfd0b1e032993ccdae0}
+      \strng{authornamehash}{c09e8d9cd93d7dfd0b1e032993ccdae0}
+      \strng{authorfullhash}{c09e8d9cd93d7dfd0b1e032993ccdae0}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Identity model customization in ASP.NET Core}
+      \field{urlday}{8}
+      \field{urlmonth}{1}
+      \field{urlyear}{2022}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://docs.microsoft.com/en-us/aspnet/core/security/authentication/customize-identity-model?view=aspnetcore-5.0#the-identity-model
+      \endverb
+      \verb{url}
+      \verb https://docs.microsoft.com/en-us/aspnet/core/security/authentication/customize-identity-model?view=aspnetcore-5.0#the-identity-model
+      \endverb
     \endentry
   \enddatalist
 \endrefsection

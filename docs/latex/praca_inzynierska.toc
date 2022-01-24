@@ -1,96 +1,98 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \babel@toc {polish}{}\relax 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{Streszczenie}{1}{}%
+\contentsline {section}{Streszczenie}{1}{Doc-Start}%
 \babel@toc {english}{}\relax 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{Summary}{1}{}%
+\contentsline {section}{Summary}{1}{Doc-Start}%
 \babel@toc {polish}{}\relax 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1}Temat pracy}{4}{}%
+\contentsline {section}{\numberline {1}Temat pracy}{4}{section.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2}Istniejące rozwiązania}{5}{}%
+\contentsline {section}{\numberline {2}Istniejące rozwiązania}{5}{section.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3}Założenia}{5}{}%
+\contentsline {section}{\numberline {3}Założenia}{5}{section.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4}Metodologia}{6}{}%
+\contentsline {section}{\numberline {4}Metodologia}{6}{section.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.1}Architektura systemu}{6}{}%
+\contentsline {subsection}{\numberline {4.1}Architektura systemu}{6}{subsection.4.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.1.1}Serwisy zorientowane usługowo}{6}{}%
+\contentsline {subsubsection}{\numberline {4.1.1}Serwisy zorientowane usługowo}{7}{subsubsection.4.1.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.1.2}Sprzężenie serwisów}{6}{}%
+\contentsline {subsubsection}{\numberline {4.1.2}Sprzężenie serwisów}{7}{subsubsection.4.1.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.1.3}Architektura systemu do zarządzania energią w pomieszczeniach biurowych}{6}{}%
+\contentsline {subsubsection}{\numberline {4.1.3}Spójność serwisów}{8}{subsubsection.4.1.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5}Przechowywanie danych}{6}{}%
+\contentsline {subsubsection}{\numberline {4.1.4}Architektura systemu do zarządzania energią w pomieszczeniach biurowych}{8}{subsubsection.4.1.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1}MySQL}{6}{}%
+\contentsline {section}{\numberline {5}Przechowywanie danych}{10}{section.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.1.1}Schemat adresów}{6}{}%
+\contentsline {subsection}{\numberline {5.1}MySQL}{11}{subsection.5.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.1.2}Schemat organizacji}{6}{}%
+\contentsline {subsubsection}{\numberline {5.1.1}Schemat adresów}{11}{subsubsection.5.1.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.1.3}Schemat reguł}{6}{}%
+\contentsline {subsubsection}{\numberline {5.1.2}Schemat organizacji}{11}{subsubsection.5.1.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.1.4}Schemat sensorów}{6}{}%
+\contentsline {subsubsection}{\numberline {5.1.3}Schemat reguł}{11}{subsubsection.5.1.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.1.5}Schemat użytkowników}{6}{}%
+\contentsline {subsubsection}{\numberline {5.1.4}Schemat sensorów}{12}{subsubsection.5.1.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.2}InfluxDB}{6}{}%
+\contentsline {subsubsection}{\numberline {5.1.5}Schemat użytkowników}{14}{subsubsection.5.1.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6}Komunikacja między serwisami}{6}{}%
+\contentsline {subsection}{\numberline {5.2}InfluxDB}{14}{subsection.5.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1}Broker wiadomości}{6}{}%
+\contentsline {section}{\numberline {6}Komunikacja między serwisami}{16}{section.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {6.1.1}MassTransit}{6}{}%
+\contentsline {subsection}{\numberline {6.1}Broker wiadomości}{16}{subsection.6.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.2}Styki}{7}{}%
+\contentsline {subsubsection}{\numberline {6.1.1}MassTransit}{18}{subsubsection.6.1.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {6.2.1}Styk mikrousługi danych adresów}{7}{}%
+\contentsline {subsection}{\numberline {6.2}Styki}{19}{subsection.6.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {6.2.2}Styk mikrousługi danych organizacji}{7}{}%
+\contentsline {subsubsection}{\numberline {6.2.1}Styk mikrousługi danych adresów}{20}{subsubsection.6.2.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {6.2.3}Styk mikrousługi danych reguł}{7}{}%
+\contentsline {subsubsection}{\numberline {6.2.2}Styk mikrousługi danych organizacji}{20}{subsubsection.6.2.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {6.2.4}Styk mikrousługi danych sensorów}{7}{}%
+\contentsline {subsubsection}{\numberline {6.2.3}Styk mikrousługi danych reguł}{20}{subsubsection.6.2.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {6.2.5}Styk mikrousługi mikrousługi aplikacyjnej administratorów}{7}{}%
+\contentsline {subsubsection}{\numberline {6.2.4}Styk mikrousługi danych sensorów}{20}{subsubsection.6.2.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7}Testy}{7}{}%
+\contentsline {subsubsection}{\numberline {6.2.5}Styk mikrousługi mikrousługi aplikacyjnej administratorów}{20}{subsubsection.6.2.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.1}Testy jednostkowe}{7}{}%
+\contentsline {section}{\numberline {7}Testy}{20}{section.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.2}Testy integracyjne}{7}{}%
+\contentsline {subsection}{\numberline {7.1}Testy jednostkowe}{20}{subsection.7.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.3}Testy end-2-end}{7}{}%
+\contentsline {subsection}{\numberline {7.2}Testy integracyjne}{21}{subsection.7.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.4}Automatyzacja testów}{7}{}%
+\contentsline {subsection}{\numberline {7.3}Testy end-2-end}{22}{subsection.7.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {8}Automatyzacja}{7}{}%
+\contentsline {subsection}{\numberline {7.4}Automatyzacja testów}{23}{subsection.7.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.1}Automatyzacja wdrożenia}{7}{}%
+\contentsline {section}{\numberline {8}Automatyzacja}{25}{section.8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.2}Ciągła integracja}{7}{}%
+\contentsline {subsection}{\numberline {8.1}Automatyzacja wdrożenia}{25}{subsection.8.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.3}Ciągłe dostarczanie}{7}{}%
+\contentsline {subsection}{\numberline {8.2}Ciągła integracja}{25}{subsection.8.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.4}Kubernetes}{7}{}%
+\contentsline {subsection}{\numberline {8.3}Ciągłe dostarczanie}{28}{subsection.8.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {8.4.1}Komponenty płaszczyzny sterowania}{7}{}%
+\contentsline {subsection}{\numberline {8.4}Kubernetes}{29}{subsection.8.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {8.4.2}Komponenty węzła}{7}{}%
+\contentsline {subsubsection}{\numberline {8.4.1}Komponenty płaszczyzny sterowania}{30}{subsubsection.8.4.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {9}Podsumowanie}{8}{}%
+\contentsline {subsubsection}{\numberline {8.4.2}Komponenty węzła}{31}{subsubsection.8.4.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.1}Możliwości rozszerzenia projektu}{8}{}%
+\contentsline {section}{\numberline {9}Podsumowanie}{35}{section.9}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {10}Bibliografia}{8}{}%
+\contentsline {subsection}{\numberline {9.1}Możliwości rozszerzenia projektu}{35}{subsection.9.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {11}Wykaz symboli i skrótów}{8}{}%
+\contentsline {section}{\numberline {10}Bibliografia}{36}{section.10}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {12}Spis rysunków}{8}{}%
+\contentsline {section}{\numberline {11}Wykaz symboli i skrótów}{37}{section.11}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {13}Spis tabel}{8}{}%
+\contentsline {section}{\numberline {12}Spis rysunków}{37}{section.12}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {14}Spis załączników}{8}{}%
+\contentsline {section}{\numberline {13}Spis tabel}{37}{section.13}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {14}Spis załączników}{37}{section.14}%
