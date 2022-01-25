@@ -42,7 +42,62 @@ paths:
           description: Not Found
           schema:
             $ref: '#/definitions/JsonApiError'
+  '/sensors-api/sensors/room-id/{roomId}':
+    get:
+      tags:
+        - Sensors
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - in: path
+          name: roomId
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/SensorDtoJsonApiDocument'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/JsonApiError'
+  /sensors-api/sensors/sensor-name:
+    post:
+      tags:
+        - Sensors
+      consumes:
+        - application/json-patch+json
+        - application/json
+        - text/json
+        - application/*+json
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/GetSensorBySensorNameCommand'
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/SensorDtoJsonApiDocument'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/JsonApiError'
 definitions:
+  GetSensorBySensorNameCommand:
+    type: object
+    properties:
+      sensorName:
+        type: string
   JsonApiError:
     type: object
     properties:
@@ -75,6 +130,8 @@ definitions:
       id:
         format: int64
         type: integer
+      sensorName:
+        type: string
       lastDataSentDate:
         format: date-time
         type: string

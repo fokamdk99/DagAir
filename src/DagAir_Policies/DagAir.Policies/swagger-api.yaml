@@ -111,6 +111,33 @@ paths:
           description: Bad Request
           schema:
             $ref: '#/definitions/JsonApiError'
+  /policies-api/policies/past-policies:
+    post:
+      tags:
+        - Policies
+      consumes:
+        - application/json-patch+json
+        - application/json
+        - text/json
+        - application/*+json
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/GetPastPoliciesCommand'
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/PastMeasurementsDtoJsonApiDocument'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/JsonApiError'
 definitions:
   AddNewExpectedRoomConditionsCommand:
     type: object
@@ -133,30 +160,26 @@ definitions:
         format: int64
         type: integer
       temperature:
-        format: float
+        format: double
         type: number
       illuminance:
-        format: float
-        type: number
+        format: int32
+        type: integer
       humidity:
-        format: float
+        format: double
         type: number
       temperatureMargin:
-        format: float
+        format: double
         type: number
       illuminanceMargin:
-        format: float
+        format: double
         type: number
       humidityMargin:
-        format: float
+        format: double
         type: number
       roomPolicyId:
         format: int64
         type: integer
-      roomPolicies:
-        type: array
-        items:
-          $ref: '#/definitions/RoomPolicyDto'
   ExpectedRoomConditionsDtoJsonApiDocument:
     required:
       - data
@@ -164,6 +187,38 @@ definitions:
     properties:
       data:
         $ref: '#/definitions/ExpectedRoomConditionsDto'
+  GetPastPoliciesCommand:
+    type: object
+    properties:
+      roomId:
+        format: int64
+        type: integer
+      historicMeasurements:
+        type: array
+        items:
+          $ref: '#/definitions/HistoricMeasurement'
+  HistoricMeasurement:
+    type: object
+    properties:
+      temperature:
+        format: double
+        type: number
+      illuminance:
+        format: int32
+        type: integer
+      humidity:
+        format: double
+        type: number
+      date:
+        format: date-time
+        type: string
+  HistoricMeasurementRoomPolicyDtoTuple:
+    type: object
+    properties:
+      item1:
+        $ref: '#/definitions/HistoricMeasurement'
+      item2:
+        $ref: '#/definitions/RoomPolicyDto'
   JsonApiError:
     type: object
     properties:
@@ -172,6 +227,20 @@ definitions:
         readOnly: true
       messageDetails:
         type: string
+  PastMeasurementsDto:
+    type: object
+    properties:
+      measurements:
+        type: array
+        items:
+          $ref: '#/definitions/HistoricMeasurementRoomPolicyDtoTuple'
+  PastMeasurementsDtoJsonApiDocument:
+    required:
+      - data
+    type: object
+    properties:
+      data:
+        $ref: '#/definitions/PastMeasurementsDto'
   RoomPolicyCategoryDto:
     type: object
     properties:
@@ -183,10 +252,6 @@ definitions:
       categoryNumber:
         format: int32
         type: integer
-      roomPolicies:
-        type: array
-        items:
-          $ref: '#/definitions/RoomPolicyDto'
   RoomPolicyDto:
     type: object
     properties:
@@ -199,6 +264,12 @@ definitions:
       endDate:
         format: date-time
         type: string
+      startHour:
+        format: int32
+        type: integer
+      endHour:
+        format: int32
+        type: integer
       repeatOn:
         type: string
       expectedConditionsId:

@@ -101,6 +101,26 @@ paths:
           description: Not Found
           schema:
             $ref: '#/definitions/JsonApiError'
+    delete:
+      tags:
+        - AffiliatesAdmin
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - in: path
+          name: affiliateId
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: Success
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/JsonApiError'
   /admin-node/organizations:
     get:
       tags:
@@ -169,6 +189,52 @@ paths:
           description: Not Found
           schema:
             $ref: '#/definitions/JsonApiError'
+    delete:
+      tags:
+        - FacilitiesAdmin
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - in: path
+          name: organizationId
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: Success
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/JsonApiError'
+  /admin-node/rooms/get-room:
+    post:
+      tags:
+        - RoomsAdmin
+      consumes:
+        - application/json
+        - text/json
+        - application/*+json
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/GetRoomCommand'
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/AdminNodeRoomDtoJsonApiDocument'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/JsonApiError'
   /admin-node/rooms:
     post:
       tags:
@@ -197,6 +263,53 @@ paths:
             $ref: '#/definitions/JsonApiError'
         '409':
           description: Conflict
+          schema:
+            $ref: '#/definitions/JsonApiError'
+  '/admin-node/rooms/{roomId}':
+    delete:
+      tags:
+        - RoomsAdmin
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - in: path
+          name: roomId
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: Success
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/JsonApiError'
+  /admin-node/rooms/historic-measurements:
+    post:
+      tags:
+        - SensorStateHistoryAdmin
+      consumes:
+        - application/json
+        - text/json
+        - application/*+json
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/GetRoomCommand'
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/PastMeasurementsDtoJsonApiDocument'
+        '400':
+          description: Bad Request
           schema:
             $ref: '#/definitions/JsonApiError'
 definitions:
@@ -300,6 +413,20 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/AdminNodeOrganizationDto'
+  AdminNodeRoomDto:
+    type: object
+    properties:
+      roomDto:
+        $ref: '#/definitions/RoomDto'
+      pastMeasurements:
+        $ref: '#/definitions/PastMeasurementsDto'
+  AdminNodeRoomDtoJsonApiDocument:
+    required:
+      - data
+    type: object
+    properties:
+      data:
+        $ref: '#/definitions/AdminNodeRoomDto'
   AffiliateDto:
     required:
       - name
@@ -357,6 +484,64 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/AddressDto'
+  ExpectedRoomConditionsDto:
+    type: object
+    properties:
+      id:
+        format: int64
+        type: integer
+      temperature:
+        format: double
+        type: number
+      illuminance:
+        format: int32
+        type: integer
+      humidity:
+        format: double
+        type: number
+      temperatureMargin:
+        format: double
+        type: number
+      illuminanceMargin:
+        format: double
+        type: number
+      humidityMargin:
+        format: double
+        type: number
+      roomPolicyId:
+        format: int64
+        type: integer
+  GetRoomCommand:
+    type: object
+    properties:
+      roomId:
+        format: int64
+        type: integer
+      numberOfRecords:
+        format: int32
+        type: integer
+  HistoricMeasurement:
+    type: object
+    properties:
+      temperature:
+        format: double
+        type: number
+      illuminance:
+        format: int32
+        type: integer
+      humidity:
+        format: double
+        type: number
+      date:
+        format: date-time
+        type: string
+  HistoricMeasurementRoomPolicyDtoTuple:
+    type: object
+    properties:
+      item1:
+        $ref: '#/definitions/HistoricMeasurement'
+      item2:
+        $ref: '#/definitions/RoomPolicyDto'
   JsonApiError:
     type: object
     properties:
@@ -389,6 +574,20 @@ definitions:
     properties:
       data:
         $ref: '#/definitions/OrganizationDto'
+  PastMeasurementsDto:
+    type: object
+    properties:
+      measurements:
+        type: array
+        items:
+          $ref: '#/definitions/HistoricMeasurementRoomPolicyDtoTuple'
+  PastMeasurementsDtoJsonApiDocument:
+    required:
+      - data
+    type: object
+    properties:
+      data:
+        $ref: '#/definitions/PastMeasurementsDto'
   PostalCodeDto:
     required:
       - number
@@ -409,9 +608,6 @@ definitions:
       id:
         format: int64
         type: integer
-      uniqueRoomId:
-        format: uuid
-        type: string
       number:
         type: string
       floor:
@@ -429,3 +625,47 @@ definitions:
     properties:
       data:
         $ref: '#/definitions/RoomDto'
+  RoomPolicyCategoryDto:
+    type: object
+    properties:
+      id:
+        format: int64
+        type: integer
+      name:
+        type: string
+      categoryNumber:
+        format: int32
+        type: integer
+  RoomPolicyDto:
+    type: object
+    properties:
+      id:
+        format: int64
+        type: integer
+      startDate:
+        format: date-time
+        type: string
+      endDate:
+        format: date-time
+        type: string
+      startHour:
+        format: int32
+        type: integer
+      endHour:
+        format: int32
+        type: integer
+      repeatOn:
+        type: string
+      expectedConditionsId:
+        format: int64
+        type: integer
+      categoryId:
+        format: int64
+        type: integer
+      roomId:
+        format: int64
+        type: integer
+      expectedConditions:
+        $ref: '#/definitions/ExpectedRoomConditionsDto'
+      category:
+        $ref: '#/definitions/RoomPolicyCategoryDto'

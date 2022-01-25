@@ -74,6 +74,26 @@ paths:
           description: Not Found
           schema:
             $ref: '#/definitions/JsonApiError'
+    delete:
+      tags:
+        - Affiliates
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - in: path
+          name: affiliateId
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: Success
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/JsonApiError'
   /identity:
     get:
       tags:
@@ -156,6 +176,26 @@ paths:
           description: Not Found
           schema:
             $ref: '#/definitions/JsonApiError'
+    delete:
+      tags:
+        - Organizations
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - in: path
+          name: organizationId
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: Success
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/JsonApiError'
   '/facilities-api/rooms/{roomId}':
     get:
       tags:
@@ -177,6 +217,26 @@ paths:
           description: Success
           schema:
             $ref: '#/definitions/RoomDtoJsonApiDocument'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/JsonApiError'
+    delete:
+      tags:
+        - Room
+      produces:
+        - text/plain
+        - application/json
+        - text/json
+      parameters:
+        - in: path
+          name: roomId
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: Success
         '404':
           description: Not Found
           schema:
@@ -315,9 +375,6 @@ definitions:
       id:
         format: int64
         type: integer
-      uniqueRoomId:
-        format: uuid
-        type: string
       number:
         type: string
       floor:
