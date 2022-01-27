@@ -1,0 +1,12 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\babel@toc {polish}{}\relax 
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Architektura systemu\relax }}{15}{figure.caption.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Schemat protokołu AMQP 0-9-1. Źródło: \href {https://www.rabbitmq.com/tutorials/amqp-concepts.html}{Schemat AMQP}\relax }}{24}{figure.caption.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Rodzaje połączenia z brokerem wiadomości\relax }}{28}{figure.caption.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Rodzaje testów. Źródło: \cite {newman2015}\relax }}{36}{figure.caption.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {9.1}{\ignorespaces Porównanie różnych metod uruchamiania aplikacji. Źródło: \href {https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/}{What is Kubernetes?}\relax }}{55}{figure.caption.8}%

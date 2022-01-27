@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (MiKTeX 21.12.10) (preloaded format=xelatex 2022.1.22)  24 JAN 2022 21:10
+This is XeTeX, Version 3.141592653-2.6-0.999993 (MiKTeX 21.12.10) (preloaded format=xelatex 2022.1.22)  27 JAN 2022 01:45
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -574,36 +574,39 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 286.
 )
 \Hy@SectionHShift=\skip78
-) (C:\Users\01143844\AppData\Local\Programs\MiKTeX\tex/latex/graphics\color.sty
-Package: color 2021/12/07 v1.3c Standard LaTeX Color (DPC)
- (C:\Users\01143844\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cfg
-File: color.cfg 2016/01/02 v1.6 sample color configuration
-)
-Package color Info: Driver file: xetex.def on input line 149.
+) (C:\Users\01143844\AppData\Local\Programs\MiKTeX\tex/latex/makecell\makecell.sty
+Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
+\rotheadsize=\dimen189
+\c@nlinenum=\count435
+\TeXr@lab=\toks29
 ) (C:\Users\01143844\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.sty
-\lst@mode=\count435
+\lst@mode=\count436
 \lst@gtempboxa=\box57
-\lst@token=\toks29
-\lst@length=\count436
-\lst@currlwidth=\dimen189
-\lst@column=\count437
-\lst@pos=\count438
-\lst@lostspace=\dimen190
-\lst@width=\dimen191
-\lst@newlines=\count439
-\lst@lineno=\count440
-\lst@maxwidth=\dimen192
+\lst@token=\toks30
+\lst@length=\count437
+\lst@currlwidth=\dimen190
+\lst@column=\count438
+\lst@pos=\count439
+\lst@lostspace=\dimen191
+\lst@width=\dimen192
+\lst@newlines=\count440
+\lst@lineno=\count441
+\lst@maxwidth=\dimen193
  (C:\Users\01143844\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
 File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
-\c@lstnumber=\count441
-\lst@skipnumbers=\count442
+\c@lstnumber=\count442
+\lst@skipnumbers=\count443
 \lst@framebox=\box58
 ) (C:\Users\01143844\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.cfg
 File: listings.cfg 2020/03/24 1.8d listings configuration
 ))
 Package: listings 2020/03/24 1.8d (Carsten Heinz)
- (C:\Users\01143844\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
-File: lstlang1.sty 2020/03/24 1.8d listings language file
+ (C:\Users\01143844\AppData\Local\Programs\MiKTeX\tex/latex/graphics\color.sty
+Package: color 2021/12/07 v1.3c Standard LaTeX Color (DPC)
+ (C:\Users\01143844\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: xetex.def on input line 149.
 )
 
 Package fontspec Info: Font family 'Verdana(0)' created for font 'Verdana'
@@ -629,6 +632,9 @@ Package fontspec Info: Font family 'Verdana(0)' created for font 'Verdana'
 (fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.:
 (fontspec)             <->"Verdana/BI/OT:script=latn;language=dflt;+smcp;mapping=tex-text;"
 
+ (C:\Users\01143844\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+File: lstlang1.sty 2020/03/24 1.8d listings language file
+)
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
@@ -641,30 +647,30 @@ LaTeX Warning: Unused global option(s):
 (praca_inzynierska.aux)
 \openout1 = `praca_inzynierska.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 51.
-LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 51.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 54.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 54.
  (C:\Users\01143844\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1cmr.fd
 File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -706,56 +712,56 @@ Package fontspec Info: Adjusting the maths setup (use [no-math] to avoid
 
 \symlegacymaths=\mathgroup4
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 51.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 51.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 51.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 51.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 51.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 51.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 51.
-LaTeX Font Info:    Redeclaring math accent \check on input line 51.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 51.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 51.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 51.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 51.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 51.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 51.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 51.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 51.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 51.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 51.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 51.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 51.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 51.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 51.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 51.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 51.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 54.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 54.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 54.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 54.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 54.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 54.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 54.
+LaTeX Font Info:    Redeclaring math accent \check on input line 54.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 54.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 54.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 54.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 54.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 54.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 54.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 54.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 54.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 54.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 54.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 54.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 54.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 54.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 54.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 54.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 54.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 51.
+(Font)              `operators' in the math version `normal' on input line 54.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/Verdana(0)/m/n on input line 51.
+(Font)                  OT1/cmr/m/n --> TU/Verdana(0)/m/n on input line 54.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 51.
+(Font)              `operators' in the math version `bold' on input line 54.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/Verdana(0)/m/n on input line 51.
+(Font)                  OT1/cmr/bx/n --> TU/Verdana(0)/m/n on input line 54.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  TU/Verdana(0)/m/n --> TU/Verdana(0)/m/n on input line 51.
+(Font)                  TU/Verdana(0)/m/n --> TU/Verdana(0)/m/n on input line 54.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> TU/Verdana(0)/m/it on input line 51.
+(Font)                  OT1/cmr/m/it --> TU/Verdana(0)/m/it on input line 54.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> TU/Verdana(0)/b/n on input line 51.
+(Font)                  OT1/cmr/bx/n --> TU/Verdana(0)/b/n on input line 54.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 51.
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 54.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 51.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 54.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  TU/Verdana(0)/m/n --> TU/Verdana(0)/b/n on input line 51.
+(Font)                  TU/Verdana(0)/m/n --> TU/Verdana(0)/b/n on input line 54.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> TU/Verdana(0)/b/it on input line 51.
+(Font)                  OT1/cmr/bx/it --> TU/Verdana(0)/b/it on input line 54.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 51.
+(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 54.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 51.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 54.
 Package biblatex Info: Trying to load language 'polish'...
 Package biblatex Info: ... file 'polish.lbx' found.
 (C:\Users\01143844\AppData\Local\Programs\MiKTeX\tex/latex/biblatex/lbx\polish.lbx
@@ -783,16 +789,16 @@ Package: blx-case-expl3 2020/12/31 v3.16 expl3 case changing code for biblatex
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'praca_inzynierska.bbl' found.
  (praca_inzynierska.bbl)
-Package biblatex Info: Reference section=0 on input line 51.
-Package biblatex Info: Reference segment=0 on input line 51.
-LaTeX Info: Redefining \celsius on input line 51.
-Package gensymb Info: Faking symbols for \degree and \celsius on input line 51.
+Package biblatex Info: Reference section=0 on input line 54.
+Package biblatex Info: Reference segment=0 on input line 54.
+LaTeX Info: Redefining \celsius on input line 54.
+Package gensymb Info: Faking symbols for \degree and \celsius on input line 54.
 
 
 Package gensymb Warning: Not defining \perthousand.
 
-LaTeX Info: Redefining \ohm on input line 51.
-Package gensymb Info: Using \Omega for \ohm on input line 51.
+LaTeX Info: Redefining \ohm on input line 54.
+Package gensymb Info: Using \Omega for \ohm on input line 54.
 
 Package gensymb Warning: Not defining \micro.
 
@@ -800,7 +806,7 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring OFF on input line 51.
+Package hyperref Info: Link coloring OFF on input line 54.
 (C:\Users\01143844\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
  (C:\Users\01143844\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.sty
@@ -808,246 +814,304 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (C:\Users\01143844\AppData\Local\Programs\MiKTeX\tex/generic/gettitlestring\gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count443
+\c@section@level=\count444
 )
-LaTeX Info: Redefining \ref on input line 51.
-LaTeX Info: Redefining \pageref on input line 51.
-LaTeX Info: Redefining \nameref on input line 51.
+LaTeX Info: Redefining \ref on input line 54.
+LaTeX Info: Redefining \pageref on input line 54.
+LaTeX Info: Redefining \nameref on input line 54.
  (praca_inzynierska.out) (praca_inzynierska.out)
 \@outlinefile=\write4
 \openout4 = `praca_inzynierska.out'.
 
-\c@lstlisting=\count444
+\c@lstlisting=\count445
+File: images/pw_logo.jpg Graphic file (type bmp)
+<images/pw_logo.jpg>
 File: images/oswiadczenie_o_samedzielnosci.jpg Graphic file (type bmp)
 <images/oswiadczenie_o_samedzielnosci.jpg>
 
-Overfull \hbox (14.22636pt too wide) in paragraph at lines 89--90
+Overfull \hbox (14.22636pt too wide) in paragraph at lines 117--118
 [][] 
  []
 
 [1
 
-]
+] [2]
 Overfull \vbox (6.31305pt too high) has occurred while \output is active []
 
- [2] (praca_inzynierska.toc [3])
+ [3] (praca_inzynierska.toc [4
+
+])
 \tf@toc=\write5
 \openout5 = `praca_inzynierska.toc'.
 
- [4] [5] [6] [7]
+ [5] [6
+
+] [7
+
+] [8
+
+] [9] [10
+
+] [11]
 File: images/architektura.jpg Graphic file (type bmp)
 <images/architektura.jpg>
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[8] [9] [10]
-Underfull \hbox (badness 4832) in paragraph at lines 529--529
+ [12] [13] [14]
+Underfull \hbox (badness 4832) in paragraph at lines 557--557
 []|\TU/Verdana(0)/m/n/10.95 Każdy kraj może
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 529--529
+Underfull \hbox (badness 10000) in paragraph at lines 557--557
 \TU/Verdana(0)/m/n/10.95 występować w
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 529--529
+Underfull \hbox (badness 10000) in paragraph at lines 557--557
 []|\TU/Verdana(0)/m/n/10.95 Każde miasto
  []
 
 
-Underfull \hbox (badness 2326) in paragraph at lines 529--529
+Underfull \hbox (badness 2326) in paragraph at lines 557--557
 \TU/Verdana(0)/m/n/10.95 może występować
  []
 
 
-Underfull \hbox (badness 6236) in paragraph at lines 529--529
+Underfull \hbox (badness 6236) in paragraph at lines 557--557
 []|\TU/Verdana(0)/m/n/10.95 Każdy kod pocz-
  []
 
 
-Underfull \hbox (badness 1762) in paragraph at lines 529--529
+Underfull \hbox (badness 1762) in paragraph at lines 557--557
 []|\TU/Verdana(0)/m/n/10.95 Każda ulica może
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 529--529
+Underfull \hbox (badness 10000) in paragraph at lines 557--557
 \TU/Verdana(0)/m/n/10.95 występować w
  []
 
 
-Underfull \hbox (badness 2012) in paragraph at lines 529--529
+Underfull \hbox (badness 2012) in paragraph at lines 557--557
 []|\TU/Verdana(0)/m/n/10.95 Każdy numer bu-
  []
 
+[15
 
-Underfull \hbox (badness 2626) in paragraph at lines 575--575
+]
+Underfull \hbox (badness 2626) in paragraph at lines 603--603
 []|\TU/Verdana(0)/m/n/10.95 Każdy organizacja
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 575--575
+Underfull \hbox (badness 10000) in paragraph at lines 603--603
 \TU/Verdana(0)/m/n/10.95 może posiadać
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 575--575
+Underfull \hbox (badness 10000) in paragraph at lines 603--603
 []|\TU/Verdana(0)/m/n/10.95 Każdy oddział
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 575--575
+Underfull \hbox (badness 10000) in paragraph at lines 603--603
 \TU/Verdana(0)/m/n/10.95 może posiadać
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 622--622
+[16]
+Underfull \hbox (badness 10000) in paragraph at lines 650--650
 []|\TU/Verdana(0)/m/n/10.95 Każda kategoria
  []
 
 
-Underfull \hbox (badness 2158) in paragraph at lines 622--622
+Underfull \hbox (badness 2158) in paragraph at lines 650--650
 \TU/Verdana(0)/m/n/10.95 może być przypi-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 622--622
+Underfull \hbox (badness 10000) in paragraph at lines 650--650
 []|\TU/Verdana(0)/m/n/10.95 Expected room
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 622--622
+Underfull \hbox (badness 10000) in paragraph at lines 650--650
 []|\TU/Verdana(0)/m/n/10.95 Ten sam zbiór
  []
 
 
-Underfull \hbox (badness 2932) in paragraph at lines 622--622
+Underfull \hbox (badness 2932) in paragraph at lines 650--650
 \TU/Verdana(0)/m/n/10.95 oczekiwanych wa-
  []
 
 
-Underfull \hbox (badness 1127) in paragraph at lines 622--622
+Underfull \hbox (badness 1127) in paragraph at lines 650--650
 \TU/Verdana(0)/m/n/10.95 runków może być
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 622--622
+Underfull \hbox (badness 10000) in paragraph at lines 650--650
 \TU/Verdana(0)/m/n/10.95 przypisany do
  []
 
-[11]
-Underfull \hbox (badness 10000) in paragraph at lines 664--664
+
+Underfull \hbox (badness 10000) in paragraph at lines 692--692
 []|\TU/Verdana(0)/m/n/10.95 Każdy producent
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 664--664
+Underfull \hbox (badness 10000) in paragraph at lines 692--692
 \TU/Verdana(0)/m/n/10.95 może oferować
  []
 
 
-Underfull \hbox (badness 1281) in paragraph at lines 664--664
+Underfull \hbox (badness 1281) in paragraph at lines 692--692
 \TU/Verdana(0)/m/n/10.95 wiele modeli sen-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 664--664
+Underfull \hbox (badness 10000) in paragraph at lines 692--692
 \TU/Verdana(0)/m/n/10.95 być wyporduko-
  []
 
-[12] [13]
-Underfull \hbox (badness 5161) in paragraph at lines 730--730
+[17]
+Underfull \hbox (badness 5161) in paragraph at lines 758--758
 \TU/Verdana(0)/m/n/10.95 nikowi może być
  []
 
 
-Underfull \hbox (badness 5161) in paragraph at lines 730--730
+Underfull \hbox (badness 5161) in paragraph at lines 758--758
 \TU/Verdana(0)/m/n/10.95 nikowi może być
  []
 
 
-Underfull \hbox (badness 4569) in paragraph at lines 730--730
+Underfull \hbox (badness 4569) in paragraph at lines 758--758
 []|\TU/Verdana(0)/m/n/10.95 Każdy użytkownik
  []
 
 
-Underfull \hbox (badness 4569) in paragraph at lines 730--730
+Underfull \hbox (badness 4569) in paragraph at lines 758--758
 []|\TU/Verdana(0)/m/n/10.95 Każdy użytkownik
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 730--730
+Underfull \hbox (badness 10000) in paragraph at lines 758--758
 \TU/Verdana(0)/m/n/10.95 może posiadać
  []
 
 
-Underfull \hbox (badness 5008) in paragraph at lines 730--730
+Underfull \hbox (badness 5008) in paragraph at lines 758--758
 []|\TU/Verdana(0)/m/n/10.95 Każdej roli może
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 730--730
+Underfull \hbox (badness 10000) in paragraph at lines 758--758
 \TU/Verdana(0)/m/n/10.95 być przypisanych
  []
 
 
-Underfull \hbox (badness 5161) in paragraph at lines 730--730
+Underfull \hbox (badness 5161) in paragraph at lines 758--758
 []|\TU/Verdana(0)/m/n/10.95 Każda rola może
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 730--730
+Underfull \hbox (badness 10000) in paragraph at lines 758--758
 \TU/Verdana(0)/m/n/10.95 wielu użytkowni-
  []
 
-[14] [15]
+[18] [19] [20]
 File: images/amqp_schema.jpg Graphic file (type bmp)
 <images/amqp_schema.jpg>
- [16] [17] [18] [19]
+ [21
+
+] [22]
+
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 875.
+
+[23]
+File: images/rabbitmq_schema.jpg Graphic file (type bmp)
+<images/rabbitmq_schema.jpg>
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[24]
+Overfull \hbox (13.2184pt too wide) in alignment at lines 1101--1101
+[][][] 
+ []
+
+[25] [26]
+
+LaTeX Warning: Text page 27 contains only floats.
+
+[27]
+Overfull \vbox (51.48534pt too high) has occurred while \output is active []
+
+ [28] [29] [30] [31] [32] [33]
 File: images/test_types.jpg Graphic file (type bmp)
 <images/test_types.jpg>
- [20] [21]
-Overfull \hbox (80.14307pt too wide) in paragraph at lines 1026--1027
-[][][][]  
- []
+ [34
 
-[22] [23] [24] [25] [26] [27]
-Overfull \hbox (21.01259pt too wide) in paragraph at lines 1288--1289
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
+] [35] [36] [37] [38] [39
 
-[28]
+] [40] [41] [42] [43] [44
+
+] [45] [46] [47] [48] [49] [50]
 File: images/deployment_types.jpg Graphic file (type bmp)
 <images/deployment_types.jpg>
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[29] [30] [31] [32] [33] [34] [35]
-Overfull \hbox (35.20436pt too wide) in paragraph at lines 1646--1646
+[51] [52] [53] [54] [55] [56] [57] [58
+
+] [59
+
+]
+Overfull \hbox (35.20436pt too wide) in paragraph at lines 2990--2990
 \TU/Verdana(0)/m/it/10.95 RENCY\TU/Verdana(0)/m/n/10.95 . \TU/Verdana(0)/m/sc/10.95 url\TU/Verdana(0)/m/n/10.95 : []$[][][][][] [] [] [] [][][] [] [][][] [] [][][] [] [][] [][] [][][][][][][] [] [][][][][][][] [] [][][][] [] [][] [] [][][][][][][][][][][][][][][][][][][][][][][][][] []
  []
 
 
-Overfull \hbox (8.68619pt too wide) in paragraph at lines 1646--1646
+Overfull \hbox (8.68619pt too wide) in paragraph at lines 2990--2990
 [][][][][][][][][][][][][] [] [][] [] [][][][][][][][] [] [][][][] [] [][][][][][][][] [][] [][][] [][] [][][][][][][] [] [][][][]$[] \TU/Verdana(0)/m/n/10.95 (term. wiz. 08.01.2022). 
  []
 
-[36] [37] (praca_inzynierska.aux)
+[60
+
+] [61
+
+] [62
+
+] (praca_inzynierska.lof)
+\tf@lof=\write6
+\openout6 = `praca_inzynierska.lof'.
+
+ [63
+
+] [64
+
+] (praca_inzynierska.lot [65
+
+])
+\tf@lot=\write7
+\openout7 = `praca_inzynierska.lot'.
+
+ [66] [67
+
+] (praca_inzynierska.aux)
 Package rerunfilecheck Info: File `praca_inzynierska.out' has not changed.
-(rerunfilecheck)             Checksum: EAB4D5DEA0A0004FCF3D315D0B8DE242;7553.
+(rerunfilecheck)             Checksum: 9B70C1FD240D2B727154AF96BBB685CE;7922.
 Package logreq Info: Writing requests to 'praca_inzynierska.run.xml'.
 \openout1 = `praca_inzynierska.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 24034 strings out of 411044
- 461011 string characters out of 2824781
- 1336074 words of memory out of 3000000
- 44426 multiletter control sequences out of 15000+600000
- 411538 words of font info for 71 fonts, out of 8000000 for 9000
+ 24379 strings out of 411044
+ 466155 string characters out of 2824781
+ 1338729 words of memory out of 3000000
+ 44760 multiletter control sequences out of 15000+600000
+ 410401 words of font info for 67 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 73i,10n,85p,1222b,5598s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 73i,15n,85p,1222b,6588s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on praca_inzynierska.xdv (37 pages, 757112 bytes).
+Output written on praca_inzynierska.xdv (67 pages, 1162852 bytes).

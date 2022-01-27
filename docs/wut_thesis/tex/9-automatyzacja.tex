@@ -1,0 +1,643 @@
+\newpage
+\section{Automatyzacja}
+
+Pełna automatyzacja regularnie wykonywanych zadań, pozwalająca znacznie przyspieszyć 
+wdrażanie całości systemu, była jednym z najważniejszych zagadnień poruszonych w 
+trakcie tworzenia pracy. Prawidłowe podejście do wdrażania aplikacji znacząco wpływa 
+na szybkość, z jaką zmiany wprowadzone lokalnie mogą zostać wykorzystane w 
+produkcyjnej wersji systemu. 
+
+\subsection{Docker}
+
+Docker jest otwartą platformą do rozwoju oraz wdrażania aplikacji. Pozwala oddzielić aplikacje od
+dostępnej na danym serwerze infrastruktury, co pozwala przyspieszyć proces dostarczania najnowszych
+wersji systemów. 
+
+Platforma pozwala zapewnia możliwość spakowania i uruchomienia aplikacji w odizolowanym środowisku
+zwanym kontenerem. Izolacja powoduje, że możliwe jest bezpieczne uruchomienie wielu kontenerów na tym
+samym hoście. Platforma pozwala zarządzać infrastrukturą potrzebną do uruchomienia kontenera, dzięki
+czemu eliminowany jest problem instalacji wszystkich wymaganych zależności na każdym serwerze z osobna.
+
+Docker wykorzystuje architekturę typu klient-serwer. Klient komunikuje się z tzw. docker daemon, którego
+zadaniem jest budowanie, uruchamianie oraz dystrybuowanie kontenerów. 
+
+W celu utworzenia kontenerów należy w pierwszej kolejności utworzyć ich obraz, który jest szablonem
+zawierającym instrukcje dotyczące budowy. Szablony są przechowywane w plikach o nazwie Dockerfile.
+Każda instrukcja tworzy jedną warstwę obrazu. Mechanizm ten jest szczególnie przydatny, gdy szablony są
+regularnie rozwijane o nowe instrukcje. Wtedy, przy ponownym budowaniu obrazu, tylko warstwy, które
+uległy zmianie są odświeżane. Pozwala to znacznie przyspieszyć proces budowania obrazów.
+
+Kontener jest instancją obrazu, którą można uruchomić. Działa on tak długo, dopóki nie zostanie
+zakończony proces główny.
+
+Przykładowy szablon, który przedstawia obraz Addresses Data Service, został przedstawiony poniżej:
+
+\begin{lstlisting}
+FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+
+FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+WORKDIR /app
+COPY ["./DagAir_Addresses/DagAir.Addresses/", 
+"./DagAir_Addresses/DagAir.Addresses/"]
+COPY ["./DagAir_Addresses/DagAir.Addresses.Data/", 
+"./DagAir_Addresses/DagAir.Addresses.Data/"]
+COPY ["./DagAir_Addresses/DagAir.Addresses.Contracts/", 
+"./DagAir_Addresses/DagAir.Addresses.Contracts/"]
+COPY ["./DagAir_Components/DagAir.Components.ApiModels/", 
+"./DagAir_Components/DagAir.Components.ApiModels/"]
+COPY ["./DagAir_Components/DagAir.Components.Healthchecks/", 
+"./DagAir_Components/DagAir.Components.Healthchecks/"]
+COPY ["./DagAir_Components/DagAir.Components.Logging/", 
+"./DagAir_Components/DagAir.Components.Logging/"]
+
+RUN dotnet restore 
+    ./DagAir_Addresses/DagAir.Addresses
+    /DagAir.Addresses.csproj
+RUN dotnet build 
+    ./DagAir_Addresses/DagAir.Addresses
+    /DagAir.Addresses.csproj 
+    --no-restore
+RUN dotnet publish 
+    ./DagAir_Addresses/DagAir.Addresses
+    /DagAir.Addresses.csproj 
+    -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=build /app/publish .
+
+ENTRYPOINT ["dotnet", "DagAir.Addresses.dll"]
+\end{lstlisting}
+
+Pierwszym etapem jest utworzenie obrazu pośredniego o nazwie base. Oparty on jest na obrazie 
+aspnet:5.0 dostępnym publicznie na platformie 
+\href{https://hub.docker.com/_/microsoft-dotnet-aspnet}{dockerhub}. Na tym etapie deklarowane są
+numery portów, na których aplikacja powinna nasłuchiwać na przychodzące żądania.
+
+Drugim etapem jest utworzenie obrazu pośredniego, opartego o obraz sdk:5.0, również dostępnym publicznie
+na platformie \href{https://hub.docker.com/_/microsoft-dotnet-sdk}{dockerhub}. Na tym etapie kopiowane
+są wszystkie zależności, których wymaga aplikacja, by mogła zostać prawidłowo uruchomiona.
+Za pomocą komend oferowanych przez dotnet CLI publikowana jest gotowa do wdrożenia wersja aplikacji.
+
+W ostatnim etapie kopiowana jest wersja aplikacji przygotowana w ramach etapu drugiego, po czym
+następuje uruchomienie procesu za pomocą komendy:
+
+\begin{lstlisting}
+    dotnet DagAir.Addresses.dll
+\end{lstlisting}
+
+Podział na poszczególne etapy wynika z różnych rozmiarów wykorzystywanych obrazów. Możliwe byłoby
+utworzenie obrazu aplikacji na podstawie obrazu sdk:5.0. Jednak jego rozmiar to ok. 630 MB, podczas
+gdy rozmiar obrazu aspnet:5.0 to ok. 205 MB. Dzięki temu prostemu zabiegowi można oszczędzić 
+znaczne zasoby obliczeniowe. 
+
+Dzięki szablonom można tworzyć obrazy poszczególnych serwisów. Jednak uruchamianie każdego z nich
+pojedynczo byłoby kosztownym czasowo zajęciem. Rozwiązaniem tego problemu jest wykorzystanie narzędzia
+docker-compose, które umożliwia uruchamianie wielu kontenerów za pomocą jednej komendy. W tym celu
+należy przygotować szablon zawierający instrukcje uruchomienia każdego z utworzonych na wcześniejszym
+etapie obrazów. Szablon jest przechowywany w pliku o nazwie docker-compose.yml.
+
+Przykładowy szablon został przedstawiony poniżej:
+
+\begin{lstlisting}
+    version: "3.9"
+
+    services:
+      addresses_api:
+        build:
+          target: final
+          context: ./src
+          dockerfile: ./DagAir_Addresses/Dockerfile
+        environment:
+          - ASPNETCORE_ENVIRONMENT=Docker
+          - ConnectionKeys__DagAir.Addresses=
+                ${ADDRESSES_CONNECTIONKEYS}
+        ports:
+          - "8094:80"
+        networks:
+          - dagair_network
+        restart: always
+
+    networks:
+    dagair_network:
+\end{lstlisting}
+
+W szablonie został przedstawiony proces uruchomienia Addresses Data Service. Zdefiniowano:
+
+\begin{itemize}
+    \item Szablon obrazu, z którego należy skorzystać
+    \item Zmienne środowiskowe potrzebne do uruchumienia aplikacji w środowisku dockerowym
+    \item Port, na którym ma nasłuchiwać aplikacja. Występuje tutaj mapowanie między portem 
+    serwera, na którym będzie uruchomiony kontener, a portem w kontenerze. Dzięki mapowaniu
+    aplikacja będzie dostępna na serwerze pod adresem:
+
+    \begin{lstlisting}
+        http://localhost:8094/
+    \end{lstlisting}
+    \item Wirtualna sieć, do którego ma zostać dołączony kontener w środowisku dockerowym
+    \item Polityka ponownego uruchamiania. Flaga always oznacza, że w przypadku zatrzymania pracy
+    instancji kontenera, zostanie ona usunięta, a na jej miejsce zostanie uruchomiona nowa
+\end{itemize}
+
+
+\subsection{Ciągła integracja}
+
+Podstawowym wymaganiem, które należy spełnić przy tworzeniu rozbudowanych systemów 
+informatycznych, jest przechowywanie rozwijanego oprogramowania przy pomocy wybranego 
+narzędzia kontroli wersji, takiego jak Git. Dane są zapisywane w folderze zwanym 
+również repozytorium. Zadaniem takiego narzędzia jest śledzenie wprowadzonych zmian 
+oprogramowania i zapisywanie ich w historii repozytorium. Zapewnia to wiele 
+korzyści, z których najważniejsze to:
+
+\begin{itemize} % lista nienumerowana
+    \item Podgląd zmian wprowadzonych przez każdego dewelopera
+    \item Możliwość powrotu do poprzedniej wersji w przypadku, gdy wprowadzone zmiany 
+    były przyczyną błędów w działaniu systemu
+\end{itemize}
+
+Głównym celem ciągłej integracji (ang. continuous integration) jest regularne włączanie 
+bieżących zmian w kodzie do głównego repozytorium i każdorazowa weryfikacja 
+wprowadzonych zmian poprzez utworzenie nowego zbioru plików wykonywalnych 
+i przeprowadzenie na nich testów jednostkowych. Zaletą tego podejścia jest fakt, że 
+po wysłaniu przez programistę zmian do repozytorium głównego, reszta czynności 
+wykonywana jest automatycznie przez serwer ciągłej integracji, bez ingerencji 
+człowieka. Dodatkowo programista otrzymuje szybką odpowiedź zwrotną w razie 
+wystąpienia błędów.
+Aby wykorzystać potencjał ciągłej integracji, należy zwrócić uwagę na następujące 
+punkty: 
+
+\begin{itemize} % lista nienumerowana
+    \item Częste i regularne wysyłanie kodu do głównego repozytorium w celu weryfikacji 
+    integracji nowych zmian z resztą kodu, przynajmniej raz dziennie 
+    \item Zapewnienie testów jednostkowych sprawdzających poprawność zachowania systemu. 
+    Może się zdarzyć, że wprowadzone zmiany będą zgodne pod względem 
+    syntaktycznym, jednak nie oznacza to, że serwis będzie prawidłowo spełniał swoje 
+    funkcje 
+    \item Nadanie wysokiego priorytetu naprawieniu kodu, który nie integruje się z 
+    dotychczasowym kodem w repozytorium. Odkładanie poprawy na później może spowodować 
+    spiętrzenie się kolejnych błędów, co w konsekwencji bardziej spowolni wdrażanie 
+    nowych funkcji
+\end{itemize}
+
+W trakcie tworzenia pracy wykorzystano platformę do ciągłej integracji i wdrażania 
+o nazwie Github Actions. Pozwala ona na automatyzację tworzenia nowych wersji 
+oprogramowania, testowania oraz wdrażania. Kolejne powtórzenia przepływów pracy 
+(ang. workflow) są wykonywane na maszynach wirtualnych oferowanych przez 
+GitHub, zwanych pracownikami (ang. worker). W zależności od potrzeby na maszynach 
+zainstalowany jest odpowiedni system operacyjny spośród sytrybucji 
+linux-owych, Windowsa oraz macOS.
+
+GitHub Action jest przepływem pracy, który może zostać wywołany zawsze wtedy, gdy 
+zostanie zarejestrowane nowe zdarzenie dotyczące wykorzystywanego repozytorium. 
+Przykładem zdarzenia jest wprowadzenie nowych zmian do repozytorium lub utworzenie 
+żądania typu pull request. GitHub Action składa się z jednej lub większej liczby 
+zadań (ang. job), które mogą zostać wykonane jedno po drugim lub równolegle. Z kolei 
+każde zadanie składa się z jednego lub większej liczby kroków (ang. step), z których 
+każde może wykonać własnoręcznie utworzony skrypt lub akcję (ang. action), która jest 
+rozszerzeniem umożliwiającym na uproszczenie całego przepływu pracy.
+
+Przykładowy przepływ pracy utworzony na potrzeby pracy wykonuje następujące zadania:
+
+\begin{itemize} % lista nienumerowana
+    \item Wybiera odpowiednią gałąź z repozytorium, na której zostały wprowadzone 
+    nowe zmiany
+    \item Instaluje wymagane oprogramowanie niezbędne do wykonania wszystkich 
+    pozostałych zadań, takie jak wersja .NET 5.0
+    \item Uruchamia testy jednostkowe i integracyjne
+    \item Tworzy nową wersję obrazu przestestowanego mikroserwisu
+    \item Wypycha obraz do rejestru kontenerów
+\end{itemize}
+
+Warto szczegółowo prześledzić poszczególne kroki danego przepływu.
+
+\begin{lstlisting}
+jobs:
+  docker-build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+\end{lstlisting}
+
+Powyższy wyciąg deklaruje nowe zadanie oraz pierwszy z kroków, który wybierze 
+odpowiędnią gałąź z repozytorium. Parametr runs-on wskazuje jaki rodzaj systemu 
+operacyjnego powinien zostać wykorzystany.
+
+\begin{lstlisting}
+on:
+  workflow_dispatch: # allows to trigger workflow on demand
+  push:
+    branches: 
+      - main
+      - develop
+    paths:
+      - src/DagAir_Facilities/**
+\end{lstlisting}
+
+GitHub Actions oferuje rozbudowany system do określania warunków, które muszą być 
+spełnione, aby uruchomić przepływ pracy. Powyższy wyciąg przedstawia fragment, który 
+określa, że przepływ ma być uruchomiony gdy:
+
+\begin{itemize} % lista nienumerowana
+    \item Użytkownik manualnie uruchomi przepływ za pomocą interfejsu graficznego
+    \item Zostaną wprowadzone nowe zmiany na gałęzi main lub develop oraz zmiany będą 
+    się znajdować w katalogu src/DagAir\_Facilities/
+\end{itemize}
+
+\begin{lstlisting}
+- name: Build & Test
+    shell: bash
+    run: ./build.sh TestProject 
+        --ProjectName facilities --verbosity verbose
+\end{lstlisting}
+
+Powyższy krok wykonuje skrypt uruchamiający testy jednostkowe oraz integracyjne.
+
+\begin{lstlisting}
+- name: Set image names & main tags
+run: |
+  appImageName="${{ env.
+    CONTAINER_REGISTRY }}/${{ env.SERVICE_NAME }}"
+  migrationsApplierImageName=
+    "${{ env.CONTAINER_REGISTRY }}/${{ env.
+    MIGRATIONS_APPLIER_NAME }}"
+  echo "APP_IMAGE_NAME=$appImageName" >> $GITHUB_ENV
+  echo "MIGRATIONS_APPLIER_IMAGE_NAME
+    =$migrationsApplierImageName" 
+    >> $GITHUB_ENV
+
+  version="${{ steps.gitversion.outputs
+    .nugetVersionV2 }}-${{ steps.gitversion
+    .outputs.shortSha }}"
+
+  if [ ${{ steps.gitversion.outputs
+    .commitsSinceVersionSource }} -gt 0 ]; then
+  version="${{ steps.gitversion.outputs
+    .escapedBranchName }}-$version"
+  fi
+
+  echo "APP_IMAGE_TAG=${appImageName}:$version" 
+    >> $GITHUB_ENV
+  echo "MIGRATIONS_APPLIER_IMAGE_TAG=
+  ${migrationsApplierImageName}:$version" \
+  >> $GITHUB_ENV
+\end{lstlisting}
+
+Powyższy krok generuje nazwę oraz tag nowego obrazu testowanego mikroserwisu. Na nazwę 
+obrazu składa się nazwa repozytorium obrazów oraz nazwa mikroserwisu. Numer wersji 
+obrazu za każdym razem powinien być unikalny, ponadto powinien wskazywać, która z 
+wersji obrazu jest najnowsza. Wobec tego na wersję składa się nazwa gałęzi 
+repozytorium, nazwa utworzonej paczki Nuget-owej oraz krótki unikalny numer przypisany 
+do commit'a, który spowodował uruchomienie przepływu.
+
+\begin{lstlisting}
+- name: Docker login
+  uses: docker/login-action@v1
+  with:
+    registry: ${{ env.CONTAINER_REGISTRY }}
+    username: ${{ secrets.AZURE_CR_USERNAME }}
+    password: ${{ secrets.AZURE_CR_PASSWORD }}
+
+- name: Docker push images
+  run: |
+    docker push ${{ env.APP_IMAGE_NAME }} --all-tags
+    docker push ${{ env.MIGRATIONS_APPLIER_IMAGE_NAME }} 
+        --all-tags
+\end{lstlisting}
+
+Na samym końcu gotowy obraz zostaje wypchnięty do repozytorium obrazów. W tym celu 
+używana jest komenda docker push. Aby zakończyła się pomyślnie, trzeba było 
+w poprzednim kroku zalogować się, wykorzystując nazwę repozytorium obrazów oraz 
+danych uwierzytelniający, przechowywanych w bezpieczny sposób za pomocą Github 
+Secrets.
+
+\subsection{Ciągłe dostarczanie}
+
+W trkacie prac nad systemem wykorzystano metodykę ciągłego dostarczania, które polega na tym, że kod 
+przechodzi przez kolejne fazy testowania, gdzie za każdym razem jest weryfikowana jego poprawność pod 
+względem prawidłowego funkcjonowania. 
+
+Na początku przeprowadzane są szybkie testy jednostkowe sprawdzające punktowo poprawność 
+poszczególnych funkcji. Jeśli zostaną wykonane pomyślnie, przechodzi się do następnej fazy 
+testowania uwzględniające wolniejsze testy, które sprawdzają zachowanie wielu serwisów między 
+sobą. Po upewnieniu się, że ta faza została wykonana pomyślnie, system jest weryfikowany przez 
+klienta, który zlecał jego wykonanie (tzw. „user acceptance testing”). Jeśli funkcjonalność zgadza się z 
+oczekiwaniami klienta, całość jest jeszcze testowana pod kątem wydajności, po czym zostaje 
+wdrożona na etap produkcyjny.
+Zgodnie z założeniami metodyki, programiści powinni otrzymywać
+wiadomości zwrotne dotyczące statusu kolejnych wersji 
+oprogramowania w kolejnych fazach testowania. Wprowadzenie takiego potoku potrafi znacznie
+poprawić ocenę jakości kodu, ponadto skrócić czas między wdrożeniem kolejnych wersji systemu.
+
+\subsection{Kubernetes}
+
+Kubernetes jest platformą do orkiestracji kontenerów automatyzującą procesy manualne 
+związane z wdrażaniem, zarządzaniem oraz skalowaniem skonteneryzowanych aplikacji. 
+Jest to oprogramowanie typu open-source, początkowo rozwijane przez firmę Google.
+
+W przeszłości, organizacje uruchamiały aplikacje na fizycznych serwerach. W momencie 
+gdy wiele aplikacji działało w ramach jednego serwera, dochodziło do 
+sytuacji, w których jedna z aplikacji zajmowała większość zasobów, przez co inne 
+aplikacje nie działały optymalnie. Jednym z rozwiązań było uruchomienie każdej 
+z aplikacji na innym fizycznym serwerze. Jednak w takim wypadku konsekwencjami były 
+wysokie koszty utrzymania infrastruktury. Innym możliwym rozwiązaniem było wprowadzenie 
+wirtualizacji, które przyczyniło się do bardziej zrównoważonego zarządzania zasobami. 
+Efektem ubocznym było jednak wprowadzanie dużego nakładu zasobów potrzebnych na 
+uruchomienie samej maszyny wirtualnej, ponieważ każda z maszyn instalowała na początku 
+własny system operacyjny.
+
+Najlepszym obecnie rozwiązaniem jest wykorzystanie kontenerów. Zawierają zestaw 
+podobnych cech do maszyn wirtualnych z tą różnicą, że nie wymagają osobnego systemu 
+operacyjnego. Każdy z kontenerów może współdzielić jeden system operacyjny z 
+innymi, co znacznie obniża wymagania dotyczące zasobów. Podobnie do maszyn 
+wirtualnych posiadają własny system plików, zasoby obliczeniowe, pamięć. Jednak nie 
+zależą od infrastruktury, na której są uruchamiane, co czyni je przenośnymi wśród 
+różnych dystrybucji danego systemu.
+
+Kontenery stały się popularne ze względu na szereg zalet:
+
+\begin{itemize} % lista nienumerowana
+    \item Utworzenie obrazów następuje szybciej w porównaniu do maszyn wirtualnych
+    \item Utworzenie obrazów na etapie budowania nowej wersji systemu zamiast na etapie wdrażania
+    \item Niezależnie od środowiska działa w dokładnie ten sam sposób
+    \item Mogą być uruchomione praktycznie na każdym systemie i dystrybucji
+    \item Wysoka efektywność wykorzystania zasobów
+\end{itemize}
+
+Rysunek \ref{fig:deployment-types}. przedstawia różnice między uruchomieniem aplikacji w sposób 
+tradycyjny, przy użyciu maszyn wirtualnych oraz kontenerów.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{deployment_types.jpg}
+    \caption{Porównanie różnych metod uruchamiania aplikacji. Źródło: \href{https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/}{What is Kubernetes?}}
+    \label{fig:deployment-types}
+\end{figure}
+
+Zalety Kubernetesa to przede wszystkim:
+
+\begin{itemize} % lista nienumerowana
+    \item Orkiestracja kontenerów między różnymi serwerami
+    \item Efektywniejsze wykorzystanie zasobów
+    \item Łatwe skalowanie skonteneryzowanych aplikacji 
+    \item Zarządzanie serwisami w sposób deklaratywny
+    \item Kontrola stanu aplikacji, automatyczne restartowanie kontenerów, 
+    autoskalowanie
+\end{itemize}
+
+Zbiór hostów wykorzystywanych do uruchomienia na nich systemu zwany jest klastrem. Na 
+każdym z hostów, zwanych węzłami, można uruchomić instancje gotowych obrazów. Każdy 
+z klastrów posiada przynajmniej jeden węzeł.
+
+Cyklem życiowym każdego kontenera zarządza płaszczyzna sterowania (ang. control 
+plane), która wystawia API oraz interfejsy umożliwiające ich wdrażanie i zarządzanie. 
+Komponenty płaszczyzny mogą być uruchomione na każdej maszynie w klastrze, chociaż 
+zazwyczaj określa się jedną maszynę gospodarza (ang. master), na której znajdują się 
+wszystkie komponenty.
+
+\subsubsection{Komponenty płaszczyzny sterowania}
+
+W tej części zostały opisane komponenty składające się na całość płaszczyzny 
+sterowania.
+
+kube-apiserver - interfejs pozwalający na interakcję z płaszczyzną sterowania. 
+Weryfikuje i konfiguruje dane dla obiektów takich jak serwisy czy kontrolery 
+replikacji. 
+
+Etcd - to spójny i wysoce dostępny magazyn par klucz-wartość używany przez Kubernetesa 
+jako miejsce do przechowywania wszystkich danych ważnych z punktu widzenia klastra. 
+
+Kube-scheduler - regularnie sprawdza czy został utworzony nowy zestaw 
+kontenerów, któremu nie został jeszcze przypisany węzeł. W takim przypadku wybiera 
+on maszynę, na której kontenery mają być uruchomione. Przy wyborze pod uwagę brane są 
+takie czynniki jak wymagane zasoby, ograniczenia sprzętowe lub programowe.
+
+Kube-controller-manager - komponent odpowiedzialny za uruchamianie kontrolerów, które 
+monitorują oraz zmieniają stan klastra korzystając z API serwera. Istnieje kilka 
+rodzajów kontrolerów:
+
+\begin{itemize} % lista nienumerowana
+    \item Kontroler węzłów (ang. node controller) - odpowiedzialny za wykrycie oraz 
+    odpowiednią reakcję w przypadku, gdy jeden z węzłów ulega awarii lub staje się 
+    niedostępny
+    \item Kontroler prac (ang. job controller) - nasłuchuje na pojawienie się obiektów 
+    pracy (job objects) reprezentujących zadania, a następnie tworzy zbiór (pod) który 
+    te zadania wykona
+    \item Kontroler punktów końcowych - zarządza obiektami punktów końcowych (serwisy 
+    oraz zbiory (ang. pods))
+    \item Kontroler kont oraz tokenów - tworzy domyślne konta oraz tokeny dostępu do 
+    API dla nowych przestrzeni nazw
+\end{itemize}
+
+Cloud-controller-manager - element, który wbudowuje logikę związaną z konkretną 
+chmurą, w której tworzone są klastry. Pozwala połączyć dany klaster z API dostawcy 
+chmury oraz oddziela komponenty, które oddziałują z chmurą od komponentów, które 
+oddziałują tylko z klastrem. Jest to komponent, który występuje tylko w przypadku 
+stawiania kontenerów w chmurze. Jeśli Kubernetes działa np. w prywatnym środowisku 
+na jednym komputerze, wtedy klaster nie posiada tego elementu. 
+Cloud-controller-manager może zapewniać poniższe zależności:
+
+\begin{itemize} % lista nienumerowana
+    \item Kontroler węzłów (node controller) - sprawdza czy węzeł został usunięty 
+    z chmury po tym jak przestał odpowiadać na żądania
+    \item Kontroler routingu (route controller) - zapewnia możliwość ustalenia ścieżek 
+    między poszczególnymi elementami infrastruktury chmurowej
+    \item Kontroler serwisów (service controller) - zapewnia możliwość 
+    tworzenia, edytowania oraz usuwania load balancer-ów
+\end{itemize}
+
+
+\subsubsection{Komponenty węzła}
+
+Poniżej opisano komponenty, które działają na każdym węźle w Kubernetesie.
+
+Kubelet - agent, którego rolą jest upewnienie się, że kontenery są uruchomione 
+w zbiorze (pods). Przyjmuje zestaw specyfikacji zbiorów i zapewnia, że wszystkie 
+kontenery podane w specyfikacji działają i są sprawne. Kubelet nie zarządza 
+kontenerami, które nie zostały utworzone przez Kubernetesa.
+
+Kube-proxy - proxy sieciowe, które implementuje część serwisu pozwalającego wystawić 
+aplikację do świata zewnętrznego. Jego zadaniem jest utrzymanie reguł sieciowych 
+w zarządzanych węzłach. Te reguły pozwalają na komunikację między różnymi zbiorami 
+wewnątrz lub na zewnątrz klastra.
+
+Container runtime - oprogramowanie odpowiedzialne za uruchamianie kontenerów. 
+Kubernetes wspiera wiele możliwych runtime'ów, m. in. Docker, containerd, CRI-O.
+
+Pod - grupa złożona z jednego lub większej liczby kontenerów, wdrożona na tym samym 
+węźle. Wszystkie kontenery z grupy współdzielą adres IP oraz przydzielone zasoby.
+
+Replication controller - narzędzie do kontroli liczby kopii danego poda, które powinny 
+być w danej chwili uruchomione
+
+Płaszczyzna sterowania przyjmuje komendy od administratora klastra, po czym przekazuje 
+je do podległych serwerów. Komendy przyjmowane są za pomocą interfejsu 
+konsolowego, zwanego kubectl. Dobrą praktyką jest utworzenie plików deklarujących 
+pożądany stan, w jakim powinien znajdować się klaster. Przykładowa deklaracja znajduje 
+się poniżej.
+
+\begin{lstlisting}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-admin-app
+  labels:
+    app: web-admin-app
+    tier: backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: admin-application-service
+  template:
+    metadata:
+      labels:
+        app: admin-application-service
+        tier: backend
+    spec:
+      containers:
+      - name: admin-application-service
+        image: admin-application-service:develop-latest
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: "Kubernetes"
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+
+\end{lstlisting}
+
+Jest to deklaracja typu Deployment, która powinna zawierać następujące parametry:
+
+\begin{itemize} % lista nienumerowana
+    \item Wersja wykorzystywanego API
+    \item Typ deklaracji
+    \item Nazwa deklaracji
+    \item Specyfikacja przedstawiająca pożądany stan, w jakim powinien znajdować się 
+    klaster. W tym przypadku deklaruje się, że w klastrze powinny działać dwie 
+    instancje obrazu mikrousługi aplikacyjnej dla administratorów, które powinny 
+    nasłuchiwać na żądania na porcie 80
+\end{itemize}
+
+Deklarację można zaaplikować korzystając z komendy:
+
+\begin{lstlisting}
+kubectl apply -f deployment.yml
+\end{lstlisting}
+
+Płaszczyzna sterowania jest odpowiedzialna za to, by stan klastra odpowiadał 
+deklaracji. W konsekwencji zostaną utworzone dwa osobne pody, z których każdy otrzyma 
+unikalny prywatny adres IP wewnątrz klastra. Od tej pory do każdej instancji można 
+się odwołać, wykorzystując jej adres IP oraz numer portu.
+
+Należy wziąć pod uwagę, że pody nie są trwałymi zasobami. Mogą być tworzone i usuwane 
+w sposób dynamiczny. Za każdym razem pod otrzymuje nowy adres IP, który może się 
+różnić od poprzednich. Prowadzi to do problemów przy komunikacji między 
+mikroserwisami, ponieważ nie wiedzą, że wymagany serwis nie jest już osiągalny pod 
+dotychczasowym adresem.
+
+Rozwiązaniem tego zagadnienia jest wprowadzenie tzw. serwisu. Jest to abstrakcyjny 
+obiekt, który definiuje zbiór pod-ów oraz reguły umożliwiające do nich dostęp. 
+Serwisowi nadawany jest unikalny adres IP, pod który mogą odwoływać się mikroserwisy. 
+W dalszym ciągu pod-y będą dynamicznie tworzone i usuwane, jednak w tym wypadku będą 
+one ciągle dostępne pod adresem IP serwisu.
+
+Przykładem jest poniższa deklaracja:
+
+\begin{lstlisting}
+apiVersion: v1
+kind: Service
+metadata:
+  name: admin-application-service
+  labels:
+    app: admin-application-service
+    tier: backend
+spec:
+  selector:
+    app: admin-application-service
+  type: LoadBalancer
+  ports:
+  - port: 8085
+    targetPort: 80
+    protocol: TCP
+    name: http 
+\end{lstlisting}
+
+Jest to deklaracja typu Service, która powinna zawierać następujące parametry:
+
+\begin{itemize} % lista nienumerowana
+    \item Wersja wykorzystywanego API
+    \item Typ deklaracji
+    \item Nazwa deklaracji
+    \item Selektor. Od niego zależy, które pod-y zostaną dołączone do zbioru
+    \item Typ publikacji
+    \item Porty
+\end{itemize}
+
+Wyróżnia się trzy główne typy publikacji serwisu:
+
+\begin{itemize} % lista nienumerowana
+    \item ClusterIP - typ domyślny. Przydziela serwisowi wewnętrzny adres IP 
+    w klastrze, przez co serwis jest dostępny jedynie dla innych obiektów uruchomionych 
+    wewnątrz klastra
+    \item NodePort - przydziela serwisowi statyczny numer portu na każdym węźle 
+    w klastrze. Dzięki temu serwis jest dostępny dla obiektów znajdujących się poza 
+    klastrem i można się do niego dostać przy pomocy adresu IP węzła oraz statycznego 
+    numeru portu
+    \item LoadBalancer - przydziela serwisowi adres zewnętrzny przy użyciu load 
+    balancer'a zapewnionego przez wykorzystywaną platformę chmurową
+\end{itemize}
+
+Dobrą praktyką jest utworzenie obiektu wejścia do klastra (ang. ingress), który 
+zarządza dostępem do klastra z zewnątrz. Typowo jest to obiekt API, który udostępnia 
+ścieżki protokołu HTTP(S) prowadzące do serwisów znajdujących się wewnątrz klastra.
+
+Przykład deklaracji znajduje się poniżej.
+
+\begin{lstlisting}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/affinity: cookie
+    nginx.ingress.kubernetes.io/session-cookie-hash: sha1
+    nginx.ingress.kubernetes.io/session-cookie-name: 
+        REALTIMESERVERID
+    nginx.org/websocket-services: 
+        "admin-application-service"
+spec:
+  tls:
+    - hosts:
+      - dagair.info
+      secretName: ingress-cert
+  rules:
+    - host: dagair.info
+      http:
+        paths:
+          - path: /adminapplication
+            pathType: Prefix
+            backend:
+              service:
+                name: web-admin-app
+                port:
+                  number: 8085
+\end{lstlisting}
+
+Jest to deklaracja typu Ingress, która powinna zawierać następujące parametry:
+
+\begin{itemize} % lista nienumerowana
+    \item Wersja wykorzystywanego API
+    \item Typ deklaracji
+    \item Nazwa deklaracji
+    \item Specyfikacja, która zawiera reguły związane z dostępem do poszczególnych 
+    serwisów w klastrze. W tym przypadku aplikacja dla administratorów jest dostępna 
+    pod adresem dagair.info/adminapplication
+\end{itemize}

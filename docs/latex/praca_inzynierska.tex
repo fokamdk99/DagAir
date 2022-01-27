@@ -13,13 +13,19 @@
 \usepackage{caption}
 \usepackage{tabularx}
 \usepackage{hyperref}
-
+\usepackage{makecell}
+\usepackage{listings}
 \usepackage{color}
 \definecolor{bluekeywords}{rgb}{0.13,0.13,1}
 \definecolor{greencomments}{rgb}{0,0.5,0}
 \definecolor{redstrings}{rgb}{0.9,0,0}
+\definecolor{brownstrings}{rgb}{0.73,0.4,0.2}
 
-\usepackage{listings}
+\setmainfont{Verdana} % czcionka Verdana
+\linespread{1.15} % interlinia 1.15
+\captionsetup{font=small, justification=raggedright, singlelinecheck=false}
+\graphicspath{ {images} }
+
 \lstset{language=[Sharp]C,
   showspaces=false,
   showtabs=false,
@@ -29,14 +35,11 @@
   escapeinside={(*@}{@*)},
   commentstyle=\color{greencomments},
   keywordstyle=\color{bluekeywords},
-  stringstyle=\color{redstrings},
-  basicstyle=\ttfamily
+  stringstyle=\color{brownstrings},
+  basicstyle=\sffamily
 }
 
-\setmainfont{Verdana} % czcionka Verdana
-\linespread{1.15} % interlinia 1.15
-\captionsetup{font=small, justification=raggedright, singlelinecheck=false}
-\graphicspath{ {images} }
+\AddToHook{cmd/section/before}{\clearpage}
 
 \geometry{twoside, inner=30mm,outer=20mm, top=25mm, bottom=25mm} % marginesy, druk dwustronny
 \newpagestyle{mystyle}{\setfoot[\thepage][][]{}{}{\thepage}} %numeracja stron
@@ -50,7 +53,32 @@
 \addbibresource{sources.bib}
 \begin{document}
 
-\maketitle
+%\maketitle
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{pw_logo.jpg}
+    \label{fig:pw_logo}
+\end{figure}
+
+Wydział Elektroniki i Technik Informacyjnych
+
+Praca dyplomowa inżynierska
+
+na kierunku Telekomunikacja
+w specjalności Teleinformatyka i Zarządzanie
+
+Aplikacja do zarządzania warunkami 
+technicznymi w pomieszczeniach biurowych 
+oparta na architekturze mikrousługowej
+
+Stanisław Skrzypek
+
+Numer albumu 300501
+
+promotor
+Dr hab. Inż. Prof. Artur Tomaszewski
+
+Warszawa 2022
 
 \begin{abstract}
     \addcontentsline{toc}{section}{Streszczenie}
@@ -170,7 +198,7 @@ założeń:
 Poniższa tabela pokazuje porównanie wyników z różnych artykułów traktujących 
 o optymalnej temperaturze w pomieszczeniach:
 
-\begin{table}[h!]
+\begin{table}[h]
     \centering
     \caption{Porównanie wyników badań estymujących optymalną temperaturę}
     \begin{tabular}{ |c|c| } 
@@ -187,11 +215,11 @@ o optymalnej temperaturze w pomieszczeniach:
     \label{tab:optymalna-temperatura}
 \end{table}
 
-W oparciu o powyższe badania wyliczono średnią optymalną temperaturę wynoszącą 24,5.
+W oparciu o powyższe badania wyliczono średnią optymalną temperaturę wynoszącą 24,5\degree C.
 Kolejna z tabel porównuje poziom natężenia światła, który skutkował najlepszą 
 efektywnością pracowników:
 
-\begin{table}[h!]
+\begin{table}[ht]
     \centering
     \caption{Porównanie wyników badań estymujących optymalne natężenie światła}
     \begin{tabular}{ |c|c| } 
@@ -315,7 +343,7 @@ przedstawia pełną architekturę aplikacji:
     \label{fig:architektura-systemu} % labelka do figury, dzieki ktorej mozna sie pozniej do obrazka odnosic
 \end{figure}
 
-Na całość składają się serwisy opisane poniżej. System zawiera mikrousługi danych:
+Na całość składają się serwisy opisane w tabeli \ref{tab:mikrouslugi-danych}.
 
 \begin{table}[!ht]
     \caption{Mikrousługi danych}
@@ -764,9 +792,9 @@ następujące parametry:
 \end{table}
 
 
-\section{Komunikacja między serwisami}
+{Komunikacja między serwisami}
 \subsection{Broker wiadomości}
-
+\section
 Aby mikroserwisy mogły działać poprawnie, potrzebują wymieniać ze sobą informacje 
 w sposób szybki i niezawodny. W przypadku komunikacji nie wymagającej żadnej interakcji 
 z użytkownikiem, jednym z rozwiązań jest wykorzystanie brokera wiadomości, który pełni 
@@ -904,6 +932,35 @@ Zapisuje ona w logach szczegóły dotyczące przychodzącej wiadomości, przetwa
 otrzymane wartości, po czym publikuje nową wiadomość o innym typie, której konsument 
 znajduje się w innym mikroserwisie.
 
+\subsubsection{Połączenie serwisów z brokerem wiadomości}
+
+Utworzone w ramach pracy mikroserwisy łączą się z brokerem wiadomości i w ten sposób wymieniają między
+sobą dane. Mogą one być połączone w różny sposób, zależnie od oczekiwanego rezultatu. Dwa główne
+przypadki zostały przedstawione na rysunku \ref{fig:rabbitmq-polaczenie}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{rabbitmq_schema.jpg}
+    \caption{Rodzaje połączenia z brokerem wiadomości}
+    \label{fig:rabbitmq-polaczenie}
+\end{figure}
+
+\begin{enumerate} % lista numerowana
+    \item W pierwszym przypadku celem jest wysłanie wiadomości tylko do jednego konsumenta. Jedną
+    z występujących sytuacji jest przetwarzanie otrzymanych z czujników pomiarów przez Sensor State
+    Processing Service. Wykonanie tej samej operacji przez kilka instancji tego serwisu byłoby stratą
+    dostępnych zasobów. Aby osiągnąć ten efekt, wszystkie instancje tego serwisu powinny być dołączone 
+    do jednej kolejki. Wtedy kolejka wysyła przychodzące pomiary tylko do wybranej przez siebie instancji.
+    Wybór odbywa się za pomocą mechanizmu szeregowania procesów Round-robin.
+    \item W drugim przypadku celem jest wysłanie wiadomości do wielu konsumentów. Jedną z występujących
+    sytuacji jest wysłanie wyniku przetwarzania pomiarów do wszystkich pracowników oraz administratorów
+    posiadających uprawnienia do jego wyświetlenia. Aby osiągnąć ten efekt, każda instancja serwisów
+    otrzymujących wynik (w tym wypadku są to Admin Application Service oraz Employee Application Service)
+    powinna być dołączona do osobnej kolejki, z których wszystkie dołączone są do tej samej giełdy
+    publikującej wiadomości. W ten sposób kopia wysłanej przez wydawcę wiadomości zostanie dostarczona
+    do każdej instancji.
+\end{enumerate}
+
 \subsection{Styki}
 
 Mikroserwisy mogą komunikować się między sobą przy użyciu oferowanych przez nie 
@@ -923,10 +980,935 @@ Każdy ze styków zawiera:
 \end{itemize}
 
 \subsubsection{Styk mikrousługi danych adresów}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:adresy-endpoint1}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{GET /addresses-api/addresses/{addressId}} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Zwraca informacje na temat adresu o danym identyfikatorze}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 200 & AddressDtoJsonApiDocument \\
+    \hline
+    {} & 404 & JsonApiError \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:adresy-endpoint2}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{POST /addresses-api/addresses} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Tworzy nowy adres o parametrach podanych \\ w modelu AddNewAddressCommand}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 201 & AddressDtoJsonApiDocument \\
+    \hline
+    {} & 400 & JsonApiError \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:adresy-endpoint3}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{GET /addresses-api/cities/{cityId}} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Zwraca informacje na temat miasta o danym identyfikatorze}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 200 & CityDtoJsonApiDocument \\
+    \hline
+    {} & 404 & JsonApiError \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:adresy-endpoint4}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{GET /addresses-api/countries/{countryId}} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Zwraca informacje na temat kraju o danym identyfikatorze}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 200 & CountryDtoJsonApiDocument \\
+    \hline
+    {} & 404 & JsonApiError \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:adresy-endpoint5}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{GET /addresses-api/postal-codes/{postalCodeId}} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Zwraca informacje na temat kodu pocztowego o danym identyfikatorze}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 200 & PostalCodeDtoJsonApiDocument \\
+    \hline
+    {} & 404 & JsonApiError \\
+    \hline
+    \end{tabularx}
+\end{table}
+
 \subsubsection{Styk mikrousługi danych organizacji}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:organizacje-endpoint1}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{POST /facilities-api/affiliates} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Tworzy nowy oddział o parametrach podanych \\w modelu AddNewAffiliateCommand}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 201 & AffiliateDtoJsonApiDocument \\
+    \hline
+    {} & 400 & JsonApiError \\
+    \hline
+    {} & 409 & JsonApiError \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:organizacje-endpoint2}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{GET /facilities-api/affiliates} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Zwraca informacje na temat wszystkich oddziałów}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 200 & AffiliateDtoListJsonApiDocument \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:organizacje-endpoint3}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{GET /facilities-api/affiliates/{affiliateId}} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Zwraca informacje na temat oddziału o danym identyfikatorze}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 200 & AffiliateDtoJsonApiDocument \\
+    \hline
+    {} & 404 & JsonApiError \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:organizacje-endpoint4}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{DELETE /facilities-api/affiliates/{affiliateId}} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Usuwa informacje na temat oddziału o danym identyfikatorze}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 204 & Brak zawartości \\
+    \hline
+    {} & 404 & JsonApiError \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:organizacje-endpoint5}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{POST /facilities-api/organizations} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Tworzy nową organizację o parametrach podanych \\w modelu AddNewOrganizationCommand}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 201 & OrganizationDtoJsonApiDocument \\
+    \hline
+    {} & 400 & JsonApiError \\
+    \hline
+    {} & 409 & JsonApiError \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:organizacje-endpoint6}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{GET /facilities-api/organizations} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Zwraca informacje na temat wszystkich organizacji}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 200 & OrganizationDtoListJsonApiDocument \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:organizacje-endpoint7}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{GET /facilities-api/organizations/{organizationId}} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Zwraca informacje na temat organizacji o danym identyfikatorze}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 200 & OrganizationDtoJsonApiDocument \\
+    \hline
+    {} & 404 & JsonApiError \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:organizacje-endpoint8}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{DELETE /facilities-api/organizations/{organizationId}} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Usuwa informacje na temat organizacji o danym identyfikatorze}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 204 & Brak zawartości \\
+    \hline
+    {} & 404 & JsonApiError \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:organizacje-endpoint9}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{POST /facilities-api/rooms} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Tworzy nowe pomieszczenie o parametrach podanych \\w modelu AddNewRoomCommand}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 201 & RoomDtoJsonApiDocument \\
+    \hline
+    {} & 400 & JsonApiError \\
+    \hline
+    {} & 409 & JsonApiError \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:organizacje-endpoint10}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{GET /facilities-api/rooms/{roomId}} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Zwraca informacje na temat pomieszczenia o danym identyfikatorze}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 200 & RoomDtoJsonApiDocument \\
+    \hline
+    {} & 404 & JsonApiError \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:organizacje-endpoint11}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{DELETE /facilities-api/rooms/{roomId}} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Usuwa informacje na temat pomieszczenia o danym identyfikatorze}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 204 & Brak zawartości \\
+    \hline
+    {} & 404 & JsonApiError \\
+    \hline
+    \end{tabularx}
+\end{table}
+
 \subsubsection{Styk mikrousługi danych reguł}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:reguly-endpoint1}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{POST /policies-api/expected-room-conditions} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Tworzy nowy zestaw oczekiwanych wartości mierzonych\\parametrów określonych w modelu \\AddNewExpectedRoomConditionsCommand}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 201 & OrganizationDtoJsonApiDocument \\
+    \hline
+    {} & 400 & JsonApiError \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:reguly-endpoint2}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{\makecell{GET /policies-api/expected-room-\\conditions/\{expectedRoomConditionsId\}}} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Zwraca informacje na temat zestawu oczekiwanych wartości\\mierzonych parametrów o danym identyfikatorze}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 200 & RoomDtoJsonApiDocument \\
+    \hline
+    {} & 404 & JsonApiError \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:reguly-endpoint3}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{POST /policies-api/policies} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Tworzy nową regułę o parametrach określonych \\w modelu AddNewRoomPolicyCommand}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 201 & RoomPolicyDtoJsonApiDocument \\
+    \hline
+    {} & 400 & JsonApiError \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:reguly-endpoint4}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{POST /policies-api/policies/past-policies} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Zwraca listę reguł poprzednio obowiązujących \\w pomieszczeniu określonym w modelu GetPastPoliciesCommand}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 201 & PastMeasurementsDtoJsonApiDocument \\
+    \hline
+    {} & 400 & JsonApiError \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:reguly-endpoint5}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{GET /policies-api/policies/\{roomId\}} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Zwraca informacje na temat aktualnie obowiązującej \\polityki w pomieszczeniu o danym identyfikatorze}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 200 & RoomPolicyDtoJsonApiDocument \\
+    \hline
+    {} & 404 & JsonApiError \\
+    \hline
+    \end{tabularx}
+\end{table}
+
 \subsubsection{Styk mikrousługi danych sensorów}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:sensory-endpoint1}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{GET /sensors-api/sensors} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Zwraca informacje na temat wszystkich sensorów}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 200 & SensorDtoListJsonApiDocument \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:sensory-endpoint2}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{GET /sensors-api/sensors/room-id/{roomId}} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Zwraca informacje na temat sensorów znajdujących się \\w pomieszczeniu o danym identyfikatorze}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 200 & SensorDtoJsonApiDocument \\
+    \hline
+    {} & 404 & JsonApiError \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:sensory-endpoint3}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{POST /sensors-api/sensors/sensor-name} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Zwraca informacje na temat sensorów o parametrach \\określonych w modelu GetSensorBySensorNameCommand}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 200 & SensorDtoJsonApiDocument \\
+    \hline
+    {} & 400 & JsonApiError \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:sensory-endpoint4}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{GET /sensors-api/sensors/\{sensorId\}} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Zwraca informacje na temat sensorów o danym identyfikatorze}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 200 & SensorDtoJsonApiDocument \\
+    \hline
+    {} & 404 & JsonApiError \\
+    \hline
+    \end{tabularx}
+\end{table}
+
 \subsubsection{Styk mikrousługi mikrousługi aplikacyjnej administratorów}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:admin-endpoint1}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{POST /admin-node/addresses} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Tworzy nowy adres o parametrach określonych \\w modelu AddNewAddressCommand}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 201 & AddressDtoJsonApiDocument \\
+    \hline
+    {} & 400 & JsonApiError \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:admin-endpoint2}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{POST /admin-node/affiliates} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Tworzy nowy oddział o parametrach określonych \\w modelu AddNewAffiliateCommand}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 201 & AffiliateDtoJsonApiDocument \\
+    \hline
+    {} & 400 & JsonApiError \\
+    \hline
+    {} & 409 & JsonApiError \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:admin-endpoint3}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{GET /admin-node/affiliates} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Zwraca informacje na temat wszystkich oddziałów}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 200 & AdminNodeAffiliateDtoListJsonApiDocument \\
+    \hline
+    {} & 404 & JsonApiError \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:admin-endpoint4}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{GET /admin-node/affiliates/\{affiliateId\}} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Zwraca informacje na temat oddziału o danym identyfikatorze}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 200 & AdminNodeAffiliateDtoJsonApiDocument \\
+    \hline
+    {} & 404 & JsonApiError \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:admin-endpoint5}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{DELETE /admin-node/affiliates/\{affiliateId\}} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Usuwa informacje na temat oddziału o danym identyfikatorze}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 204 & Brak zawartości \\
+    \hline
+    {} & 404 & JsonApiError \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:admin-endpoint6}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{POST /admin-node/organizations} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Tworzy nową organizację o parametrach określonych \\w modelu AddNewOrganizationCommand}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 201 & OrganizationDtoJsonApiDocument \\
+    \hline
+    {} & 400 & JsonApiError \\
+    \hline
+    {} & 409 & JsonApiError \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:admin-endpoint7}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{GET /admin-node/organizations} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Zwraca informacje na temat wszystkich organizacji}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 200 & AdminNodeOrganizationDtoListJsonApiDocument \\
+    \hline
+    {} & 404 & JsonApiError \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:admin-endpoint8}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{GET /admin-node/organizations/\{organizationId\}} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Zwraca informacje na temat organizacji o danym identyfikatorze}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 200 & AdminNodeOrganizationDtoListJsonApiDocument \\
+    \hline
+    {} & 404 & JsonApiError \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:admin-endpoint9}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{DELETE /admin-node/organizations/\{organizationId\}} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Usuwa informacje na temat organizacji o danym identyfikatorze}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 204 & Brak zawartości \\
+    \hline
+    {} & 404 & JsonApiError \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:admin-endpoint10}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{POST /admin-node/rooms} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Tworzy nowe pomieszczenie o parametrach określonych \\w modelu AddNewRoomCommand}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 201 & RoomDtoJsonApiDocument \\
+    \hline
+    {} & 400 & JsonApiError \\
+    \hline
+    {} & 409 & JsonApiError \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:admin-endpoint11}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{POST /admin-node/rooms/get-room} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Zwraca informacje o pomieszczeniu o parametrach podanych \\w modelu GetRoomCommand}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 200 & 	
+    AdminNodeRoomDtoJsonApiDocument \\
+    \hline
+    {} & 404 & JsonApiError \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:admin-endpoint12}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{POST /admin-node/rooms/historic-measurements} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Zwraca informacje o historycznych pomiarach z pomieszczenia \\o parametrach podanych w modelu GetRoomCommand}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 200 & 	
+    PastMeasurementsDtoJsonApiDocument \\
+    \hline
+    {} & 400 & JsonApiError \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+\begin{table}[!ht]
+    \caption{Endpoint 1}
+    \label{tab:admin-endpoint13}
+\begin{tabularx}{1\textwidth} { 
+        | c    
+        | c
+        | X | }
+        \hline
+    \textbf{Ścieżka} & 
+    \multicolumn{2}{c|}{DELETE /admin-node/rooms/\{roomId\}} \\
+    \hline
+    \textbf{Opis} & 
+    \multicolumn{2}{c|}{\makecell{Usuwa informacje na temat pomieszczenia o danym identyfikatorze}} \\    \hline
+    \textbf{Odpowiedź} &
+    \textbf{Kod odpowiedzi} &
+    \textbf{Schemat} \\
+    \hline
+    {} & 204 & Brak zawartości \\
+    \hline
+    {} & 404 & JsonApiError \\
+    \hline
+    \end{tabularx}
+\end{table}
+
 \section{Testy}
 
 Dobrą praktyką pozwalającą znacznie ograniczyć występowanie błędów w ostatecznej 
@@ -1023,7 +2005,7 @@ było źródłem błędu.
 Przykładem jest poniższy test:
 
 \begin{lstlisting}
-def test_when_new_measurement_sent_should_trigger_policies_evaluation_result_event():
+def test_measurement_should_trigger_policies_evaluation_result_event():
     new_measurement_test_helper = NewMeasurementTestHelper()
 
     # check that influxdb is available and bucket exists
@@ -1146,15 +2128,360 @@ Wszystkie targety można uruchomić przy wykorzystaniu tylko jednej metody:
 ./build.sh TestProject --ProjectName facilities --verbosity verbose
 \end{lstlisting}
 
+\section{Pomiary}
+
+W ramach tej pracy inżynierskiej przygotowano zestaw pomiarowy, który 
+w regularnych odstępach czasu bada aktualną wartość temperatury oraz
+natężenia światła. Zestaw został złożony z następujących elementów:
+
+\begin{itemize} % lista nienumerowana
+    \item Moduł WEMOS D1 Uno R3 ESP8266 WIFI
+    \item Fotorezystor LDR GL5528
+    \item Czujnik temperatury i wilgotności DHT11
+    \item Rezystory 1 kOhm
+\end{itemize}
+
+Moduł WEMOS jest mikrokontrolerem oparty o kontroler ATmega328P. Posiada
+11 portów wejścia-wyjścia pozwlających na dołączenie zewnętrznych 
+urządzeń. Płytka została fabrycznie wyposażona w moduł wifi ESP8266. Za
+jego pomocą mogą zostać wysłane pomiary.
+
+Fotorezystor służy do pomiaru natężenia światła. Został wykonany 
+z półprzewodników, które w temperaturze działania nie mają elektronów 
+w paśmie przewodnictwa. Padające na półprzewodnik fotony o energii 
+większej od przerwy energetycznej przemieszczają elektrony z pasma 
+walencyjnego do pasma przewodnictwa, w wyniku którego powstają pary 
+dziura-elektron. Zjawisko nazywane jest efektem fotoelektrycznym 
+wewnętrznym.
+
+Czujnik temperatury i wilgotności DHT11 bada aktualne wartości tych
+dwóch parametrów. Mierzony zakres temperatury to -20\degree  - +60\degree C.
+Jego rozdzielczość wynosi 0.1\degree C, a dokładność 2\degree C.
+
+\subsection{Oprogramowanie mikrokontrolera}
+
+Do rozwoju oprogramowania do mikrokontrolera WEMOSC wykorzystano narzędzie 
+Arduino IDE, będące rozbudowanym edytorem pozwalającym na kompilację,
+przesyłanie plików wykonywalnych na płytkę przy pomocy kabla USB oraz
+debugowanie i podgląd logów produkowanych przez mikrokontroler w czasie 
+rzeczywistym. Do utworzeniu kodu został wykorzystany język C.
+
+Zadaniem mikrokontrolera było:
+
+\begin{itemize} % lista nienumerowana
+    \item Zebranie aktualnych pomiarów temperatury i natężenia światła
+    \item przygotowanie wiadomości z uzyskanymi pomiarami
+    \item wysłanie wiadomości przy pomocy protokołu MQTT przez moduł WIFI na 
+    kolejkę brokera wiadomości RabbitMQ
+\end{itemize}
+
+Poniżej został przedstawiony przygotowany kod.
+
+\begin{lstlisting}
+    #include "rabbitmq_handler.h"
+
+    #define WIFI_SSID "Tech_D0054234"
+    #define WIFI_PASS "PASSWORD"
+     
+    void setup() {
+      Serial.begin(115200);
+      dht.begin();
+      Serial.println();
+     
+      WiFi.mode(WIFI_STA);
+      WiFi.begin(WIFI_SSID, WIFI_PASS);
+     
+      while (WiFi.status() != WL_CONNECTED)
+      {
+        delay(100);
+      }
+      
+      client.setServer(RABBITMQ_BROKER, RABBITMQ_PORT);
+      client.setCallback(callback);
+    }
+     
+    void loop() {
+      if ( !client.connected() ) {
+        reconnect();
+      }
+      
+      float temperature = readTemperature(&dht);
+      int illuminance = analogRead(ILLUMINANCEPIN);
+      publish_measurements(temperature, illuminance, false);
+      
+      delay(60000);
+    
+      client.loop();
+    }
+\end{lstlisting}
+
+Każdy z programów wgrywanych na płytkę powinien zawierać dwie główne funkcje:
+
+\begin{itemize}
+    \item void setup() - wewnątrz metody definiowane są obiekty oraz zmienne 
+    potrzebne przez cały czas działania mikrokontrolera
+    \item void loop() - metoda wywoływana jako druga w kolejności po setup(),
+    jest powtarzana przez resztę cyklu działania mikrokontrolera 
+\end{itemize}
+
+Na początku definiowana jest szyna, za pomocą której przesyłane są dane do 
+modułu WIFI. Moduł wspiera prędkość transmisji na poziomie 115200 bitów na 
+sekundę (ang. baud rate). Następnie tworzony jest klient, którego zadaniem
+jest wysyłanie pomiarów na kolejkę brokera wiadomości. 
+
+Wewnątrz metody loop() co 60 sekund zbierane są pomiary, po czym publikowane
+na kolejkę. Pomiary wykonywane są przy użyciu poniższego kodu.
+
+\begin{lstlisting}
+    #include "DHT.h"
+
+    #define DHTPIN 4
+    #define DHTTYPE DHT11
+    
+    int ILLUMINANCEPIN = A0;
+    
+    DHT dht(DHTPIN, DHTTYPE);
+    
+    float readTemperature(DHT *dht){
+      float t = dht->readTemperature();
+     
+      if (isnan(t))
+      {
+        Serial.println("Error while reading current temperature value");
+      }
+      
+      return t;
+    }
+\end{lstlisting}
+
+Główną rolę pełni obiekt dht, za pomocą którego można komunikować się
+z czujnikiem. Zdefiniowany jest typ czujnika przy użyciu makra DHTTYPE.
+Numer pinu, do którego został wpięty kabel łączący płytkę z czujnikiem,
+został oznaczony pzy użyciu makra DHTPIN. Pomiar temperatury odbywa się
+przez wywołanie funkcji readTemperature(). 
+
+Pomiar z fotorezystora można odczytać przy użyciu komendy:  
+
+\begin{lstlisting}
+    analogRead(ILLUMINANCEPIN)
+\end{lstlisting}
+
+gdzie ILLUMINANCEPIN oznacza numer pinu, do 
+którego wpięty jest kabel łączący płytkę z fotorezystorem.
+
+Poniższy kod zawiera szczegóły implementacyjne dotyczące 
+wysyłania wiadomości na kolejkę.
+
+
+
+Warto wyjaśnić wartości zmiennych związanych z brokerem wiadomości:
+\begin{lstlisting}
+    const char* RABBITMQ_BROKER = "192.168.0.12";
+    int        RABBITMQ_PORT     = 1883;
+    const char* RABBITMQ_TOPIC  = "room_measurements";
+    const char* RABBITMQ_SUBSCRIPTION  = "request_measurement";
+    const char* RABBITMQ_USER = "guest";
+    const char* RABBITMQ_PASSWORD = "guest";
+    const char* RABBITMQ_SENSOR_ID = "968376";
+\end{lstlisting}
+
+\begin{itemize}
+    \item RABBITMQ\_BROKER: adres IP serwera, na którym uruchomiony jest broker wiadomości
+    \item RABBITMQ\_PORT: numer portu serwera, na którym nasłuchuje broker
+    \item RABBITMQ\_TOPIC: temat, na który wysyłane są wiadomości z mikrokontrolera
+    na kolejkę
+    \item RABBITMQ\_SUBSCRIPTION: temat, na który nasłuchuje mikrokontroler
+    \item RABBITMQ\_USER: nazwa użytkownika, za pomocą którego płytka jest uwierzytelniana
+    \item RABBITMQ\_PASSWORD: hasło dla wykorzystywanego użytkownika
+\end{itemize}
+
+Wiadomość do brokera jest wysyłana w metodzie send\_measurements:
+
+\begin{lstlisting}
+    void send_measurements(float temperature, int illuminance){
+      char temperatureChar[64];
+      int ret = snprintf(temperatureChar, sizeof temperatureChar, "%f", temperature);
+      if (ret < 0) {
+          return;
+      }
+      if (ret >= sizeof temperatureChar) {
+           return;
+      }
+      char illuminanceChar[64];
+      ret = snprintf(illuminanceChar, sizeof illuminanceChar, "%d", illuminance);
+      if (ret < 0) {
+          return;
+      }
+      if (ret >= sizeof illuminanceChar) {
+           return;
+      }
+    
+      char* measurement = (char*)malloc(256+1+3); //4*64 + 3 semicolons + EOF
+      strcpy(measurement, temperatureChar);
+      strcat(measurement, ";");
+      strcat(measurement, illuminanceChar);
+      strcat(measurement, ";");
+      strcat(measurement, RABBITMQ_SENSOR_ID);
+    
+      time_t t = time(NULL);
+      struct tm tm = *localtime(&t);
+    
+      client.publish(RABBITMQ_TOPIC, measurement);
+    
+      free(measurement);
+    }
+\end{lstlisting}
+
+Mikrokontroler nasłuchuje na wiadomości o temacie RABBITMQ\_SUBSCRIPTION:
+
+\begin{lstlisting}
+    void callback(char* topic, byte* payload, unsigned int length) {
+      char* sensorId = (char*)payload;
+    
+      String messageTemp;
+      
+      for (int i = 0; i < length; i++) {
+        Serial.print((char)payload[i]);
+        messageTemp += (char)payload[i];
+      }
+    
+      if(strcmp(topic, RABBITMQ_SUBSCRIPTION) == 0 && strcmp(sensorId, RABBITMQ_SENSOR_ID)){
+        float temperature = readTemperature(&dht);
+        int illuminance = analogRead(ILLUMINANCEPIN);
+        publish_measurements(temperature, humidity, illuminance, true);
+      }
+    }
+\end{lstlisting}
+
 \section{Automatyzacja}
-1jakis tekst
-\subsection{Automatyzacja wdrożenia}
 
 Pełna automatyzacja regularnie wykonywanych zadań, pozwalająca znacznie przyspieszyć 
 wdrażanie całości systemu, była jednym z najważniejszych zagadnień poruszonych w 
 trakcie tworzenia pracy. Prawidłowe podejście do wdrażania aplikacji znacząco wpływa 
 na szybkość, z jaką zmiany wprowadzone lokalnie mogą zostać wykorzystane w 
 produkcyjnej wersji systemu. 
+
+\subsection{Docker}
+
+Docker jest otwartą platformą do rozwoju oraz wdrażania aplikacji. Pozwala oddzielić aplikacje od
+dostępnej na danym serwerze infrastruktury, co pozwala przyspieszyć proces dostarczania najnowszych
+wersji systemów. 
+
+Platforma pozwala zapewnia możliwość spakowania i uruchomienia aplikacji w odizolowanym środowisku
+zwanym kontenerem. Izolacja powoduje, że możliwe jest bezpieczne uruchomienie wielu kontenerów na tym
+samym hoście. Platforma pozwala zarządzać infrastrukturą potrzebną do uruchomienia kontenera, dzięki
+czemu eliminowany jest problem instalacji wszystkich wymaganych zależności na każdym serwerze z osobna.
+
+Docker wykorzystuje architekturę typu klient-serwer. Klient komunikuje się z tzw. docker daemon, którego
+zadaniem jest budowanie, uruchamianie oraz dystrybuowanie kontenerów. 
+
+W celu utworzenia kontenerów należy w pierwszej kolejności utworzyć ich obraz, który jest szablonem
+zawierającym instrukcje dotyczące budowy. Szablony są przechowywane w plikach o nazwie Dockerfile.
+Każda instrukcja tworzy jedną warstwę obrazu. Mechanizm ten jest szczególnie przydatny, gdy szablony są
+regularnie rozwijane o nowe instrukcje. Wtedy, przy ponownym budowaniu obrazu, tylko warstwy, które
+uległy zmianie są odświeżane. Pozwala to znacznie przyspieszyć proces budowania obrazów.
+
+Kontener jest instancją obrazu, którą można uruchomić. Działa on tak długo, dopóki nie zostanie
+zakończony proces główny.
+
+Przykładowy szablon, który przedstawia obraz Addresses Data Service, został przedstawiony poniżej:
+
+\begin{lstlisting}
+FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+
+FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+WORKDIR /app
+COPY ["./DagAir_Addresses/DagAir.Addresses/", "./DagAir_Addresses/DagAir.Addresses/"]
+COPY ["./DagAir_Addresses/DagAir.Addresses.Data/", "./DagAir_Addresses/DagAir.Addresses.Data/"]
+COPY ["./DagAir_Addresses/DagAir.Addresses.Contracts/", "./DagAir_Addresses/DagAir.Addresses.Contracts/"]
+COPY ["./DagAir_Components/DagAir.Components.ApiModels/", "./DagAir_Components/DagAir.Components.ApiModels/"]
+COPY ["./DagAir_Components/DagAir.Components.Healthchecks/", "./DagAir_Components/DagAir.Components.Healthchecks/"]
+COPY ["./DagAir_Components/DagAir.Components.Logging/", "./DagAir_Components/DagAir.Components.Logging/"]
+
+RUN dotnet restore ./DagAir_Addresses/DagAir.Addresses/DagAir.Addresses.csproj
+RUN dotnet build ./DagAir_Addresses/DagAir.Addresses/DagAir.Addresses.csproj --no-restore
+RUN dotnet publish ./DagAir_Addresses/DagAir.Addresses/DagAir.Addresses.csproj -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=build /app/publish .
+
+ENTRYPOINT ["dotnet", "DagAir.Addresses.dll"]
+\end{lstlisting}
+
+Pierwszym etapem jest utworzenie obrazu pośredniego o nazwie base. Oparty on jest na obrazie 
+aspnet:5.0 dostępnym publicznie na platformie 
+\href{https://hub.docker.com/_/microsoft-dotnet-aspnet}{dockerhub}. Na tym etapie deklarowane są
+numery portów, na których aplikacja powinna nasłuchiwać na przychodzące żądania.
+
+Drugim etapem jest utworzenie obrazu pośredniego, opartego o obraz sdk:5.0, również dostępnym publicznie
+na platformie \href{https://hub.docker.com/_/microsoft-dotnet-sdk}{dockerhub}. Na tym etapie kopiowane
+są wszystkie zależności, których wymaga aplikacja, by mogła zostać prawidłowo uruchomiona.
+Za pomocą komend oferowanych przez dotnet CLI publikowana jest gotowa do wdrożenia wersja aplikacji.
+
+W ostatnim etapie kopiowana jest wersja aplikacji przygotowana w ramach etapu drugiego, po czym
+następuje uruchomienie procesu za pomocą komendy:
+
+\begin{lstlisting}
+    dotnet DagAir.Addresses.dll
+\end{lstlisting}
+
+Podział na poszczególne etapy wynika z różnych rozmiarów wykorzystywanych obrazów. Możliwe byłoby
+utworzenie obrazu aplikacji na podstawie obrazu sdk:5.0. Jednak jego rozmiar to ok. 630 MB, podczas
+gdy rozmiar obrazu aspnet:5.0 to ok. 205 MB. Dzięki temu prostemu zabiegowi można oszczędzić 
+znaczne zasoby obliczeniowe. 
+
+Dzięki szablonom można tworzyć obrazy poszczególnych serwisów. Jednak uruchamianie każdego z nich
+pojedynczo byłoby kosztownym czasowo zajęciem. Rozwiązaniem tego problemu jest wykorzystanie narzędzia
+docker-compose, które umożliwia uruchamianie wielu kontenerów za pomocą jednej komendy. W tym celu
+należy przygotować szablon zawierający instrukcje uruchomienia każdego z utworzonych na wcześniejszym
+etapie obrazów. Szablon jest przechowywany w pliku o nazwie docker-compose.yml.
+
+Przykładowy szablon został przedstawiony poniżej:
+
+\begin{lstlisting}
+    version: "3.9"
+
+    services:
+      addresses_api:
+        build:
+          target: final
+          context: ./src
+          dockerfile: ./DagAir_Addresses/Dockerfile
+        environment:
+          - ASPNETCORE_ENVIRONMENT=Docker
+          - ConnectionKeys__DagAir.Addresses=
+                ${ADDRESSES_CONNECTIONKEYS}
+        ports:
+          - "8094:80"
+        networks:
+          - dagair_network
+        restart: always
+
+    networks:
+    dagair_network:
+\end{lstlisting}
+
+W szablonie został przedstawiony proces uruchomienia Addresses Data Service. Zdefiniowano:
+
+\begin{itemize}
+    \item Szablon obrazu, z którego należy skorzystać
+    \item Zmienne środowiskowe potrzebne do uruchumienia aplikacji w środowisku dockerowym
+    \item Port, na którym ma nasłuchiwać aplikacja. Występuje tutaj mapowanie między portem 
+    serwera, na którym będzie uruchomiony kontener, a portem w kontenerze. Dzięki mapowaniu
+    aplikacja będzie dostępna na serwerze pod adresem:
+
+    \begin{lstlisting}
+        http://localhost:8094/
+    \end{lstlisting}
+    \item Wirtualna sieć, do którego ma zostać dołączony kontener w środowisku dockerowym
+    \item Polityka ponownego uruchamiania. Flaga always oznacza, że w przypadku zatrzymania pracy
+    instancji kontenera, zostanie ona usunięta, a na jej miejsce zostanie uruchomiona nowa
+\end{itemize}
+
 
 \subsection{Ciągła integracja}
 
@@ -1285,7 +2612,8 @@ run: |
   fi
 
   echo "APP_IMAGE_TAG=${appImageName}:$version" >> $GITHUB_ENV
-  echo "MIGRATIONS_APPLIER_IMAGE_TAG=${migrationsApplierImageName}:$version" \
+  echo "MIGRATIONS_APPLIER_IMAGE_TAG=
+  ${migrationsApplierImageName}:$version" \
   >> $GITHUB_ENV
 \end{lstlisting}
 
@@ -1317,7 +2645,23 @@ danych uwierzytelniający, przechowywanych w bezpieczny sposób za pomocą Githu
 Secrets.
 
 \subsection{Ciągłe dostarczanie}
-4jakis tekst
+
+W trkacie prac nad systemem wykorzystano metodykę ciągłego dostarczania, które polega na tym, że kod 
+przechodzi przez kolejne fazy testowania, gdzie za każdym razem jest weryfikowana jego poprawność pod 
+względem prawidłowego funkcjonowania. 
+
+Na początku przeprowadzane są szybkie testy jednostkowe sprawdzające punktowo poprawność 
+poszczególnych funkcji. Jeśli zostaną wykonane pomyślnie, przechodzi się do następnej fazy 
+testowania uwzględniające wolniejsze testy, które sprawdzają zachowanie wielu serwisów między 
+sobą. Po upewnieniu się, że ta faza została wykonana pomyślnie, system jest weryfikowany przez 
+klienta, który zlecał jego wykonanie (tzw. „user acceptance testing”). Jeśli funkcjonalność zgadza się z 
+oczekiwaniami klienta, całość jest jeszcze testowana pod kątem wydajności, po czym zostaje 
+wdrożona na etap produkcyjny.
+Zgodnie z założeniami metodyki, programiści powinni otrzymywać
+wiadomości zwrotne dotyczące statusu kolejnych wersji 
+oprogramowania w kolejnych fazach testowania. Wprowadzenie takiego potoku potrafi znacznie
+poprawić ocenę jakości kodu, ponadto skrócić czas między wdrożeniem kolejnych wersji systemu.
+
 \subsection{Kubernetes}
 
 Kubernetes jest platformą do orkiestracji kontenerów automatyzującą procesy manualne 
@@ -1645,9 +2989,11 @@ pozwalającą na zarządzanie oświetleniem.
 \printbibliography
 \section{Wykaz symboli i skrótów}
 \section{Spis rysunków}
+\listoffigures
 \section{Spis tabel}
+\listoftables
 \section{Spis załączników}
-
+elo
 \begin{enumerate}
     \item 4A citation command in parentheses: \parencite{chinchiuan:2014ac}.
     \item 5A citation command in parentheses: \parencite{dai:2014ad}.

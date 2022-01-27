@@ -1,0 +1,134 @@
+\documentclass[11pt, a4]{article}
+\usepackage[utf8]{inputenc}
+\title{Praca inzynierska}
+\author{Stanislaw Skrzypek}
+\date{January 2022}
+\usepackage{graphicx}
+\graphicspath{ {images} }
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+    This is a simple paragraph at the beginning of the 
+    document. A brief introduction about the main subject.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}
+
+This is the first section.
+
+Lorem  ipsum  dolor  sit  amet,  consectetuer  adipiscing  
+elit.   Etiam  lobortisfacilisis sem.  Nullam nec mi et 
+neque pharetra sollicitudin.  Praesent imperdietmi nec ante. 
+Donec ullamcorper, felis non sodales...
+
+asdasd
+
+\section{Second Section}
+
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit.  
+Etiam lobortis facilisissem.  Nullam nec mi et neque pharetra 
+sollicitudin.  Praesent imperdiet mi necante...
+
+\subsection{First Subsection}
+Praesent imperdietmi nec ante. Donec ullamcorper, felis non sodales...
+
+\subsubsection{Third subsubsection}
+Nullam nec mi et neque pharetra 
+sollicitudin.  Praesent imperdiet mi necante...
+
+\section*{Unnumbered Section}
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit.  
+Etiam lobortis facilisissem
+
+Siemano!. This is a simple example, with no 
+extra parameters or packages included.
+
+% This line here is a comment. It will not be printed in the document.
+1Some of the \textbf{greatest} % pogrubienie
+discoveries in \underline{science} % podkreślenie
+were made by \textbf{\textit{accident}}. % pogrubienie i kursywa
+
+2Some of the greatest \emph{discoveries} % inside normal text the emphasized text is italicized, but this behaviour is reversed if used inside an italicized text
+in science 
+were made by accident.
+
+\textit{3Some of the greatest \emph{discoveries} 
+in science 
+were made by accident.}
+
+\begin{figure}[h] % dodanie obrazka
+    \centering % wycentrowanie
+    \includegraphics[width=0.75\textwidth]{thesis} % dodanie grafiki "thesis.jpg"
+    \caption{a nice plot} % opis obrazka
+    \label{fig:thesis1} % labelka do figury, dzieki ktorej mozna sie pozniej do obrazka odnosic
+\end{figure}
+
+As you can see in the figure \ref{fig:thesis1}, the %odniesienie do figury
+function grows near 0. Also, in the page \pageref{fig:thesis1} % generacja strony na ktorej znajduje sie figura
+is the same example.
+
+\begin{itemize} % lista nienumerowana
+    \item The individual entries are indicated with a black dot, a so-called bullet.
+    \item The text in the entries may be of any length.
+\end{itemize}
+
+\begin{enumerate} % lista numerowana
+    \item This is the first entry in our list
+    \item The list numbers increase with each entry we add
+\end{enumerate}
+
+\begin{center}
+    \begin{tabular}{ l c r } % left, center, right allignment
+     cell1 & cell2 & cell3 \\ 
+     cell4 & cell5 & cell6 \\  
+     cell7 & cell8 & cell9    
+    \end{tabular}
+\end{center}
+
+\begin{center}
+    \begin{tabular}{ |c|c|c| } 
+     \hline % horizontal line
+     cell1 & cell2 & cell3 \\ 
+     cell4 & cell5 & cell6 \\ 
+     cell7 & cell8 & cell9 \\ 
+     \hline
+    \end{tabular}
+    \end{center}
+
+    Table \ref{table:data} is an example of referenced \LaTeX{} elements.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c c c c|} 
+ \hline
+ Col1 & Col2 & Col2 & Col3 \\ [0.5ex] 
+ \hline\hline
+ 1 & 6 & 87837 & 787 \\ 
+ 2 & 7 & 78 & 5415 \\
+ 3 & 545 & 778 & 7507 \\
+ 4 & 545 & 18744 & 7560 \\
+ 5 & 88 & 788 & 6344 \\ [1ex] 
+ \hline
+\end{tabular}
+\caption{Table to test captions and labels}
+\label{table:data}
+\end{table}
+
+\begin{table}[!ht]
+    \caption{Porównanie popularnych architektur systemów}
+    \label{tab:porownanie-architektur}
+    \begin{tabularx}{1\textwidth} { 
+        | >{\raggedright\arraybackslash}X 
+        | >{\centering\arraybackslash}X 
+        | >{\raggedleft\arraybackslash}X | }
+        \hline
+       Cecha & System monolityczny & System oparty na architekturze mikroserwisowej \\
+       \hline
+    \end{tabularx}
+\end{table}
+
+\end{document}

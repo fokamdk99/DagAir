@@ -1,0 +1,311 @@
+\newpage
+\section{Przechowywanie danych}
+
+Poszczególne mikroserwisy odwołują się do różnych źródeł danych w celu uzyskania 
+wymaganych informacji. W tej pracy wykorzystano dwa różne sposoby przechowywania 
+informacji:
+
+\begin{itemize} % lista nienumerowana
+    \item Relacyjna baza danych MySQL
+    \item Baza danych szeregów czasowych InfluxDB
+\end{itemize}
+
+\subsection{MySQL}
+
+Relacyjna baza danych MySQL oferuje szybki, wielowątkowy serwer bazodanowy w oparciu 
+o język SQL (ang. Structured Query Language). Została ona wybrana ze względu na to, że 
+jest produktem typu open-source dostępną na licencji GNU (ang. general public license). 
+
+Dobrą praktyką, którą warto mieć na uwadze podczas tworzenia systemu opartego na 
+architekturze mikroserwisowej, jest zapewnienie dostępu do danego zbioru danych tylko 
+jednemu mikroserwisowi, który następnie może je udostępniać przy pomocy odpowiednio 
+skonfigurowanego API (Richardson, 2021). Takie podejście umożliwia zachowanie luźnego 
+sprzężenia między serwisami. W konsekwencji należy utworzyć oddzielne zbiory 
+danych, zwane schematami, które mogą być zarządzane przez pojedynczy mikroserwis.
+
+W ramach utworzonego serwera bazodanowego zostały wdrożone następujące schematy:
+
+    \begin{xltabular}{1\textwidth} { 
+        | >{\raggedright\arraybackslash}X        
+        | >{\raggedleft\arraybackslash}X | }
+        \caption{Utworzone schematy bazodanowe} \label{tab:schematy-bazodanowe} \\
+        \hline
+       Nazwa schematu & Funkcja \\
+       \hline
+       Addresses (adresy) & 
+       Przechowuje dane dotyczące adresów \\
+       \hline
+       Facilities (organizacje) &
+       Przechowuje dane dotyczące organizacji oraz budynków \\
+       \hline
+       Identity (użytkownicy) &
+       Przechowuje dane użytkowników \\
+       \hline
+       Policies (reguły) &
+       Przechowuje dane dotyczące reguł określających oczekiwaną wartość mierzonych 
+       parametrów \\
+       \hline
+       Sensors (sensory) & 
+       Przechowuje dane dotyczące wykorzystywanych sensorów \\
+       \hline
+    \end{xltabular}
+
+\subsubsection{Schemat adresów}
+
+Schemat adresów składa się z następujących encji:
+
+    \begin{xltabular}{1\textwidth} { 
+        | >{\raggedright\arraybackslash}X        
+        | >{\raggedleft\arraybackslash}X | }
+        \caption{Encje w schemacie adresów} \label{tab:encje-adresow} \\
+        \hline
+       Nazwa encji & Przechowywane dane \\
+       \hline
+       Addresses & 
+       Encja główna, zawiera odwołania do kraju, miasta, kodu pocztowego, numeru ulicy 
+       oraz numeru budynku \\
+       \hline
+       Cities & Miasto \\
+       \hline
+       Countries & Kraj \\
+       \hline
+       Postal codes & Kod pocztowy \\
+       \hline
+       Streets & Ulica \\
+       \hline
+       Street numbers & Numer budynku \\
+       \hline
+    \end{xltabular}
+
+Związki między poszczególnymi encjami zostały opisane w tabeli 10.
+
+\begin{xltabular}{1\textwidth} { 
+        | >{\arraybackslash}X    
+        | >{\arraybackslash}X
+        | >{\arraybackslash}X     
+        | >{\arraybackslash}X | }
+        \caption{Związki między encjami w schemacie adresów} \label{tab:zwiazki-adresy} \\
+        \hline
+    \multicolumn{2}{|c|}{Relacja} & Typ związku & Opis \\
+    \hline
+    Addresses & Countries & 1:N & 
+    Każdy kraj może występować w wielu adresach \\
+    \hline
+    Addresses & Cities & 1:N & 
+    Każde miasto może występować w wielu adresach \\
+    \hline
+    Addresses & Postal codes & 1:N 
+    & Każdy kod pocztowy może występować w wielu adresach \\
+    \hline
+    Addresses & Strees & 1:N & 
+    Każda ulica może występować w wielu adresach \\
+    \hline
+    Addresses & Street numbers & 1:N & 
+    Każdy numer budynku może występować w wielu adresach \\
+    \hline
+    \end{xltabular}
+
+\subsubsection{Schemat organizacji}
+
+Schemat organizacji składa się z następujących encji:
+
+    \begin{xltabular}{1\textwidth} { 
+        | >{\raggedright\arraybackslash}X        
+        | >{\raggedleft\arraybackslash}X | }
+        \caption{Encje w schemacie organizacji} \label{tab:encje-organizacji} \\
+        \hline
+       Nazwa encji & Przechowywane dane \\
+       \hline
+       Affiliates & 
+       Oddziały danej organizacji \\
+       \hline
+       Rooms & Pomieszczenia w oddziałach \\
+       \hline
+       Organizations & Organizacje \\
+       \hline
+    \end{xltabular}
+
+Związki między poszczególnymi encjami zostały opisane w tabeli \ref{tab:zwiazki-organizacje}.
+
+\begin{xltabular}{1\textwidth} { 
+        | >{\arraybackslash}X    
+        | >{\arraybackslash}X
+        | >{\arraybackslash}X     
+        | >{\arraybackslash}X | }
+        \caption{Związki między encjami w schemacie organizacji} \label{tab:zwiazki-organizacje} \\
+        \hline
+    \multicolumn{2}{|c|}{Relacja} & Typ związku & Opis \\
+    \hline
+    Organizations & Affiliates & 1:N & 
+    Każdy organizacja może posiadać wiele oddziałów \\
+    \hline
+    Affiliates & Rooms & 1:N & 
+    Każdy oddział może posiadać wiele pomieszczeń \\
+    \hline
+    \end{xltabular}
+
+\subsubsection{Schemat reguł}
+
+Schemat reguł składa się z następujących encji:
+
+    \begin{xltabular}{1\textwidth} { 
+        | >{\raggedright\arraybackslash}X        
+        | >{\raggedleft\arraybackslash}X | }
+        \caption{Encje w schemacie reguł} \label{tab:encje-regul}\\
+        \hline
+       Nazwa encji & Przechowywane dane \\
+       \hline
+       Room policies & 
+       Encja główna, zawiera odwołania do kategorii oraz oczekiwanych warunków. Przechowuje 
+       okres obowiązywania danej reguły \\
+       \hline
+       Room policy categories & Kategorie reguł \\
+       \hline
+       Expected room conditions & Oczekiwane warunki w pomieszczeniu \\
+       \hline
+    \end{xltabular}
+
+Związki między poszczególnymi encjami zostały opisane w tabeli \ref{tab:zwiazki-reguly}.
+
+\begin{xltabular}{1\textwidth} { 
+        | >{\arraybackslash}X    
+        | >{\arraybackslash}X
+        | >{\arraybackslash}X     
+        | >{\arraybackslash}X | }
+        \caption{Związki między encjami w schemacie reguł} \label{tab:zwiazki-reguly} \\
+        \hline
+    \multicolumn{2}{|c|}{Relacja} & Typ związku & Opis \\
+    \hline
+    Room policies & Room policy categories & 1:N & 
+    Każda kategoria może być przypisana wielu regułom \\
+    \hline
+    Room policies & Expected room conditions & 1:N & 
+    Ten sam zbiór oczekiwanych warunków może być przypisany do wielu reguł \\
+    \hline
+    \end{xltabular}
+
+\subsubsection{Schemat sensorów}
+
+Schemat sensorów składa się z następujących encji:
+
+    \begin{xltabular}{1\textwidth} { 
+        | >{\raggedright\arraybackslash}X        
+        | >{\raggedleft\arraybackslash}X | }
+        \caption{Encje w schemacie sensorów} \label{tab:encje-sensorow} \\
+        \hline
+       Nazwa encji & Przechowywane dane \\
+       \hline
+       Sensors & Szczegóły dotyczące danego sensora \\
+       Sensor models & Model sensora \\
+       Producers & Producent sensorów \\
+       \hline
+    \end{xltabular}
+
+Związki między poszczególnymi encjami zostały opisane w tabeli \ref{tab:zwiazki-sensory}.
+
+\begin{xltabular}{1\textwidth} { 
+        | >{\arraybackslash}X    
+        | >{\arraybackslash}X
+        | >{\arraybackslash}X     
+        | >{\arraybackslash}X | }
+        \caption{Związki między encjami w schemacie sensorów} \label{tab:zwiazki-sensory} \\
+        \hline
+    \multicolumn{2}{|c|}{Relacja} & Typ związku & Opis \\
+    \hline
+    Sensor models & Producers & 1:N & 
+    Każdy producent może oferować wiele modeli sensorów \\
+    \hline
+    Sensor models & Sensors & 1:N & 
+    Każdy model może być wypordukowany wielokrotnie \\
+    \hline
+    \end{xltabular}
+
+\subsubsection{Schemat użytkowników}
+
+Schemat użytkowników został oparty na schemacie oferowanym przez Microsoft 
+\parencite{vickers2021} i składa się z następujących encji:
+
+    \begin{xltabular}{1\textwidth} { 
+        | >{\raggedright\arraybackslash}X        
+        | >{\raggedleft\arraybackslash}X | }
+        \caption{Encje w schemacie użytkowników} \label{tab:encje-uzytkownicy}\\
+        \hline
+       Nazwa encji & Przechowywane dane \\
+       \hline
+       Asnetusers & Reprezentuje użytkownika \\
+       \hline
+       Aspnetroles & Reprezentuje rolę użytkownika w systemie \\
+       \hline
+       Aspnetuserlogins & Łączy użytkownika z loginem \\
+       \hline
+       Aspnetusertokens & Reprezentuje token uwierzytelniający dla użytkownika \\
+       \hline
+       Aspnetuserclaims & Reprezentuje prawa, które posiada użytkownik \\
+       \hline
+       Aspnetroleclaims & Reprezentuje prawa gwarantowane dla wszystkich użytkowników
+       pełniących daną rolę \\
+       \hline
+       Aspnetuserroles & Łączy użytkowników z poszczególnymi rolami \\
+       \hline
+    \end{xltabular}
+
+Związki między poszczególnymi encjami zostały opisane w tabeli \ref{tab:zwiazki-uzytkownicy}.
+
+\begin{xltabular}{1\textwidth} { 
+        | >{\arraybackslash}X    
+        | >{\arraybackslash}X
+        | >{\arraybackslash}X     
+        | >{\arraybackslash}X | }
+        \caption{Związki między encjami w schemacie użytkowników} \label{tab:zwiazki-uzytkownicy} \\
+        \hline
+    \multicolumn{2}{|c|}{Relacja} & Typ związku & Opis \\
+    \hline
+    Aspnetusers & Aspnetuserlogins & 1:N & 
+    Każdemu użytkownikowi może być przypisanych wiele loginów \\
+    \hline
+    Aspnetusers & Aspnetusertokens & 1:N & 
+    Każdemu użytkownikowi może być przypisanych wiele tokenów \\
+    \hline
+    Aspnetusers & Aspnetuserroles & 1:N &
+    Każdy użytkownik może pełnić wiele ról \\
+    \hline
+    Aspnetusers & Aspnetuserclaims & 1:N &
+    Każdy użytkownik może posiadać wiele praw \\
+    \hline
+    Aspnetroles & Aspnetroleclaims & 1:N &
+    Każdej roli może być przypisanych wiele praw \\
+    \hline
+    Aspnetroles & Aspnetuserroles & 1:N &
+    Każda rola może być pełniona przez wielu użytkowników \\
+    \hline
+    \end{xltabular}
+
+\subsection{InfluxDB}
+
+InfluxDB jest bazą danych szeregów czasowych służącą do przechowywania metryk 
+i szeregów czasowych. Umożliwia efektywne przechowywanie miliardów rekordów danych 
+dzięki stosowaniu kompresji danych, oferuje także język zapytań pozwalający 
+przeprowadzać kompleksowe analizy uzyskanych danych. Dodatkową funkcjonalnością 
+wyróżniającą tą bazę od standardowych relacyjnych baz danych jest możliwość 
+zdefiniowania czasu, po którym rekordy będą usuwane. Można w ten sposób określić na 
+przykład, że baza powinna przechowywać tylko rekordy z ostatniego miesiąca.
+
+W tej pracy inżynierskiej baza danych szeregów czasowych została wykorzystana do 
+przechowywania danych zbieranych z czujników temperatury oraz natężenia światła. 
+Przychodzące informacje są zapisywane w kolejnych rekordach, które zawierają 
+następujące parametry:
+
+    \begin{xltabular}{1\textwidth} { 
+        | >{\raggedright\arraybackslash}X 
+        | >{\raggedleft\arraybackslash}X | }
+        \caption{Parametry pojedynczego rekordu przechowującego pomiar} \label{tab:parametry-pomiaru}\\
+        \hline
+       Parametr & Znaczenie \\
+       \hline
+       time & Czas otrzymania danych \\
+       \hline
+       field & Rodzaj danych \\
+       \hline
+       value & Zmierzona wartość \\
+       \hline
+    \end{xltabular}

@@ -1,0 +1,159 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Bachelor's & Master's Thesis Template             %%
+%% Copyleft by Artur M. Brodzki & Piotr Woźniak      %%
+%% Faculty of Electronics and Information Technology %%
+%% Warsaw University of Technology, 2019-2020        %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[
+    left=2.5cm,         % Sadly, generic margin parameter
+    right=2.5cm,        % doesnt't work, as it is
+    top=2.5cm,          % superseded by more specific
+    bottom=3cm,         % left...bottom parameters.
+    bindingoffset=6mm,  % Optional binding offset.
+    nohyphenation=false % You may turn off hyphenation, if don't like.
+]{eiti/eiti-thesis}
+
+\usepackage{gensymb}
+\usepackage{tabularx}
+\usepackage{makecell}
+\usepackage{float}
+\usepackage{ltablex}
+\usepackage{xltabular}
+
+\langpol % Dla języka angielskiego mamy \langeng
+\graphicspath{{img/}}             % Katalog z obrazkami.
+\addbibresource{bibliografia.bib} % Plik .bib z bibliografią
+
+\begin{document}
+
+%--------------------------------------
+% Strona tytułowa
+%--------------------------------------
+\EngineerThesis % Dla pracy inżynierskiej mamy \EngineerThesis
+\instytut{Telekomunikacji}
+\kierunek{Telekomunikacja}
+\specjalnosc{Teleinformatyka i Zarządzanie}
+\title{
+    Aplikacja do zarządzania warunkami \\
+    technicznymi w pomieszczeniach biurowych \\
+    oparta na architekturze mikrousługowej
+}
+\engtitle{ % Tytuł po angielsku do angielskiego streszczenia
+    An application for managing \\
+    internal conditions in office spaces \\
+    based on microservices architecture
+}
+\author{\{Stanisław Skrzypek\}}
+\album{300501}
+\promotor{Dr hab. Inż. Prof. Artur Tomaszewski}
+\date{\the\year}
+\maketitle
+
+%--------------------------------------
+% Streszczenie po polsku
+%--------------------------------------
+\cleardoublepage % Zaczynamy od nieparzystej strony
+\streszczenie 
+Brak odpowiedniego zarządzania energią w budynkach biurowych od wielu lat 
+powodował straty zarówno finansowe, jak i środowiskowe. Dodatkowo, w wyniku 
+nieodpowiednich warunków panujących w pomieszczeniach pracy, osoby w nich 
+przebywające nie mogły pracować w efektywny sposób. Celem tej pracy było 
+zaproponowanie rozwiązania, za pomocą którego można byłoby mierzyć wartości 
+kluczowych parametrów pomieszczeń biurowych, po czym podejmować stosowne 
+działania mające na celu zarówno poprawienie komfortu pracowników, jak i 
+redukcję zużywanej energii. Wykonano przegląd już istniejących prac naukowych 
+dotyczących optymalnej wartości temperatury oraz natężenia światła w 
+pomieszczeniach biurowych. Przygotowano system informatyczny oparty na 
+architekturze mikrousługowej, który przyjmuje aktualne pomiary i je przetwarza. 
+Przygotowano zestaw czujników, które wykonują pomiary oraz przesyłają 
+je do systemu. 
+
+%--------------------------------------
+% Streszczenie po angielsku
+%--------------------------------------
+\newpage
+\abstract
+Lack of proper Energy management in office buildings has caused both 
+financial, as well as environmental loss in many a year. Furthermore, as 
+a result of inadequate room conditions, people staying in those rooms could 
+not work effectively. The aim of this paper was to propose a solution by which 
+it would be possible to measure the values of key parameters of office 
+premises, and then take appropriate actions aimed at both improving the comfort 
+of employees and reducing energy consumption. A review of the already existing 
+scientific works on the optimal value of temperature and light intensity in 
+offices was carried out. An IT system based on a microservice architecture was 
+prepared, which takes current measurements and processes them. A set of sensors 
+has been prepared that perform the measurements and send them to the system.
+
+%--------------------------------------
+% Oświadczenie o autorstwie
+%--------------------------------------
+\cleardoublepage  % Zaczynamy od nieparzystej strony
+\pagestyle{plain}
+\makeauthorship
+
+%--------------------------------------
+% Spis treści
+%--------------------------------------
+\cleardoublepage % Zaczynamy od nieparzystej strony
+\tableofcontents
+
+%--------------------------------------
+% Rozdziały
+%--------------------------------------
+\cleardoublepage % Zaczynamy od nieparzystej strony
+\pagestyle{headings}
+
+\input{tex/1-wstep}         % Wygodnie jest trzymać każdy rozdział w osobnym pliku.
+\input{tex/2-istniejace-rozwiazania.tex}    % Umożliwia to również łatwą migrację do nowej wersji szablonu:
+\input{tex/3-zalozenia} % wystarczy podmienić swoje pliki main.tex i eiti-thesis.cls
+                            % na nowe wersje, a cały tekst pracy pozostaje nienaruszony.
+\input{tex/4-metodologia}
+\input{tex/5-przechowywanie-danych}
+\input{tex/6-komunikacja-miedzy-serwisami}
+\input{tex/7-testy}
+\input{tex/8-pomiary}
+\input{tex/9-automatyzacja}
+\input{tex/10-podsumowanie}
+
+%--------------------------------------------
+% Literatura
+%--------------------------------------------
+\cleardoublepage % Zaczynamy od nieparzystej strony
+\printbibliography
+
+%--------------------------------------------
+% Spisy (opcjonalne)
+%--------------------------------------------
+\newpage
+\pagestyle{plain}
+
+% Wykaz symboli i skrótów.
+% Pamiętaj, żeby posortować symbole alfabetycznie
+% we własnym zakresie. Ponieważ mało kto używa takiego wykazu,
+% uznałem, że robienie automatycznie sortowanej listy
+% na poziomie LaTeXa to za duży overkill.
+% Makro \acronymlist generuje właściwy tytuł sekcji,
+% w zależności od języka.
+% Makro \acronym dodaje skrót/symbol do listy,
+% zapewniając podstawowe formatowanie.
+% //AB
+\vspace{0.8cm}
+\acronymlist
+\acronym{EiTI}{Wydział Elektroniki i Technik Informacyjnych}
+\acronym{PW}{Politechnika Warszawska}
+\acronym{WEIRD}{ang. \emph{Western, Educated, Industrialized, Rich and Democratic}}
+
+\listoffigurestoc     % Spis rysunków.
+\vspace{1cm}          % vertical space
+\listoftablestoc      % Spis tabel.
+\vspace{1cm}          % vertical space
+\listofappendicestoc  % Spis załączników
+
+
+% Używając powyższych spisów jako szablonu,
+% możesz tu dodać swój własny wykaz bądź listę,
+% np. spis algorytmów.
+
+\end{document} % Dobranoc.
