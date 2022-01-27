@@ -37,7 +37,7 @@
 \RequirePackage{amsthm}     % Theorems typesetting
 \RequirePackage{array}      % Advanced table column formats
 \RequirePackage[            % Bibliography in biber
-    backend=biber,
+    backend=bibtex,
     style=ieee
 ]{biblatex}
 \RequirePackage[            % Custom figure and table captions

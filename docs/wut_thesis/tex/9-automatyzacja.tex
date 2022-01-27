@@ -13,7 +13,7 @@ Docker jest otwartą platformą do rozwoju oraz wdrażania aplikacji. Pozwala od
 dostępnej na danym serwerze infrastruktury, co pozwala przyspieszyć proces dostarczania najnowszych
 wersji systemów. 
 
-Platforma pozwala zapewnia możliwość spakowania i uruchomienia aplikacji w odizolowanym środowisku
+Platforma zapewnia możliwość spakowania i uruchomienia aplikacji w odizolowanym środowisku
 zwanym kontenerem. Izolacja powoduje, że możliwe jest bezpieczne uruchomienie wielu kontenerów na tym
 samym hoście. Platforma pozwala zarządzać infrastrukturą potrzebną do uruchomienia kontenera, dzięki
 czemu eliminowany jest problem instalacji wszystkich wymaganych zależności na każdym serwerze z osobna.
@@ -22,7 +22,7 @@ Docker wykorzystuje architekturę typu klient-serwer. Klient komunikuje się z t
 zadaniem jest budowanie, uruchamianie oraz dystrybuowanie kontenerów. 
 
 W celu utworzenia kontenerów należy w pierwszej kolejności utworzyć ich obraz, który jest szablonem
-zawierającym instrukcje dotyczące budowy. Szablony są przechowywane w plikach o nazwie Dockerfile.
+zawierającym instrukcje dotyczące jego budowy. Szablony są przechowywane w plikach o nazwie Dockerfile.
 Każda instrukcja tworzy jedną warstwę obrazu. Mechanizm ten jest szczególnie przydatny, gdy szablony są
 regularnie rozwijane o nowe instrukcje. Wtedy, przy ponownym budowaniu obrazu, tylko warstwy, które
 uległy zmianie są odświeżane. Pozwala to znacznie przyspieszyć proces budowania obrazów.
@@ -30,7 +30,7 @@ uległy zmianie są odświeżane. Pozwala to znacznie przyspieszyć proces budow
 Kontener jest instancją obrazu, którą można uruchomić. Działa on tak długo, dopóki nie zostanie
 zakończony proces główny.
 
-Przykładowy szablon, który przedstawia obraz Addresses Data Service, został przedstawiony poniżej:
+Przykładowy szablon, który przedstawia obraz ADS, został przedstawiony poniżej:
 
 \begin{lstlisting}
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
@@ -92,7 +92,7 @@ następuje uruchomienie procesu za pomocą komendy:
 Podział na poszczególne etapy wynika z różnych rozmiarów wykorzystywanych obrazów. Możliwe byłoby
 utworzenie obrazu aplikacji na podstawie obrazu sdk:5.0. Jednak jego rozmiar to ok. 630 MB, podczas
 gdy rozmiar obrazu aspnet:5.0 to ok. 205 MB. Dzięki temu prostemu zabiegowi można oszczędzić 
-znaczne zasoby obliczeniowe. 
+znaczną część zasobyów obliczeniowych. 
 
 Dzięki szablonom można tworzyć obrazy poszczególnych serwisów. Jednak uruchamianie każdego z nich
 pojedynczo byłoby kosztownym czasowo zajęciem. Rozwiązaniem tego problemu jest wykorzystanie narzędzia
@@ -125,7 +125,7 @@ Przykładowy szablon został przedstawiony poniżej:
     dagair_network:
 \end{lstlisting}
 
-W szablonie został przedstawiony proces uruchomienia Addresses Data Service. Zdefiniowano:
+W szablonie został przedstawiony proces uruchomienia ADS. Zdefiniowano:
 
 \begin{itemize}
     \item Szablon obrazu, z którego należy skorzystać
@@ -158,7 +158,7 @@ korzyści, z których najważniejsze to:
     były przyczyną błędów w działaniu systemu
 \end{itemize}
 
-Głównym celem ciągłej integracji (ang. continuous integration) jest regularne włączanie 
+Głównym celem ciągłej integracji (ang. \textit{continuous integration}) jest regularne włączanie 
 bieżących zmian w kodzie do głównego repozytorium i każdorazowa weryfikacja 
 wprowadzonych zmian poprzez utworzenie nowego zbioru plików wykonywalnych 
 i przeprowadzenie na nich testów jednostkowych. Zaletą tego podejścia jest fakt, że 
@@ -185,8 +185,8 @@ punkty:
 W trakcie tworzenia pracy wykorzystano platformę do ciągłej integracji i wdrażania 
 o nazwie Github Actions. Pozwala ona na automatyzację tworzenia nowych wersji 
 oprogramowania, testowania oraz wdrażania. Kolejne powtórzenia przepływów pracy 
-(ang. workflow) są wykonywane na maszynach wirtualnych oferowanych przez 
-GitHub, zwanych pracownikami (ang. worker). W zależności od potrzeby na maszynach 
+(ang. \textit{workflow}) są wykonywane na maszynach wirtualnych oferowanych przez 
+GitHub, zwanych pracownikami (ang. \textit{worker}). W zależności od potrzeby na maszynach 
 zainstalowany jest odpowiedni system operacyjny spośród sytrybucji 
 linux-owych, Windowsa oraz macOS.
 
@@ -194,9 +194,9 @@ GitHub Action jest przepływem pracy, który może zostać wywołany zawsze wted
 zostanie zarejestrowane nowe zdarzenie dotyczące wykorzystywanego repozytorium. 
 Przykładem zdarzenia jest wprowadzenie nowych zmian do repozytorium lub utworzenie 
 żądania typu pull request. GitHub Action składa się z jednej lub większej liczby 
-zadań (ang. job), które mogą zostać wykonane jedno po drugim lub równolegle. Z kolei 
-każde zadanie składa się z jednego lub większej liczby kroków (ang. step), z których 
-każde może wykonać własnoręcznie utworzony skrypt lub akcję (ang. action), która jest 
+zadań (ang. \textit{job}), które mogą zostać wykonane jedno po drugim lub równolegle. Z kolei 
+każde zadanie składa się z jednego lub większej liczby kroków (ang. \textit{step}), z których 
+każde może wykonać własnoręcznie utworzony skrypt lub akcję (ang. \textit{action}), która jest 
 rozszerzeniem umożliwiającym na uproszczenie całego przepływu pracy.
 
 Przykładowy przepływ pracy utworzony na potrzeby pracy wykonuje następujące zadania:
@@ -318,7 +318,7 @@ Secrets.
 
 \subsection{Ciągłe dostarczanie}
 
-W trkacie prac nad systemem wykorzystano metodykę ciągłego dostarczania, które polega na tym, że kod 
+W trakcie prac nad systemem wykorzystano metodykę ciągłego dostarczania, która polega na tym, że kod 
 przechodzi przez kolejne fazy testowania, gdzie za każdym razem jest weryfikowana jego poprawność pod 
 względem prawidłowego funkcjonowania. 
 
@@ -338,7 +338,8 @@ poprawić ocenę jakości kodu, ponadto skrócić czas między wdrożeniem kolej
 
 Kubernetes jest platformą do orkiestracji kontenerów automatyzującą procesy manualne 
 związane z wdrażaniem, zarządzaniem oraz skalowaniem skonteneryzowanych aplikacji. 
-Jest to oprogramowanie typu open-source, początkowo rozwijane przez firmę Google.
+Jest to oprogramowanie typu open-source, początkowo rozwijane przez firmę Google
+\cite{kubernetes2022}.
 
 W przeszłości, organizacje uruchamiały aplikacje na fizycznych serwerach. W momencie 
 gdy wiele aplikacji działało w ramach jednego serwera, dochodziło do 
@@ -375,7 +376,7 @@ tradycyjny, przy użyciu maszyn wirtualnych oraz kontenerów.
 \begin{figure}[h]
     \centering
     \includegraphics[width=1\textwidth]{deployment_types.jpg}
-    \caption{Porównanie różnych metod uruchamiania aplikacji. Źródło: \href{https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/}{What is Kubernetes?}}
+    \caption{Porównanie różnych metod uruchamiania aplikacji. Źródło: \cite{kubernetes2022}}
     \label{fig:deployment-types}
 \end{figure}
 
@@ -394,86 +395,94 @@ Zbiór hostów wykorzystywanych do uruchomienia na nich systemu zwany jest klast
 każdym z hostów, zwanych węzłami, można uruchomić instancje gotowych obrazów. Każdy 
 z klastrów posiada przynajmniej jeden węzeł.
 
-Cyklem życiowym każdego kontenera zarządza płaszczyzna sterowania (ang. control 
-plane), która wystawia API oraz interfejsy umożliwiające ich wdrażanie i zarządzanie. 
+Cyklem życiowym każdego kontenera zarządza płaszczyzna sterowania (ang. \textit{control 
+plane}), która wystawia API oraz interfejsy umożliwiające ich wdrażanie i zarządzanie. 
 Komponenty płaszczyzny mogą być uruchomione na każdej maszynie w klastrze, chociaż 
-zazwyczaj określa się jedną maszynę gospodarza (ang. master), na której znajdują się 
+zazwyczaj określa się jedną maszynę gospodarza (ang. \textit{master}), na której znajdują się 
 wszystkie komponenty.
 
 \subsubsection{Komponenty płaszczyzny sterowania}
 
-W tej części zostały opisane komponenty składające się na całość płaszczyzny 
+W tabeli \ref{tab:komponenty-sterowania} zostały opisane komponenty składające się na całość płaszczyzny 
 sterowania.
 
-kube-apiserver - interfejs pozwalający na interakcję z płaszczyzną sterowania. 
-Weryfikuje i konfiguruje dane dla obiektów takich jak serwisy czy kontrolery 
-replikacji. 
+\begin{xltabular}{1\textwidth} { 
+  | >{\raggedright\arraybackslash}c 
+  | >{\raggedright\arraybackslash}X | }
+  \caption{Komponenty płaszczyzny sterowania} \label{tab:komponenty-sterowania}\\
+  \hline
+ Nazwa komoponentu & Opis \\
+ \hline
+ Kube-apiserver & Interfejs pozwalający na interakcję z płaszczyzną sterowania. 
+ Weryfikuje i konfiguruje dane dla obiektów takich jak serwisy czy kontrolery 
+ replikacji \\
+ \hline
+ Etcd & Spójny i wysoce dostępny magazyn par klucz-wartość używany przez Kubernetesa 
+ jako miejsce do przechowywania wszystkich danych ważnych z punktu widzenia klastra.  \\
+ \hline
+ Kube-scheduler & Regularnie sprawdza czy został utworzony nowy zestaw 
+ kontenerów, któremu nie został jeszcze przypisany węzeł. W takim przypadku wybiera 
+ on maszynę, na której kontenery mają być uruchomione. Przy wyborze pod uwagę brane są 
+ takie czynniki jak wymagane zasoby, ograniczenia sprzętowe lub programowe. \\
+ \hline
+ Kube-controller-manager & Komponent odpowiedzialny za uruchamianie kontrolerów, które 
+ monitorują oraz zmieniają stan klastra korzystając z API serwera. \\
+ \hline
+ Cloud-controller-manager & Element, który wbudowuje logikę związaną z konkretną 
+ chmurą, w której tworzone są klastry. Pozwala połączyć dany klaster z API dostawcy 
+ chmury oraz oddziela komponenty, które oddziałują z chmurą od komponentów, które 
+ oddziałują tylko z klastrem. Jest to komponent, który występuje tylko w przypadku 
+ stawiania kontenerów w chmurze. Jeśli Kubernetes działa np. w prywatnym środowisku 
+ na jednym komputerze, wtedy klaster nie posiada tego elementu. \\
+ \hline
+\end{xltabular}
 
-Etcd - to spójny i wysoce dostępny magazyn par klucz-wartość używany przez Kubernetesa 
-jako miejsce do przechowywania wszystkich danych ważnych z punktu widzenia klastra. 
+Istnieje kilka rodzajów kontrolerów:
 
-Kube-scheduler - regularnie sprawdza czy został utworzony nowy zestaw 
-kontenerów, któremu nie został jeszcze przypisany węzeł. W takim przypadku wybiera 
-on maszynę, na której kontenery mają być uruchomione. Przy wyborze pod uwagę brane są 
-takie czynniki jak wymagane zasoby, ograniczenia sprzętowe lub programowe.
-
-Kube-controller-manager - komponent odpowiedzialny za uruchamianie kontrolerów, które 
-monitorują oraz zmieniają stan klastra korzystając z API serwera. Istnieje kilka 
-rodzajów kontrolerów:
-
-\begin{itemize} % lista nienumerowana
-    \item Kontroler węzłów (ang. node controller) - odpowiedzialny za wykrycie oraz 
+\begin{itemize}
+    \item Kontroler węzłów (ang. \textit{node controller}) - odpowiedzialny za wykrycie oraz 
     odpowiednią reakcję w przypadku, gdy jeden z węzłów ulega awarii lub staje się 
     niedostępny
-    \item Kontroler prac (ang. job controller) - nasłuchuje na pojawienie się obiektów 
+    \item Kontroler prac (ang. \textit{job controller}) - nasłuchuje na pojawienie się obiektów 
     pracy (job objects) reprezentujących zadania, a następnie tworzy zbiór (pod) który 
     te zadania wykona
     \item Kontroler punktów końcowych - zarządza obiektami punktów końcowych (serwisy 
-    oraz zbiory (ang. pods))
+    oraz zbiory (ang. \textit{pods}))
     \item Kontroler kont oraz tokenów - tworzy domyślne konta oraz tokeny dostępu do 
     API dla nowych przestrzeni nazw
 \end{itemize}
 
-Cloud-controller-manager - element, który wbudowuje logikę związaną z konkretną 
-chmurą, w której tworzone są klastry. Pozwala połączyć dany klaster z API dostawcy 
-chmury oraz oddziela komponenty, które oddziałują z chmurą od komponentów, które 
-oddziałują tylko z klastrem. Jest to komponent, który występuje tylko w przypadku 
-stawiania kontenerów w chmurze. Jeśli Kubernetes działa np. w prywatnym środowisku 
-na jednym komputerze, wtedy klaster nie posiada tego elementu. 
-Cloud-controller-manager może zapewniać poniższe zależności:
-
-\begin{itemize} % lista nienumerowana
-    \item Kontroler węzłów (node controller) - sprawdza czy węzeł został usunięty 
-    z chmury po tym jak przestał odpowiadać na żądania
-    \item Kontroler routingu (route controller) - zapewnia możliwość ustalenia ścieżek 
-    między poszczególnymi elementami infrastruktury chmurowej
-    \item Kontroler serwisów (service controller) - zapewnia możliwość 
-    tworzenia, edytowania oraz usuwania load balancer-ów
-\end{itemize}
-
-
 \subsubsection{Komponenty węzła}
 
-Poniżej opisano komponenty, które działają na każdym węźle w Kubernetesie.
+W tabeli \ref{tab:komponenty-wezla} opisano komponenty, które działają na każdym węźle w Kubernetesie.
 
-Kubelet - agent, którego rolą jest upewnienie się, że kontenery są uruchomione 
-w zbiorze (pods). Przyjmuje zestaw specyfikacji zbiorów i zapewnia, że wszystkie 
-kontenery podane w specyfikacji działają i są sprawne. Kubelet nie zarządza 
-kontenerami, które nie zostały utworzone przez Kubernetesa.
-
-Kube-proxy - proxy sieciowe, które implementuje część serwisu pozwalającego wystawić 
-aplikację do świata zewnętrznego. Jego zadaniem jest utrzymanie reguł sieciowych 
-w zarządzanych węzłach. Te reguły pozwalają na komunikację między różnymi zbiorami 
-wewnątrz lub na zewnątrz klastra.
-
-Container runtime - oprogramowanie odpowiedzialne za uruchamianie kontenerów. 
-Kubernetes wspiera wiele możliwych runtime'ów, m. in. Docker, containerd, CRI-O.
-
-Pod - grupa złożona z jednego lub większej liczby kontenerów, wdrożona na tym samym 
-węźle. Wszystkie kontenery z grupy współdzielą adres IP oraz przydzielone zasoby.
-
-Replication controller - narzędzie do kontroli liczby kopii danego poda, które powinny 
-być w danej chwili uruchomione
+\begin{xltabular}{1\textwidth} { 
+  | >{\raggedright\arraybackslash}c 
+  | >{\raggedright\arraybackslash}X | }
+  \caption{Komponenty płaszczyzny sterowania} \label{tab:komponenty-wezla}\\
+  \hline
+ Nazwa komoponentu & Opis \\
+ \hline
+ Kubelet & Agent, którego rolą jest upewnienie się, że kontenery są uruchomione 
+ w zbiorze (pods). Przyjmuje zestaw specyfikacji zbiorów i zapewnia, że wszystkie 
+ kontenery podane w specyfikacji działają i są sprawne. Kubelet nie zarządza 
+ kontenerami, które nie zostały utworzone przez Kubernetesa. \\
+ \hline
+ Kube-proxy & Proxy sieciowe, które implementuje część serwisu pozwalającego wystawić 
+ aplikację do świata zewnętrznego. Jego zadaniem jest utrzymanie reguł sieciowych 
+ w zarządzanych węzłach. Te reguły pozwalają na komunikację między różnymi zbiorami 
+ wewnątrz lub na zewnątrz klastra.  \\
+ \hline
+ Container runtime & Oprogramowanie odpowiedzialne za uruchamianie kontenerów. 
+ Kubernetes wspiera wiele możliwych runtime'ów, m. in. Docker, containerd, CRI-O. \\
+ \hline
+ Pod & Grupa złożona z jednego lub większej liczby kontenerów, wdrożona na tym samym 
+ węźle. Wszystkie kontenery z grupy współdzielą adres IP oraz przydzielone zasoby. \\
+ \hline
+ Replication controller & Narzędzie do kontroli liczby kopii danego poda, które powinny 
+ być w danej chwili uruchomione \\
+ \hline
+\end{xltabular}
 
 Płaszczyzna sterowania przyjmuje komendy od administratora klastra, po czym przekazuje 
 je do podległych serwerów. Komendy przyjmowane są za pomocą interfejsu 
@@ -593,7 +602,7 @@ Wyróżnia się trzy główne typy publikacji serwisu:
     balancer'a zapewnionego przez wykorzystywaną platformę chmurową
 \end{itemize}
 
-Dobrą praktyką jest utworzenie obiektu wejścia do klastra (ang. ingress), który 
+Dobrą praktyką jest utworzenie obiektu wejścia do klastra (ang. \textit{ingress}), który 
 zarządza dostępem do klastra z zewnątrz. Typowo jest to obiekt API, który udostępnia 
 ścieżki protokołu HTTP(S) prowadzące do serwisów znajdujących się wewnątrz klastra.
 

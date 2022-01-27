@@ -2,7 +2,8 @@
 \section{Metodologia}
 
 Największy nacisk w trakcie tworzenia pracy został położony na łatwość wdrożenia. 
-W poniższych podrozdziałach został opisany sposób, w jaki ten cel osiągnięto.
+W poniższych podrozdziałach przedstawiono kwestie, które należy wziąć pod uwagę
+podczas projektowania rozwiązania, które ma tę cechę spełniać.
 
 \subsection{Architektura systemu}
 
@@ -14,7 +15,8 @@ w jednym projekcie i funkcjonuje jako całość. Druga możliwość opiera się 
 rozdzieleniu funkcjonalności na wiele mniejszych podprogramów, które działają 
 niezależnie od siebie. Obydwie architektury posiadają swoje wady i zalety i wybór 
 jednej z nich zależy od specyficznych potrzeb każdego projektu. W tabeli 
-\ref{tab:porownanie-architektur}. przedstawiono porównanie obydwu architektur, które 
+\ref{tab:porownanie-architektur}. przedstawiono porównanie obydwu architektur 
+\cite{newmanb2015}, które 
 uwzględnia:
 
 \begin{itemize} % lista nienumerowana
@@ -67,7 +69,7 @@ mikrousługową w celu implementacji systemu.
 \subsubsection{Serwisy zorientowane usługowo}
 
 Docelowo, system oparty na architekturze mikrousługowej powinien składać się z serwisów 
-zorientowanych usługowo (ang. service-oriented architecture). Stanowią one 
+zorientowanych usługowo (ang. \textit{service-oriented architecture}). Stanowią one 
 konstrukcję, w której wiele serwisów współpracuje ze sobą w celu zapewnienia zbioru 
 funkcjonalności. Serwis oznacza tutaj oddzielny proces pracujący na danej maszynie. 
 Procesy te komunikują się ze sobą przez sieć.
@@ -78,35 +80,36 @@ Architektura mikrousługowa opiera się na tym, że poszczególne serwisy dział
 niezależnie od siebie. Dzięki temu zmiany wprowadzone w jednym serwisie nie powinny 
 wymagać zmian w drugim. Ponadto wdrożenie danego serwisu nie powinno wymagać 
 jednoczesnego wdrożenia innych. O tak rozdzielonych serwisach mówi się, że są ze sobą 
-luźno sprzężone (ang. loose coupling). Prawidłowo skonstruowany serwis powinien 
+luźno sprzężone (ang. \textit{loose coupling}). Prawidłowo skonstruowany serwis powinien 
 wiedzieć jedynie tyle, w jaki sposób może komunikować się z innymi serwisami w celu 
 uzyskania wymaganych danych.
 
 \subsubsection{Spójność serwisów}
 W prawidłowo skonstruowanym systemie mikrousługowym funkcjonalność związana ze 
 sobą (np. w kontekście biznesowym) jest umieszczona w jednym miejscu. O tak 
-zaprojektowanych serwisach mówi się, że są one spójne (ang. high cohesion). Przykładem 
+zaprojektowanych serwisach mówi się, że są one spójne (ang. \textit{high cohesion}). 
+Przykładem 
 błędnej implementacji może być edycja danych osobowych klienta w wielu serwisach. 
 Wtedy zmiana w jednym serwisie może wymagać zmiany w innych.
 
 \subsubsection{Architektura systemu do zarządzania energią w pomieszczeniach biurowych}
 
 Opierając się na poprzednich podrozdziałach oraz w oparciu o założenia utworzono 
-architekturę systemu będącego rezultatem tej pracy inżynierskiej. Rysunek 1. 
-przedstawia pełną architekturę aplikacji:
+architekturę systemu będącego rezultatem tej pracy inżynierskiej. Rysunek 
+\ref{fig:architektura-systemu} przedstawia pełną architekturę aplikacji:
 
-\begin{figure}[h] % dodanie obrazka
-    \centering % wycentrowanie
-    \includegraphics[width=1\textwidth]{architektura.jpg} % dodanie grafiki "thesis.jpg"
-    \caption{Architektura systemu} % opis obrazka
-    \label{fig:architektura-systemu} % labelka do figury, dzieki ktorej mozna sie pozniej do obrazka odnosic
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{architektura.jpg}
+    \caption{Architektura systemu}
+    \label{fig:architektura-systemu}
 \end{figure}
 
 Na całość składają się serwisy opisane w tabeli \ref{tab:mikrouslugi-danych}.
 
     \begin{xltabular}{1\textwidth} { 
         | >{\raggedright\arraybackslash}X        
-        | >{\raggedleft\arraybackslash}X | }
+        | >{\raggedright\arraybackslash}X | }
         \caption{Mikrousługi danych} \label{tab:mikrouslugi-danych} \\
         \hline
        Nazwa & Funkcja \\
@@ -135,7 +138,7 @@ Poza mikrousługami danych aplikacja posiada również serwisy przetwarzające d
 
     \begin{xltabular}{1\textwidth} { 
         | >{\raggedright\arraybackslash}X        
-        | >{\raggedleft\arraybackslash}X | }
+        | >{\raggedright\arraybackslash}X | }
         \caption{Serwisy przetwarzające} \label{tab:serwisy-przetwarzajace} \\
         \hline
        Nazwa & Funkcja \\
@@ -154,7 +157,7 @@ Na system składają się także mikrousługi aplikacyjne:
 
     \begin{xltabular}{1\textwidth} { 
         | >{\raggedright\arraybackslash}X        
-        | >{\raggedleft\arraybackslash}X | }
+        | >{\raggedright\arraybackslash}X | }
         \caption{Mikrousługi aplikacyjne} \label{tab:mikrouslugi-aplikacyjne} \\
         \hline
        Nazwa & Funkcja \\
@@ -175,7 +178,7 @@ Ostatnimi elementami systemu są aplikacje dla poszczególnych ról użytkownik�
 
     \begin{xltabular}{1\textwidth} { 
         | >{\raggedright\arraybackslash}X        
-        | >{\raggedleft\arraybackslash}X | }
+        | >{\raggedright\arraybackslash}X | }
         \caption{Aplikacje użytkowników} \label{tab:aplikacje-uzytkownikow} \\
         \hline
        Nazwa & Funkcja \\

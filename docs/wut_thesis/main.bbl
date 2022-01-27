@@ -1,0 +1,543 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{none/global//global/global}
+  \entry{oseland2012}{article}{}
+    \name{author}{2}{}{%
+      {{hash=ON}{%
+         family={Oseland},
+         familyi={O\bibinitperiod},
+         given={N.},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=BA}{%
+         family={Burton},
+         familyi={B\bibinitperiod},
+         given={A},
+         giveni={A},
+      }}%
+    }
+    \strng{namehash}{ONBA1}
+    \strng{fullhash}{ONBA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{number}{2}
+    \field{pages}{151\bibrangedash 164}
+    \field{title}{Quantifying the impact of environmental conditions on worker
+  performance for inputting to a business case to justify enhanced workplace
+  design features}
+    \field{volume}{1}
+    \field{journaltitle}{Journal of Building Survey}
+    \field{year}{2012}
+  \endentry
+
+  \entry{Imt.org2015}{online}{}
+    \name{author}{1}{}{%
+      {{hash=fMTI}{%
+         prefix={for},
+         prefixi={f\bibinitperiod},
+         family={Market\bibnamedelima Transformation},
+         familyi={M\bibinitperiod\bibinitdelim T\bibinitperiod},
+         given={Institute},
+         giveni={I\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MTIf1}
+    \strng{fullhash}{MTIf1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{ENERGY BENCHMARKING AND TRANSPARENCY}
+    \verb{url}
+    \verb https://www.imt.org/wp-content/uploads/2018/02/IMTBenefitsofBenchmark
+    \verb ing_Online_June2015.pdf
+    \endverb
+    \field{year}{2015}
+    \field{urlday}{08}
+    \field{urlmonth}{01}
+    \field{urlyear}{2022}
+  \endentry
+
+  \entry{sharp2022}{online}{}
+    \name{author}{1}{}{%
+      {{hash=S}{%
+         family={Sharp},
+         familyi={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{S1}
+    \strng{fullhash}{S1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Monitor do współpracy w systemie Windows}
+    \verb{url}
+    \verb https://www.sharp.pl/cps/rde/xchg/pl/hs.xsl/-/html/windows-collaborat
+    \verb ion-display.htm
+    \endverb
+    \field{year}{2022}
+    \field{urlday}{08}
+    \field{urlmonth}{01}
+    \field{urlyear}{2022}
+  \endentry
+
+  \entry{Lan2012}{article}{}
+    \name{author}{3}{}{%
+      {{hash=LL}{%
+         family={Lan},
+         familyi={L\bibinitperiod},
+         given={L.},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=WP}{%
+         family={Wargocki},
+         familyi={W\bibinitperiod},
+         given={P.},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=LZ}{%
+         family={Lian},
+         familyi={L\bibinitperiod},
+         given={Z},
+         giveni={Z},
+      }}%
+    }
+    \strng{namehash}{LLWPLZ1}
+    \strng{fullhash}{LLWPLZ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{pages}{12\bibrangedash 17}
+    \field{title}{Optimal thermal environment improves performance of office
+  work}
+    \field{journaltitle}{Rehva}
+    \field{year}{2012}
+  \endentry
+
+  \entry{dai2014}{article}{}
+    \name{author}{3}{}{%
+      {{hash=DC}{%
+         family={Dai},
+         familyi={D\bibinitperiod},
+         given={C.},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=LL}{%
+         family={Lan},
+         familyi={L\bibinitperiod},
+         given={L.},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=LZ}{%
+         family={Lian},
+         familyi={L\bibinitperiod},
+         given={Z},
+         giveni={Z},
+      }}%
+    }
+    \strng{namehash}{DCLLLZ1}
+    \strng{fullhash}{DCLLLZ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{pages}{278\bibrangedash 283}
+    \field{title}{Method for the determination of optimal work environment in
+  office buildings considering energy consumption and human performance}
+    \field{volume}{76}
+    \field{journaltitle}{Energy and Buildings}
+    \field{year}{2014}
+  \endentry
+
+  \entry{hedge2005}{article}{}
+    \name{author}{3}{}{%
+      {{hash=HA}{%
+         family={Hedge},
+         familyi={H\bibinitperiod},
+         given={A.},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=SW}{%
+         family={Sakr},
+         familyi={S\bibinitperiod},
+         given={W.},
+         giveni={W\bibinitperiod},
+      }}%
+      {{hash=AA}{%
+         family={Agarwal},
+         familyi={A\bibinitperiod},
+         given={A},
+         giveni={A},
+      }}%
+    }
+    \strng{namehash}{HASWAA1}
+    \strng{fullhash}{HASWAA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{number}{8}
+    \field{pages}{8}
+    \field{title}{Thermal Effects on Office Productivity}
+    \field{volume}{49}
+    \field{journaltitle}{Proceedings of the Human Factors and Ergonomics
+  Society Annual Meeting}
+    \field{year}{2005}
+  \endentry
+
+  \entry{chinchiuan2014}{article}{}
+    \name{author}{2}{}{%
+      {{hash=CCL}{%
+         family={Chin-Chiuan},
+         familyi={C\bibinithyphendelim C\bibinitperiod},
+         given={L.},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=KCH}{%
+         family={Kuo-Chen},
+         familyi={K\bibinithyphendelim C\bibinitperiod},
+         given={H.},
+         giveni={H\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CCLKCH1}
+    \strng{fullhash}{CCLKCH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{number}{3}
+    \field{pages}{193\bibrangedash 202}
+    \field{title}{Effects of Lighting Color, Illumination Intensity, and Text
+  Color on Visual Performance}
+    \field{volume}{12}
+    \field{journaltitle}{International Journal of Applied Science and
+  Engineering}
+    \field{year}{2014}
+  \endentry
+
+  \entry{liu2017}{article}{}
+    \name{author}{4}{}{%
+      {{hash=LT}{%
+         family={Liu},
+         familyi={L\bibinitperiod},
+         given={T.},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=LC}{%
+         family={Lin},
+         familyi={L\bibinitperiod},
+         given={C.},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=HK}{%
+         family={Huang},
+         familyi={H\bibinitperiod},
+         given={K.},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=CY}{%
+         family={Chen},
+         familyi={C\bibinitperiod},
+         given={Y},
+         giveni={Y},
+      }}%
+    }
+    \strng{namehash}{LTLCHK+1}
+    \strng{fullhash}{LTLCHKCY1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{pages}{70\bibrangedash 74}
+    \field{title}{Effects of noise type, noise intensity, and illumination
+  intensity on reading performance}
+    \field{volume}{120}
+    \field{journaltitle}{Applied Acoustics}
+    \field{year}{2017}
+  \endentry
+
+  \entry{newmanb2015}{inbook}{}
+    \name{author}{1}{}{%
+      {{hash=NS}{%
+         family={Newam},
+         familyi={N\bibinitperiod},
+         given={Sam},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {O'Reilly}%
+    }
+    \strng{namehash}{NS1}
+    \strng{fullhash}{NS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{pages}{16\bibrangedash 27}
+    \field{title}{Building microservices}
+    \field{year}{2015}
+  \endentry
+
+  \entry{mysql2022}{online}{}
+    \name{author}{1}{}{%
+      {{hash=CO}{%
+         family={Corporation},
+         familyi={C\bibinitperiod},
+         given={Oracle},
+         giveni={O\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CO1}
+    \strng{fullhash}{CO1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{General Information}
+    \verb{url}
+    \verb https://dev.mysql.com/doc/refman/8.0/en/introduction.html
+    \endverb
+    \field{year}{2022}
+    \field{urlday}{08}
+    \field{urlmonth}{01}
+    \field{urlyear}{2022}
+  \endentry
+
+  \entry{richardson2021}{online}{}
+    \name{author}{1}{}{%
+      {{hash=RC}{%
+         family={Richardson},
+         familyi={R\bibinitperiod},
+         given={C},
+         giveni={C},
+      }}%
+    }
+    \strng{namehash}{RC1}
+    \strng{fullhash}{RC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Microservices Pattern: Database per service}
+    \verb{url}
+    \verb https://microservices.io/patterns/data/database-per-service.html
+    \endverb
+    \field{year}{2021}
+    \field{urlday}{08}
+    \field{urlmonth}{01}
+    \field{urlyear}{2022}
+  \endentry
+
+  \entry{vickers2021}{online}{}
+    \name{author}{1}{}{%
+      {{hash=VA}{%
+         family={Vickers},
+         familyi={V\bibinitperiod},
+         given={A},
+         giveni={A},
+      }}%
+    }
+    \strng{namehash}{VA1}
+    \strng{fullhash}{VA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Identity model customization in ASP.NET Core}
+    \verb{url}
+    \verb https://docs.microsoft.com/en-us/aspnet/core/security/authentication/
+    \verb customize-identity-model?view=aspnetcore-5.0#the-identity-model
+    \endverb
+    \field{year}{2021}
+    \field{urlday}{08}
+    \field{urlmonth}{01}
+    \field{urlyear}{2022}
+  \endentry
+
+  \entry{influxdb2022}{online}{}
+    \name{author}{1}{}{%
+      {{hash=II}{%
+         family={Inc},
+         familyi={I\bibinitperiod},
+         given={InfluxData},
+         giveni={I\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{II1}
+    \strng{fullhash}{II1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Why use influxdb}
+    \verb{url}
+    \verb https://www.influxdata.com/products/influxdb/
+    \endverb
+    \field{year}{2022}
+    \field{urlday}{08}
+    \field{urlmonth}{01}
+    \field{urlyear}{2022}
+  \endentry
+
+  \entry{rabbitmq2022}{online}{}
+    \name{author}{1}{}{%
+      {{hash=R}{%
+         family={RabbitMq},
+         familyi={R\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{R1}
+    \strng{fullhash}{R1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{AMQP 0-9-1 Model Explained}
+    \verb{url}
+    \verb https://www.rabbitmq.com/tutorials/amqp-concepts.html
+    \endverb
+    \field{year}{2022}
+    \field{urlday}{08}
+    \field{urlmonth}{01}
+    \field{urlyear}{2022}
+  \endentry
+
+  \entry{masstransit2022}{online}{}
+    \name{author}{1}{}{%
+      {{hash=M}{%
+         family={MassTransit},
+         familyi={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{M1}
+    \strng{fullhash}{M1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Transports}
+    \verb{url}
+    \verb https://masstransit-project.com/usage/transports/
+    \endverb
+    \field{year}{2022}
+    \field{urlday}{08}
+    \field{urlmonth}{01}
+    \field{urlyear}{2022}
+  \endentry
+
+  \entry{newman2015}{book}{}
+    \name{author}{1}{}{%
+      {{hash=NS}{%
+         family={Newman},
+         familyi={N\bibinitperiod},
+         given={Sam},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {O'Reilly}%
+    }
+    \strng{namehash}{NS2}
+    \strng{fullhash}{NS2}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Building microservices}
+    \field{year}{2015}
+  \endentry
+
+  \entry{fielding1999}{online}{}
+    \name{author}{7}{}{%
+      {{hash=FR}{%
+         family={Fielding},
+         familyi={F\bibinitperiod},
+         given={R.},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=MJ}{%
+         family={Mogul},
+         familyi={M\bibinitperiod},
+         given={J.},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=GJ}{%
+         family={Gettys},
+         familyi={G\bibinitperiod},
+         given={J.},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=FH}{%
+         family={Frystyk},
+         familyi={F\bibinitperiod},
+         given={H.},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=MJ}{%
+         family={Masinter},
+         familyi={M\bibinitperiod},
+         given={J.},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=BLT}{%
+         family={Berners-Lee},
+         familyi={B\bibinithyphendelim L\bibinitperiod},
+         given={T.},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=LP}{%
+         family={Leach},
+         familyi={L\bibinitperiod},
+         given={P},
+         giveni={P},
+      }}%
+    }
+    \strng{namehash}{FRMJGJ+1}
+    \strng{fullhash}{FRMJGJFHMJBLTLP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{rfc2616}
+    \verb{url}
+    \verb https://datatracker.ietf.org/doc/html/rfc2616#section-10
+    \endverb
+    \field{year}{1999}
+    \field{urlday}{08}
+    \field{urlmonth}{01}
+    \field{urlyear}{2022}
+  \endentry
+
+  \entry{nuke2022}{online}{}
+    \name{author}{1}{}{%
+      {{hash=KM}{%
+         family={Koch},
+         familyi={K\bibinitperiod},
+         given={Matthias},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{KM1}
+    \strng{fullhash}{KM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Getting started}
+    \verb{url}
+    \verb https://nuke.build/docs/getting-started/philosophy.html
+    \endverb
+    \field{year}{2022}
+    \field{urlday}{08}
+    \field{urlmonth}{01}
+    \field{urlyear}{2022}
+  \endentry
+
+  \entry{kubernetes2022}{online}{}
+    \name{author}{1}{}{%
+      {{hash=K}{%
+         family={Kubernetes},
+         familyi={K\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{K1}
+    \strng{fullhash}{K1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{What is Kubernetes?}
+    \verb{url}
+    \verb https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/
+    \endverb
+    \field{year}{2022}
+    \field{urlday}{08}
+    \field{urlmonth}{01}
+    \field{urlyear}{2022}
+  \endentry
+\enddatalist
+\endinput

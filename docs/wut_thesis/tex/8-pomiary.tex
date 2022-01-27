@@ -13,8 +13,8 @@ natężenia światła. Zestaw został złożony z następujących elementów:
 \end{itemize}
 
 Moduł WEMOS jest mikrokontrolerem oparty o kontroler ATmega328P. Posiada
-11 portów wejścia-wyjścia pozwlających na dołączenie zewnętrznych 
-urządzeń. Płytka została fabrycznie wyposażona w moduł wifi ESP8266. Za
+11 portów wejścia-wyjścia pozwalających na dołączenie zewnętrznych 
+urządzeń. Płytka została fabrycznie wyposażona w moduł WIFI ESP8266. Za
 jego pomocą mogą zostać wysłane pomiary.
 
 Fotorezystor służy do pomiaru natężenia światła. Został wykonany 
@@ -35,7 +35,7 @@ Do rozwoju oprogramowania do mikrokontrolera WEMOSC wykorzystano narzędzie
 Arduino IDE, będące rozbudowanym edytorem pozwalającym na kompilację,
 przesyłanie plików wykonywalnych na płytkę przy pomocy kabla USB oraz
 debugowanie i podgląd logów produkowanych przez mikrokontroler w czasie 
-rzeczywistym. Do utworzeniu kodu został wykorzystany język C.
+rzeczywistym. Do utworzenia kodu został wykorzystany język C.
 
 Zadaniem mikrokontrolera było:
 
@@ -97,7 +97,7 @@ Każdy z programów wgrywanych na płytkę powinien zawierać dwie główne funk
 
 Na początku definiowana jest szyna, za pomocą której przesyłane są dane do 
 modułu WIFI. Moduł wspiera prędkość transmisji na poziomie 115200 bitów na 
-sekundę (ang. baud rate). Następnie tworzony jest klient, którego zadaniem
+sekundę (ang. \textit{baud rate}). Następnie tworzony jest klient, którego zadaniem
 jest wysyłanie pomiarów na kolejkę brokera wiadomości. 
 
 Wewnątrz metody loop() co 60 sekund zbierane są pomiary, po czym publikowane
@@ -235,3 +235,6 @@ Mikrokontroler nasłuchuje na wiadomości o temacie \\RABBITMQ\_SUBSCRIPTION:
       }
     }
 \end{lstlisting}
+
+Serwis SSDS może zażądać wysłania aktualnych pomiarów poprzez wysłanie do brokera 
+wiadomości o tym samym temacie.

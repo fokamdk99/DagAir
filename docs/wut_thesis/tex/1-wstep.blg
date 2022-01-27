@@ -1,0 +1,5 @@
+[0] Config.pm:311> INFO - This is Biber 2.16
+[0] Config.pm:314> INFO - Logfile is 'tex/1-wstep.blg'
+[155] biber-MSWIN64:340> INFO - === 
+[628] Utils.pm:411> ERROR - Cannot find 'tex/1-wstep.bcf'!
+[628] Biber.pm:132> INFO - ERRORS: 1

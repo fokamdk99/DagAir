@@ -69,28 +69,30 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {8.1\relax .\enspace }Oprogramowanie mikrokontrolera}{42}{subsection.8.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {9\relax .\enspace }Automatyzacja}{47}{section.9}%
+\contentsline {section}{\numberline {9\relax .\enspace }Automatyzacja}{48}{section.9}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.1\relax .\enspace }Docker}{47}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.1\relax .\enspace }Docker}{48}{subsection.9.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.2\relax .\enspace }Ciągła integracja}{50}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9.2\relax .\enspace }Ciągła integracja}{51}{subsection.9.2}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {9.3\relax .\enspace }Ciągłe dostarczanie}{54}{subsection.9.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.4\relax .\enspace }Kubernetes}{54}{subsection.9.4}%
+\contentsline {subsection}{\numberline {9.4\relax .\enspace }Kubernetes}{55}{subsection.9.4}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{\numberline {9.4.1\relax .\enspace }Komponenty płaszczyzny sterowania}{56}{subsubsection.9.4.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {9.4.2\relax .\enspace }Komponenty węzła}{57}{subsubsection.9.4.2}%
+\contentsline {subsubsection}{\numberline {9.4.2\relax .\enspace }Komponenty węzła}{58}{subsubsection.9.4.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {10\relax .\enspace }Podsumowanie}{61}{section.10}%
+\contentsline {section}{\numberline {10\relax .\enspace }Podsumowanie}{63}{section.10}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {10.1\relax .\enspace }Możliwości rozszerzenia projektu}{61}{subsection.10.1}%
+\contentsline {subsection}{\numberline {10.1\relax .\enspace }Możliwości rozszerzenia projektu}{63}{subsection.10.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{Wykaz symboli i skrótów}{63}{section*.9}%
+\contentsline {section}{Bibliografia}{65}{section*.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{Spis rysunków}{63}{section*.9}%
+\contentsline {section}{Wykaz symboli i skrótów}{67}{section*.8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{Spis tabel}{64}{section*.9}%
+\contentsline {section}{Spis rysunków}{67}{section*.8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{Spis załączników}{64}{section*.10}%
+\contentsline {section}{Spis tabel}{68}{section*.8}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{Spis załączników}{68}{section*.9}%

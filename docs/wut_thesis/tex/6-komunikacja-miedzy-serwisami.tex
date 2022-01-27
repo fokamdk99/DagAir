@@ -10,24 +10,24 @@ narzędzie typu open source, ponadto cechuje się małymi wymaganiami sprzętowy
 łatwością wdrażania w chmurze. 
 
 RabbitMQ wspiera różne protokoły do przekazywania wiadomości, jednak domyślnie 
-wykorzystuje protokół AMQP 0-9-1 (ang. advanced message queuing protocol). Uogólniony 
+wykorzystuje protokół AMQP 0-9-1 (ang. \textit{advanced message queuing protocol}). Uogólniony 
 schemat, na którym opiera się protokoł, został przedstawiony na rysunku \ref{fig:schemat-amqp}.
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=1\textwidth]{amqp_schema.jpg}
-    \caption{Schemat protokołu AMQP 0-9-1. Źródło: \href{https://www.rabbitmq.com/tutorials/amqp-concepts.html}{Schemat AMQP}}
+    \caption{Schemat protokołu AMQP 0-9-1. Źródło: \cite{rabbitmq2022}}
     \label{fig:schemat-amqp}
 \end{figure}
 
-Wydawcy wiadomości (ang. publisher) publikują wiadomości do pośrednika, który następnie 
-przekuje je do odpowiednich konsumentów (ang. consumer). Ponieważ jest to protokół 
+Wydawcy wiadomości (ang. \textit{publisher}) publikują wiadomości do pośrednika, który następnie 
+przekuje je do odpowiednich konsumentów (ang. \textit{consumer}). Ponieważ jest to protokół 
 sieciowy, to wydawcy, konsumenci oraz pośrednicy mogą być uruchomieni na różnych 
 maszynach. Pośrednik RabbitMq dysponuje następującymi cechami:
 
 \begin{itemize} % lista nienumerowana
     \item Wiadomości są publikowane na giełdy (ang. exchange)
-    \item Giełdy mogą być połączone z wieloma kolejkami (ang. queue)
+    \item Giełdy mogą być połączone z wieloma kolejkami (ang. \textit{queue})
     \item Zależnie od zastosowanej polityki kopia wiadomości może być przekazana do 
     każdej powiązanej kolejki lub tylko podzbiorowi kolejek
     \item Kolejka po otrzymaniu wiadomości od giełdy przesyła ją do konsumentów
@@ -35,31 +35,31 @@ maszynach. Pośrednik RabbitMq dysponuje następującymi cechami:
 
 Przesyłanie informacji przez sieć wiąże się z ryzykiem tego, że dane nie zostaną 
 dostarczone. Wobec tego protokół zapewnia funkcjonalność, zwaną potwierdzeniem 
-wiadomości (ang. message acknowledgements), która gwarantuje otrzymanie wiadomości 
+wiadomości (ang. \textit{message acknowledgements}), która gwarantuje otrzymanie wiadomości 
 przez konsumentów. Działa ona w ten sposób, że wiadomość jest usuwana z kolejki tylko 
 wtedy, gdy uzyska potwierdzenie jej otrzymania od zainteresowanych usług.
 
 Giełdy po otrzymaniu wiadomości od wydawców mogą ją rozesłać do zera lub większej 
 liczby kolejek. Używany algorytm routingu zależy od typu wymiany i reguł nazywanych 
-powiązaniami (ang. bindings). Pośrednicy korzystający z protokołu AMQP 0-9-1 zapewniają 
+powiązaniami (ang. \textit{bindings}). Pośrednicy korzystający z protokołu AMQP 0-9-1 zapewniają 
 cztery typy wymiany:
 
 \begin{itemize} % lista nienumerowana
-    \item Wymiana bezpośrednia (ang direct exchange) - dostarcza wiadomości do kolejek 
+    \item Wymiana bezpośrednia (ang. \textit{direct exchange}) - dostarcza wiadomości do kolejek 
     na podstawie klucza routingu. Jest idealna do wiadomości typu unicast 
     (chociaż może być także używana do wiadomości typu multicast)
-    \item Wymiana do wszystkich (fanout exchange) - kieruje komunikaty do wszystkich 
+    \item Wymiana do wszystkich (ang. \textit{fanout exchange}) - kieruje komunikaty do wszystkich 
     kolejek, które są z nią powiązane, a klucz routingu jest ignorowany. Jeśli do 
     giełdy dowiązanych jest N kolejek, to po publikacji wiadomości przez wydawcę 
     dotrze ona do wszystkich N kolejek. Jest idealna do rozsyłania wiadomości do 
     wszystkich usług
-    \item Wymiana tematyczna (ang. topic exchange) - kierują wiadomości do jednej lub 
+    \item Wymiana tematyczna (ang. \textit{topic exchange}) - kierują wiadomości do jednej lub 
     wielu kolejek na podstawie dopasowania klucza routingu oraz wzorca użytego do 
     powiązania kolejki z giełdą. Jest często używana do implementacji różnych odmian 
     wzorca publish/subscribe. Typowo używa się jej dla wiadomości typu multicast. 
     Warto ją rozważyć w przypadku, gdy należy dostarczyć wiadomość do wielu 
     konsumentów, które selektywnie wybierają rodzaj wiadomości, które chcą otrzymywać
-    \item Wymiana nagłówków (ang. headers exchange) - przeznaczona do routingu na 
+    \item Wymiana nagłówków (ang. \textit{headers exchange}) - przeznaczona do routingu na 
     podstawie wielu atrybutów, które łatwiej można wyrazić w postaci nagłówków 
     wiadomości niż klucza routingu, który jest ignorowany. Wiadomość uważana jest za 
     zgodną i rozsyłana dalej, jeśli wartość nagłówka jest równa wartości określonej 
@@ -67,12 +67,12 @@ cztery typy wymiany:
 \end{itemize}
 
 AMQP 0-9-1 jest protokołem poziomu aplikacji, który używa protokołu TCP do niezawodnego 
-przesyłania wiadomości. Połączenia (ang. connections) korzystają z metod 
+przesyłania wiadomości. Połączenia (ang. \textit{connections}) korzystają z metod 
 uwierzytelnienia i mogą być chronione za pomocą protokołu TLS. Ze względu na dodatkowe 
 środki zapewniające niezawodność zaleca się, aby połączenia między klientem 
 a pośrednikiem były ustanawiane na dłuższy okres czasu. W przypadku gdy klient 
 potrzebuje nawiązać wiele połączeń, może skorzystać z kanałów (ang. 
-channels), o których można myśleć jako lekkich połączeniach dzielących jedno 
+\textit{channels}), o których można myśleć jako lekkich połączeniach dzielących jedno 
 połączenie TCP. Każda operacja przeprowadzana przez klienta odbywa się z użyciem 
 kanału, a komunikacja na różnych kanałach jest od siebie całkowicie odseparowana. 
 Z tego względu każda metoda zawiera identyfikator kanału dla rozróżnienia, przez 
@@ -81,7 +81,8 @@ który kanał należy wysłać wiadomość.
 \subsubsection{MassTransit}
 
 Przy tworzeniu systemu została wykorzystana szyna danych o nazwie MassTransit 
-przeznaczona dla aplikacji napisanych we framework'u .NET Core. Zapewnia ona poziom 
+przeznaczona dla aplikacji napisanych we framework'u .NET Core
+\cite{masstransit2022}. Zapewnia ona poziom 
 abstrakcji umożliwiający wykorzystanie wielu różnych pośredników wiadomości, w 
 tym RabbitMQ. Spośród wielu swoich zalet, szyna zapewnia:
 
@@ -179,7 +180,7 @@ przypadki zostały przedstawione na rysunku \ref{fig:rabbitmq-polaczenie}.
     \label{fig:rabbitmq-polaczenie}
 \end{figure}
 
-\begin{enumerate} % lista numerowana
+\begin{enumerate}
     \item W pierwszym przypadku celem jest wysłanie wiadomości tylko do jednego konsumenta. Jedną
     z występujących sytuacji jest przetwarzanie otrzymanych z czujników pomiarów przez Sensor State
     Processing Service. Wykonanie tej samej operacji przez kilka instancji tego serwisu byłoby stratą
@@ -198,7 +199,7 @@ przypadki zostały przedstawione na rysunku \ref{fig:rabbitmq-polaczenie}.
 \subsection{Styki}
 
 Mikroserwisy mogą komunikować się między sobą przy użyciu oferowanych przez nie 
-styków (ang. Application Programming Interface). Definiują one kontrakty 
+styków (ang. \textit{Application Programming Interface}). Definiują one kontrakty 
 określające informacje wymagane przy wysyłaniu żądania oraz zbiór danych zwracany 
 w odpowiedzi.
 

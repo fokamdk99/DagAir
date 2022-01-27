@@ -3,8 +3,9 @@
 Funkcjonalność i architektura systemu została utworzona w oparciu o kilka istotnych 
 założeń:
 
-\begin{itemize} % lista nienumerowana
-    \item Łatwość wdrożenia - system powinien być gotowy do wdrożenia na środowisko 
+\begin{itemize}
+    \item Szcególny nacisk jest położony na łatwość wdrożenia - system powinien być 
+    gotowy do wdrożenia na środowisko 
     chmurowe. Organizacja zainteresowana uruchomieniem aplikacji dla swoich potrzeb 
     może wybrać opcję, w której dostarczane są obrazy odpowiednich serwisów oraz 
     skrypty konfigurujące środowisko. Takie rozwiązanie mogłoby być ofertą skierowaną 
@@ -25,15 +26,15 @@ założeń:
     przypisanych, oraz administratorów organizacji, którzy posiadają wszystkie 
     uprawnienia przypisane pracownikom, a ponadto możliwość zarządzania informacjami 
     dotyczącymi organizacji, budynków, pomieszczeń i czujników
+    \item System jest rozwijany przy wykorzystaniu platformy .NET w wersji 5.0
 \end{itemize}
 
-Poniższa tabela pokazuje porównanie wyników z różnych artykułów traktujących 
+Tabela \ref{tab:optymalna-temperatura} pokazuje porównanie wyników z różnych artykułów traktujących 
 o optymalnej temperaturze w pomieszczeniach:
 
-\begin{table}[h]
-    \centering
-    \caption{Porównanie wyników badań estymujących optymalną temperaturę}
-    \begin{tabular}{ |c|c| } 
+\begin{xltabular}{1\textwidth}
+    { |c|c| }
+    \caption{Porównanie wyników badań estymujących optymalną temperaturę} \label{tab:optymalna-temperatura} \\
      \hline
      Badanie & Optymalna temperatura \\ 
      \hline
@@ -43,18 +44,15 @@ o optymalnej temperaturze w pomieszczeniach:
      \hline
      \cite{hedge2005} & 24.0\degree C - 25.0\degree C \\ 
      \hline
-    \end{tabular}
-    \label{tab:optymalna-temperatura}
-\end{table}
+\end{xltabular}
 
-W oparciu o powyższe badania wyliczono średnią optymalną temperaturę wynoszącą 24,5\degree C.
-Kolejna z tabel porównuje poziom natężenia światła, który skutkował najlepszą 
-efektywnością pracowników:
+W oparciu o powyższe badania wyliczono średnią optymalną temperaturę wynoszącą 24.5\degree C.
+Natomiast w tabeli \ref{tab:optymalne-natezenie} porównywane są rezultaty badań nad optymalnym 
+poziomem natężenia światła, który skutkował najlepszą efektywnością pracowników:
 
-\begin{table}[ht]
-    \centering
-    \caption{Porównanie wyników badań estymujących optymalne natężenie światła}
-    \begin{tabular}{ |c|c| } 
+\begin{xltabular}{1\textwidth}
+    { |c|c| }
+    \caption{Porównanie wyników badań estymujących optymalne natężenie światła} \label{tab:optymalne-natezenie} \\
      \hline
      Badanie & Optymalne natężenie światła \\ 
      \hline
@@ -62,9 +60,7 @@ efektywnością pracowników:
      \hline
      \parencite{liu2017} & 600 lx \\ 
      \hline
-    \end{tabular}
-    \label{tab:optymalne-natezenie}
-\end{table}
+\end{xltabular}
 
 W oparciu o powyższe badania wyliczono średnią optymalne natężenie światła 
 wynoszące 550 lx.

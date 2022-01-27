@@ -280,6 +280,9 @@ INPUT C:\Users\01143844\AppData\Local\Programs\MiKTeX\tex\generic\unicode-data\U
 INPUT C:\Users\01143844\AppData\Local\Programs\MiKTeX\tex\latex\biblatex\blx-compat.def
 INPUT C:\Users\01143844\AppData\Local\Programs\MiKTeX\tex\latex\biblatex\blx-compat.def
 INPUT C:\Users\01143844\AppData\Local\Programs\MiKTeX\tex\latex\biblatex\blx-compat.def
+INPUT C:\Users\01143844\AppData\Local\Programs\MiKTeX\tex\latex\biblatex\blx-bibtex.def
+INPUT C:\Users\01143844\AppData\Local\Programs\MiKTeX\tex\latex\biblatex\blx-bibtex.def
+INPUT C:\Users\01143844\AppData\Local\Programs\MiKTeX\tex\latex\biblatex\blx-bibtex.def
 INPUT C:\Users\01143844\AppData\Local\Programs\MiKTeX\tex\latex\biblatex\biblatex.def
 INPUT C:\Users\01143844\AppData\Local\Programs\MiKTeX\tex\latex\biblatex\biblatex.def
 INPUT C:\Users\01143844\AppData\Local\Programs\MiKTeX\tex\latex\biblatex\biblatex.def
@@ -1147,7 +1150,7 @@ INPUT C:\Users\01143844\AppData\Local\Programs\MiKTeX\tex\latex\biblatex\blx-cas
 INPUT C:\Users\01143844\AppData\Local\Programs\MiKTeX\tex\latex\biblatex\blx-case-expl3.sty
 INPUT C:\Users\01143844\AppData\Local\Programs\MiKTeX\tex\latex\l3kernel\expl3.sty
 INPUT C:\Users\01143844\AppData\Local\Programs\MiKTeX\tex\latex\l3packages\xparse\xparse.sty
-OUTPUT main.bcf
+OUTPUT main-blx.bib
 INPUT main.bbl
 INPUT .\main.bbl
 INPUT main.bbl

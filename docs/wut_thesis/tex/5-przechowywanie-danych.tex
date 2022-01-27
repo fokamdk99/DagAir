@@ -13,13 +13,14 @@ informacji:
 \subsection{MySQL}
 
 Relacyjna baza danych MySQL oferuje szybki, wielowątkowy serwer bazodanowy w oparciu 
-o język SQL (ang. Structured Query Language). Została ona wybrana ze względu na to, że 
+o język SQL (ang. Structured Query Language)
+\cite{mysql2022}. Została ona wybrana ze względu na to, że 
 jest produktem typu open-source dostępną na licencji GNU (ang. general public license). 
 
 Dobrą praktyką, którą warto mieć na uwadze podczas tworzenia systemu opartego na 
 architekturze mikroserwisowej, jest zapewnienie dostępu do danego zbioru danych tylko 
 jednemu mikroserwisowi, który następnie może je udostępniać przy pomocy odpowiednio 
-skonfigurowanego API (Richardson, 2021). Takie podejście umożliwia zachowanie luźnego 
+skonfigurowanego API \cite{richardson2021}. Takie podejście umożliwia zachowanie luźnego 
 sprzężenia między serwisami. W konsekwencji należy utworzyć oddzielne zbiory 
 danych, zwane schematami, które mogą być zarządzane przez pojedynczy mikroserwis.
 
@@ -27,7 +28,7 @@ W ramach utworzonego serwera bazodanowego zostały wdrożone następujące schem
 
     \begin{xltabular}{1\textwidth} { 
         | >{\raggedright\arraybackslash}X        
-        | >{\raggedleft\arraybackslash}X | }
+        | >{\raggedright\arraybackslash}X | }
         \caption{Utworzone schematy bazodanowe} \label{tab:schematy-bazodanowe} \\
         \hline
        Nazwa schematu & Funkcja \\
@@ -56,7 +57,7 @@ Schemat adresów składa się z następujących encji:
 
     \begin{xltabular}{1\textwidth} { 
         | >{\raggedright\arraybackslash}X        
-        | >{\raggedleft\arraybackslash}X | }
+        | >{\raggedright\arraybackslash}X | }
         \caption{Encje w schemacie adresów} \label{tab:encje-adresow} \\
         \hline
        Nazwa encji & Przechowywane dane \\
@@ -111,7 +112,7 @@ Schemat organizacji składa się z następujących encji:
 
     \begin{xltabular}{1\textwidth} { 
         | >{\raggedright\arraybackslash}X        
-        | >{\raggedleft\arraybackslash}X | }
+        | >{\raggedright\arraybackslash}X | }
         \caption{Encje w schemacie organizacji} \label{tab:encje-organizacji} \\
         \hline
        Nazwa encji & Przechowywane dane \\
@@ -150,7 +151,7 @@ Schemat reguł składa się z następujących encji:
 
     \begin{xltabular}{1\textwidth} { 
         | >{\raggedright\arraybackslash}X        
-        | >{\raggedleft\arraybackslash}X | }
+        | >{\raggedright\arraybackslash}X | }
         \caption{Encje w schemacie reguł} \label{tab:encje-regul}\\
         \hline
        Nazwa encji & Przechowywane dane \\
@@ -190,7 +191,7 @@ Schemat sensorów składa się z następujących encji:
 
     \begin{xltabular}{1\textwidth} { 
         | >{\raggedright\arraybackslash}X        
-        | >{\raggedleft\arraybackslash}X | }
+        | >{\raggedright\arraybackslash}X | }
         \caption{Encje w schemacie sensorów} \label{tab:encje-sensorow} \\
         \hline
        Nazwa encji & Przechowywane dane \\
@@ -227,7 +228,7 @@ Schemat użytkowników został oparty na schemacie oferowanym przez Microsoft
 
     \begin{xltabular}{1\textwidth} { 
         | >{\raggedright\arraybackslash}X        
-        | >{\raggedleft\arraybackslash}X | }
+        | >{\raggedright\arraybackslash}X | }
         \caption{Encje w schemacie użytkowników} \label{tab:encje-uzytkownicy}\\
         \hline
        Nazwa encji & Przechowywane dane \\
@@ -283,9 +284,10 @@ Związki między poszczególnymi encjami zostały opisane w tabeli \ref{tab:zwia
 \subsection{InfluxDB}
 
 InfluxDB jest bazą danych szeregów czasowych służącą do przechowywania metryk 
-i szeregów czasowych. Umożliwia efektywne przechowywanie miliardów rekordów danych 
+i szeregów czasowych \cite{influxdb2022}. Umożliwia efektywne przechowywanie 
+miliardów rekordów danych 
 dzięki stosowaniu kompresji danych, oferuje także język zapytań pozwalający 
-przeprowadzać kompleksowe analizy uzyskanych danych. Dodatkową funkcjonalnością 
+przeprowadzać kompleksowe analizy uzyskanych informacji. Dodatkową funkcjonalnością 
 wyróżniającą tą bazę od standardowych relacyjnych baz danych jest możliwość 
 zdefiniowania czasu, po którym rekordy będą usuwane. Można w ten sposób określić na 
 przykład, że baza powinna przechowywać tylko rekordy z ostatniego miesiąca.
@@ -297,7 +299,7 @@ następujące parametry:
 
     \begin{xltabular}{1\textwidth} { 
         | >{\raggedright\arraybackslash}X 
-        | >{\raggedleft\arraybackslash}X | }
+        | >{\raggedright\arraybackslash}X | }
         \caption{Parametry pojedynczego rekordu przechowującego pomiar} \label{tab:parametry-pomiaru}\\
         \hline
        Parametr & Znaczenie \\
@@ -309,3 +311,6 @@ następujące parametry:
        value & Zmierzona wartość \\
        \hline
     \end{xltabular}
+
+    Domyślnie czas jest zapisywany z dokładnością do nanosekund. W tej pracy zostały
+    zdefiniowane dwa rodzaje danych: \textit{temperature} oraz \textit{illuminance}.
