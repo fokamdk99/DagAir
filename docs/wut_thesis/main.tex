@@ -85,9 +85,8 @@ służących do zwiększenia stopnia automatyzacji rozwoju systemu.
 W ramach pracy przeprowadzono przegląd istniejących prac naukowych 
 dotyczących optymalnej wartości temperatury oraz natężenia światła w 
 pomieszczeniach biurowych. Na ich podstawie przygotowano zestaw
-domyślnych wartości mierzonych parametrów, do których mierzone wartości
-z pomieszczeń powinny dążyć. Użytkownicy korzystający z systemu mają także 
-możliwość definiowania własnych reguł
+domyślnych wartości odzwierciedlających oczekiwane warunki panujące w pomieszczeniach.
+Użytkownicy korzystający z systemu mają także możliwość definiowania własnych reguł
 dotyczących preferowanych wartości mierzonych parametrów. Celem systemu jest
 powiadamianie użytkowników, czy określone przez nich warunki zgadzają się
 z rzeczywistymi pomiarami.
@@ -99,13 +98,16 @@ z rzeczywistymi pomiarami.
 %--------------------------------------
 \newpage
 \abstract
-Lack of proper Energy management in office buildings has caused both 
-financial, as well as environmental loss in many a year. Furthermore, as 
-a result of inadequate room conditions, people staying in those rooms could 
-not work effectively. The aim of this paper was to propose a solution by which 
-it would be possible to measure the values of key parameters of office 
-premises, and then take appropriate actions aimed at both improving the comfort 
-of employees and reducing energy consumption.
+Lack of proper energy management in office buildings has caused both 
+financial, as well as environmental loss in many a year. The former are not only
+the result of suboptimal energy economy resulting in increased operating
+costs of buildings, but also as a result of reduced work efficiency of people
+staying in uncomfortable and unfavorable lighting and thermal conditions.
+
+The aim of this paper was to propose a solution that would both enable the measurement of
+values of key parameters of office spaces and suggest significant actions
+aimed at both improving the comfort of employees and reduction of energy
+consumption.
 
 In response to the problems presented above, a dedicated IT system was prepared. 
 It takes the actual measurements made
@@ -116,19 +118,20 @@ allows for a division of the project into many small, connected microservices.
 The consequence of this approach is increased fault tolerance, scalability
 and ease of implementation in relation to other architectures.
 
-Users of the system can define their own rules
-regarding the preferred values of the measured parameters. The goal of the system is
-notifying users whether the terms they have specified agree
-with actual measurements. The system also offers a set of default values,
-which have been calculated on the basis of existing scientific works
-regarding the optimal value of temperature and light intensity in
-office premises.
-
 Much emphasis was placed on the automation of the system development and implementation process.
 The project was created based on the methodology of continuous integration and
-continuous implementation. The aim was to reduce the time needed to release new
+continuous delivery in order to reduce the time needed to release new
 system versions. The paper describes the use of various tools
 to increase the degree of automation of system development.
+
+As part of the work, a review of existing scientific works concerning optimal
+temperature and light intensity in offices has been conducted. On their basis, a set
+of default values that reflect the preferred indoor conditions has been prepared.
+Users also have the option of defining their own rules regarding the expected
+values of measured parameters. The purpose of the system is to notify users
+whether the conditions they set are in line with the actual measurements.
+
+
 \keywords Energy management, IT system, microservices architecture
 
 %--------------------------------------

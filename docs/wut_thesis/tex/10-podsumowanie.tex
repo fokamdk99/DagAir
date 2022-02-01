@@ -1,13 +1,7 @@
-\newpage
+\clearpage
 \section{Podsumowanie}
 
-System do zarządzania warunkami technicznymi w pomieszczeniach biurowych jest publicznie
-dostępny w serwisie GitHub\cite{github2022}.
-
-\subsection{Aktualny stan pracy}
-\label{subsection:aktualny-stan-pracy}
-
-W ramach seminarium inżynierskiego udało się osiągnąć następujące rezultaty:
+W ramach niniejszej pracy udało się osiągnąć następujące rezultaty:
 
 \begin{itemize}
     \item Każdy z serwisów został utworzony, uruchamia się prawidłowo i skutecznie
@@ -21,31 +15,28 @@ W ramach seminarium inżynierskiego udało się osiągnąć następujące rezult
     \item Zestaw pomiarowy w regularnych odstępach czasu zbiera pomiary i wysyła je 
     na kolejkę do brokera wiadomości. Wiadomości są pobierane przez SSDS i przesyłane 
     dalej
-    \item Udało się skonfigurować środowisko na platformie Azure, dzięki czemu system
-    był publicznie dostępny w internecie. Niestety utrzymanie środowiska generowało
-    znaczące koszty, przez co zdecydowano się na jego usunięcie
+    \item Skonfigurowano środowisko na platformie Azure, dzięki czemu system
+    był publicznie dostępny w internecie. Ze względu na znaczące koszty utrzymania 
+    środowiska generowało zdecydowano się na jego usunięcie. Możliwe jest jednak
+    jego szybkie przywrócenie do pełnej funkcjonalności.
 \end{itemize}
 
-Spośród wszystkich planowanych funkcjonalności można wskazać kilka, których nie udało się
-jeszcze zrealizować:
+System do zarządzania warunkami technicznymi w pomieszczeniach biurowych jest publicznie
+dostępny w serwisie GitHub\cite{github2022}.
+
+\newpage
+\section{Ograniczenia}
+
+Pierwszym z możliwych kierunków dalszego rozwoju jest dodanie następujących komponentów:
 
 \begin{itemize}
-    \item Utworzenie kompletnego zestawu styków oferowanych przez serwisy. W rozdziale
-    \ref{section:komunikacja-miedzy-serwisami} przedstawiono listę zaimplementowanych 
-    styków. Nie definiują one wszystkich zaplanowanych usług, m. in. takich, które umożliwiały by aktualizację przechowywanych
-    danych, tzn. brakuje usług akceptujących czasownik HTTP UPDATE.
-    \item Utworzenie kompletnego interfejsu graficznego. Jest to konsekwencja braku
-    kompletnych styków
+    \item Rozszerzenie styków udostępnianych przez mikroserwisy o nowe usługi. W rozdziale
+    \ref{section:komunikacja-miedzy-serwisami}. przedstawiono listę zaimplementowanych 
+    styków. Nie definiują one m. in. usług, które umożliwiały by aktualizację przechowywanych
+    danych i akceptujących czasownik HTTP UPDATE.
+    \item Rozszerzenie interfejsu graficznego o nowe strony, dodanie przycisków umożliwiających
+    wykorzystanie usług akceptujących czasownik HTTP UPDATE
 \end{itemize}
-
-\subsection{Możliwości rozszerzenia projektu}
-\subsubsection{Planowane komponenty}
-
-Pierwszym z pomysłów na dalszy rozwój systemu jest dodanie komponentów opisanych
-w podrozdziale \ref{subsection:aktualny-stan-pracy}, których nie udało się do tej pory
-zaimplementować. W znaczący sposób zwiększy to funkcjonalność rozwiązania.
-
-\subsubsection{Inteligentne oświetlenie}
 
 Projekt został przygotowany z myślą o tym, by można było możliwie łatwo tworzyć nowe 
 serwisy i integrować je z już istniejącymi. Ważnym elementem ułatwiającym dodawanie 
@@ -53,22 +44,18 @@ nowych usług jest jasne zdefiniowane styków oferowanych przez inne serwisy us�
 
 Na ten moment nie zaimplementowano rozwiązań automatyzujących wykonywanie wymaganych 
 czynności w przypadku, gdy warunki rzeczywiste panujące w danym pomieszczeniu nie 
-spełniają oczekiwań. Jednym z pomysłów dalszego rozwoju projektu jest wykorzystanie 
+spełniają oczekiwań. Jednym z kierunków dalszego rozwoju projektu jest wykorzystanie 
 towarów produkowanych przez firmę Ikea. Zastosowanie inteligentnego oświetlenia 
 wykorzystującego protokół ZigBee pozwoliłoby na automatyczne sterowanie poziomem 
 natężenia światła przez aplikację. W tym celu należałoby utworzyć nowy serwis 
 wykorzystujący gotową bibliotekę \textit{pytradfri} \cite{ikea2022}
 pozwalającą na zarządzanie oświetleniem.
 
-\subsubsection{Aplikacja mobilna}
-
 Wartą rozważenia opcją jest utworzenie dedykowanej aplikacji mobilnej na urządzenia
 obsługujące systemy Android lub iOS. Aplikacja oferowałaby podobny zestaw funkcjonalności
 co aplikacje webowe, a dodatkowo posiadałaby system powiadomień, który generowałby
 wiadomości typu push za każdym razem przy wystąpieniu konkretnego zdarzenia, jak na 
 przykład przekroczenie ustalonego progu temperatury lub natężenia oświetlenia.
-
-\subsubsection{Zaawansowany zestaw pomiarowy}
 
 Propozycją dalszego rozwoju projektu jest dodanie innych czujników i przeprowadzanie
 kompleksowych pomiarów dla danego pomieszczenia. Możliwymi rozszerzeniami są między
@@ -78,8 +65,6 @@ zwiększyć wydajność pracowników oraz ograniczyć zużycie energii. Atutem u
 systemu jest łatwość dodawania nowych czujników, wystarczy je bowiem podpiąć 
 przy pomocy zestawu przewodów połączeniowych do wolnych wejść mikrokontrolera, a następnie dodać
 oprogramowanie umożliwiające odczyt pomiarów. 
-
-\subsubsection{Monitorowanie aplikacji}
 
 Do tej pory wystarczającym instrumentem do sprawdzenia poprawności działania systemu
 było przeprowadzenie testów jednostkowych, integracyjnych oraz end-2-end. Jednak
@@ -96,7 +81,7 @@ Powodów jest wiele, między innymi:
 
 Jednym z istniejących narzędzi do zbierania kolekcjonowania metryk opisujących
 stan systemu jest Prometheus\cite{prometheus2022}. Jest to narzędzie do monitorowania
-aplikacji, w szczególności przeznaczone do aplikacji rozproszonych, opartych na
+aplikacji, w szczególności przeznaczone do systemów rozproszonych, opartych na
 architekturze mikroserwisowej. Pozwala agregować dane dotyczące zużycia procesora,
 pamięci czy dysku, a także tworzyć własne metryki, które mogą przykładowo mierzyć
 czas potrzebny na przetworzenie przychodzących żądań http.

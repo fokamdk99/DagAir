@@ -1,7 +1,18 @@
 \newpage
 \section{Komunikacja między mikroserwisami}
 \label{section:komunikacja-miedzy-serwisami}
+
+Sekcja przedstawia metody wykorzystane do przesyłania informacji między mikroserwisami.
+Opisano rolę i różnice między brokerem wiadomości a stykami oferowanymi przez
+poszczególne moduły usługowe. Podrozdział 6.1 przybliża szczegóły dotyczące zasad
+działania brokera wiadomości. W podrozdziale 6.2 przedstawiono listę usług
+oferowanych przez kolejne mikroserwisy.
+
 \subsection{Broker wiadomości}
+Sekcja opisuje wykorzystanie brokera wiadomości jako narzędzia do przekazywania
+wiadomości między serwisami. Podrozdziały 6.1.1 oraz 6.1.2 prezentują szczegóły dotyczące
+szyny danych oraz jej wykorzystania.
+
 Aby mikroserwisy mogły działać poprawnie, potrzebują wymieniać ze sobą informacje 
 w sposób szybki i niezawodny. W przypadku komunikacji nie wymagającej żadnej interakcji 
 z użytkownikiem, jednym z rozwiązań jest wykorzystanie brokera wiadomości, który pełni 
@@ -198,6 +209,10 @@ przypadki zostały przedstawione na rysunku \ref{fig:rabbitmq-polaczenie}.
 \end{enumerate}
 
 \subsection{Styki}
+Sekcja przedstawia opis styków jako narzędzia do komunikacji między serwisami.
+W podrozdziałach 6.2.1 - 6.2.5 przedstawiono
+listę udostępnianych przez kolejne mikroserwisy usług, ich wymagane parametry wejściowe
+oraz rodzaj zwracanej odpowiedzi.
 
 Mikroserwisy mogą komunikować się między sobą przy użyciu oferowanych przez nie 
 styków (ang. \textit{Application Programming Interface}). Definiują parametry wymagane 
@@ -215,6 +230,9 @@ Każda z oferowanych usług zawiera:
 \end{itemize}
 
 \subsubsection{Usługi udostępniane przez mikrousługę danych adresów}
+
+ADS oferuje usługi zwracające szczegółowe dane dotyczące adresów oraz pozwalających
+na ich manipulację.
 
 \begin{xltabular}{1\textwidth} { 
         | c    
@@ -298,7 +316,8 @@ Każda z oferowanych usług zawiera:
     \end{xltabular}
 
 \subsubsection{Usługi udostępniane przez mikrousługę danych organizacji}
-
+FDS udostępnia zbiór usług pozwalających na zarządzanie przechowywanymi informacjami
+o organizacjach, oddziałach oraz pomieszczeniach. 
 
     
 \begin{xltabular}{1\textwidth} { 
@@ -447,6 +466,9 @@ Każda z oferowanych usług zawiera:
     \end{xltabular}
 
 \subsubsection{Usługi udostępniane przez mikrousługę danych reguł}
+Usługi oferowane przez PDS pozwalają na zwracanie informacji dotyczących 
+istniejących reguł, a także dodawanie nowych rekordów o różnym poziomie
+priorytetu. 
     
 \begin{xltabular}{1\textwidth} { 
         | c    
@@ -530,7 +552,8 @@ Każda z oferowanych usług zawiera:
     \end{xltabular}
 
 \subsubsection{Usługi udostępniane przez mikrousługę danych sensorów}
-
+SDS udostępnia usługi pozwalające na uzyskiwanie informacji o istniejących
+sensorach oraz dodawanie nowych rekordów.
     
 \begin{xltabular}{1\textwidth} { 
         | c    
@@ -597,6 +620,8 @@ Każda z oferowanych usług zawiera:
     \end{xltabular}
 
 \subsubsection{Usługi udostępniane przez mikrousługę aplikacyjną administratorów}
+Usługi udostępniane przez AAS pozwalają na uzyskiwanie danych dotyczących organizacji,
+oddziałów i pomieszczeń, a także na ich dodawanie.
 
 \begin{xltabular}{1\textwidth} { 
         | c    

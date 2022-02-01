@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (MiKTeX 21.12.10) (preloaded format=xelatex 2022.1.22)  1 FEB 2022 08:18
+This is XeTeX, Version 3.141592653-2.6-0.999993 (MiKTeX 21.12.10) (preloaded format=xelatex 2022.1.22)  1 FEB 2022 11:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1196,38 +1196,8 @@ Overfull \hbox (7.42801pt too wide) detected at line 94
  []
 
 
-Overfull \hbox (5.87997pt too wide) detected at line 96
-\TU/lmr/m/n/12 10.1. 
- []
-
-
-Overfull \hbox (5.87997pt too wide) detected at line 98
-\TU/lmr/m/n/12 10.2. 
- []
-
-
-Overfull \hbox (5.52005pt too wide) detected at line 100
-\TU/lmr/m/n/12 10.2.1. 
- []
-
-
-Overfull \hbox (5.52005pt too wide) detected at line 102
-\TU/lmr/m/n/12 10.2.2. 
- []
-
-
-Overfull \hbox (5.52005pt too wide) detected at line 104
-\TU/lmr/m/n/12 10.2.3. 
- []
-
-
-Overfull \hbox (5.52005pt too wide) detected at line 106
-\TU/lmr/m/n/12 10.2.4. 
- []
-
-
-Overfull \hbox (5.52005pt too wide) detected at line 108
-\TU/lmr/m/n/12 10.2.5. 
+Overfull \hbox (7.42801pt too wide) detected at line 96
+\TU/lmr/bx/n/12 11. 
  []
 
 )
@@ -1256,262 +1226,269 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 ]) (tex/2-istniejace-rozwiazania.tex
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [10] [11]) (tex/3-zalozenia.tex [12] [13]) (tex/4-metodologia.tex [14]
-Underfull \hbox (badness 10000) in paragraph at lines 63--63
+ [10] [11]) (tex/3-zalozenia.tex [12]
+Underfull \vbox (badness 1442) has occurred while \output is active []
+
+ [13]) (tex/4-metodologia.tex [14]
+Underfull \hbox (badness 10000) in paragraph at lines 70--70
 []|\TU/lmr/m/n/12 System oparty na
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 63--63
+Underfull \hbox (badness 10000) in paragraph at lines 70--70
 \TU/lmr/m/n/12 architekturze mikro-
  []
 
 
-Underfull \hbox (badness 3977) in paragraph at lines 63--63
+Underfull \hbox (badness 3977) in paragraph at lines 70--70
 \TU/lmr/m/n/12 jednym punkcie, cały
  []
 
 
-Underfull \hbox (badness 5939) in paragraph at lines 63--63
+Underfull \hbox (badness 5939) in paragraph at lines 70--70
 \TU/lmr/m/n/12 oznaczać niesprawność
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 63--63
+Underfull \hbox (badness 10000) in paragraph at lines 70--70
 []|\TU/lmr/m/n/12 Wymusza zwiększanie
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 63--63
+Underfull \hbox (badness 10000) in paragraph at lines 70--70
 \TU/lmr/m/n/12 liczby uruchomionych
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 63--63
+Underfull \hbox (badness 10000) in paragraph at lines 70--70
 \TU/lmr/m/n/12 instancji systemu,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 63--63
+Underfull \hbox (badness 10000) in paragraph at lines 70--70
 \TU/lmr/m/n/12 nawet w przypadku
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 63--63
+Underfull \hbox (badness 10000) in paragraph at lines 70--70
 \TU/lmr/m/n/12 silnego zapotrzebowa-
  []
 
 
-Underfull \hbox (badness 5091) in paragraph at lines 63--63
+Underfull \hbox (badness 5091) in paragraph at lines 70--70
 \TU/lmr/m/n/12 nia jedynie na część
  []
 
 
-Underfull \hbox (badness 5970) in paragraph at lines 63--63
+Underfull \hbox (badness 5970) in paragraph at lines 70--70
 []|\TU/lmr/m/n/12 Możliwość zwiększania
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 63--63
+Underfull \hbox (badness 10000) in paragraph at lines 70--70
 \TU/lmr/m/n/12 liczby instancji tylko
  []
 
 
-Underfull \hbox (badness 3039) in paragraph at lines 63--63
+Underfull \hbox (badness 3039) in paragraph at lines 70--70
 \TU/lmr/m/n/12 kodzie systemu mono-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 63--63
+Underfull \hbox (badness 10000) in paragraph at lines 70--70
 []|\TU/lmr/m/n/12 Możliwość szybkiego
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 63--63
+Underfull \hbox (badness 10000) in paragraph at lines 70--70
 \TU/lmr/m/n/12 wdrożenia poprawek
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 63--63
+Underfull \hbox (badness 10000) in paragraph at lines 70--70
 \TU/lmr/m/n/12 w obrębie danego
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 63--63
+Underfull \hbox (badness 10000) in paragraph at lines 70--70
 []|\TU/lmr/m/n/12 Rozbudowany projekt
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 63--63
+Underfull \hbox (badness 10000) in paragraph at lines 70--70
 \TU/lmr/m/n/12 zazwyczaj wymaga
  []
 
 
-Underfull \hbox (badness 1057) in paragraph at lines 63--63
+Underfull \hbox (badness 1057) in paragraph at lines 70--70
 \TU/lmr/m/n/12 zespołu liczącego setki
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 63--63
+Underfull \hbox (badness 10000) in paragraph at lines 70--70
 \TU/lmr/m/n/12 programistów, co
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 63--63
+Underfull \hbox (badness 10000) in paragraph at lines 70--70
 \TU/lmr/m/n/12 zmniejsza efektywność
  []
 
 
-Underfull \hbox (badness 3930) in paragraph at lines 63--63
+Underfull \hbox (badness 3930) in paragraph at lines 70--70
 []|\TU/lmr/m/n/12 Nie wymaga rozbudo-
  []
 
 
-Underfull \hbox (badness 2653) in paragraph at lines 63--63
+Underfull \hbox (badness 2653) in paragraph at lines 70--70
 \TU/lmr/m/n/12 do oddzielnych mikro-
  []
 
 [15
 
-] [16]
+]
+Underfull \vbox (badness 6047) has occurred while \output is active []
+
+ [16]
 File: img//architektura.jpg Graphic file (type bmp)
 <img//architektura.jpg>
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[17] [18]) (tex/5-przechowywanie-danych.tex [19]
+[17] [18]) (tex/5-przechowywanie-danych.tex [19] [20]
 File: img//addresses_diagram.png Graphic file (type bmp)
 <img//addresses_diagram.png>
- [20] [21]
+ [21] [22]
 File: img//facilities_diagram.png Graphic file (type bmp)
 <img//facilities_diagram.png>
- [22]
+ [23] [24]
 File: img//policies_diagram.png Graphic file (type bmp)
 <img//policies_diagram.png>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [23]
-Underfull \hbox (badness 1102) in paragraph at lines 214--214
+ [25]
+Underfull \hbox (badness 1102) in paragraph at lines 241--241
 \TU/lmr/m/n/12 być przypisana wielu
  []
 
 
-Underfull \hbox (badness 1867) in paragraph at lines 214--214
+Underfull \hbox (badness 1867) in paragraph at lines 241--241
 []|\TU/lmr/m/n/12 Ten sam zbiór ocze-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 214--214
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
 \TU/lmr/m/n/12 kiwanych warunków
  []
 
 
-Underfull \hbox (badness 1565) in paragraph at lines 214--214
+Underfull \hbox (badness 1565) in paragraph at lines 241--241
 \TU/lmr/m/n/12 może być przypisany
  []
 
 File: img//sensors_diagram.png Graphic file (type bmp)
 <img//sensors_diagram.png>
-[24] [25]
+[26] [27]
 File: img//users_diagram.png Graphic file (type bmp)
 <img//users_diagram.png>
- [26]
-Underfull \hbox (badness 4024) in paragraph at lines 330--330
+
+Underfull \hbox (badness 4024) in paragraph at lines 376--376
 []|\TU/lmr/m/n/12 Każdemu użytkownikowi może
  []
 
 
-Underfull \hbox (badness 4024) in paragraph at lines 330--330
+Underfull \hbox (badness 4024) in paragraph at lines 376--376
 []|\TU/lmr/m/n/12 Każdemu użytkownikowi może
  []
 
-[27]) (tex/6-komunikacja-miedzy-serwisami.tex [28]
+[28]) (tex/6-komunikacja-miedzy-serwisami.tex
+Underfull \vbox (badness 4726) has occurred while \output is active []
+
+ [29] [30]
 File: img//amqp_schema.jpg Graphic file (type bmp)
 <img//amqp_schema.jpg>
- [29]
+
+Underfull \vbox (badness 4205) has occurred while \output is active []
+
+ [31]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [30] [31]
+ [32] [33] [34]
 File: img//rabbitmq_schema.jpg Graphic file (type bmp)
 <img//rabbitmq_schema.jpg>
- [32]
-Underfull \vbox (badness 1418) has occurred while \output is active []
-
- [33] [34]
-Overfull \hbox (1.0876pt too wide) in alignment at lines 447--447
+ [35] [36]
+Overfull \hbox (1.0876pt too wide) in alignment at lines 466--466
  [] [] [] 
  []
 
-[35] [36] [37] [38] [39]) (tex/7-testy.tex [40]
+[37] [38] [39] [40] [41]) (tex/7-testy.tex [42]
 File: img//test_types.jpg Graphic file (type bmp)
 <img//test_types.jpg>
- [41] [42] [43] [44] [45]) (tex/8-pomiary.tex [46] [47] [48] [49] [50]) (tex/9-automatyzacja.tex [51] [52] [53] [54]
+ [43]
+Underfull \vbox (badness 1127) has occurred while \output is active []
+
+ [44] [45] [46] [47]) (tex/8-pomiary.tex [48] [49] [50] [51] [52]) (tex/9-automatyzacja.tex [53]
+Underfull \vbox (badness 1424) has occurred while \output is active []
+
+ [54] [55] [56]
 File: img//container_networking.jpg Graphic file (type bmp)
 <img//container_networking.jpg>
- [55] [56] [57] [58]
-Underfull \vbox (badness 1377) has occurred while \output is active []
-
- [59]
+ [57] [58] [59] [60] [61] [62]
 File: img//deployment_types.jpg Graphic file (type bmp)
 <img//deployment_types.jpg>
+ [63] [64] [65] [66]
+Underfull \vbox (badness 6825) has occurred while \output is active []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[60] [61] [62] [63] [64]
-Overfull \hbox (1.93158pt too wide) in paragraph at lines 628--630
+ [67]
+Overfull \hbox (1.93158pt too wide) in paragraph at lines 638--640
 []\TU/lmr/m/n/12 LoadBalancer - przydziela serwisowi adres zewnętrzny przy użyciu load balancer-a
  []
 
-[65] [66]
+[68]
 File: img//kubernetes_networking.jpg Graphic file (type bmp)
 <img//kubernetes_networking.jpg>
-) (tex/10-podsumowanie.tex [67]
-Underfull \vbox (badness 5578) has occurred while \output is active []
+) (tex/10-podsumowanie.tex [69] [70
 
- [68]
-Underfull \vbox (badness 1024) has occurred while \output is active []
+]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [69]) [70]
+ [71]) [72]
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmtt' (encoding: TU).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-Overfull \hbox (0.35364pt too wide) in paragraph at lines 170--170
+Overfull \hbox (0.35364pt too wide) in paragraph at lines 173--173
 []\TU/lmr/m/n/12 C Richardson. “Microservices Pattern: Database per service”. (2021), adr.: [][]$[][][][][] []
  []
 
 
-Overfull \hbox (1.26314pt too wide) in paragraph at lines 170--170
+Overfull \hbox (1.26314pt too wide) in paragraph at lines 173--173
 []\TU/lmr/m/n/12 A Vickers. “Identity model customization in ASP.NET Core”. (2021), adr.: [][]$[][][][][] []
  []
 
 
-Overfull \hbox (9.21901pt too wide) in paragraph at lines 170--170
+Overfull \hbox (9.21901pt too wide) in paragraph at lines 173--173
 []\TU/lmr/m/n/12 RabbitMq. “AMQP 0-9-1 Model Explained”. (2022), adr.: [][]$[][][][][] [] [] [] [][][] [] [][][][][][][][] []
  []
 
-[71
+[73
 
 
 ]
-Overfull \hbox (10.55867pt too wide) in paragraph at lines 170--170
+Overfull \hbox (10.55867pt too wide) in paragraph at lines 173--173
 []\TU/lmr/m/n/12 R. Fielding, J. Mogul, J. Gettys i in. “rfc2616”. (1999), adr.: [][]$[][][][][] [] [] [] [][][][][][][][][][][] []
  []
 
 
-Overfull \hbox (32.87088pt too wide) in paragraph at lines 170--170
+Overfull \hbox (32.87088pt too wide) in paragraph at lines 173--173
 []\TU/lmr/m/n/12 Prometheus. “Overview”. (2022), adr.: [][]$[][][][][] [] [] [] [][][][][][][][][][] [] [][] [] [][][][] [] [][][][][][][][][][][][] []
  []
 
-[72] (main.lof)
+[74] (main.lof)
 \tf@lof=\write6
 \openout6 = `main.lof'.
 
- (main.lot [73])
+ (main.lot [75])
 \tf@lot=\write7
 \openout7 = `main.lot'.
 
@@ -1519,20 +1496,20 @@ Overfull \hbox (32.87088pt too wide) in paragraph at lines 170--170
 \tf@app=\write8
 \openout8 = `main.app'.
 
- [74] (main.aux)
+ [76] (main.aux)
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: F9BF43E6712FF2680A7DA2CE63133B06;10602.
+(rerunfilecheck)             Checksum: 54E39569DA145C878092132CC023ABFC;9378.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 28686 strings out of 411044
- 549573 string characters out of 2824781
- 1646275 words of memory out of 3000000
- 48904 multiletter control sequences out of 15000+600000
+ 28683 strings out of 411044
+ 549512 string characters out of 2824781
+ 1651242 words of memory out of 3000000
+ 48901 multiletter control sequences out of 15000+600000
  451788 words of font info for 93 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  123i,15n,120p,1946b,4922s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.xdv (74 pages, 1326444 bytes).
+Output written on main.xdv (76 pages, 1375220 bytes).

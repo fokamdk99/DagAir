@@ -10,12 +10,14 @@ informacji:
     \item Baza danych szeregów czasowych InfluxDB
 \end{itemize}
 
-Sekcja 5.1 przybliża szczegóły dotyczące utworzonych modeli danych oraz sposobu 
-przechowywania informacji w relacyjnej bazie danych. Podrozdziały 5.1.1 - 5.1.5 przedstawiają
-szczegółowo kolejne schematy danych. Sekcja 5.2 jest poświęcona przechowywaniu
+Podrozdział 5.1 przybliża szczegóły dotyczące utworzonych modeli danych oraz sposobu 
+przechowywania informacji w relacyjnej bazie danych. W podrozdziale 5.2 opisano sposób przechowywania
 wykonanych przez czujniki pomiarów w bazie danych szeregów czasowych.
 
 \subsection{MySQL}
+Sekcja opisuje utworzone modele danych oraz sposób przechowywania informacji
+w relacyjnej bazie danych. Podrozdziały 5.1.1 - 5.1.5 przedstawiają
+szczegółowo kolejne schematy danych.
 
 Relacyjna baza danych MySQL oferuje szybki, wielowątkowy serwer bazodanowy w oparciu 
 o język SQL (ang. \textit{Structured Query Language})
@@ -67,6 +69,10 @@ Rysunek \ref{fig:diagram-adresy} przedstawia diagram UML modelu danych adresów.
     \label{fig:diagram-adresy}
 \end{figure}
 
+Każda encja posiada unikalny identyfikator oraz kolumny opisujące czas utworzenia
+oraz ewentualnej modyfikacji. Encja \textit{addresses} odwołuje się do pozostałych
+encji za pomocą odpowiadających im identyfikatorów. 
+
 Schemat adresów składa się z encji opisanych w tabeli \ref{tab:encje-adresow}:
 
     \begin{xltabular}{1\textwidth} { 
@@ -91,7 +97,7 @@ Schemat adresów składa się z encji opisanych w tabeli \ref{tab:encje-adresow}
     \end{xltabular}
 
 Związki między poszczególnymi encjami zostały opisane w tabeli \ref{tab:zwiazki-adresy}.
-
+\newpage 
 
 \begin{xltabular}{1\textwidth} { 
         | >{\arraybackslash}c    
@@ -116,6 +122,10 @@ Związki między poszczególnymi encjami zostały opisane w tabeli \ref{tab:zwia
     \hline
     \end{xltabular}
 
+\subsubsection{Schemat organizacji}
+
+Rysunek \ref{fig:diagram-organizacje} przedstawia diagram UML modelu danych organizacji. 
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{facilities_diagram.png}
@@ -123,9 +133,10 @@ Związki między poszczególnymi encjami zostały opisane w tabeli \ref{tab:zwia
     \label{fig:diagram-organizacje}
 \end{figure}
 
-\subsubsection{Schemat organizacji}
-
-Rysunek \ref{fig:diagram-organizacje} przedstawia diagram UML modelu danych organizacji. 
+Każda z encji posiada unikalny identyfikator oraz kolumny opisujące czas utworzenia
+oraz ewentualnej modyfikacji. Oddziały są skojarzone z organizacjami poprzez
+przechowywanie powiązanego z nią identyfikatora \textit{organization\_id}. Pomieszczenia natomiast powiązane
+są z konkretnym oddziałem, również za pomocą stosownego identyfikatora \textit{affiliate\_id}.
 
 Schemat organizacji składa się z encji opisanych w tabeli \ref{tab:encje-organizacji}:
 
@@ -145,7 +156,8 @@ Schemat organizacji składa się z encji opisanych w tabeli \ref{tab:encje-organ
        \hline
     \end{xltabular}
 
-Związki między poszczególnymi encjami zostały opisane w tabeli \ref{tab:zwiazki-organizacje}.
+    Związki między poszczególnymi encjami zostały opisane w tabeli \ref{tab:zwiazki-organizacje}.
+
 
 \begin{xltabular}{1\textwidth} { 
         | >{\arraybackslash}c   
@@ -167,8 +179,27 @@ Związki między poszczególnymi encjami zostały opisane w tabeli \ref{tab:zwia
 \subsubsection{Schemat reguł}
 
 Rysunek \ref{fig:diagram-reguly} przedstawia diagram UML modelu danych reguł. 
+Każda z encji posiada unikalny identyfikator oraz kolumny opisujące czas utworzenia 
+oraz ewentualnej modyfikacji. Encja \textit{expected\_room\_conditions} przechowuje
+zestawy oczekiwanych warunków, jakie powinny panować w danym pomieszczeniu.
+Poza konkretną wartością temperatury oraz natężenia światła określa się także
+maksymalne tolerowane odchylenie wartości rzeczywistych od oczekiwanych.
+
+Encja \textit{room\_policies} zawiera odwołanie do \textit{expected\_room\_conditions}
+poprzez przechowywanie identyfikatora \textit{expected\_conditions\_id}.
+Zawiera ona także daty, przechowywane w kolumnach \textit{start\_date} oraz 
+\textit{end\_date} oraz oznaczające okres, w jakim dana reguła powinna obowiązywać.
+Godziny obowiązywania zawarte są w kolumnach \textit{start\_hour} oraz \textit{end\_hour}.
 
 Schemat reguł składa się z encji opisanych w tabeli \ref{tab:encje-regul}:
+\newpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{policies_diagram.png}
+    \caption{Diagram modelu danych reguł. Opracowanie własne}
+    \label{fig:diagram-reguly}
+\end{figure}
 
     \begin{xltabular}{1\textwidth} { 
         | >{\raggedright\arraybackslash}c        
@@ -187,14 +218,10 @@ Schemat reguł składa się z encji opisanych w tabeli \ref{tab:encje-regul}:
        \hline
     \end{xltabular}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{policies_diagram.png}
-    \caption{Diagram modelu danych reguł. Opracowanie własne}
-    \label{fig:diagram-reguly}
-\end{figure}
+
 
 Związki między poszczególnymi encjami zostały opisane w tabeli \ref{tab:zwiazki-reguly}.
+\newpage
 
 \begin{xltabular}{1\textwidth} { 
         | >{\arraybackslash}c    
@@ -223,6 +250,24 @@ Rysunek \ref{fig:diagram-sensory} przedstawia diagram UML modelu danych sensoró
     \caption{Diagram modelu danych sensorów. Opracowanie własne}
     \label{fig:diagram-sensory}
 \end{figure}
+
+Każda z encji posiada unikalny identyfikator oraz kolumny opisujące czas utworzenia 
+oraz ewentualnej modyfikacji. Producenci określają swoją nazwę oraz datę założenia
+działalności. Produkują modele sensorów, które opisane są w encji 
+\textit{sensor\_models}. Zawiera ona stosowny identyfikator \textit{producer\_id}
+łączący obydwie encje. Każdy z modeli posiada własną nazwę oraz numer wersji.
+
+Rekordy encji \textit{sensors} reprezentują kolejne instancje konkretnego modelu sensora.
+Encje są ze sobą powiązane przy pomocy identyfikatora \textit{sensor\_model\_id}.
+\textit{Sensors} zawiera także odwołania do oddziału oraz pomieszczenia, w którym
+znajduje się urządzenie pomiarowe, przy użyciu identyfikatorów \textit{affiliate\_id}
+oraz \textit{room\_id}.
+
+Szczegółowe dane dotyczące oddziałów oraz pomieszczeń są przechowywane w schemacie
+organizacji. Aby zachować niskie sprzężenie oraz wysoką spójność serwisów, wewnątrz
+schematu sensorów należy się odwoływać do tych obiektów wyłącznie za pomocą unikalnego
+identyfikatora. Nie powinno się także umieszczać dodatkowych kolumn opisujących
+oddział lub pomieszczenie.
 
 Schemat sensorów składa się z encji opisanych w tabeli \ref{tab:encje-sensorow}:
 
@@ -260,6 +305,7 @@ Związki między poszczególnymi encjami zostały opisane w tabeli \ref{tab:zwia
     \hline
     \end{xltabular}
 
+    \newpage
 \subsubsection{Schemat użytkowników}
 
 Rysunek \ref{fig:diagram-uzytkownicy} przedstawia diagram UML modelu danych użytkowników. 
@@ -330,20 +376,22 @@ Związki między poszczególnymi encjami zostały opisane w tabeli \ref{tab:zwia
     \end{xltabular}
 
 \subsection{InfluxDB}
+Sekcja opisuje sposób przechowywania
+wykonanych przez czujniki pomiarów w bazie danych szeregów czasowych.
 
 InfluxDB jest bazą danych szeregów czasowych służącą do przechowywania metryk 
 i szeregów czasowych \cite{influxdb2022}. Umożliwia efektywne przechowywanie 
-miliardów rekordów danych 
+miliardów rekordów 
 dzięki stosowaniu kompresji danych, oferuje także język zapytań pozwalający 
 przeprowadzać kompleksowe analizy uzyskanych informacji. Dodatkową funkcjonalnością 
 wyróżniającą tą bazę od standardowych relacyjnych baz danych jest możliwość 
 zdefiniowania czasu, po którym rekordy będą usuwane. Można w ten sposób określić na 
 przykład, że baza powinna przechowywać tylko rekordy z ostatniego miesiąca.
 
-W tej pracy inżynierskiej baza danych szeregów czasowych została wykorzystana do 
+W niniejszej pracy baza danych szeregów czasowych została wykorzystana do 
 przechowywania danych zbieranych z czujników temperatury oraz natężenia światła. 
 Przychodzące informacje są zapisywane w kolejnych rekordach, które zawierają 
-następujące parametry:
+przedstawione w tabeli \ref{tab:parametry-pomiaru} parametry:
 
     \begin{xltabular}{1\textwidth} { 
         | >{\raggedright\arraybackslash}c 

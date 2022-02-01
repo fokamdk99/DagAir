@@ -1,5 +1,11 @@
 \newpage
 \section{Automatyzacja}
+Sekcja przedstawia narzędzia wykorzystane do automatyzacji procesu rozwoju i wdrażania
+systemu. Podrozdział 9.1 opisuje zasady działania platformy Docker oraz sposób jej 
+wykorzystania w pracy. Podrozdziały 9.2 - 9.3 przybliżają metodyki ciągłej
+integracji oraz ciągłego dostarczania, bezpośrednio powiązanymi z automatyzacją
+rozwiązania. W podrozdziale 9.4 opisano zasady działania oraz sposób wykorzystania
+narzędzia do orkiestracji systemu Kubernetes.
 
 Pełna automatyzacja regularnie wykonywanych zadań, pozwalająca znacznie przyspieszyć 
 wdrażanie całości systemu, była jednym z najważniejszych zagadnień poruszonych w 
@@ -8,6 +14,9 @@ na szybkość, z jaką zmiany wprowadzone lokalnie mogą zostać wykorzystane w
 produkcyjnej wersji systemu. 
 
 \subsection{Docker}
+Sekcja zawiera opis zasad działania oraz sposób wykorzystania platformy Docker.
+Podrozdział 9.1.1 przybliża sposób komunikacji kontenerów ze sobą oraz ze
+światem zewnętrznym. 
 
 Docker jest otwartą platformą do rozwoju oraz wdrażania aplikacji. Pozwala oddzielić aplikacje od
 dostępnej na danym serwerze infrastruktury, co pozwala przyspieszyć proces dostarczania najnowszych
@@ -57,7 +66,6 @@ RUN dotnet publish
 FROM base AS final
 WORKDIR /app
 COPY --from=build /app/publish .
-
 ENTRYPOINT ["dotnet", "DagAir.Addresses.dll"]
 \end{lstlisting}
 
@@ -93,7 +101,6 @@ Przykładowy szablon został przedstawiony poniżej:
 
 \begin{lstlisting}
     version: "3.9"
-
     services:
       addresses_api:
         build:
@@ -362,6 +369,10 @@ oprogramowania w kolejnych fazach testowania. Wprowadzenie takiego potoku potraf
 poprawić ocenę jakości kodu, ponadto skrócić czas między wdrożeniem kolejnych wersji systemu.
 
 \subsection{Kubernetes}
+Sekcja opisuje zasady działania oraz sposób wykorzystania narzędzia Kubernetes.
+Podrozdziały 9.4.1 - 9.4.2 przedstawiają poszczególne komponenty, z których
+składa się narzędzie. Podrozdział 9.4.3 przybliża sposób komunikacji
+kontenerów znajdujących się w klastrze ze sobą oraz ze światem zewnętrznym.
 
 Kubernetes jest platformą do orkiestracji kontenerów automatyzującą procesy manualne 
 związane z wdrażaniem, zarządzaniem oraz skalowaniem skonteneryzowanych aplikacji. 
@@ -545,7 +556,6 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 80
-
 \end{lstlisting}
 
 Jest to deklaracja typu \textit{Deployment}, która powinna zawierać następujące parametry:
@@ -689,9 +699,11 @@ W przypadku konieczności komunikacji z mikrousługami znajdującymi się na inn
 należy wysłać poprzez interfejs \textit{ETH0} hosta. 
 Kubernetes oferuje serwis DNS pozwalający na translację nazw serwisów na adresy IP.
 
+Rysunek \ref{fig:kubernetes-networking} przedstawia strukturę sieciową klastra.
+
 \begin{figure}[h]
   \centering
-  \includegraphics[width=1\textwidth]{kubernetes_networking.jpg}
+  \includegraphics[width=0.9\textwidth]{kubernetes_networking.jpg}
   \caption{Łączność sieciowa w środowisku Kubernetes. Opracowanie własne}
   \label{fig:kubernetes-networking}
 \end{figure}
