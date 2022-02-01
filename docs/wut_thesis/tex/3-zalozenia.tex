@@ -1,26 +1,38 @@
 \newpage
 \section{Założenia}
-Funkcjonalność i architektura systemu została utworzona w oparciu o kilka istotnych 
+Treść sekcji zawiera zestawienie dwóch konkurencyjnych architektur wykorzystywanych do
+projektowania systemów informatycznych: monolitycznej oraz opartej na mikrousługach.
+Podrozdziały 4.1.1 - 4.1.4 przedstawiają zagadnienia, na które należy zwrócić
+uwagę, przygotowując system utworzony z wielu modułów usługowych. W podrozdziale 4.1.5
+spisano wszystkie moduły, które składają się na zaprojektowany w ramach niniejszej pracy 
+system.
+
+W tej sekcji przedstawiono główne założenia dotyczące rozwoju pracy, a także
+przeprowadzono przegląd prac naukowych estymujących optymalną wartość temperatury
+oraz natężęnia światła w pomieszczeniach biurowych.
+
+Funkcjonalność i architektura systemu została zaprojektowana w oparciu o kilka istotnych 
 założeń:
 
 \begin{itemize}
-    \item Szcególny nacisk jest położony na łatwość wdrożenia - system powinien być 
+    \item Szczególny nacisk jest położony na łatwość wdrożenia - system powinien być 
     gotowy do wdrożenia na środowisko 
-    chmurowe. Organizacja zainteresowana uruchomieniem aplikacji dla swoich potrzeb 
-    może wybrać opcję, w której dostarczane są obrazy odpowiednich serwisów oraz 
+    chmurowe. Organizacja zainteresowana uruchomieniem systemu dla swoich potrzeb 
+    może wybrać opcję, w której dostarczane są obrazy odpowiednich mikroserwisów oraz 
     skrypty konfigurujące środowisko. Takie rozwiązanie mogłoby być ofertą skierowaną 
     do banków, które chcą zminimalizować ruch zewnętrzny. Może także skorzystać z 
     opcji, w której system jest hostowany na serwerach firmy będącej autorem 
     oprogramowania
     \item System składa się z czujników zbierających pomiary, które następnie przesyłane 
-    są do serwisów, które je przetwarzają. Do pomiaru zalicza się aktualna 
-    temperatura, natężenie światła oraz jakość powietrza
-    \item Aplikacja oparta jest na regułach określających oczekiwaną wartość powyższych 
+    są do mikroserwisów, które je przetwarzają. Do pomiaru zalicza się aktualna 
+    temperatura oraz natężenie światła
+    \item System oparty jest na regułach określających oczekiwaną wartość powyższych 
     parametrów w danej chwili czasu. Po otrzymaniu każdego z pomiarów porównywane są 
-    wartości oczekiwane z rzeczywistymi i na tej podstawie aplikacja przygotowuje wynik. 
-    Domyślnie istnieje reguła podstawowa, gdzie oczekiwana temperatura wynosi 24,50. 
-    Więcej informacji odnośnie tego skąd taka wartość została ustalona można 
-    uzyskać, patrząc na tabelę 1
+    wartości oczekiwane z rzeczywistymi i na tej podstawie przygotowywany jest wynik. 
+    Domyślnie istnieje reguła podstawowa, gdzie oczekiwana temperatura wynosi 24.5
+    \degree C, natomiast oczekiwane natężenie światła wynosi 550 lx. 
+    Więcej informacji odnośnie ustalonych wartości zawarto 
+    w tabeli \ref{tab:optymalna-temperatura} oraz tabeli \ref{tab:optymalne-natezenie}.
     \item System przewiduje dwie role użytkowników: pracowników danej 
     organizacji, którzy mogą tworzyć własne reguły dla pomieszczeń do nich 
     przypisanych, oraz administratorów organizacji, którzy posiadają wszystkie 
@@ -46,7 +58,8 @@ o optymalnej temperaturze w pomieszczeniach:
      \hline
 \end{xltabular}
 
-W oparciu o powyższe badania wyliczono średnią optymalną temperaturę wynoszącą 24.5\degree C.
+W oparciu o powyższe badania wyliczono optymalną temperaturę jako średnią z uzyskanych
+rezultatów. Jej wartość wynosi 24.5\degree C.
 Natomiast w tabeli \ref{tab:optymalne-natezenie} porównywane są rezultaty badań nad optymalnym 
 poziomem natężenia światła, który skutkował najlepszą efektywnością pracowników:
 
@@ -62,5 +75,5 @@ poziomem natężenia światła, który skutkował najlepszą efektywnością pra
      \hline
 \end{xltabular}
 
-W oparciu o powyższe badania wyliczono średnią optymalne natężenie światła 
-wynoszące 550 lx.
+W oparciu o powyższe badania wyliczono optymalne natężenie światła jako średnią z uzyskanych
+rezultatów. Jej wartość wynosi 550 lx.

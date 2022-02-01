@@ -1,7 +1,7 @@
 \newpage
 \section{Pomiary}
 
-W ramach tej pracy inżynierskiej przygotowano zestaw pomiarowy, który 
+W ramach pracy inżynierskiej przygotowano zestaw pomiarowy, który 
 w regularnych odstępach czasu bada aktualną wartość temperatury oraz
 natężenia światła. Zestaw został złożony z następujących elementów:
 
@@ -10,12 +10,13 @@ natężenia światła. Zestaw został złożony z następujących elementów:
     \item Fotorezystor LDR GL5528
     \item Czujnik temperatury i wilgotności DHT11
     \item Rezystory 1 kOhm
+    \item przewody połączeniowe żeńsko-męskie
 \end{itemize}
 
-Moduł WEMOS jest mikrokontrolerem oparty o kontroler ATmega328P. Posiada
+Moduł WEMOS jest mikrokontrolerem opartym o kontroler ATmega328P. Posiada
 11 portów wejścia-wyjścia pozwalających na dołączenie zewnętrznych 
 urządzeń. Płytka została fabrycznie wyposażona w moduł WIFI ESP8266. Za
-jego pomocą mogą zostać wysłane pomiary.
+jego pomocą mogą być wysyłane pomiary.
 
 Fotorezystor służy do pomiaru natężenia światła. Został wykonany 
 z półprzewodników, które w temperaturze działania nie mają elektronów 
@@ -25,8 +26,8 @@ walencyjnego do pasma przewodnictwa, w wyniku którego powstają pary
 dziura-elektron. Zjawisko nazywane jest efektem fotoelektrycznym 
 wewnętrznym.
 
-Czujnik temperatury i wilgotności DHT11 bada aktualne wartości tych
-dwóch parametrów. Mierzony zakres temperatury to -20\degree  - +60\degree C.
+Czujnik temperatury DHT11 bada aktualne wartości tego
+parametru. Mierzony zakres temperatury to -20\degree  - +60\degree C.
 Jego rozdzielczość wynosi 0.1\degree C, a dokładność 2\degree C.
 
 \subsection{Oprogramowanie mikrokontrolera}
@@ -49,15 +50,9 @@ Zadaniem mikrokontrolera było:
 Poniżej został przedstawiony przygotowany kod.
 
 \begin{lstlisting}
-    #include "rabbitmq_handler.h"
-
-    #define WIFI_SSID "Tech_D0054234"
-    #define WIFI_PASS "PASSWORD"
-     
     void setup() {
       Serial.begin(115200);
       dht.begin();
-      Serial.println();
      
       WiFi.mode(WIFI_STA);
       WiFi.begin(WIFI_SSID, WIFI_PASS);
@@ -89,9 +84,9 @@ Poniżej został przedstawiony przygotowany kod.
 Każdy z programów wgrywanych na płytkę powinien zawierać dwie główne funkcje:
 
 \begin{itemize}
-    \item void setup() - wewnątrz metody definiowane są obiekty oraz zmienne 
+    \item \textit{void setup()} - wewnątrz metody definiowane są obiekty oraz zmienne 
     potrzebne przez cały czas działania mikrokontrolera
-    \item void loop() - metoda wywoływana jako druga w kolejności po setup(),
+    \item \textit{void loop()} - metoda wywoływana jako druga w kolejności po \textit{setup()},
     jest powtarzana przez resztę cyklu działania mikrokontrolera 
 \end{itemize}
 
@@ -100,7 +95,7 @@ modułu WIFI. Moduł wspiera prędkość transmisji na poziomie 115200 bitów na
 sekundę (ang. \textit{baud rate}). Następnie tworzony jest klient, którego zadaniem
 jest wysyłanie pomiarów na kolejkę brokera wiadomości. 
 
-Wewnątrz metody loop() co 60 sekund zbierane są pomiary, po czym publikowane
+Wewnątrz metody \textit{loop()} co 60 sekund zbierane są pomiary, po czym zostają opublikowane
 na kolejkę. Pomiary wykonywane są przy użyciu poniższego kodu.
 
 \begin{lstlisting}
@@ -128,10 +123,10 @@ na kolejkę. Pomiary wykonywane są przy użyciu poniższego kodu.
 \end{lstlisting}
 
 Główną rolę pełni obiekt dht, za pomocą którego można komunikować się
-z czujnikiem. Zdefiniowany jest typ czujnika przy użyciu makra DHTTYPE.
+z czujnikiem. Typ czujnika został zdefiniowany przy użyciu makra \textit{DHTTYPE}.
 Numer pinu, do którego został wpięty kabel łączący płytkę z czujnikiem,
-został oznaczony pzy użyciu makra DHTPIN. Pomiar temperatury odbywa się
-przez wywołanie funkcji readTemperature(). 
+został oznaczony pzy użyciu makra \textit{DHTPIN}. Pomiar temperatury odbywa się
+przez wywołanie funkcji \textit{readTemperature()}. 
 
 Pomiar z fotorezystora można odczytać przy użyciu komendy:  
 
@@ -139,13 +134,8 @@ Pomiar z fotorezystora można odczytać przy użyciu komendy:
     analogRead(ILLUMINANCEPIN)
 \end{lstlisting}
 
-gdzie ILLUMINANCEPIN oznacza numer pinu, do 
+gdzie \textit{ILLUMINANCEPIN} oznacza numer pinu, do 
 którego wpięty jest kabel łączący płytkę z fotorezystorem.
-
-Poniższy kod zawiera szczegóły implementacyjne dotyczące 
-wysyłania wiadomości na kolejkę.
-
-
 
 Warto wyjaśnić wartości zmiennych związanych z brokerem wiadomości:
 \begin{lstlisting}
@@ -169,7 +159,7 @@ Warto wyjaśnić wartości zmiennych związanych z brokerem wiadomości:
     \item RABBITMQ\_PASSWORD: hasło dla wykorzystywanego użytkownika
 \end{itemize}
 
-Wiadomość do brokera jest wysyłana w metodzie send\_measurements:
+Wiadomość do brokera jest wysyłana w metodzie \textit{send\_measurements()}:
 
 \begin{lstlisting}
     void send_measurements(
@@ -212,7 +202,7 @@ Wiadomość do brokera jest wysyłana w metodzie send\_measurements:
     }
 \end{lstlisting}
 
-Mikrokontroler nasłuchuje na wiadomości o temacie \\RABBITMQ\_SUBSCRIPTION:
+Mikrokontroler nasłuchuje na wiadomości o temacie \textit{\\RABBITMQ\_SUBSCRIPTION}:
 
 \begin{lstlisting}
     void callback(
@@ -237,4 +227,4 @@ Mikrokontroler nasłuchuje na wiadomości o temacie \\RABBITMQ\_SUBSCRIPTION:
 \end{lstlisting}
 
 Serwis SSDS może zażądać wysłania aktualnych pomiarów poprzez wysłanie do brokera 
-wiadomości o tym samym temacie.
+wiadomości o temacie \textit{RABBITMQ\_SUBSCRIPTION}.

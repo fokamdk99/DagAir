@@ -11,18 +11,18 @@ produkcyjnej wersji systemu.
 
 Docker jest otwartą platformą do rozwoju oraz wdrażania aplikacji. Pozwala oddzielić aplikacje od
 dostępnej na danym serwerze infrastruktury, co pozwala przyspieszyć proces dostarczania najnowszych
-wersji systemów. 
+wersji systemu. 
 
 Platforma zapewnia możliwość spakowania i uruchomienia aplikacji w odizolowanym środowisku
 zwanym kontenerem. Izolacja powoduje, że możliwe jest bezpieczne uruchomienie wielu kontenerów na tym
 samym hoście. Platforma pozwala zarządzać infrastrukturą potrzebną do uruchomienia kontenera, dzięki
 czemu eliminowany jest problem instalacji wszystkich wymaganych zależności na każdym serwerze z osobna.
 
-Docker wykorzystuje architekturę typu klient-serwer. Klient komunikuje się z tzw. docker daemon, którego
+Docker wykorzystuje architekturę typu klient-serwer. Klient komunikuje się z tzw. \textit{docker daemon}, którego
 zadaniem jest budowanie, uruchamianie oraz dystrybuowanie kontenerów. 
 
 W celu utworzenia kontenerów należy w pierwszej kolejności utworzyć ich obraz, który jest szablonem
-zawierającym instrukcje dotyczące jego budowy. Szablony są przechowywane w plikach o nazwie Dockerfile.
+zawierającym instrukcje dotyczące jego budowy. Szablony są przechowywane w plikach o nazwie \textit{Dockerfile}.
 Każda instrukcja tworzy jedną warstwę obrazu. Mechanizm ten jest szczególnie przydatny, gdy szablony są
 regularnie rozwijane o nowe instrukcje. Wtedy, przy ponownym budowaniu obrazu, tylko warstwy, które
 uległy zmianie są odświeżane. Pozwala to znacznie przyspieszyć proces budowania obrazów.
@@ -40,18 +40,7 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /app
-COPY ["./DagAir_Addresses/DagAir.Addresses/", 
-"./DagAir_Addresses/DagAir.Addresses/"]
-COPY ["./DagAir_Addresses/DagAir.Addresses.Data/", 
-"./DagAir_Addresses/DagAir.Addresses.Data/"]
-COPY ["./DagAir_Addresses/DagAir.Addresses.Contracts/", 
-"./DagAir_Addresses/DagAir.Addresses.Contracts/"]
-COPY ["./DagAir_Components/DagAir.Components.ApiModels/", 
-"./DagAir_Components/DagAir.Components.ApiModels/"]
-COPY ["./DagAir_Components/DagAir.Components.Healthchecks/", 
-"./DagAir_Components/DagAir.Components.Healthchecks/"]
-COPY ["./DagAir_Components/DagAir.Components.Logging/", 
-"./DagAir_Components/DagAir.Components.Logging/"]
+COPY [".", "."]
 
 RUN dotnet restore 
     ./DagAir_Addresses/DagAir.Addresses
@@ -73,12 +62,12 @@ ENTRYPOINT ["dotnet", "DagAir.Addresses.dll"]
 \end{lstlisting}
 
 Pierwszym etapem jest utworzenie obrazu pośredniego o nazwie base. Oparty on jest na obrazie 
-aspnet:5.0 dostępnym publicznie na platformie 
-\href{https://hub.docker.com/_/microsoft-dotnet-aspnet}{dockerhub}. Na tym etapie deklarowane są
+aspnet:5.0 dostępnym publicznie na platformie dockerhub \cite{aspnet2022}.
+Na tym etapie deklarowane są
 numery portów, na których aplikacja powinna nasłuchiwać na przychodzące żądania.
 
-Drugim etapem jest utworzenie obrazu pośredniego, opartego o obraz sdk:5.0, również dostępnym publicznie
-na platformie \href{https://hub.docker.com/_/microsoft-dotnet-sdk}{dockerhub}. Na tym etapie kopiowane
+Drugim etapem jest utworzenie obrazu pośredniego, opartego o obraz sdk:5.0, który także jest dostępny publicznie
+na platformie dockerhub \cite{dotnetsdk2022}. Na tym etapie kopiowane
 są wszystkie zależności, których wymaga aplikacja, by mogła zostać prawidłowo uruchomiona.
 Za pomocą komend oferowanych przez dotnet CLI publikowana jest gotowa do wdrożenia wersja aplikacji.
 
@@ -92,13 +81,13 @@ następuje uruchomienie procesu za pomocą komendy:
 Podział na poszczególne etapy wynika z różnych rozmiarów wykorzystywanych obrazów. Możliwe byłoby
 utworzenie obrazu aplikacji na podstawie obrazu sdk:5.0. Jednak jego rozmiar to ok. 630 MB, podczas
 gdy rozmiar obrazu aspnet:5.0 to ok. 205 MB. Dzięki temu prostemu zabiegowi można oszczędzić 
-znaczną część zasobyów obliczeniowych. 
+znaczną część zasobów obliczeniowych. 
 
 Dzięki szablonom można tworzyć obrazy poszczególnych serwisów. Jednak uruchamianie każdego z nich
 pojedynczo byłoby kosztownym czasowo zajęciem. Rozwiązaniem tego problemu jest wykorzystanie narzędzia
-docker-compose, które umożliwia uruchamianie wielu kontenerów za pomocą jednej komendy. W tym celu
+\textit{docker-compose}, które umożliwia uruchamianie wielu kontenerów za pomocą jednej komendy. W tym celu
 należy przygotować szablon zawierający instrukcje uruchomienia każdego z utworzonych na wcześniejszym
-etapie obrazów. Szablon jest przechowywany w pliku o nazwie docker-compose.yml.
+etapie obrazów. Szablon jest przechowywany w pliku o nazwie \textit{docker-compose.yml}.
 
 Przykładowy szablon został przedstawiony poniżej:
 
@@ -129,7 +118,7 @@ W szablonie został przedstawiony proces uruchomienia ADS. Zdefiniowano:
 
 \begin{itemize}
     \item Szablon obrazu, z którego należy skorzystać
-    \item Zmienne środowiskowe potrzebne do uruchumienia aplikacji w środowisku dockerowym
+    \item Zmienne środowiskowe potrzebne do uruchomienia aplikacji w środowisku dockerowym
     \item Port, na którym ma nasłuchiwać aplikacja. Występuje tutaj mapowanie między portem 
     serwera, na którym będzie uruchomiony kontener, a portem w kontenerze. Dzięki mapowaniu
     aplikacja będzie dostępna na serwerze pod adresem:
@@ -138,17 +127,54 @@ W szablonie został przedstawiony proces uruchomienia ADS. Zdefiniowano:
         http://localhost:8094/
     \end{lstlisting}
     \item Wirtualna sieć, do którego ma zostać dołączony kontener w środowisku dockerowym
-    \item Polityka ponownego uruchamiania. Flaga always oznacza, że w przypadku zatrzymania pracy
+    \item Polityka ponownego uruchamiania. Flaga \textit{always} oznacza, że w przypadku zatrzymania pracy
     instancji kontenera, zostanie ona usunięta, a na jej miejsce zostanie uruchomiona nowa
 \end{itemize}
 
+\subsubsection{Łączność sieciowa w środowisku skonteneryzowanym}
+\label{subsubection:lacznosc-sieciowa-docker}
+W celu zapewnienia izolacji między procesami różnych kontenerów wykorzystuje się
+przestrzenie nazw (ang. \textit{namespace}). Jest to funkcjonalność polegająca na podziale zasobów w taki sposób, aby
+każdy zestaw procesów korzystał z innej, wydzielonej części. Przestrzeni nazw przypisuje się dedykowany
+interfejs, za pomocą którego może komunikować się z innymi przestrzeniami. Łączność między kontenerami
+jest osiągana poprzez połączenie utworzonych interfejsów za pomocą mostu (ang. \textit{bridge}).
+Pełni on rolę tzw. \textit{switch'a} odpowiedzialnego za przesyłanie pakietów między przestrzeniami nazw
+w oparciu o protokół ARP lub IP. Do mostu dołączony jest także interfejs pozwalający na komunikację
+z procesami uruchomionymi na oddzielnych maszynach.
+
+Rysunek \ref{fig:container-networking} przedstawia podział zasobów na przestrzenie nazw.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1\textwidth]{container_networking.jpg}
+  \caption{Łączność sieciowa w środowisku skonteneryzowanym. Opracowanie własne}
+  \label{fig:container-networking}
+\end{figure}
+
+Platforma docker domyślnie tworzy most należący do podsieci 172.17.0.0/16.
+
+Każdy kontener może uruchamiać procesy, które będą nasłuchiwać żądań na ustalonych portach.
+Przestrzenie nazw posiadają oddzielne zestawy portów, dzięki czemu w każdej z nich może
+zostać uruchomiony proces nasłuchujący przykładowo na porcie 80. Mapowanie portów w środowisku
+kontenerów polega na skojarzeniu portów udostępnianych przez maszynę, na której uruchomione sobą
+kontenery, z portami udostępnianymi przez przestrzenie nazw. Poniższy fragment przedstawia 
+mapowanie między portem 80 udostępnianym przez przestrzeń nazw, w której uruchomiono mikrousługę ADS, 
+a portem 8094 udostępnianym przez hosta:
+
+\begin{lstlisting}
+  ports:
+      - "8094:80"
+\end{lstlisting}
+
+Dzięki temu usługi oferowane przez ten moduł danych są dostępne
+pod adresem \textit{http://localhost:8094}.
 
 \subsection{Ciągła integracja}
 
 Podstawowym wymaganiem, które należy spełnić przy tworzeniu rozbudowanych systemów 
 informatycznych, jest przechowywanie rozwijanego oprogramowania przy pomocy wybranego 
-narzędzia kontroli wersji, takiego jak Git. Dane są zapisywane w folderze zwanym 
-również repozytorium. Zadaniem takiego narzędzia jest śledzenie wprowadzonych zmian 
+narzędzia kontroli wersji, takiego jak Git \cite{git2022}. Dane są zapisywane w folderze zwanym 
+repozytorium. Zadaniem takiego narzędzia jest śledzenie wprowadzonych zmian 
 oprogramowania i zapisywanie ich w historii repozytorium. Zapewnia to wiele 
 korzyści, z których najważniejsze to:
 
@@ -174,7 +200,7 @@ punkty:
     integracji nowych zmian z resztą kodu, przynajmniej raz dziennie 
     \item Zapewnienie testów jednostkowych sprawdzających poprawność zachowania systemu. 
     Może się zdarzyć, że wprowadzone zmiany będą zgodne pod względem 
-    syntaktycznym, jednak nie oznacza to, że serwis będzie prawidłowo spełniał swoje 
+    składni, jednak nie oznacza to, że serwis będzie prawidłowo spełniał swoje 
     funkcje 
     \item Nadanie wysokiego priorytetu naprawieniu kodu, który nie integruje się z 
     dotychczasowym kodem w repozytorium. Odkładanie poprawy na później może spowodować 
@@ -190,24 +216,24 @@ GitHub, zwanych pracownikami (ang. \textit{worker}). W zależności od potrzeby 
 zainstalowany jest odpowiedni system operacyjny spośród sytrybucji 
 linux-owych, Windowsa oraz macOS.
 
-GitHub Action jest przepływem pracy, który może zostać wywołany zawsze wtedy, gdy 
+\textit{GitHub Action} jest przepływem pracy, który może zostać wywołany zawsze wtedy, gdy 
 zostanie zarejestrowane nowe zdarzenie dotyczące wykorzystywanego repozytorium. 
 Przykładem zdarzenia jest wprowadzenie nowych zmian do repozytorium lub utworzenie 
-żądania typu pull request. GitHub Action składa się z jednej lub większej liczby 
+żądania typu \textit{pull request}. \textit{GitHub Action} składa się z jednej lub większej liczby 
 zadań (ang. \textit{job}), które mogą zostać wykonane jedno po drugim lub równolegle. Z kolei 
 każde zadanie składa się z jednego lub większej liczby kroków (ang. \textit{step}), z których 
-każde może wykonać własnoręcznie utworzony skrypt lub akcję (ang. \textit{action}), która jest 
-rozszerzeniem umożliwiającym na uproszczenie całego przepływu pracy.
+każde może wykonać własnoręcznie utworzony skrypt lub akcję (ang. \textit{action}), będącą 
+rozszerzeniem umożliwiającym uproszczenie całego przepływu pracy.
 
-Przykładowy przepływ pracy utworzony na potrzeby pracy wykonuje następujące zadania:
+Przykładowy przepływ pracy utworzony na potrzeby projektu wykonuje następujące zadania:
 
 \begin{itemize} % lista nienumerowana
     \item Wybiera odpowiednią gałąź z repozytorium, na której zostały wprowadzone 
     nowe zmiany
     \item Instaluje wymagane oprogramowanie niezbędne do wykonania wszystkich 
-    pozostałych zadań, takie jak wersja .NET 5.0
+    pozostałych zadań, takie jak środowisko .NET 5.0
     \item Uruchamia testy jednostkowe i integracyjne
-    \item Tworzy nową wersję obrazu przestestowanego mikroserwisu
+    \item Tworzy nową wersję obrazu sprawdzonego mikroserwisu
     \item Wypycha obraz do rejestru kontenerów
 \end{itemize}
 
@@ -246,7 +272,7 @@ określa, że przepływ ma być uruchomiony gdy:
 \begin{itemize} % lista nienumerowana
     \item Użytkownik manualnie uruchomi przepływ za pomocą interfejsu graficznego
     \item Zostaną wprowadzone nowe zmiany na gałęzi main lub develop oraz zmiany będą 
-    się znajdować w katalogu src/DagAir\_Facilities/
+    się znajdować w katalogu \textit{src/DagAir\_Facilities/}
 \end{itemize}
 
 \begin{lstlisting}
@@ -293,7 +319,7 @@ obrazu składa się nazwa repozytorium obrazów oraz nazwa mikroserwisu. Numer w
 obrazu za każdym razem powinien być unikalny, ponadto powinien wskazywać, która z 
 wersji obrazu jest najnowsza. Wobec tego na wersję składa się nazwa gałęzi 
 repozytorium, nazwa utworzonej paczki Nuget-owej oraz krótki unikalny numer przypisany 
-do commit'a, który spowodował uruchomienie przepływu.
+do migawki (ang. \textit{commit}), która spowodowała uruchomienie przepływu.
 
 \begin{lstlisting}
 - name: Docker login
@@ -311,9 +337,9 @@ do commit'a, który spowodował uruchomienie przepływu.
 \end{lstlisting}
 
 Na samym końcu gotowy obraz zostaje wypchnięty do repozytorium obrazów. W tym celu 
-używana jest komenda docker push. Aby zakończyła się pomyślnie, trzeba było 
-w poprzednim kroku zalogować się, wykorzystując nazwę repozytorium obrazów oraz 
-danych uwierzytelniający, przechowywanych w bezpieczny sposób za pomocą Github 
+używana jest komenda \textit{docker push}. Aby zakończyła się pomyślnie, należało 
+w poprzednim kroku zalogować się do repozytorium, wykorzystując nazwę repozytorium obrazów oraz 
+danych uwierzytelniających, przechowywanych w bezpieczny sposób za pomocą Github 
 Secrets.
 
 \subsection{Ciągłe dostarczanie}
@@ -326,9 +352,10 @@ Na początku przeprowadzane są szybkie testy jednostkowe sprawdzające punktowo
 poszczególnych funkcji. Jeśli zostaną wykonane pomyślnie, przechodzi się do następnej fazy 
 testowania uwzględniające wolniejsze testy, które sprawdzają zachowanie wielu serwisów między 
 sobą. Po upewnieniu się, że ta faza została wykonana pomyślnie, system jest weryfikowany przez 
-klienta, który zlecał jego wykonanie (tzw. „user acceptance testing”). Jeśli funkcjonalność zgadza się z 
+klienta, który zlecał jego wykonanie (tzw. \textit{user acceptance testing}). Jeśli funkcjonalność zgadza się z 
 oczekiwaniami klienta, całość jest jeszcze testowana pod kątem wydajności, po czym zostaje 
 wdrożona na etap produkcyjny.
+
 Zgodnie z założeniami metodyki, programiści powinni otrzymywać
 wiadomości zwrotne dotyczące statusu kolejnych wersji 
 oprogramowania w kolejnych fazach testowania. Wprowadzenie takiego potoku potrafi znacznie
@@ -343,8 +370,8 @@ Jest to oprogramowanie typu open-source, początkowo rozwijane przez firmę Goog
 
 W przeszłości, organizacje uruchamiały aplikacje na fizycznych serwerach. W momencie 
 gdy wiele aplikacji działało w ramach jednego serwera, dochodziło do 
-sytuacji, w których jedna z aplikacji zajmowała większość zasobów, przez co inne 
-aplikacje nie działały optymalnie. Jednym z rozwiązań było uruchomienie każdej 
+sytuacji, w których jedna z nich zajmowała większość zasobów, przez co inne 
+nie działały optymalnie. Jednym z rozwiązań było uruchomienie każdej 
 z aplikacji na innym fizycznym serwerze. Jednak w takim wypadku konsekwencjami były 
 wysokie koszty utrzymania infrastruktury. Innym możliwym rozwiązaniem było wprowadzenie 
 wirtualizacji, które przyczyniło się do bardziej zrównoważonego zarządzania zasobami. 
@@ -364,10 +391,10 @@ Kontenery stały się popularne ze względu na szereg zalet:
 
 \begin{itemize} % lista nienumerowana
     \item Utworzenie obrazów następuje szybciej w porównaniu do maszyn wirtualnych
-    \item Utworzenie obrazów na etapie budowania nowej wersji systemu zamiast na etapie wdrażania
-    \item Niezależnie od środowiska działa w dokładnie ten sam sposób
+    \item Obrazy zostają utworzone na etapie budowania nowej wersji systemu zamiast na etapie wdrażania
+    \item Niezależnie od środowiska działają w dokładnie ten sam sposób
     \item Mogą być uruchomione praktycznie na każdym systemie i dystrybucji
-    \item Wysoka efektywność wykorzystania zasobów
+    \item Cechują się wysoką efektywnością wykorzystania zasobów
 \end{itemize}
 
 Rysunek \ref{fig:deployment-types}. przedstawia różnice między uruchomieniem aplikacji w sposób 
@@ -398,7 +425,7 @@ z klastrów posiada przynajmniej jeden węzeł.
 Cyklem życiowym każdego kontenera zarządza płaszczyzna sterowania (ang. \textit{control 
 plane}), która wystawia API oraz interfejsy umożliwiające ich wdrażanie i zarządzanie. 
 Komponenty płaszczyzny mogą być uruchomione na każdej maszynie w klastrze, chociaż 
-zazwyczaj określa się jedną maszynę gospodarza (ang. \textit{master}), na której znajdują się 
+zazwyczaj określa się jedną maszynę, tzw. gospodarza (ang. \textit{master}), na której znajdują się 
 wszystkie komponenty.
 
 \subsubsection{Komponenty płaszczyzny sterowania}
@@ -423,17 +450,17 @@ sterowania.
  Kube-scheduler & Regularnie sprawdza czy został utworzony nowy zestaw 
  kontenerów, któremu nie został jeszcze przypisany węzeł. W takim przypadku wybiera 
  on maszynę, na której kontenery mają być uruchomione. Przy wyborze pod uwagę brane są 
- takie czynniki jak wymagane zasoby, ograniczenia sprzętowe lub programowe. \\
+ takie czynniki jak wymagane zasoby, ograniczenia sprzętowe lub programowe \\
  \hline
  Kube-controller-manager & Komponent odpowiedzialny za uruchamianie kontrolerów, które 
- monitorują oraz zmieniają stan klastra korzystając z API serwera. \\
+ monitorują oraz zmieniają stan klastra korzystając z API serwera \\
  \hline
  Cloud-controller-manager & Element, który wbudowuje logikę związaną z konkretną 
  chmurą, w której tworzone są klastry. Pozwala połączyć dany klaster z API dostawcy 
  chmury oraz oddziela komponenty, które oddziałują z chmurą od komponentów, które 
  oddziałują tylko z klastrem. Jest to komponent, który występuje tylko w przypadku 
  stawiania kontenerów w chmurze. Jeśli Kubernetes działa np. w prywatnym środowisku 
- na jednym komputerze, wtedy klaster nie posiada tego elementu. \\
+ na jednym komputerze, wtedy klaster nie posiada tego elementu \\
  \hline
 \end{xltabular}
 
@@ -459,9 +486,9 @@ W tabeli \ref{tab:komponenty-wezla} opisano komponenty, które działają na ka�
 \begin{xltabular}{1\textwidth} { 
   | >{\raggedright\arraybackslash}c 
   | >{\raggedright\arraybackslash}X | }
-  \caption{Komponenty płaszczyzny sterowania} \label{tab:komponenty-wezla}\\
+  \caption{Komponenty węzła} \label{tab:komponenty-wezla}\\
   \hline
- Nazwa komoponentu & Opis \\
+ Nazwa komponentu & Opis \\
  \hline
  Kubelet & Agent, którego rolą jest upewnienie się, że kontenery są uruchomione 
  w zbiorze (pods). Przyjmuje zestaw specyfikacji zbiorów i zapewnia, że wszystkie 
@@ -474,7 +501,7 @@ W tabeli \ref{tab:komponenty-wezla} opisano komponenty, które działają na ka�
  wewnątrz lub na zewnątrz klastra.  \\
  \hline
  Container runtime & Oprogramowanie odpowiedzialne za uruchamianie kontenerów. 
- Kubernetes wspiera wiele możliwych runtime'ów, m. in. Docker, containerd, CRI-O. \\
+ Kubernetes wspiera wiele możliwych runtime-ów, m. in. Docker, containerd, CRI-O. \\
  \hline
  Pod & Grupa złożona z jednego lub większej liczby kontenerów, wdrożona na tym samym 
  węźle. Wszystkie kontenery z grupy współdzielą adres IP oraz przydzielone zasoby. \\
@@ -486,7 +513,7 @@ W tabeli \ref{tab:komponenty-wezla} opisano komponenty, które działają na ka�
 
 Płaszczyzna sterowania przyjmuje komendy od administratora klastra, po czym przekazuje 
 je do podległych serwerów. Komendy przyjmowane są za pomocą interfejsu 
-konsolowego, zwanego kubectl. Dobrą praktyką jest utworzenie plików deklarujących 
+konsolowego, zwanego \textit{kubectl}. Dobrą praktyką jest utworzenie plików deklarujących 
 pożądany stan, w jakim powinien znajdować się klaster. Przykładowa deklaracja znajduje 
 się poniżej.
 
@@ -521,7 +548,7 @@ spec:
 
 \end{lstlisting}
 
-Jest to deklaracja typu Deployment, która powinna zawierać następujące parametry:
+Jest to deklaracja typu \textit{Deployment}, która powinna zawierać następujące parametry:
 
 \begin{itemize} % lista nienumerowana
     \item Wersja wykorzystywanego API
@@ -547,10 +574,10 @@ się odwołać, wykorzystując jej adres IP oraz numer portu.
 Należy wziąć pod uwagę, że pody nie są trwałymi zasobami. Mogą być tworzone i usuwane 
 w sposób dynamiczny. Za każdym razem pod otrzymuje nowy adres IP, który może się 
 różnić od poprzednich. Prowadzi to do problemów przy komunikacji między 
-mikroserwisami, ponieważ nie wiedzą, że wymagany serwis nie jest już osiągalny pod 
+mikroserwisami, ponieważ nie wiedzą, że wymagany mikroserwis nie jest już osiągalny pod 
 dotychczasowym adresem.
 
-Rozwiązaniem tego zagadnienia jest wprowadzenie tzw. serwisu. Jest to abstrakcyjny 
+Rozwiązaniem tego zagadnienia jest wprowadzenie tzw. serwisu (ang. \textit{service}). Jest to abstrakcyjny 
 obiekt, który definiuje zbiór pod-ów oraz reguły umożliwiające do nich dostęp. 
 Serwisowi nadawany jest unikalny adres IP, pod który mogą odwoływać się mikroserwisy. 
 W dalszym ciągu pod-y będą dynamicznie tworzone i usuwane, jednak w tym wypadku będą 
@@ -577,7 +604,7 @@ spec:
     name: http 
 \end{lstlisting}
 
-Jest to deklaracja typu Service, która powinna zawierać następujące parametry:
+Jest to deklaracja typu \textit{Service}, która powinna zawierać następujące parametry:
 
 \begin{itemize} % lista nienumerowana
     \item Wersja wykorzystywanego API
@@ -599,7 +626,7 @@ Wyróżnia się trzy główne typy publikacji serwisu:
     klastrem i można się do niego dostać przy pomocy adresu IP węzła oraz statycznego 
     numeru portu
     \item LoadBalancer - przydziela serwisowi adres zewnętrzny przy użyciu load 
-    balancer'a zapewnionego przez wykorzystywaną platformę chmurową
+    balancer-a zapewnionego przez wykorzystywaną platformę chmurową
 \end{itemize}
 
 Dobrą praktyką jest utworzenie obiektu wejścia do klastra (ang. \textit{ingress}), który 
@@ -640,7 +667,7 @@ spec:
                   number: 8085
 \end{lstlisting}
 
-Jest to deklaracja typu Ingress, która powinna zawierać następujące parametry:
+Jest to deklaracja typu \textit{Ingress}, która powinna zawierać następujące parametry:
 
 \begin{itemize} % lista nienumerowana
     \item Wersja wykorzystywanego API
@@ -650,3 +677,21 @@ Jest to deklaracja typu Ingress, która powinna zawierać następujące parametr
     serwisów w klastrze. W tym przypadku aplikacja dla administratorów jest dostępna 
     pod adresem dagair.info/adminapplication
 \end{itemize}
+
+\subsubsection{Łączność sieciowa w środowisku Kubernetes}
+
+Łączność sieciowa w środowisku Kubernetes w dużym stopniu pokrywa się z zasadami funkcjonowania
+na platformie Docker, które zostały opisane w podrozdziale \ref{subsubection:lacznosc-sieciowa-docker}.
+Wewnątrz hosta utworzone są odrębne przestrzenie nazw, połączone ze sobą mostem. Dodatkowym poziomem
+abstrakcji są pody, wewnątrz których można uruchomić wiele kontenerów. Każdy pod otrzymuje unikalny adres
+IP. Kontenery wewnątrz poda mogą komunikować się ze sobą za pomocą interfejsu \textit{loopback}.
+W przypadku konieczności komunikacji z mikrousługami znajdującymi się na innych hostach pakiety
+należy wysłać poprzez interfejs \textit{ETH0} hosta. 
+Kubernetes oferuje serwis DNS pozwalający na translację nazw serwisów na adresy IP.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1\textwidth]{kubernetes_networking.jpg}
+  \caption{Łączność sieciowa w środowisku Kubernetes. Opracowanie własne}
+  \label{fig:kubernetes-networking}
+\end{figure}

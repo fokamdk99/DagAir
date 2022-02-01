@@ -1,17 +1,18 @@
 \newpage
-\section{Komunikacja między serwisami}
+\section{Komunikacja między mikroserwisami}
+\label{section:komunikacja-miedzy-serwisami}
 \subsection{Broker wiadomości}
 Aby mikroserwisy mogły działać poprawnie, potrzebują wymieniać ze sobą informacje 
 w sposób szybki i niezawodny. W przypadku komunikacji nie wymagającej żadnej interakcji 
 z użytkownikiem, jednym z rozwiązań jest wykorzystanie brokera wiadomości, który pełni 
-rolę pośrednika przekazującego wiadomości między serwisami. Do grona takich narzędzi 
+rolę pośrednika przekazującego wiadomości między mikroserwisami. Do grona takich narzędzi 
 należy RabbitMQ. Spośród konkurencyjnych rozwiązań wyróżnia się tym, że jest to 
 narzędzie typu open source, ponadto cechuje się małymi wymaganiami sprzętowymi oraz 
 łatwością wdrażania w chmurze. 
 
 RabbitMQ wspiera różne protokoły do przekazywania wiadomości, jednak domyślnie 
 wykorzystuje protokół AMQP 0-9-1 (ang. \textit{advanced message queuing protocol}). Uogólniony 
-schemat, na którym opiera się protokoł, został przedstawiony na rysunku \ref{fig:schemat-amqp}.
+schemat, na którym opiera się protokół, został przedstawiony na rysunku \ref{fig:schemat-amqp}.
 
 \begin{figure}[h]
     \centering
@@ -21,9 +22,9 @@ schemat, na którym opiera się protokoł, został przedstawiony na rysunku \ref
 \end{figure}
 
 Wydawcy wiadomości (ang. \textit{publisher}) publikują wiadomości do pośrednika, który następnie 
-przekuje je do odpowiednich konsumentów (ang. \textit{consumer}). Ponieważ jest to protokół 
+je przekazuje do odpowiednich konsumentów (ang. \textit{consumer}). Ponieważ jest to protokół 
 sieciowy, to wydawcy, konsumenci oraz pośrednicy mogą być uruchomieni na różnych 
-maszynach. Pośrednik RabbitMq dysponuje następującymi cechami:
+maszynach. Pośrednik RabbitMQ działa według następujących zasad:
 
 \begin{itemize} % lista nienumerowana
     \item Wiadomości są publikowane na giełdy (ang. exchange)
@@ -34,10 +35,10 @@ maszynach. Pośrednik RabbitMq dysponuje następującymi cechami:
 \end{itemize}
 
 Przesyłanie informacji przez sieć wiąże się z ryzykiem tego, że dane nie zostaną 
-dostarczone. Wobec tego protokół zapewnia funkcjonalność, zwaną potwierdzeniem 
+dostarczone. Wobec tego protokół zapewnia funkcjonalność zwaną potwierdzeniem 
 wiadomości (ang. \textit{message acknowledgements}), która gwarantuje otrzymanie wiadomości 
 przez konsumentów. Działa ona w ten sposób, że wiadomość jest usuwana z kolejki tylko 
-wtedy, gdy uzyska potwierdzenie jej otrzymania od zainteresowanych usług.
+wtedy, gdy uzyska potwierdzenie jej otrzymania od zainteresowanych mikrousług.
 
 Giełdy po otrzymaniu wiadomości od wydawców mogą ją rozesłać do zera lub większej 
 liczby kolejek. Używany algorytm routingu zależy od typu wymiany i reguł nazywanych 
@@ -52,8 +53,8 @@ cztery typy wymiany:
     kolejek, które są z nią powiązane, a klucz routingu jest ignorowany. Jeśli do 
     giełdy dowiązanych jest N kolejek, to po publikacji wiadomości przez wydawcę 
     dotrze ona do wszystkich N kolejek. Jest idealna do rozsyłania wiadomości do 
-    wszystkich usług
-    \item Wymiana tematyczna (ang. \textit{topic exchange}) - kierują wiadomości do jednej lub 
+    wszystkich konsumentów
+    \item Wymiana tematyczna (ang. \textit{topic exchange}) - kieruje wiadomości do jednej lub 
     wielu kolejek na podstawie dopasowania klucza routingu oraz wzorca użytego do 
     powiązania kolejki z giełdą. Jest często używana do implementacji różnych odmian 
     wzorca publish/subscribe. Typowo używa się jej dla wiadomości typu multicast. 
@@ -71,8 +72,8 @@ przesyłania wiadomości. Połączenia (ang. \textit{connections}) korzystają z
 uwierzytelnienia i mogą być chronione za pomocą protokołu TLS. Ze względu na dodatkowe 
 środki zapewniające niezawodność zaleca się, aby połączenia między klientem 
 a pośrednikiem były ustanawiane na dłuższy okres czasu. W przypadku gdy klient 
-potrzebuje nawiązać wiele połączeń, może skorzystać z kanałów (ang. 
-\textit{channels}), o których można myśleć jako lekkich połączeniach dzielących jedno 
+potrzebuje nawiązać wiele połączeń, powinien wykorzystać kanały (ang. 
+\textit{channels}), o których można myśleć jak o lekkich połączeniach dzielących jedno 
 połączenie TCP. Każda operacja przeprowadzana przez klienta odbywa się z użyciem 
 kanału, a komunikacja na różnych kanałach jest od siebie całkowicie odseparowana. 
 Z tego względu każda metoda zawiera identyfikator kanału dla rozróżnienia, przez 
@@ -81,7 +82,7 @@ który kanał należy wysłać wiadomość.
 \subsubsection{MassTransit}
 
 Przy tworzeniu systemu została wykorzystana szyna danych o nazwie MassTransit 
-przeznaczona dla aplikacji napisanych we framework'u .NET Core
+przeznaczona dla aplikacji napisanych w modelu (ang. \textit{framework}) .NET Core
 \cite{masstransit2022}. Zapewnia ona poziom 
 abstrakcji umożliwiający wykorzystanie wielu różnych pośredników wiadomości, w 
 tym RabbitMQ. Spośród wielu swoich zalet, szyna zapewnia:
@@ -97,7 +98,7 @@ tym RabbitMQ. Spośród wielu swoich zalet, szyna zapewnia:
     C\#, trzeba zapisać je w odpowiednim formacie, w procesie zwanym serializacją. 
     MassTransit implementuje narzędzia do serializacji obiektów
     \item Testy jednostkowe. MassTransit zawiera implementację przygotowaną specjalnie 
-    do testów w taki sposób, by testy nie były zależne od reszty infrakstruktury 
+    do testów w taki sposób, by testy nie były zależne od reszty infrastruktury 
     systemu. Przykładem jest poniższa metoda:
 \end{itemize}
 
@@ -138,9 +139,9 @@ przetworzona.
 
 Dzięki zastosowaniu szyny danych tworzenie konsumentów oraz publikowanie wiadomości 
 staje się dużo łatwiejsze. Aby utworzyć nowego konsumenta, wystarczy jedynie utworzyć 
-nową klasę implementującą interfejs IConsumer<T>, gdzie T jest oczekiwanym typem 
+nową klasę implementującą interfejs \textit{IConsumer<T>}, gdzie \textit{T} jest oczekiwanym typem 
 wiadomości. Klasa musi zawierać implementację metody 
-Consume(ConsumeContext<MeasurementSentEvent> context), która zawiera logikę 
+\textit{Consume(ConsumeContext<MeasurementSentEvent> context)}, która zawiera logikę 
 przetwarzania wiadomości. Przykładem jest poniższa metoda:
 
 \begin{addmargin}[0mm]{10mm}
@@ -165,9 +166,9 @@ przetwarzania wiadomości. Przykładem jest poniższa metoda:
     
 Zapisuje ona w logach szczegóły dotyczące przychodzącej wiadomości, przetwarza 
 otrzymane wartości, po czym publikuje nową wiadomość o innym typie, której konsument 
-znajduje się w innym mikroserwisie.
+jest implementowany przez inny mikroserwis.
 
-\subsubsection{Połączenie serwisów z brokerem wiadomości}
+\subsubsection{Połączenie mikroserwisów z brokerem wiadomości}
 
 Utworzone w ramach pracy mikroserwisy łączą się z brokerem wiadomości i w ten sposób wymieniają między
 sobą dane. Mogą one być połączone w różny sposób, zależnie od oczekiwanego rezultatu. Dwa główne
@@ -176,21 +177,21 @@ przypadki zostały przedstawione na rysunku \ref{fig:rabbitmq-polaczenie}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=1\textwidth]{rabbitmq_schema.jpg}
-    \caption{Rodzaje połączenia z brokerem wiadomości}
+    \caption{Rodzaje połączenia z brokerem wiadomości. Opracowanie własne}
     \label{fig:rabbitmq-polaczenie}
 \end{figure}
 
 \begin{enumerate}
     \item W pierwszym przypadku celem jest wysłanie wiadomości tylko do jednego konsumenta. Jedną
-    z występujących sytuacji jest przetwarzanie otrzymanych z czujników pomiarów przez Sensor State
-    Processing Service. Wykonanie tej samej operacji przez kilka instancji tego serwisu byłoby stratą
+    z występujących sytuacji jest przetwarzanie otrzymanych z czujników pomiarów przez SSPS. 
+    Wykonanie tej samej operacji przez kilka instancji tego serwisu byłoby stratą
     dostępnych zasobów. Aby osiągnąć ten efekt, wszystkie instancje tego serwisu powinny być dołączone 
     do jednej kolejki. Wtedy kolejka wysyła przychodzące pomiary tylko do wybranej przez siebie instancji.
     Wybór odbywa się za pomocą mechanizmu szeregowania procesów Round-robin.
     \item W drugim przypadku celem jest wysłanie wiadomości do wielu konsumentów. Jedną z występujących
     sytuacji jest wysłanie wyniku przetwarzania pomiarów do wszystkich pracowników oraz administratorów
     posiadających uprawnienia do jego wyświetlenia. Aby osiągnąć ten efekt, każda instancja serwisów
-    otrzymujących wynik (w tym wypadku są to Admin Application Service oraz Employee Application Service)
+    otrzymujących wynik (w tym wypadku są to AAS oraz EAS)
     powinna być dołączona do osobnej kolejki, z których wszystkie dołączone są do tej samej giełdy
     publikującej wiadomości. W ten sposób kopia wysłanej przez wydawcę wiadomości zostanie dostarczona
     do każdej instancji.
@@ -199,13 +200,12 @@ przypadki zostały przedstawione na rysunku \ref{fig:rabbitmq-polaczenie}.
 \subsection{Styki}
 
 Mikroserwisy mogą komunikować się między sobą przy użyciu oferowanych przez nie 
-styków (ang. \textit{Application Programming Interface}). Definiują one kontrakty 
-określające informacje wymagane przy wysyłaniu żądania oraz zbiór danych zwracany 
-w odpowiedzi.
+styków (ang. \textit{Application Programming Interface}). Definiują parametry wymagane 
+do realizacji usługi oraz zbiór danych zwracany w odpowiedzi.
 
 Mikrousługi aplikacyjne oraz mikrousługi danych oferują styki zwracające jasno 
 zdefiniowany zbiór danych. Zostały one szczegółowo opisane w poniższych podrozdziałach. 
-Każdy ze styków zawiera:
+Każda z oferowanych usług zawiera:
 
 \begin{itemize} % lista nienumerowana
     \item Krótki opis funkcjonalności
@@ -214,16 +214,16 @@ Każdy ze styków zawiera:
     \item numer statusu oraz typ zwracanego obiektu
 \end{itemize}
 
-\subsubsection{Styk mikrousługi danych adresów}
+\subsubsection{Usługi udostępniane przez mikrousługę danych adresów}
 
 \begin{xltabular}{1\textwidth} { 
         | c    
         | c
         | X | }
-        \caption{Styki udostępniane przez Addresses Data Service} \label{tab:styki-addresses} \\
+        \caption{Usługi udostępniane przez ADS} \label{tab:styki-addresses} \\
         \hline
     \textbf{Ścieżka} & 
-    \multicolumn{2}{c|}{GET /addresses-api/addresses/{addressId}} \\
+    \multicolumn{2}{c|}{GET /addresses-api/addresses/\{addressId\}} \\
     \hline
     \textbf{Opis} & 
     \multicolumn{2}{c|}{\makecell{Zwraca informacje na temat adresu o danym identyfikatorze}} \\    \hline
@@ -253,7 +253,7 @@ Każdy ze styków zawiera:
     \hline
     \hline
     \textbf{Ścieżka} & 
-    \multicolumn{2}{c|}{GET /addresses-api/cities/{cityId}} \\
+    \multicolumn{2}{c|}{GET /addresses-api/cities/\{cityId\}} \\
     \hline
     \textbf{Opis} & 
     \multicolumn{2}{c|}{\makecell{Zwraca informacje na temat miasta o danym identyfikatorze}} \\    \hline
@@ -268,7 +268,7 @@ Każdy ze styków zawiera:
     \hline
     \hline
     \textbf{Ścieżka} & 
-    \multicolumn{2}{c|}{GET /addresses-api/countries/{countryId}} \\
+    \multicolumn{2}{c|}{GET /addresses-api/countries/\{countryId\}} \\
     \hline
     \textbf{Opis} & 
     \multicolumn{2}{c|}{\makecell{Zwraca informacje na temat kraju o danym identyfikatorze}} \\    \hline
@@ -283,7 +283,7 @@ Każdy ze styków zawiera:
     \hline
     \hline
     \textbf{Ścieżka} & 
-    \multicolumn{2}{c|}{GET /addresses-api/postal-codes/{postalCodeId}} \\
+    \multicolumn{2}{c|}{GET /addresses-api/postal-codes/\{postalCodeId\}} \\
     \hline
     \textbf{Opis} & 
     \multicolumn{2}{c|}{\makecell{Zwraca informacje na temat kodu \\pocztowego o danym identyfikatorze}} \\    \hline
@@ -295,39 +295,9 @@ Każdy ze styków zawiera:
     \hline
     {} & 404 & JsonApiError \\
     \hline
-    \hline
-    \hline
-    \textbf{Ścieżka} & 
-    \multicolumn{2}{c|}{POST /facilities-api/affiliates} \\
-    \hline
-    \textbf{Opis} & 
-    \multicolumn{2}{c|}{\makecell{Tworzy nowy oddział o parametrach podanych \\w modelu AddNewAffiliateCommand}} \\    \hline
-    \textbf{Odpowiedź} &
-    \textbf{Kod odpowiedzi} &
-    \textbf{Schemat} \\
-    \hline
-    {} & 201 & AffiliateDtoJsonApiDocument \\
-    \hline
-    {} & 400 & JsonApiError \\
-    \hline
-    {} & 409 & JsonApiError \\
-    \hline
-    \hline
-    \hline
-    \textbf{Ścieżka} & 
-    \multicolumn{2}{c|}{GET /facilities-api/affiliates} \\
-    \hline
-    \textbf{Opis} & 
-    \multicolumn{2}{c|}{\makecell{Zwraca informacje na temat wszystkich oddziałów}} \\    \hline
-    \textbf{Odpowiedź} &
-    \textbf{Kod odpowiedzi} &
-    \textbf{Schemat} \\
-    \hline
-    {} & 200 & AffiliateDtoListJsonApiDocument \\
-    \hline
     \end{xltabular}
 
-\subsubsection{Styk mikrousługi danych organizacji}
+\subsubsection{Usługi udostępniane przez mikrousługę danych organizacji}
 
 
     
@@ -335,10 +305,10 @@ Każdy ze styków zawiera:
         | c    
         | c
         | X | }
-        \caption{Styki udostępniane przez Facilities Data Service} \label{tab:styki-facilities} \\
+        \caption{Usługi udostępniane przez FDS} \label{tab:styki-facilities} \\
         \hline
     \textbf{Ścieżka} & 
-    \multicolumn{2}{c|}{GET /facilities-api/affiliates/{affiliateId}} \\
+    \multicolumn{2}{c|}{GET /facilities-api/affiliates/\{affiliateId\}} \\
     \hline
     \textbf{Opis} & 
     \multicolumn{2}{c|}{\makecell{Zwraca informacje na temat oddziału o danym identyfikatorze}} \\    \hline
@@ -353,7 +323,7 @@ Każdy ze styków zawiera:
     \hline
     \hline
     \textbf{Ścieżka} & 
-    \multicolumn{2}{c|}{DELETE /facilities-api/affiliates/{affiliateId}} \\
+    \multicolumn{2}{c|}{DELETE /facilities-api/affiliates/\{affiliateId\}} \\
     \hline
     \textbf{Opis} & 
     \multicolumn{2}{c|}{\makecell{Usuwa informacje na temat oddziału o danym identyfikatorze}} \\    \hline
@@ -398,7 +368,7 @@ Każdy ze styków zawiera:
     \hline
     \hline
     \textbf{Ścieżka} & 
-    \multicolumn{2}{c|}{GET /facilities-api/organizations/{organizationId}} \\
+    \multicolumn{2}{c|}{GET /facilities-api/organizations/\{organizationId\}} \\
     \hline
     \textbf{Opis} & 
     \multicolumn{2}{c|}{\makecell{Zwraca informacje na temat organizacji o danym identyfikatorze}} \\    \hline
@@ -413,7 +383,7 @@ Każdy ze styków zawiera:
     \hline
     \hline
     \textbf{Ścieżka} & 
-    \multicolumn{2}{c|}{DELETE /facilities-api/organizations/{organizationId}} \\
+    \multicolumn{2}{c|}{DELETE /facilities-api/organizations/\{organizationId\}} \\
     \hline
     \textbf{Opis} & 
     \multicolumn{2}{c|}{\makecell{Usuwa informacje na temat organizacji o danym identyfikatorze}} \\    \hline
@@ -445,7 +415,7 @@ Każdy ze styków zawiera:
     \hline
     \hline
     \textbf{Ścieżka} & 
-    \multicolumn{2}{c|}{GET /facilities-api/rooms/{roomId}} \\
+    \multicolumn{2}{c|}{GET /facilities-api/rooms/\{roomId\}} \\
     \hline
     \textbf{Opis} & 
     \multicolumn{2}{c|}{\makecell{Zwraca informacje na temat pomieszczenia o danym identyfikatorze}} \\    \hline
@@ -460,7 +430,7 @@ Każdy ze styków zawiera:
     \hline
     \hline
     \textbf{Ścieżka} & 
-    \multicolumn{2}{c|}{DELETE /facilities-api/rooms/{roomId}} \\
+    \multicolumn{2}{c|}{DELETE /facilities-api/rooms/\{roomId\}} \\
     \hline
     \textbf{Opis} & 
     \multicolumn{2}{c|}{\makecell{Usuwa informacje na temat pomieszczenia o danym identyfikatorze}} \\    \hline
@@ -476,13 +446,13 @@ Każdy ze styków zawiera:
     \hline
     \end{xltabular}
 
-\subsubsection{Styk mikrousługi danych reguł}
+\subsubsection{Usługi udostępniane przez mikrousługę danych reguł}
     
 \begin{xltabular}{1\textwidth} { 
         | c    
         | c
         | X | }
-        \caption{Styki udostępniane przez Policies Data Service} \label{tab:reguly-styki} \\
+        \caption{Usługi udostępniane przez PDS} \label{tab:reguly-styki} \\
         \hline
     \textbf{Ścieżka} & 
     \multicolumn{2}{c|}{POST /policies-api/expected-room-conditions} \\
@@ -559,14 +529,14 @@ Każdy ze styków zawiera:
     \hline
     \end{xltabular}
 
-\subsubsection{Styk mikrousługi danych sensorów}
+\subsubsection{Usługi udostępniane przez mikrousługę danych sensorów}
 
     
 \begin{xltabular}{1\textwidth} { 
         | c    
         | c
         | X | }
-        \caption{Styki udostępniane przez Sensors Data Service} \label{tab:sensory-styki} \\
+        \caption{Usługi udostępniane przez SDS} \label{tab:sensory-styki} \\
         \hline
     \textbf{Ścieżka} & 
     \multicolumn{2}{c|}{GET /sensors-api/sensors} \\
@@ -582,7 +552,7 @@ Każdy ze styków zawiera:
     \hline
     \hline
     \textbf{Ścieżka} & 
-    \multicolumn{2}{c|}{GET /sensors-api/sensors/room-id/{roomId}} \\
+    \multicolumn{2}{c|}{GET /sensors-api/sensors/room-id/\{roomId\}} \\
     \hline
     \textbf{Opis} & 
     \multicolumn{2}{c|}{\makecell{Zwraca informacje na temat sensorów znajdujących się \\w pomieszczeniu o danym identyfikatorze}} \\    \hline
@@ -626,13 +596,13 @@ Każdy ze styków zawiera:
     \hline
     \end{xltabular}
 
-\subsubsection{Styk mikrousługi mikrousługi aplikacyjnej administratorów}
+\subsubsection{Usługi udostępniane przez mikrousługę aplikacyjną administratorów}
 
 \begin{xltabular}{1\textwidth} { 
         | c    
         | c
         | X | }
-        \caption{Styki udostępniane przez Admin ApplicationService} \label{tab:admin-styki} \\
+        \caption{Usługi udostępniane przez AAS} \label{tab:admin-styki} \\
         \hline
     \textbf{Ścieżka} & 
     \multicolumn{2}{c|}{POST /admin-node/addresses} \\

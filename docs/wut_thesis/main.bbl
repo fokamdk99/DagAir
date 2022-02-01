@@ -17,6 +17,32 @@
 \endgroup
 
 \datalist[entry]{none/global//global/global}
+  \entry{Imt.org2015}{online}{}
+    \name{author}{1}{}{%
+      {{hash=fMTI}{%
+         prefix={for},
+         prefixi={f\bibinitperiod},
+         family={Market\bibnamedelima Transformation},
+         familyi={M\bibinitperiod\bibinitdelim T\bibinitperiod},
+         given={Institute},
+         giveni={I\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MTIf1}
+    \strng{fullhash}{MTIf1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{ENERGY BENCHMARKING AND TRANSPARENCY}
+    \verb{url}
+    \verb https://www.imt.org/wp-content/uploads/2018/02/IMTBenefitsofBenchmark
+    \verb ing_Online_June2015.pdf
+    \endverb
+    \field{year}{2015}
+    \field{urlday}{08}
+    \field{urlmonth}{01}
+    \field{urlyear}{2022}
+  \endentry
+
   \entry{oseland2012}{article}{}
     \name{author}{2}{}{%
       {{hash=ON}{%
@@ -44,32 +70,6 @@
     \field{volume}{1}
     \field{journaltitle}{Journal of Building Survey}
     \field{year}{2012}
-  \endentry
-
-  \entry{Imt.org2015}{online}{}
-    \name{author}{1}{}{%
-      {{hash=fMTI}{%
-         prefix={for},
-         prefixi={f\bibinitperiod},
-         family={Market\bibnamedelima Transformation},
-         familyi={M\bibinitperiod\bibinitdelim T\bibinitperiod},
-         given={Institute},
-         giveni={I\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{MTIf1}
-    \strng{fullhash}{MTIf1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{title}{ENERGY BENCHMARKING AND TRANSPARENCY}
-    \verb{url}
-    \verb https://www.imt.org/wp-content/uploads/2018/02/IMTBenefitsofBenchmark
-    \verb ing_Online_June2015.pdf
-    \endverb
-    \field{year}{2015}
-    \field{urlday}{08}
-    \field{urlmonth}{01}
-    \field{urlyear}{2022}
   \endentry
 
   \entry{sharp2022}{online}{}
@@ -264,7 +264,7 @@
   \entry{newmanb2015}{inbook}{}
     \name{author}{1}{}{%
       {{hash=NS}{%
-         family={Newam},
+         family={Newmam},
          familyi={N\bibinitperiod},
          given={Sam},
          giveni={S\bibinitperiod},
@@ -280,6 +280,63 @@
     \field{pages}{16\bibrangedash 27}
     \field{title}{Building microservices}
     \field{year}{2015}
+  \endentry
+
+  \entry{delatorre2015}{inbook}{}
+    \name{author}{3}{}{%
+      {{hash=dlTC}{%
+         prefix={de\bibnamedelima la},
+         prefixi={d\bibinitperiod\bibinitdelim l\bibinitperiod},
+         family={Torre},
+         familyi={T\bibinitperiod},
+         given={C.},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=WB}{%
+         family={Wagner},
+         familyi={W\bibinitperiod},
+         given={B.},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=RM}{%
+         family={Rousos},
+         familyi={R\bibinitperiod},
+         given={M.},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Microsoft}%
+    }
+    \strng{namehash}{TCdlWBRM1}
+    \strng{fullhash}{TCdlWBRM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{pages}{31\bibrangedash 32}
+    \field{title}{.NET Microservices: Architecutre for containerized .NET
+  applications}
+    \field{year}{2022}
+  \endentry
+
+  \entry{sommerville2011}{inbook}{}
+    \name{author}{1}{}{%
+      {{hash=SI}{%
+         family={Sommerville},
+         familyi={S\bibinitperiod},
+         given={I.},
+         giveni={I\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Pearson}%
+    }
+    \strng{namehash}{SI1}
+    \strng{fullhash}{SI1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{pages}{72\bibrangedash 73}
+    \field{title}{Software Engineering}
+    \field{year}{2011}
   \endentry
 
   \entry{mysql2022}{online}{}
@@ -519,6 +576,75 @@
     \field{urlyear}{2022}
   \endentry
 
+  \entry{aspnet2022}{online}{}
+    \name{author}{1}{}{%
+      {{hash=ID}{%
+         family={Inc.},
+         familyi={I\bibinitperiod},
+         given={Docker},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ID1}
+    \strng{fullhash}{ID1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{ASP.NET Core Runtime}
+    \verb{url}
+    \verb https://hub.docker.com/_/microsoft-dotnet-aspnet
+    \endverb
+    \field{year}{2022}
+    \field{urlday}{08}
+    \field{urlmonth}{01}
+    \field{urlyear}{2022}
+  \endentry
+
+  \entry{dotnetsdk2022}{online}{}
+    \name{author}{1}{}{%
+      {{hash=ID}{%
+         family={Inc.},
+         familyi={I\bibinitperiod},
+         given={Docker},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ID1}
+    \strng{fullhash}{ID1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{.NET SDK}
+    \verb{url}
+    \verb https://hub.docker.com/_/microsoft-dotnet-sdk
+    \endverb
+    \field{year}{2022}
+    \field{urlday}{08}
+    \field{urlmonth}{01}
+    \field{urlyear}{2022}
+  \endentry
+
+  \entry{git2022}{online}{}
+    \name{author}{1}{}{%
+      {{hash=CSF}{%
+         family={Conservancy},
+         familyi={C\bibinitperiod},
+         given={Software\bibnamedelima Freedom},
+         giveni={S\bibinitperiod\bibinitdelim F\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CSF1}
+    \strng{fullhash}{CSF1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Git}
+    \verb{url}
+    \verb https://git-scm.com/docs/git
+    \endverb
+    \field{year}{2022}
+    \field{urlday}{08}
+    \field{urlmonth}{01}
+    \field{urlyear}{2022}
+  \endentry
+
   \entry{kubernetes2022}{online}{}
     \name{author}{1}{}{%
       {{hash=K}{%
@@ -533,6 +659,71 @@
     \field{title}{What is Kubernetes?}
     \verb{url}
     \verb https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/
+    \endverb
+    \field{year}{2022}
+    \field{urlday}{08}
+    \field{urlmonth}{01}
+    \field{urlyear}{2022}
+  \endentry
+
+  \entry{github2022}{online}{}
+    \name{author}{1}{}{%
+      {{hash=SS}{%
+         family={Skrzypek},
+         familyi={S\bibinitperiod},
+         given={Stanislaw},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SS1}
+    \strng{fullhash}{SS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{DagAir}
+    \verb{url}
+    \verb https://github.com/fokamdk99/DagAir
+    \endverb
+    \field{year}{2022}
+    \field{urlday}{08}
+    \field{urlmonth}{01}
+    \field{urlyear}{2022}
+  \endentry
+
+  \entry{ikea2022}{online}{}
+    \name{author}{1}{}{%
+      {{hash=I}{%
+         family={Ikea},
+         familyi={I\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{I1}
+    \strng{fullhash}{I1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{pytradfri}
+    \verb{url}
+    \verb https://github.com/home-assistant-libs/pytradfri
+    \endverb
+    \field{year}{2022}
+    \field{urlday}{08}
+    \field{urlmonth}{01}
+    \field{urlyear}{2022}
+  \endentry
+
+  \entry{prometheus2022}{online}{}
+    \name{author}{1}{}{%
+      {{hash=P}{%
+         family={Prometheus},
+         familyi={P\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{P1}
+    \strng{fullhash}{P1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Overview}
+    \verb{url}
+    \verb https://prometheus.io/docs/introduction/overview/
     \endverb
     \field{year}{2022}
     \field{urlday}{08}

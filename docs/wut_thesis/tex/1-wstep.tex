@@ -1,27 +1,20 @@
 \newpage % Rozdziały zaczynamy od nowej strony.
-\section{Temat pracy}
+\section{Wstęp}
 
-Tematem niniejszej pracy jest utworzona w ramach seminarium dyplomowego aplikacja do 
-zarządzania warunkami technicznymi w pomieszczeniach biurowych oparta na architekturze 
-mikrousługowej. Produkt ma na celu poprawę warunków panujących w pomieszczeniach 
-przeznaczonych do pracy codziennej. Wybrane parametry przeznaczone do optymalizacji to 
-temperatura oraz natężenie światła.
+Zgodnie z wynikami badań opublikowanymi przez Institute for market transformation z 
+2015 roku około 40\% całkowitej konsumpcji energii w Stanach Zjednoczonych przypada na zasilanie budynków 
+\cite{Imt.org2015}. Przekłada się to w ciągu roku na wydatek rzędu 450 miliardów 
+dolarów. Najsłabiej zagospodarowane budowle zużywają od trzech do siedmiu razy więcej 
+energii od tych najbardziej oszczędnych. Istnieje zatem potrzeba przygotowania 
+i wdrożenia rozwiązań, które zoptymalizowały by wykorzystanie zasobów energetycznych. 
 
-Implementacja projektu przewiduje umieszczenie w badanych pomieszczeniach odpowiedniego 
-rodzaju czujników, które będą na bieżąco monitorować stan danej przestrzeni. 
-Zintegrowany z czujnikami system informacyjny powinien odczytywać przesyłane 
-pomiary, a następnie je interpretować. Wynik interpretacji powinien być widoczny dla 
-zainteresowanych osób. W wiadomości będą znajdować się informacje dotyczące 
-akcji, które należy podjąć, aby umożliwić ustalenie się badanych parametrów na 
-właściwym poziomie.
-
-Utworzenie aplikacji miało przyczynić się do osiągnięcia dwóch głównych 
-celów, stawianych od początku przygotowywania systemu:
+Utworzenie systemu miało przyczynić się do osiągnięcia dwóch głównych 
+celów, stawianych od początku jego przygotowywania:
 
 \begin{enumerate}
     \item Poprawa warunków pracy - badania \cite{oseland2012} dowodzą, że 
     warunki panujące w pomieszczeniach do pracy mają wpływ na efektywność pracowników. 
-    Utrzymanie ich na optymalnym poziomie może spowodować wzrost wydajności do 2,5\%
+    Utrzymanie ich na optymalnym poziomie może spowodować wzrost wydajności do 2.5\%
     \item Redukcja zużywanej energii - w praktyce często zdarza się, że po zakończeniu 
     pracy zostawiane są włączone światła na całą noc. Innym przykładem może być 
     sytuacja, w której pomieszczenie jest ogrzewane, mimo iż nikt z niego nie korzysta. 
@@ -29,10 +22,92 @@ celów, stawianych od początku przygotowywania systemu:
     konsekwencji ograniczy zużycie energii
 \end{enumerate}
 
-Zgodnie z wynikami badań opublikowanymi przez Institute for market transformation z 
-2015 roku około 40\% całkowitej konsumpcji energii przypada na zasilanie budynków 
-\cite{Imt.org2015}. Przekłada się to w ciągu roku na wydatek rzędu 450 miliardów 
-dolarów. Najsłabiej zagospodarowane budowle zużywały od trzech do siedmiu razy więcej 
-energii od tych najbardziej oszczędnych. Istnieje zatem potrzeba przygotowania 
-i wdrożenia rozwiązań, które z jednej strony nie byłyby obciążające finansowo, z 
-drugiej strony zaś ograniczające już istniejące koszty. 
+W odpowiedzi na przedstawione problemy zaprojektowano system do 
+zarządzania warunkami technicznymi w pomieszczeniach biurowych oparty na architekturze 
+mikrousługowej. Produkt ma na celu poprawę oraz kontrolę zgodności z zadanymi 
+wartościami warunków panujących w pomieszczeniach 
+przeznaczonych do pracy przy jednoczesnym ograniczeniu zużycia energii. 
+Wybrane parametry przeznaczone do optymalizacji to temperatura oraz natężenie światła.
+
+Implementacja projektu przewiduje umieszczenie w pomieszczeniach odpowiedniego 
+rodzaju czujników, które będą na bieżąco monitorować stan danej przestrzeni. 
+Zintegrowany z czujnikami system informacyjny powinien odczytywać przesyłane 
+pomiary, a następnie je interpretować. Wynik interpretacji powinien być widoczny dla 
+zainteresowanych osób. W wiadomości będą znajdować się informacje dotyczące 
+działań, które należy podjąć, aby umożliwić ustalenie się badanych parametrów na 
+właściwym poziomie.
+
+Rozwiązanie było przygotowywane z myślą o jak najprostszym etapie wdrażania. Proces
+instalacji systemu w danym biurze powinien składać się z trzech kroków:
+
+\begin{itemize}
+    \item Utworzenie nowej organizacji w bazie danych systemu
+    \item Umieszczenie czujników w każdym z pomieszczeń, które powinno być monitorowane.
+    Po podłączeniu do prądu czujniki powinny przesyłać pomiary
+    \item Dodanie umieszczonych urządzeń do listy urządzeń w ramach danej organizacji
+\end{itemize}
+
+Procedura instalacji powinna przebiegać szybko, a po jej zakończeniu wszyscy użytkownicy
+posiadający odpowiednie uprawnienia powinni otrzymywać wyniki pomiarów oraz rekomendacje
+dotyczące dalszych działań.
+
+Dedykowana mikrousługa nasłuchuje na przychodzące pomiary, po czym przesyła
+je dalej w celu analizy. W wyniku procesu odpowiednia mikrousługa przetwarzania 
+generuje odpowiedź, która zawiera opis aktualnego stanu danego pomieszczenia. Zależnie
+od warunków odpowiedź może przyjmować różną postać, np.:
+
+\begin{itemize}
+    \item 'Aktualne warunki są zgodne z oczekiwaniami.' - jeśli wartości mierzonych 
+    parametrów zgadzają się z ustaleniami
+    \item 'Zbyt wysoka temperatura. Rozważ uchylenie okna.' - jeśli pomiar temperatury
+    wykracza ponad dozwoloną górną granicę
+    \item 'Jest zbyt ciemno. Rozważ włączenie światła.' - gdy pomiar natężenia światła
+    wypada poniżej ustalonego dolnego poziomu
+\end{itemize}
+
+Oczekiwane wartości mogą zostać wyznaczone przez administratora organizacji oraz przez 
+pracownika, który jest do danego pomieszczenia przypisany. W oczekiwaniach określane
+są wartości temperatury oraz natężenia światła, a także dopuszczalne odchylenia od
+pożądanych wartości. Taki zbiór informacji określany jest jako reguła.
+
+Dla każdego z pomieszczeń można określić wiele reguł, z których każda będzie obowiązywać
+w innym okresie w ciągu tygodnia. Przykładowo, dobrą praktyką byłoby określenie
+odrębnej reguły obowiązującej w ciągu godzin pracy, gdzie oczekiwana wartość natężenia
+światła wynosiłaby 600 lx oraz innej reguły, obowiązującej
+poza godzinami pracy, gdzie oczekiwana wartość natężenia światła wynosiłaby 200 lx.
+Po przekroczeniu tej granicy system poinformowałby użytkowników, że w danej sali
+najprawdopodobniej pozostało zapalone światło. System automatycznie wykrywałby te i inne
+nieprawidłowości, które można by następnie wyeliminować poprzez włączenie/wyłączenie światła
+lub ogrzewania.
+
+Wewnątrz systemu zostały zdefiniowane reguły domyślne obowiązujące tak długo, dopóki
+użytkownicy nie utworzą swoich własnych. Wszystkie rodzaje reguł zostały przedstawione 
+poniżej w kolejności obowiązywania:
+
+\begin{itemize}
+    \item domyślna
+    \item organizacyjna
+    \item oddziałowa
+    \item spersonalizowana
+\end{itemize}
+
+Reguły organizacyjne mają pierwszeństwo przed regułami domyślnymi. Obowiązują dla
+każdego oddziału i pomieszczeń należących do danej organizacji. Reguły oddziałowe
+nadpisują reguły organizacyjne i obowiązują we wszystkich pomieszczeniach wewnątrz
+danego wydziału. Reguły spersonalizowane posiadają największy priorytet i obowiązują
+wyłącznie dla konkretnego pomieszczenia, dla którego zostały utworzone.
+
+W kolejnych rozdziałach opisano zagadnienia związane z utworzeniem systemu. W rozdziale 2. 
+przedstawiono różnice między już istniejącymi rozwiązaniami a proponowanym rozwiązaniem. 
+Rozdział 3. został poświęcony założeniom, na których opierano się podczas tworzenia pracy. 
+Treść rozdziału 4. zawiera porównanie dwóch konkurencyjnych architektur systemu oraz
+argumenty przemawiające za wyborem architektury opartej na mikrousługach.
+W rozdziale 5. przybliżono zagadanienia związane z modelowaniem danych oraz ich 
+przechowywaniem. Rozdział 6. opisuje różne sposoby komunikacji między 
+mikrousługami, wykorzystane w ramach pracy. Przygotowano zestaw testów sprawdzających
+poprawność działania systemu, przedstawionych szczegółowo w rozdziale 7.
+Treść rozdziału 8. zawiera szczegóły implementacyjne dotyczące dokonywania pomiarów
+oraz przesyłania ich w taki sposób, aby wiadomości były zrozumiałe dla systemu.
+Kolejny rozdział przybliża zasady działania oraz możliwości oferowane przez konteneryzację
+systemu. Ostatni rozdział stanowi podsumowanie dokonań oraz prezentuje możliwe
+dalsze kierunki rozwoju pracy.

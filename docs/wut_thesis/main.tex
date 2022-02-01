@@ -34,18 +34,18 @@
 \kierunek{Telekomunikacja}
 \specjalnosc{Teleinformatyka i Zarządzanie}
 \title{
-    Aplikacja do zarządzania warunkami \\
+    System do zarządzania warunkami \\
     technicznymi w pomieszczeniach biurowych \\
-    oparta na architekturze mikrousługowej
+    oparty na architekturze mikrousługowej
 }
 \engtitle{ % Tytuł po angielsku do angielskiego streszczenia
-    An application for managing \\
+    An IT system for managing \\
     internal conditions in office spaces \\
     based on microservices architecture
 }
-\author{\{Stanisław Skrzypek\}}
+\author{Stanisław Skrzypek}
 \album{300501}
-\promotor{Dr hab. Inż. Prof. Artur Tomaszewski}
+\promotor{dr hab. inż. Artur Tomaszewski}
 \date{\the\year}
 \maketitle
 
@@ -55,18 +55,44 @@
 \cleardoublepage % Zaczynamy od nieparzystej strony
 \streszczenie 
 Brak odpowiedniego zarządzania energią w budynkach biurowych od wielu lat 
-powodował straty zarówno finansowe, jak i środowiskowe. Dodatkowo, w wyniku 
-nieodpowiednich warunków panujących w pomieszczeniach pracy, osoby w nich 
-przebywające nie mogły pracować w efektywny sposób. Celem tej pracy było 
-zaproponowanie rozwiązania, za pomocą którego można byłoby mierzyć wartości 
-kluczowych parametrów pomieszczeń biurowych, po czym podejmować stosowne 
-działania mające na celu zarówno poprawienie komfortu pracowników, jak i 
-redukcję zużywanej energii. Wykonano przegląd już istniejących prac naukowych 
+powodował straty zarówno finansowe, jak i środowiskowe. Te pierwsze są nie 
+tylko wynikiem nieoptymalnej gospodarki energetycznej powodującej zwiększone
+koszty eksploatacji budynków ale również wynikiem obniżonej efektywności
+pracowników przebywających w niekomfortowych i niesprzyjających warunkach
+oświetleniowych i termicznych. 
+
+Celem tej pracy było 
+zaproponowanie rozwiązania umożliwiającego pomiar wartości 
+kluczowych parametrów pomieszczeń biurowych oraz sugerującego podjęcie stosownych 
+działań mających na celu zarówno poprawienie komfortu pracowników, jak i 
+redukcję zużywanej energii. 
+
+W odpowiedzi na przedstawione powyżej problemy przygotowano dedykowany 
+system informatyczny. Przyjmuje on aktualne pomiary wykonane
+przez specjalnie zaprojektowany zestaw czujników, przetwarza je oraz generuje 
+na ich podstawie wynik przedstawiający użytkownikowi proponowane działania.
+Rozwiązanie zostało przygotowane w oparciu o architekturę mikrousługową, która
+umożliwia podział projektu na wiele małych, połączonych ze sobą modułów usługowych.
+Konsekwencją takiego podejścia jest zwiększona odporność na awarie, skalowalność
+oraz łatwość wdrożenia względem pozostałych architektur.
+
+Duży nacisk położono na automatyzację procesu rozwoju i wdrażania aplikacji. 
+Projekt został utworzony w oparciu o metodykę ciągłej integracji oraz
+ciągłego wdrażania w celu skrócenia czasu potrzebnego do wydania nowych
+wersji systemu. W pracy opisano sposób wykorzystania różnorodnych narzędzi
+służących do zwiększenia stopnia automatyzacji rozwoju systemu. 
+
+W ramach pracy przeprowadzono przegląd istniejących prac naukowych 
 dotyczących optymalnej wartości temperatury oraz natężenia światła w 
-pomieszczeniach biurowych. Przygotowano system informatyczny oparty na 
-architekturze mikrousługowej, który przyjmuje aktualne pomiary i je przetwarza. 
-Przygotowano zestaw czujników, które wykonują pomiary oraz przesyłają 
-je do systemu. 
+pomieszczeniach biurowych. Na ich podstawie przygotowano zestaw
+domyślnych wartości mierzonych parametrów, do których mierzone wartości
+z pomieszczeń powinny dążyć. Użytkownicy korzystający z systemu mają także 
+możliwość definiowania własnych reguł
+dotyczących preferowanych wartości mierzonych parametrów. Celem systemu jest
+powiadamianie użytkowników, czy określone przez nich warunki zgadzają się
+z rzeczywistymi pomiarami.
+
+\slowakluczowe Zarządzanie energią, system informatyczny, architektura mikrousługowa
 
 %--------------------------------------
 % Streszczenie po angielsku
@@ -79,11 +105,31 @@ a result of inadequate room conditions, people staying in those rooms could
 not work effectively. The aim of this paper was to propose a solution by which 
 it would be possible to measure the values of key parameters of office 
 premises, and then take appropriate actions aimed at both improving the comfort 
-of employees and reducing energy consumption. A review of the already existing 
-scientific works on the optimal value of temperature and light intensity in 
-offices was carried out. An IT system based on a microservice architecture was 
-prepared, which takes current measurements and processes them. A set of sensors 
-has been prepared that perform the measurements and send them to the system.
+of employees and reducing energy consumption.
+
+In response to the problems presented above, a dedicated IT system was prepared. 
+It takes the actual measurements made
+through a specially prepared set of sensors, processes them and generates
+the result presenting the proposed actions to the user.
+The solution was prepared based on the microservice architecture, which
+allows for a division of the project into many small, connected microservices.
+The consequence of this approach is increased fault tolerance, scalability
+and ease of implementation in relation to other architectures.
+
+Users of the system can define their own rules
+regarding the preferred values of the measured parameters. The goal of the system is
+notifying users whether the terms they have specified agree
+with actual measurements. The system also offers a set of default values,
+which have been calculated on the basis of existing scientific works
+regarding the optimal value of temperature and light intensity in
+office premises.
+
+Much emphasis was placed on the automation of the system development and implementation process.
+The project was created based on the methodology of continuous integration and
+continuous implementation. The aim was to reduce the time needed to release new
+system versions. The paper describes the use of various tools
+to increase the degree of automation of system development.
+\keywords Energy management, IT system, microservices architecture
 
 %--------------------------------------
 % Oświadczenie o autorstwie
@@ -140,20 +186,21 @@ has been prepared that perform the measurements and send them to the system.
 % //AB
 \vspace{0.8cm}
 \acronymlist
-\acronym{EiTI}{Wydział Elektroniki i Technik Informacyjnych}
-\acronym{PW}{Politechnika Warszawska}
+\acronym{AA}{Admin Application}
+\acronym{AAS}{Admin Application Service}
 \acronym{ADS}{Addresses Data Service}
+\acronym{EA}{Employee Application}
+\acronym{EAS}{Employee Application Service}
+\acronym{EiTI}{Wydział Elektroniki i Technik Informacyjnych}
 \acronym{FDS}{Facilities Data Service}
 \acronym{PDS}{Policies Data Service}
-\acronym{SDS}{Sensors Data Service}
-\acronym{SSHDS}{Sensor State History Data Service}
-\acronym{SSDS}{Sensor State Data Service}
-\acronym{SSPS}{Sensor State Processing Service}
 \acronym{PPS}{Policy Processing Service}
-\acronym{EAS}{Employee Application Service}
-\acronym{AAS}{Admin Application Service}
-\acronym{EA}{Employee Application}
-\acronym{AA}{Admin Application}
+\acronym{PW}{Politechnika Warszawska}
+\acronym{SDS}{Sensors Data Service}
+\acronym{SSDS}{Sensor State Data Service}
+\acronym{SSHDS}{Sensor State History Data Service}
+\acronym{SSPS}{Sensor State Processing Service}
+
 
 \listoffigurestoc     % Spis rysunków.
 \vspace{1cm}          % vertical space

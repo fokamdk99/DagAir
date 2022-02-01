@@ -10,24 +10,29 @@ informacji:
     \item Baza danych szeregów czasowych InfluxDB
 \end{itemize}
 
+Sekcja 5.1 przybliża szczegóły dotyczące utworzonych modeli danych oraz sposobu 
+przechowywania informacji w relacyjnej bazie danych. Podrozdziały 5.1.1 - 5.1.5 przedstawiają
+szczegółowo kolejne schematy danych. Sekcja 5.2 jest poświęcona przechowywaniu
+wykonanych przez czujniki pomiarów w bazie danych szeregów czasowych.
+
 \subsection{MySQL}
 
 Relacyjna baza danych MySQL oferuje szybki, wielowątkowy serwer bazodanowy w oparciu 
-o język SQL (ang. Structured Query Language)
+o język SQL (ang. \textit{Structured Query Language})
 \cite{mysql2022}. Została ona wybrana ze względu na to, że 
-jest produktem typu open-source dostępną na licencji GNU (ang. general public license). 
+jest produktem typu open-source dostępnym na licencji GNU (ang. \textit{general public license}). 
 
 Dobrą praktyką, którą warto mieć na uwadze podczas tworzenia systemu opartego na 
-architekturze mikroserwisowej, jest zapewnienie dostępu do danego zbioru danych tylko 
-jednemu mikroserwisowi, który następnie może je udostępniać przy pomocy odpowiednio 
-skonfigurowanego API \cite{richardson2021}. Takie podejście umożliwia zachowanie luźnego 
-sprzężenia między serwisami. W konsekwencji należy utworzyć oddzielne zbiory 
+architekturze mikrousługowej, jest zapewnienie dostępu do konkretnego modelu danych tylko 
+jednemu mikroserwisowi, który następnie może udostępniać posiadane informacje przy pomocy odpowiednio 
+skonfigurowanego API (ang. \textit{Application Programming Interface}) \cite{richardson2021}. Takie podejście umożliwia zachowanie luźnego 
+sprzężenia między mikroserwisami. W konsekwencji należy utworzyć oddzielne modele 
 danych, zwane schematami, które mogą być zarządzane przez pojedynczy mikroserwis.
 
 W ramach utworzonego serwera bazodanowego zostały wdrożone następujące schematy:
 
     \begin{xltabular}{1\textwidth} { 
-        | >{\raggedright\arraybackslash}X        
+        | >{\raggedright\arraybackslash}c        
         | >{\raggedright\arraybackslash}X | }
         \caption{Utworzone schematy bazodanowe} \label{tab:schematy-bazodanowe} \\
         \hline
@@ -53,10 +58,19 @@ W ramach utworzonego serwera bazodanowego zostały wdrożone następujące schem
 
 \subsubsection{Schemat adresów}
 
-Schemat adresów składa się z następujących encji:
+Rysunek \ref{fig:diagram-adresy} przedstawia diagram UML modelu danych adresów. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{addresses_diagram.png}
+    \caption{Diagram modelu danych adresów. Opracowanie własne}
+    \label{fig:diagram-adresy}
+\end{figure}
+
+Schemat adresów składa się z encji opisanych w tabeli \ref{tab:encje-adresow}:
 
     \begin{xltabular}{1\textwidth} { 
-        | >{\raggedright\arraybackslash}X        
+        | >{\raggedright\arraybackslash}c        
         | >{\raggedright\arraybackslash}X | }
         \caption{Encje w schemacie adresów} \label{tab:encje-adresow} \\
         \hline
@@ -74,16 +88,15 @@ Schemat adresów składa się z następujących encji:
        \hline
        Streets & Ulica \\
        \hline
-       Street numbers & Numer budynku \\
-       \hline
     \end{xltabular}
 
-Związki między poszczególnymi encjami zostały opisane w tabeli 10.
+Związki między poszczególnymi encjami zostały opisane w tabeli \ref{tab:zwiazki-adresy}.
+
 
 \begin{xltabular}{1\textwidth} { 
-        | >{\arraybackslash}X    
-        | >{\arraybackslash}X
-        | >{\arraybackslash}X     
+        | >{\arraybackslash}c    
+        | >{\arraybackslash}c
+        | >{\arraybackslash}c     
         | >{\arraybackslash}X | }
         \caption{Związki między encjami w schemacie adresów} \label{tab:zwiazki-adresy} \\
         \hline
@@ -101,17 +114,23 @@ Związki między poszczególnymi encjami zostały opisane w tabeli 10.
     Addresses & Strees & 1:N & 
     Każda ulica może występować w wielu adresach \\
     \hline
-    Addresses & Street numbers & 1:N & 
-    Każdy numer budynku może występować w wielu adresach \\
-    \hline
     \end{xltabular}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{facilities_diagram.png}
+    \caption{Diagram modelu danych organizacji. Opracowanie własne}
+    \label{fig:diagram-organizacje}
+\end{figure}
 
 \subsubsection{Schemat organizacji}
 
-Schemat organizacji składa się z następujących encji:
+Rysunek \ref{fig:diagram-organizacje} przedstawia diagram UML modelu danych organizacji. 
+
+Schemat organizacji składa się z encji opisanych w tabeli \ref{tab:encje-organizacji}:
 
     \begin{xltabular}{1\textwidth} { 
-        | >{\raggedright\arraybackslash}X        
+        | >{\raggedright\arraybackslash}c        
         | >{\raggedright\arraybackslash}X | }
         \caption{Encje w schemacie organizacji} \label{tab:encje-organizacji} \\
         \hline
@@ -129,9 +148,9 @@ Schemat organizacji składa się z następujących encji:
 Związki między poszczególnymi encjami zostały opisane w tabeli \ref{tab:zwiazki-organizacje}.
 
 \begin{xltabular}{1\textwidth} { 
-        | >{\arraybackslash}X    
-        | >{\arraybackslash}X
-        | >{\arraybackslash}X     
+        | >{\arraybackslash}c   
+        | >{\arraybackslash}c
+        | >{\arraybackslash}c     
         | >{\arraybackslash}X | }
         \caption{Związki między encjami w schemacie organizacji} \label{tab:zwiazki-organizacje} \\
         \hline
@@ -147,10 +166,12 @@ Związki między poszczególnymi encjami zostały opisane w tabeli \ref{tab:zwia
 
 \subsubsection{Schemat reguł}
 
-Schemat reguł składa się z następujących encji:
+Rysunek \ref{fig:diagram-reguly} przedstawia diagram UML modelu danych reguł. 
+
+Schemat reguł składa się z encji opisanych w tabeli \ref{tab:encje-regul}:
 
     \begin{xltabular}{1\textwidth} { 
-        | >{\raggedright\arraybackslash}X        
+        | >{\raggedright\arraybackslash}c        
         | >{\raggedright\arraybackslash}X | }
         \caption{Encje w schemacie reguł} \label{tab:encje-regul}\\
         \hline
@@ -166,12 +187,19 @@ Schemat reguł składa się z następujących encji:
        \hline
     \end{xltabular}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{policies_diagram.png}
+    \caption{Diagram modelu danych reguł. Opracowanie własne}
+    \label{fig:diagram-reguly}
+\end{figure}
+
 Związki między poszczególnymi encjami zostały opisane w tabeli \ref{tab:zwiazki-reguly}.
 
 \begin{xltabular}{1\textwidth} { 
-        | >{\arraybackslash}X    
-        | >{\arraybackslash}X
-        | >{\arraybackslash}X     
+        | >{\arraybackslash}c    
+        | >{\arraybackslash}c
+        | >{\arraybackslash}c     
         | >{\arraybackslash}X | }
         \caption{Związki między encjami w schemacie reguł} \label{tab:zwiazki-reguly} \\
         \hline
@@ -187,17 +215,28 @@ Związki między poszczególnymi encjami zostały opisane w tabeli \ref{tab:zwia
 
 \subsubsection{Schemat sensorów}
 
-Schemat sensorów składa się z następujących encji:
+Rysunek \ref{fig:diagram-sensory} przedstawia diagram UML modelu danych sensorów. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{sensors_diagram.png}
+    \caption{Diagram modelu danych sensorów. Opracowanie własne}
+    \label{fig:diagram-sensory}
+\end{figure}
+
+Schemat sensorów składa się z encji opisanych w tabeli \ref{tab:encje-sensorow}:
 
     \begin{xltabular}{1\textwidth} { 
-        | >{\raggedright\arraybackslash}X        
+        | >{\raggedright\arraybackslash}c        
         | >{\raggedright\arraybackslash}X | }
         \caption{Encje w schemacie sensorów} \label{tab:encje-sensorow} \\
         \hline
        Nazwa encji & Przechowywane dane \\
        \hline
        Sensors & Szczegóły dotyczące danego sensora \\
+       \hline
        Sensor models & Model sensora \\
+       \hline
        Producers & Producent sensorów \\
        \hline
     \end{xltabular}
@@ -205,9 +244,9 @@ Schemat sensorów składa się z następujących encji:
 Związki między poszczególnymi encjami zostały opisane w tabeli \ref{tab:zwiazki-sensory}.
 
 \begin{xltabular}{1\textwidth} { 
-        | >{\arraybackslash}X    
-        | >{\arraybackslash}X
-        | >{\arraybackslash}X     
+        | >{\arraybackslash}c    
+        | >{\arraybackslash}c
+        | >{\arraybackslash}c     
         | >{\arraybackslash}X | }
         \caption{Związki między encjami w schemacie sensorów} \label{tab:zwiazki-sensory} \\
         \hline
@@ -223,11 +262,20 @@ Związki między poszczególnymi encjami zostały opisane w tabeli \ref{tab:zwia
 
 \subsubsection{Schemat użytkowników}
 
+Rysunek \ref{fig:diagram-uzytkownicy} przedstawia diagram UML modelu danych użytkowników. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{users_diagram.png}
+    \caption{Diagram modelu danych użytkowników. Opracowanie własne}
+    \label{fig:diagram-uzytkownicy}
+\end{figure}
+
 Schemat użytkowników został oparty na schemacie oferowanym przez Microsoft 
 \parencite{vickers2021} i składa się z następujących encji:
 
     \begin{xltabular}{1\textwidth} { 
-        | >{\raggedright\arraybackslash}X        
+        | >{\raggedright\arraybackslash}c        
         | >{\raggedright\arraybackslash}X | }
         \caption{Encje w schemacie użytkowników} \label{tab:encje-uzytkownicy}\\
         \hline
@@ -253,9 +301,9 @@ Schemat użytkowników został oparty na schemacie oferowanym przez Microsoft
 Związki między poszczególnymi encjami zostały opisane w tabeli \ref{tab:zwiazki-uzytkownicy}.
 
 \begin{xltabular}{1\textwidth} { 
-        | >{\arraybackslash}X    
-        | >{\arraybackslash}X
-        | >{\arraybackslash}X     
+        | >{\arraybackslash}c    
+        | >{\arraybackslash}c
+        | >{\arraybackslash}c     
         | >{\arraybackslash}X | }
         \caption{Związki między encjami w schemacie użytkowników} \label{tab:zwiazki-uzytkownicy} \\
         \hline
@@ -298,7 +346,7 @@ Przychodzące informacje są zapisywane w kolejnych rekordach, które zawierają
 następujące parametry:
 
     \begin{xltabular}{1\textwidth} { 
-        | >{\raggedright\arraybackslash}X 
+        | >{\raggedright\arraybackslash}c 
         | >{\raggedright\arraybackslash}X | }
         \caption{Parametry pojedynczego rekordu przechowującego pomiar} \label{tab:parametry-pomiaru}\\
         \hline
@@ -313,4 +361,5 @@ następujące parametry:
     \end{xltabular}
 
     Domyślnie czas jest zapisywany z dokładnością do nanosekund. W tej pracy zostały
-    zdefiniowane dwa rodzaje danych: \textit{temperature} oraz \textit{illuminance}.
+    zdefiniowane dwa rodzaje danych: \textit{temperature} dotyczące informacji o temperaturze 
+    oraz \textit{illuminance} dotyczące informacji o natężeniu światła.
