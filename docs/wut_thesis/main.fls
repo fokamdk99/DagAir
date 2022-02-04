@@ -1242,9 +1242,6 @@ INPUT .\eiti\title-inz.png
 INPUT .\eiti\title-inz.png
 INPUT eiti\title-inz.png
 OUTPUT main.xdv
-INPUT .\eiti\oswiadczenie_autora_pracy.pdf
-INPUT .\eiti\oswiadczenie_autora_pracy.pdf
-INPUT eiti\oswiadczenie_autora_pracy.pdf
 INPUT .\main.toc
 INPUT main.toc
 INPUT main.toc

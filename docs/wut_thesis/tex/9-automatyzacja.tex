@@ -443,6 +443,7 @@ wszystkie komponenty.
 
 W tabeli \ref{tab:komponenty-sterowania} zostały opisane komponenty składające się na całość płaszczyzny 
 sterowania.
+\newpage
 
 \begin{xltabular}{1\textwidth} { 
   | >{\raggedright\arraybackslash}c 
@@ -570,11 +571,7 @@ Jest to deklaracja typu \textit{Deployment}, która powinna zawierać następuj�
     nasłuchiwać na żądania na porcie 80
 \end{itemize}
 
-Deklarację można zaaplikować korzystając z komendy:
-
-\begin{lstlisting}
-kubectl apply -f deployment.yml
-\end{lstlisting}
+Komenda \textit{kubectl apply -f deployment.yml} umożliwia zaaplikowanie deklaracji.
 
 Płaszczyzna sterowania jest odpowiedzialna za to, by stan klastra odpowiadał 
 deklaracji. W konsekwencji zostaną utworzone dwa osobne pody, z których każdy otrzyma 
