@@ -27,7 +27,7 @@ namespace DagAir.Policies.Policies.Queries
         public async Task<RoomPolicy> Handle(long roomId, DateTime time)
         {
             var roomPolicies = await _context.RoomPolicies
-                .Where(x => x.RoomId == roomId)
+                .Where(x => (x.RoomId == roomId || x.RoomId == 0))
                 .Include(x => x.Category)
                 .Include(x => x.ExpectedConditions)
                 .ToListAsync();
