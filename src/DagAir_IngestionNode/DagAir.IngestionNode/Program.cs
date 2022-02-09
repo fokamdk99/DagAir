@@ -29,8 +29,7 @@ namespace DagAir.IngestionNode
                 {
                     services
                         .AddIngestionNodeFeature(hostBuilderContext.Configuration)
-                        .AddIngestionNodeMassTransitFeature(hostBuilderContext.Configuration, typeof(Program).Assembly)
-                        .AddHostedService<Worker>();
+                        .AddIngestionNodeMassTransitFeature(hostBuilderContext.Configuration, typeof(Program).Assembly);
                 })
                 .ConfigureWebHostDefaults(ConfigureWebHost);
 

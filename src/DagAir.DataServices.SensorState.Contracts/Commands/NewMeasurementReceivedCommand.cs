@@ -1,6 +1,6 @@
 ﻿using DagAir.IngestionNode.Contracts;
 
-namespace DagAir.IngestionNode.Measurements.Commands
+namespace DagAir.DataServices.SensorState.Contracts.Commands
 {
     public class NewMeasurementReceivedCommand
     {

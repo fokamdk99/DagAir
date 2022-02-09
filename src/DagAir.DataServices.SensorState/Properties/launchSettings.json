@@ -1,0 +1,14 @@
+﻿{
+  "profiles": {
+    "DagAir.DataServices.SensorState": {
+      "commandName": "Project",
+      "dotnetRunMessages": "true",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "applicationUrl": "https://localhost:25001;http://localhost:25000",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

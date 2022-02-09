@@ -1,10 +1,10 @@
 using System;
 using System.Linq;
+using DagAir.DataServices.SensorState.Contracts.Commands;
 using DagAir.IngestionNode.Contracts;
-using DagAir.IngestionNode.Measurements.Commands;
 using Microsoft.Extensions.Logging;
 
-namespace DagAir.IngestionNode.Measurements.Handlers
+namespace DagAir.DataServices.SensorState.Measurements.Handlers
 {
     public class MeasurementDeserializer : IMeasurementDeserializer
     {

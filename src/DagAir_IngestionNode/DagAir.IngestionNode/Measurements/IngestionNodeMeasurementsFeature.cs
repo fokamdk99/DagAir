@@ -8,7 +8,6 @@ namespace DagAir.IngestionNode.Measurements
         public static IServiceCollection AddIngestionNodeMeasurementsFeature(this IServiceCollection services)
         {
             services.AddScoped<INewMeasurementReceivedHandler, NewMeasurementReceivedHandler>();
-            services.AddScoped<IMeasurementDeserializer, MeasurementDeserializer>();
 
             return services;
         }

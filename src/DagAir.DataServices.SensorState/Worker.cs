@@ -2,15 +2,15 @@
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using DagAir.IngestionNode.Infrastructure.Configuration;
-using DagAir.IngestionNode.Measurements.Handlers;
+using DagAir.DataServices.SensorState.Infrastructure.Configuration;
+using DagAir.DataServices.SensorState.Measurements.Handlers;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
-namespace DagAir.IngestionNode
+namespace DagAir.DataServices.SensorState
 {
     public class Worker : BackgroundService
     {

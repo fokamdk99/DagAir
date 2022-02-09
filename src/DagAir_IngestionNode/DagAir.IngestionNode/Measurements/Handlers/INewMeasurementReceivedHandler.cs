@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using DagAir.IngestionNode.Measurements.Commands;
+using DagAir.DataServices.SensorState.Contracts.Commands;
 
 namespace DagAir.IngestionNode.Measurements.Handlers
 {

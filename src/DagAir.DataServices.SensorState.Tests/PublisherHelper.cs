@@ -5,7 +5,7 @@ using MassTransit;
 using MassTransit.Testing;
 using NUnit.Framework;
 
-namespace DagAir.IngestionNode.Tests.Handlers
+namespace DagAir.DataServices.SensorState.Tests
 {
     internal static class PublisherHelper
     { 

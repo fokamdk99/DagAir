@@ -1,5 +1,6 @@
 ﻿using DagAir.AdminNode.Addresses;
 using DagAir.AdminNode.Affiliates;
+using DagAir.AdminNode.CurrentMeasurements;
 using DagAir.AdminNode.Facilities;
 using DagAir.AdminNode.Rooms;
 using DagAir.AdminNode.Sensors;
@@ -17,6 +18,7 @@ namespace DagAir.AdminNode.Infrastructure
             services.AddScoped<IAddressesHandler, AddressesHandler>();
             services.AddScoped<IRoomsHandler, RoomsHandler>();
             services.AddScoped<ISensorsHandler, SensorsHandler>();
+            services.AddScoped<ICurrentMeasurementsHandler, CurrentMeasurementsHandler>();
             services.AddScoped<ISensorStateHistoryHandler, SensorStateHistoryHandler>();
             services.AddSingleton<IExternalServices, ExternalServices>();
 

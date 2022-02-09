@@ -9,9 +9,10 @@ namespace Subscriber
     {
         static void Main(string[] args)
         {
-            var factory = new ConnectionFactory() { HostName = "192.168.0.12" };
+            var factory = new ConnectionFactory() { HostName = "localhost" };
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
+            using (var channel2 = connection.CreateModel())
             {
                 channel.ExchangeDeclare("amq.topic", ExchangeType.Topic, durable: true);
 
@@ -20,9 +21,11 @@ namespace Subscriber
 
                 channel.QueueBind(queue: queueName,
                     exchange: "amq.topic",
-                    routingKey: "room_measurements");
+                    routingKey: "request_measurement"); //room_measurements
+                
+                channel2.ExchangeDeclare("amq.topic", ExchangeType.Topic, durable: true);
 
-                Console.WriteLine(" [*] Waiting for logs");
+                Console.WriteLine(" [*] Waiting for logs1");
 
                 var consumer = new EventingBasicConsumer(channel);
                 consumer.Received += (model, ea) =>
@@ -30,6 +33,17 @@ namespace Subscriber
                     var body = ea.Body.ToArray();
                     var message = Encoding.UTF8.GetString(body);
                     Console.WriteLine("[x][{0}] {1}", DateTime.Now, message);
+                    if (ea.RoutingKey == "request_measurement")
+                    {
+                        string responseMessage = "53.950000;438;45.480000;wemos_stas1";
+                        var responseBody = Encoding.UTF8.GetBytes(responseMessage);
+                        channel2.BasicPublish(exchange: "amq.topic",
+                            routingKey: "room_measurements",
+                            basicProperties: null,
+                            body: responseBody);
+
+                        Console.WriteLine(" [x] Sent {0}", message);
+                    }
                 };
                 channel.BasicConsume(queue: "",
                     autoAck: true,

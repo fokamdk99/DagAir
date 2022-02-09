@@ -14,6 +14,14 @@ function main(){
         listCounter += 1;
     });
 
+    document.getElementById("getCurrentMeasurement").addEventListener("click", async () => {
+        try {
+            await connection.invoke("GetCurrentMeasurement", roomId);
+        } catch (err) {
+            console.error(err);
+        }
+    });
+
     connection.start({ withCredentials: false }).then(function () {
         console.log("room Id: {0}", roomId);
     }).catch(function (err) {

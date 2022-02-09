@@ -1,8 +1,8 @@
-using DagAir.IngestionNode.Measurements.Handlers;
+using DagAir.DataServices.SensorState.Measurements.Handlers;
 using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 
-namespace DagAir.IngestionNode.Tests.Handlers
+namespace DagAir.DataServices.SensorState.Tests
 {
     public class MeasurementDeserializerTests : MassTransitIntegrationTest
     {

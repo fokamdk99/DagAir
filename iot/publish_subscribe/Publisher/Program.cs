@@ -18,8 +18,8 @@ namespace Publisher
                 string message = "53.950000;438;45.480000;wemos_stas1";
                 var body = Encoding.UTF8.GetBytes(message);
                 channel.BasicPublish(exchange: "amq.topic",
-                    //routingKey: "request_measurement",
-                routingKey: "room_measurements",
+                    routingKey: "request_measurement",
+                //routingKey: "room_measurements",
                     basicProperties: null,
                     body: body);
 

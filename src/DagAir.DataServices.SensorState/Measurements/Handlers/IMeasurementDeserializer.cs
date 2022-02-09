@@ -1,6 +1,6 @@
-using DagAir.IngestionNode.Measurements.Commands;
+using DagAir.DataServices.SensorState.Contracts.Commands;
 
-namespace DagAir.IngestionNode.Measurements.Handlers
+namespace DagAir.DataServices.SensorState.Measurements.Handlers
 {
     public interface IMeasurementDeserializer
     {

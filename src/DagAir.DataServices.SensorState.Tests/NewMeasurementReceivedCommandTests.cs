@@ -1,16 +1,15 @@
-﻿#nullable enable
 using System.Threading.Tasks;
 using DagAir.Components.MassTransit.RabbitMq.Publisher;
+using DagAir.DataServices.SensorState.Contracts.Commands;
+using DagAir.DataServices.SensorState.Measurements.Handlers;
 using DagAir.IngestionNode.Contracts;
-using DagAir.IngestionNode.Measurements.Commands;
-using DagAir.IngestionNode.Measurements.Handlers;
 using MassTransit.Testing;
 using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 
-namespace DagAir.IngestionNode.Tests.Handlers
+namespace DagAir.DataServices.SensorState.Tests
 {
-    public class NewMeasurementReceivedHandlerTests : MassTransitIntegrationTest
+    public class Tests : MassTransitIntegrationTest
     {
         private InMemoryTestHarness? _testHarness;
         private INewMeasurementReceivedHandler? _newMeasurementReceivedHandler;
@@ -22,9 +21,9 @@ namespace DagAir.IngestionNode.Tests.Handlers
 
             await _newMeasurementReceivedHandler!.Handle(command);
 
-            await PublisherHelper.CheckThatEventIsPublished<MeasurementSentEvent>(_testHarness);
+            await PublisherHelper.CheckThatEventIsPublished<NewMeasurementReceivedCommand>(_testHarness);
         }
-
+        
         private NewMeasurementReceivedCommand CreateMeasurementReceivedCommand()
         {
             var testMeasurement = new TestMeasurement
