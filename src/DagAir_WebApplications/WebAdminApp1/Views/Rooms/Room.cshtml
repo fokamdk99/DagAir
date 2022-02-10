@@ -52,9 +52,19 @@
                 <div class="card-header">Measurements</div>
                 <div class="card-body">
                     <h5 class="card-title">Current measurement</h5>
-                    <p id="current-measurement-temperature" class="card-text">Temperature: @Model.AdminNodeRoomDto.PastMeasurements.Measurements.ElementAt(0).Item1.Temperature</p>
-                    <p id="current-measurement-illuminance" class="card-text">Illuminance: @Model.AdminNodeRoomDto.PastMeasurements.Measurements.ElementAt(0).Item1.Illuminance</p>
-                    <p id="current-measurement-humidity" class="card-text">Humidity: @Model.AdminNodeRoomDto.PastMeasurements.Measurements.ElementAt(0).Item1.Humidity</p>
+                    @if (Model.AdminNodeRoomDto.PastMeasurements.Measurements.Any())
+                    {
+                        <p id="current-measurement-temperature" class="card-text">Temperature: @Model.AdminNodeRoomDto.PastMeasurements.Measurements.ElementAt(0).Item1.Temperature</p>
+                        <p id="current-measurement-illuminance" class="card-text">Illuminance: @Model.AdminNodeRoomDto.PastMeasurements.Measurements.ElementAt(0).Item1.Illuminance</p>
+                        <p id="current-measurement-humidity" class="card-text">Humidity: @Model.AdminNodeRoomDto.PastMeasurements.Measurements.ElementAt(0).Item1.Humidity</p>
+                    }
+                    else
+                    {
+                        <p id="current-measurement-temperature" class="card-text">Temperature: Not measured yet</p>
+                        <p id="current-measurement-illuminance" class="card-text">Illuminance: Not measured yet</p>
+                        <p id="current-measurement-humidity" class="card-text">Humidity: Not measured yet</p>
+                    }
+                    
                 </div>
             </div>
             <br/>
@@ -62,9 +72,19 @@
                 <div class="card-header">Policies</div>
                 <div class="card-body">
                     <h5 class="card-title">Current policy</h5>
-                    <p id="current-policy-temperature" class="card-text">Expected temperature level: @Model.AdminNodeRoomDto.PastMeasurements.Measurements.ElementAt(0).Item2.ExpectedConditions.Temperature</p>
-                    <p id="current-policy-illuminance" class="card-text">Expected illuminance level: @Model.AdminNodeRoomDto.PastMeasurements.Measurements.ElementAt(0).Item2.ExpectedConditions.Illuminance</p>
-                    <p id="current-policy-humidity" class="card-text">Expected humidity level: @Model.AdminNodeRoomDto.PastMeasurements.Measurements.ElementAt(0).Item2.ExpectedConditions.Humidity</p>
+                    @if (Model.AdminNodeRoomDto.PastMeasurements.Measurements.Any())
+                    {
+                        <p id="current-policy-temperature" class="card-text">Expected temperature level: @Model.AdminNodeRoomDto.PastMeasurements.Measurements.ElementAt(0).Item2.ExpectedConditions.Temperature</p>
+                        <p id="current-policy-illuminance" class="card-text">Expected illuminance level: @Model.AdminNodeRoomDto.PastMeasurements.Measurements.ElementAt(0).Item2.ExpectedConditions.Illuminance</p>
+                        <p id="current-policy-humidity" class="card-text">Expected humidity level: @Model.AdminNodeRoomDto.PastMeasurements.Measurements.ElementAt(0).Item2.ExpectedConditions.Humidity</p>
+                    }
+                    else
+                    {
+                        <p id="current-policy-temperature" class="card-text">Expected temperature level: No policy applied yet</p>
+                        <p id="current-policy-illuminance" class="card-text">Expected illuminance level: No policy applied yet</p>
+                        <p id="current-policy-humidity" class="card-text">Expected humidity level: No policy applied yet</p>
+                    }
+                    
                 </div>
             </div>
         </div>
