@@ -4,4 +4,9 @@
         <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\DagAir_IngestionNode\DagAir.IngestionNode.Contracts\DagAir.IngestionNode.Contracts.csproj" />
+      <ProjectReference Include="..\..\DagAir_Policies\DagAir.Policies.Contracts\DagAir.Policies.Contracts.csproj" />
+    </ItemGroup>
+
 </Project>

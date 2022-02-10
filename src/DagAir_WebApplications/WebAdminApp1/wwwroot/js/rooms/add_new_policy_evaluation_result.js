@@ -1,4 +1,4 @@
-export function addNewPolicyEvaluationResult(message, listCounter){
+export function addNewPolicyEvaluationResult(message, listCounter, measurementDate){
     var li = document.createElement("li");
     
     var p1 = document.createElement("p");
@@ -11,7 +11,18 @@ export function addNewPolicyEvaluationResult(message, listCounter){
     a1.setAttribute("role", "button");
     a1.setAttribute("aria-controls", "collapse" + listCounter);
     a1.href = "#collapse" + listCounter;
-    a1.textContent = `message ${listCounter}`;
+    let date1 = measurementDate.split("-");
+    let yyyy = date1[0];
+    let mm = date1[1];
+    let date2 = date1[2].split("T");
+    let dd = date2[0];
+    let date3 = date1[2].split(":");
+    let date4 = date3[0].split("T");
+    let hh = date4[1];
+    let m = date3[1];
+    let date5 = date3[2].split(".");
+    let ss = date5[0];
+    a1.textContent = `${dd}/${mm}/${yyyy} ${hh}:${m}:${ss}`;
 
     var div1 = document.createElement("div");
     div1.classList.add("collapse");

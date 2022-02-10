@@ -1,6 +1,8 @@
-﻿namespace DagAir.PolicyNode.Contracts.Contracts
+﻿using DagAir.IngestionNode.Contracts;
+
+namespace DagAir.PolicyNode.Contracts.Contracts
 {
-    public interface IPoliciesEvaluationResultEvent
+    public interface IPoliciesEvaluationResultEvent : IMeasurement
     {
         EvaluatorResult TemperatureStatus { get; set; }
         EvaluatorResult HumidityStatus { get; set; }

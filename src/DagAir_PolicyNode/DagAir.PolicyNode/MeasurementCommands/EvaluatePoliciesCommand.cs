@@ -34,6 +34,10 @@ namespace DagAir.PolicyNode.MeasurementCommands
             var result = _policyEvaluator.Evaluate(measurementSentEvent, policyDto);
             
             result.RoomId = roomDto.Id;
+            result.RoomPolicyDto = policyDto;
+            result.Temperature = measurementSentEvent.Temperature;
+            result.Illuminance = measurementSentEvent.Illuminance;
+            result.Humidity = measurementSentEvent.Humidity;
 
             return result;
         }

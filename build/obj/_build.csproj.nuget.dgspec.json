@@ -1582,7 +1582,14 @@
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_IngestionNode\\DagAir.IngestionNode.Contracts\\DagAir.IngestionNode.Contracts.csproj": {
+                "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_IngestionNode\\DagAir.IngestionNode.Contracts\\DagAir.IngestionNode.Contracts.csproj"
+              },
+              "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Policies\\DagAir.Policies.Contracts\\DagAir.Policies.Contracts.csproj": {
+                "projectPath": "C:\\Users\\01143844\\source\\repos\\inzynierka\\Dagair\\src\\DagAir_Policies\\DagAir.Policies.Contracts\\DagAir.Policies.Contracts.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

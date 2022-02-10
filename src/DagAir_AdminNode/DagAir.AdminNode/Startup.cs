@@ -83,8 +83,8 @@ namespace DagAir.AdminNode
 
                 if (message != RedisValue.Null)
                 {
-                    await notificationHub.Clients.All.PoliciesEvaluationResultEvent(message);
-                    Console.WriteLine($"Forwarded message: { message }");
+                    //await notificationHub.Clients.All.PoliciesEvaluationResultEvent(message);
+                    //Console.WriteLine($"Forwarded message: { message }");
                 }
             });
         }

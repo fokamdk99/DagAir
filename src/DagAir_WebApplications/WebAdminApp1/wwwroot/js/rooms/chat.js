@@ -8,10 +8,16 @@ function main(){
     var connection = new signalR.HubConnectionBuilder().withUrl(settings["AdminNodeHub"]).withAutomaticReconnect().build();
     var listCounter = 0;
 
-    connection.on("PoliciesEvaluationResultEvent", function (message) {
-        var li = addNewPolicyEvaluationResult(message, listCounter);
+    connection.on("PoliciesEvaluationResultEvent", function (currentMeasurement) {
+        var li = addNewPolicyEvaluationResult(currentMeasurement.message, listCounter, currentMeasurement.measurementDate);
         document.getElementById("messagesList").prepend(li);
         listCounter += 1;
+        document.getElementById("current-measurement-temperature").textContent = `Temperature: ${currentMeasurement.temperature}`;
+        document.getElementById("current-measurement-illuminance").textContent = `Illuminance: ${currentMeasurement.illuminance}`;
+        document.getElementById("current-measurement-humidity").textContent = `Humidity: ${currentMeasurement.humidity}`;
+        document.getElementById("current-policy-temperature").textContent = `Expected temperature level: ${currentMeasurement.roompolicydto.temperature}`;
+        document.getElementById("current-policy-illuminance").textContent = `Expected illuminance level: ${currentMeasurement.roompolicydto.illuminance}`;
+        document.getElementById("current-policy-humidity").textContent = `Expected humidity level: ${currentMeasurement.roompolicydto.humidity}`;
     });
 
     document.getElementById("getCurrentMeasurement").addEventListener("click", async () => {
