@@ -31,10 +31,13 @@ namespace DagAir.AdminNode.Sensors
 
             if (response.Item2 != HttpStatusCode.OK)
             {
+                /*
                 var message =
-                    $"Error while trying to get information about organizations. Status code: ${response.Item2}";
+                    $"Error while trying to get information about sensors. Status code: ${response.Item2}";
                 _logger.LogError(message);
                 throw new Exception(message);
+                */
+                return null;
             }
 
             return response.Item1;

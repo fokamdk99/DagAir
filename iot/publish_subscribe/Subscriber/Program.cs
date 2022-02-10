@@ -9,7 +9,7 @@ namespace Subscriber
     {
         static void Main(string[] args)
         {
-            var factory = new ConnectionFactory() { HostName = "localhost" };
+            var factory = new ConnectionFactory() { HostName = args[0] };
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
             using (var channel2 = connection.CreateModel())
@@ -51,12 +51,16 @@ namespace Subscriber
                         Console.WriteLine(" [x] Sent {0}", responseMessage);
                     }
                 };
-                channel.BasicConsume(queue: "",
-                    autoAck: true,
-                    consumer: consumer);
+                while (true)
+                {
+                    channel.BasicConsume(queue: "",
+                        autoAck: true,
+                        consumer: consumer);
+                }
+                
 
-                Console.WriteLine("Press [enter] to exit");
-                Console.ReadLine();
+                //Console.WriteLine("Press [enter] to exit");
+                //Console.ReadLine();
             }
         }
     }

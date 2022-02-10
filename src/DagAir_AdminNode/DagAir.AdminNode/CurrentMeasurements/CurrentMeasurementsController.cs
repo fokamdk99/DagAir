@@ -20,6 +20,7 @@ namespace DagAir.AdminNode.CurrentMeasurements
             _currentMeasurementsHandler = currentMeasurementsHandler;
         }
 
+        /*
         [HttpGet]
         [Route("current-measurements")]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
@@ -31,5 +32,6 @@ namespace DagAir.AdminNode.CurrentMeasurements
 
             return NoContent();
         }
+        */
     }
 }

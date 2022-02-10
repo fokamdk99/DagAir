@@ -5,7 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DagAir_Components\DagAir.Components.MassTransit.RabbitMq\DagAir.Components.MassTransit.RabbitMq.csproj" />
+      <ProjectReference Include="..\..\DagAir_IngestionNode\DagAir.IngestionNode.Contracts\DagAir.IngestionNode.Contracts.csproj" />
     </ItemGroup>
 
 </Project>

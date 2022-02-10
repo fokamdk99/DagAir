@@ -10,6 +10,7 @@ COPY ["./DagAir_IngestionNode/DagAir.IngestionNode.Contracts/", "./DagAir_Ingest
 COPY ["./DagAir_IngestionNode/DagAir.IngestionNode.Infrastructure/", "./DagAir_IngestionNode/DagAir.IngestionNode.Infrastructure/"]
 COPY ["./DagAir_IngestionNode/DagAir.IngestionNode.Data/", "./DagAir_IngestionNode/DagAir.IngestionNode.Data/"]
 COPY ["./DagAir_Sensors/DagAir.Sensors.Contracts/", "./DagAir_Sensors/DagAir.Sensors.Contracts/"]
+COPY ["./DagAir_SensorState/DagAir.DataServices.SensorState.Contracts/", "./DagAir_SensorState/DagAir.DataServices.SensorState.Contracts/"]
 COPY ["./DagAir_Components/DagAir.Components.MassTransit.RabbitMq/", "./DagAir_Components/DagAir.Components.MassTransit.RabbitMq/"]
 COPY ["./DagAir_Components/DagAir.Components.Healthchecks/", "./DagAir_Components/DagAir.Components.Healthchecks/"]
 COPY ["./DagAir_Components/DagAir.Components.HttpClients/", "./DagAir_Components/DagAir.Components.HttpClients/"]

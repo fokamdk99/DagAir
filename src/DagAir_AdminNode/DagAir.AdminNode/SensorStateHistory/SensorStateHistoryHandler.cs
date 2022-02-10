@@ -37,6 +37,11 @@ namespace DagAir.AdminNode.SensorStateHistory
         public async Task<PastMeasurementsDto> GetHistoricMeasurements(GetRoomCommand getRoomCommand)
         {
             var sensorDto = await _sensorsHandler.GetSensorByRoomId(getRoomCommand.RoomId);
+
+            if (sensorDto == null)
+            {
+                return new PastMeasurementsDto();
+            }
             
             var path = _externalServices.SensorStateHistory + SensorStateHistoryEndpoints.GetHistoricMeasurements;
 

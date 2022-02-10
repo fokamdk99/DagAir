@@ -2215,6 +2215,10 @@
         }
       },
       "DagAir.PolicyNode.Contracts/1.0.0": {
+        "dependencies": {
+          "DagAir.IngestionNode.Contracts": "1.0.0",
+          "DagAir.Policies.Contracts": "1.0.0"
+        },
         "runtime": {
           "DagAir.PolicyNode.Contracts.dll": {}
         }

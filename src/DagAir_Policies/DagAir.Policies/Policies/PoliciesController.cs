@@ -92,7 +92,7 @@ namespace DagAir.Policies.Policies
 
             return Ok(new JsonApiDocument<PastMeasurementsDto>(pastMeasurementsDto));
         }
-        
+
         private NotFoundObjectResult GetCurrentRoomPolicyNotFoundMessage(long roomId)
         {
             return NotFound($"No current room policy for room with Id: {roomId} has not been found");

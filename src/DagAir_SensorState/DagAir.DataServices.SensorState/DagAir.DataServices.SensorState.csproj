@@ -26,11 +26,11 @@
     <ItemGroup>
       <ProjectReference Include="..\DagAir.DataServices.SensorState.Contracts\DagAir.DataServices.SensorState.Contracts.csproj" />
       <ProjectReference Include="..\DagAir.DataServices.SensorState.Infrastructure\DagAir.DataServices.SensorState.Infrastructure.csproj" />
-      <ProjectReference Include="..\DagAir_Components\DagAir.Components.Healthchecks\DagAir.Components.Healthchecks.csproj" />
-      <ProjectReference Include="..\DagAir_Components\DagAir.Components.HttpClients\DagAir.Components.HttpClients.csproj" />
-      <ProjectReference Include="..\DagAir_Components\DagAir.Components.Logging\DagAir.Components.Logging.csproj" />
-      <ProjectReference Include="..\DagAir_Components\DagAir.Components.MassTransit.RabbitMq\DagAir.Components.MassTransit.RabbitMq.csproj" />
-      <ProjectReference Include="..\DagAir_IngestionNode\DagAir.IngestionNode.Contracts\DagAir.IngestionNode.Contracts.csproj" />
+      <ProjectReference Include="..\..\DagAir_Components\DagAir.Components.Healthchecks\DagAir.Components.Healthchecks.csproj" />
+      <ProjectReference Include="..\..\DagAir_Components\DagAir.Components.HttpClients\DagAir.Components.HttpClients.csproj" />
+      <ProjectReference Include="..\..\DagAir_Components\DagAir.Components.Logging\DagAir.Components.Logging.csproj" />
+      <ProjectReference Include="..\..\DagAir_Components\DagAir.Components.MassTransit.RabbitMq\DagAir.Components.MassTransit.RabbitMq.csproj" />
+      <ProjectReference Include="..\..\DagAir_IngestionNode\DagAir.IngestionNode.Contracts\DagAir.IngestionNode.Contracts.csproj" />
     </ItemGroup>
 
 </Project>

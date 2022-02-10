@@ -18,7 +18,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\DagAir.DataServices.SensorState\DagAir.DataServices.SensorState.csproj" />
-      <ProjectReference Include="..\DagAir_Components\DagAir.Components.Logging\DagAir.Components.Logging.csproj" />
+      <ProjectReference Include="..\..\DagAir_Components\DagAir.Components.Logging\DagAir.Components.Logging.csproj" />
     </ItemGroup>
 
 </Project>
