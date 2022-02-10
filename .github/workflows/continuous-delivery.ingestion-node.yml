@@ -79,4 +79,5 @@ jobs:
 
     - name: Docker push images
       run: |
+        DOCKER_BUILDKIT=1 \
         docker push ${{ env.APP_IMAGE_NAME }} --all-tags

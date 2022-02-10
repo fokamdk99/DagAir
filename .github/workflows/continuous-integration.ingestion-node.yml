@@ -41,6 +41,7 @@ jobs:
 
       - name: Check application docker build - ingestion node
         run: |
+          DOCKER_BUILDKIT=1 \
           docker build \
           -f ./src/DagAir_IngestionNode/Dockerfile \
           ./src
