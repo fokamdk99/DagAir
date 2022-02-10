@@ -34,3 +34,15 @@ C:\Users\01143844\source\repos\inzynierka\Dagair\iot\publish_subscribe\Subscribe
 C:\Users\01143844\source\repos\inzynierka\Dagair\iot\publish_subscribe\Subscriber\obj\Debug\net5.0\ref\Subscriber.dll
 C:\Users\01143844\source\repos\inzynierka\Dagair\iot\publish_subscribe\Subscriber\obj\Debug\net5.0\Subscriber.pdb
 C:\Users\01143844\source\repos\inzynierka\Dagair\iot\publish_subscribe\Subscriber\obj\Debug\net5.0\Subscriber.genruntimeconfig.cache
+C:\Users\01143844\source\repos\inzynierka\Dagair\iot\publish_subscribe\Subscriber\bin\Debug\net5.0\Microsoft.Extensions.Configuration.dll
+C:\Users\01143844\source\repos\inzynierka\Dagair\iot\publish_subscribe\Subscriber\bin\Debug\net5.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\01143844\source\repos\inzynierka\Dagair\iot\publish_subscribe\Subscriber\bin\Debug\net5.0\Microsoft.Extensions.Configuration.EnvironmentVariables.dll
+C:\Users\01143844\source\repos\inzynierka\Dagair\iot\publish_subscribe\Subscriber\bin\Debug\net5.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\Users\01143844\source\repos\inzynierka\Dagair\iot\publish_subscribe\Subscriber\bin\Debug\net5.0\Microsoft.Extensions.Configuration.Json.dll
+C:\Users\01143844\source\repos\inzynierka\Dagair\iot\publish_subscribe\Subscriber\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\01143844\source\repos\inzynierka\Dagair\iot\publish_subscribe\Subscriber\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\01143844\source\repos\inzynierka\Dagair\iot\publish_subscribe\Subscriber\bin\Debug\net5.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\01143844\source\repos\inzynierka\Dagair\iot\publish_subscribe\Subscriber\bin\Debug\net5.0\Microsoft.Extensions.FileProviders.Physical.dll
+C:\Users\01143844\source\repos\inzynierka\Dagair\iot\publish_subscribe\Subscriber\bin\Debug\net5.0\Microsoft.Extensions.FileSystemGlobbing.dll
+C:\Users\01143844\source\repos\inzynierka\Dagair\iot\publish_subscribe\Subscriber\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
+C:\Users\01143844\source\repos\inzynierka\Dagair\iot\publish_subscribe\Subscriber\bin\Debug\net5.0\Newtonsoft.Json.dll

@@ -1,7 +1,11 @@
 ﻿using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 
 namespace Subscriber
 {
@@ -9,7 +13,13 @@ namespace Subscriber
     {
         static void Main(string[] args)
         {
-            var factory = new ConnectionFactory() { HostName = args[0] };
+            Settings items = new Settings();
+            using (StreamReader r = new StreamReader("appsettings.json"))
+            {
+                string json = r.ReadToEnd();
+                items = JsonConvert.DeserializeObject<Settings>(json);
+            }
+            var factory = new ConnectionFactory() { HostName = items!.HostName, UserName = "dagairUser", Password = "DagAir123$"};
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
             using (var channel2 = connection.CreateModel())
@@ -84,5 +94,10 @@ namespace Subscriber
                 sign,
                 scale);
         }
+    }
+
+    public class Settings
+    {
+        public string HostName { get; set; }
     }
 }

@@ -16,27 +16,30 @@
     {
         <div class="col-6 vh-100 overflow-auto">
             <ul id="messagesList">
-                @foreach (var item in Model.AdminNodeRoomDto.PastMeasurements.Measurements.Select((value, i) => new {i, value}))
+                @if (Model.AdminNodeRoomDto.PastMeasurements.Measurements.Any())
                 {
-                    string uniqueId = "collapseExample" + item.i;
-                    string href = "#" + uniqueId;
-                    <li>
-                        <p>
-                            <a class="btn btn-primary flex-grow-1" data-toggle="collapse" href="@href" role="button" aria-expanded="false" aria-controls="@uniqueId">
-                                @item.value.Item1.Date.Day/@item.value.Item1.Date.Month/@item.value.Item1.Date.Year @item.value.Item1.Date.Hour:@item.value.Item1.Date.Minute:@item.value.Item1.Date.Second
-                            </a>
-                        </p>
-                        <div class="collapse" id="@uniqueId">
-                            <div class="card card-body">
-                                <p class="card-text">Temperature: @item.value.Item1.Temperature</p>
-                                <p class="card-text">Illuminance: @item.value.Item1.Illuminance</p>
-                                <p class="card-text">Humidity: @item.value.Item1.Humidity</p>
-                                <p class="card-text">Expected temperature level: @item.value.Item2.ExpectedConditions.Temperature</p>
-                                <p class="card-text">Expected illuminance level: @item.value.Item2.ExpectedConditions.Illuminance</p>
-                                <p class="card-text">Expected humidity level: @item.value.Item2.ExpectedConditions.Humidity</p>
+                    @foreach (var item in Model.AdminNodeRoomDto.PastMeasurements.Measurements.Select((value, i) => new {i, value}))
+                    {
+                        string uniqueId = "collapseExample" + item.i;
+                        string href = "#" + uniqueId;
+                        <li>
+                            <p>
+                                <a class="btn btn-primary flex-grow-1" data-toggle="collapse" href="@href" role="button" aria-expanded="false" aria-controls="@uniqueId">
+                                    @item.value.Item1.Date.Day/@item.value.Item1.Date.Month/@item.value.Item1.Date.Year @item.value.Item1.Date.Hour:@item.value.Item1.Date.Minute:@item.value.Item1.Date.Second
+                                </a>
+                            </p>
+                            <div class="collapse" id="@uniqueId">
+                                <div class="card card-body">
+                                    <p class="card-text">Temperature: @item.value.Item1.Temperature</p>
+                                    <p class="card-text">Illuminance: @item.value.Item1.Illuminance</p>
+                                    <p class="card-text">Humidity: @item.value.Item1.Humidity</p>
+                                    <p class="card-text">Expected temperature level: @item.value.Item2.ExpectedConditions.Temperature</p>
+                                    <p class="card-text">Expected illuminance level: @item.value.Item2.ExpectedConditions.Illuminance</p>
+                                    <p class="card-text">Expected humidity level: @item.value.Item2.ExpectedConditions.Humidity</p>
+                                </div>
                             </div>
-                        </div>
-                    </li>
+                        </li>
+                    }
                 }
             </ul>
         </div>

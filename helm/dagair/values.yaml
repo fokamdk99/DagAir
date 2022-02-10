@@ -6,6 +6,9 @@ database:
   password: Rolka7Sushi
   user: root
 
+subscriber:
+  name: subscriber
+  
 sensors:
   name: sensors-api
   port: 8080

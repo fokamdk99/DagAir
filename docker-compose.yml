@@ -85,7 +85,6 @@ services:
       target: final
       context: ./src
       dockerfile: ./DagAir_Facilities/Dockerfile
-    image: facilities-api:1.0
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
       - ConnectionKeys__DagAir.Facilities=${FACILITIES_CONNECTIONKEYS}
