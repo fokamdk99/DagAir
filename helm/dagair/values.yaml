@@ -36,12 +36,18 @@ sensorStateHistory:
   rabbitMq:
     connectionName: sensor-state-history-api
 
+sensorState:
+  name: sensor-state-api
+  port: 8097
+  rabbitMq:
+    connectionName: sensor-state-api
+  sensorRabbitMq:
+    connectionName: sensor-state-api
+
 ingestionNode:
   name: ingestion-node
   port: 8082
   rabbitMq:
-    connectionName: ingestion-node
-  sensorRabbitMq:
     connectionName: ingestion-node
 
 policyNode:

@@ -1,33 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.policyNode.name }}
+  name: {{ .Values.sensorState.name }}
   labels:
-    app: {{ .Values.policyNode.name }}
+    app: {{ .Values.sensorState.name }}
     tier: backend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ .Values.policyNode.name }}
+      app: {{ .Values.sensorState.name }}
   template:
     metadata:
       labels:
-        app: {{ .Values.policyNode.name }}
+        app: {{ .Values.sensorState.name }}
         tier: backend
     spec:
       containers:
-      - name: {{ .Values.policyNode.name }}
-        image: {{ .Values.policyNode.name }}:1.6
+      - name: {{ .Values.sensorState.name }}
+        image: {{ .Values.sensorState.name }}:1.6
         env:
         - name: ASPNETCORE_ENVIRONMENT
           value: {{ .Values.environment }}
-        - name: serviceUrls__DagAir.Facilities
-          value: "http://{{ .Values.facilities.name }}:{{ .Values.facilities.port }}/"
-        - name: serviceUrls__DagAir.Policies
-          value: "http://{{ .Values.policies.name }}:{{ .Values.policies.port }}/"
-        - name: serviceUrls__DagAir.Sensors
-          value: "http://{{ .Values.sensors.name }}:{{ .Values.sensors.port }}/"
         - name: rabbitMq__hostName
           value: {{ .Values.rabbitMq.hostName }}
         - name: rabbitMq__virtualHost
@@ -39,7 +33,19 @@ spec:
         - name: rabbitMq__protocol
           value: {{ .Values.rabbitMq.protocol }}
         - name: rabbitMq__connectionName
-          value: {{ .Values.policyNode.rabbitMq.connectionName }}
+          value: {{ .Values.sensorState.rabbitMq.connectionName }}
+        - name: sensorRabbitMq__hostName
+          value: {{ .Values.sensorRabbitMq.hostName }}
+        - name: sensorRabbitMq__virtualHost
+          value: {{ .Values.sensorRabbitMq.virtualHost }}
+        - name: sensorRabbitMq__userName
+          value: {{ .Values.sensorRabbitMq.userName }}
+        - name: sensorRabbitMq__password
+          value: {{ .Values.sensorRabbitMq.password }}
+        - name: sensorRabbitMq__protocol
+          value: {{ .Values.sensorRabbitMq.protocol }}
+        - name: sensorRabbitMq__connectionName
+          value: {{ .Values.sensorState.sensorRabbitMq.connectionName }}
         imagePullPolicy: Never
         ports:
         - containerPort: 80
@@ -53,16 +59,16 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.policyNode.name }}
+  name: {{ .Values.sensorState.name }}
   labels:
-    app: {{ .Values.policyNode.name }}
+    app: {{ .Values.sensorState.name }}
     tier: backend
 spec:
   selector:
-    app: {{ .Values.policyNode.name }}
+    app: {{ .Values.sensorState.name }}
   type: LoadBalancer
   ports:
-  - port: {{ .Values.policyNode.port }}
+  - port: {{ .Values.sensorState.port }}
     targetPort: 80
     protocol: TCP
     name: http

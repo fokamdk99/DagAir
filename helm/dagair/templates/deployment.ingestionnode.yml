@@ -34,18 +34,6 @@ spec:
           value: {{ .Values.rabbitMq.protocol }}
         - name: rabbitMq__connectionName
           value: {{ .Values.ingestionNode.rabbitMq.connectionName }}
-        - name: sensorRabbitMq__hostName
-          value: {{ .Values.sensorRabbitMq.hostName }}
-        - name: sensorRabbitMq__virtualHost
-          value: {{ .Values.sensorRabbitMq.virtualHost }}
-        - name: sensorRabbitMq__userName
-          value: {{ .Values.sensorRabbitMq.userName }}
-        - name: sensorRabbitMq__password
-          value: {{ .Values.sensorRabbitMq.password }}
-        - name: sensorRabbitMq__protocol
-          value: {{ .Values.sensorRabbitMq.protocol }}
-        - name: sensorRabbitMq__connectionName
-          value: {{ .Values.ingestionNode.sensorRabbitMq.connectionName }}
         imagePullPolicy: Never
         ports:
         - containerPort: 80

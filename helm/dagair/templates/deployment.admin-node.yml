@@ -34,6 +34,8 @@ spec:
           value: "http://{{ .Values.sensors.name }}:{{ .Values.sensors.port }}/"
         - name: serviceUrls__DagAir.PoliciesDataService
           value: "http://{{ .Values.policies.name }}:{{ .Values.policies.port }}/"
+        - name: serviceUrls__DagAir.PoliciesDataService
+          value: "http://{{ .Values.sensorState.name }}:{{ .Values.sensorState.port }}/"
         - name: rabbitMq__hostName
           value: {{ .Values.rabbitMq.hostName }}
         - name: rabbitMq__virtualHost
