@@ -16,4 +16,4 @@ FROM base AS final
 WORKDIR /app
 COPY --from=build /app/publish .
 
-ENTRYPOINT ["dotnet", "Subscriber.dll", "host.docker.internal"]
+ENTRYPOINT ["dotnet", "Subscriber.dll"]
